@@ -1,0 +1,131 @@
+{
+  "label_type_id": "2R35-IDEDM",
+  "label_type_name": "Double-Row 35mm – Identity E (Textile, 2 products)",
+  "source_pages": [
+    36
+  ],
+  "description": "Two-row textile label. Contains two complete product identity blocks side-by-side. CA, NIF, MA-ICE compliance codes. Wash + legal symbols.",
+  "physical_dimensions_mm": {
+    "width": "~140",
+    "height": 35
+  },
+  "shape": "rectangular_double_row",
+  "copy_count_default": 1,
+  "datamatrix": {
+    "symbol_size": "26x26",
+    "x_dimension_options_mm": [
+      0.4
+    ],
+    "specs": {
+      "symbol_rows": 26,
+      "symbol_cols": 26,
+      "x_dim_mm": 0.4,
+      "physical_mm": "10.4x10.4",
+      "physical_incl_qz_mm": "11.2x11.2"
+    },
+    "gs1_ais_present": [
+      "AI_240",
+      "AI_13"
+    ],
+    "encoding": "GS1",
+    "count": 2,
+    "notes": "One DataMatrix per product row"
+  },
+  "itf_barcode": null,
+  "required_fields": [
+    "product_name",
+    "article_number",
+    "wash_symbols",
+    "legal_symbols",
+    "ca_code",
+    "nif_code",
+    "ma_ice_code",
+    "origin_text",
+    "supplier_address",
+    "copyright_notice"
+  ],
+  "optional_fields": [
+    "ikea_com_url",
+    "compliance_marks",
+    "plant_identifier",
+    "human_readable_date"
+  ],
+  "field_patterns": {
+    "product_name": {
+      "type": "string",
+      "pattern": "^[A-ZÅÄÖ][A-ZÅÄÖ0-9 /\\-]{0,39}$",
+      "notes": "ALL-CAPS, max 40 chars"
+    },
+    "article_number": {
+      "type": "string",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "example": "803.812.94"
+    },
+    "origin_text": {
+      "type": "string",
+      "pattern": "^(Made in|Assembled in)\\s.+$",
+      "example": "Made in People's Republic of China"
+    },
+    "supplier_address": {
+      "type": "string",
+      "pattern": "^SE\\s[–-]\\s34381\\s[ÄA]lmhult$",
+      "allowed_values": [
+        "SE – 34381 Älmhult"
+      ]
+    },
+    "copyright_notice": {
+      "type": "string",
+      "pattern": "^©\\s+Inter\\s+IKEA\\s+Systems\\s+B\\.V\\.\\s+\\d{4}$",
+      "example": "© Inter IKEA Systems B.V. 2022"
+    },
+    "ca_code": {
+      "type": "string",
+      "pattern": "^CA\\s?0?5404$",
+      "example": "CA 05404",
+      "notes": "Canadian compliance code"
+    },
+    "nif_code": {
+      "type": "string",
+      "pattern": "^NIF\\sN[0-9A-Z]+$",
+      "example": "NIF N03918B57J",
+      "notes": "Spanish NIF code"
+    },
+    "ma_ice_code": {
+      "type": "string",
+      "pattern": "^MA-ICE\\s\\d+$",
+      "example": "MA-ICE 001524613000018"
+    }
+  },
+  "validation_rules": [
+    {
+      "rule_id": "2R35E-001",
+      "field": "article_number",
+      "check": "count",
+      "value": 2,
+      "severity": "error"
+    },
+    {
+      "rule_id": "2R35E-002",
+      "field": "wash_symbols",
+      "check": "present",
+      "severity": "error"
+    },
+    {
+      "rule_id": "2R35E-003",
+      "field": "ca_code",
+      "check": "present",
+      "severity": "error"
+    },
+    {
+      "rule_id": "2R35E-004",
+      "field": "ma_ice_code",
+      "check": "regex_match",
+      "pattern": "^MA-ICE\\s\\d+$",
+      "severity": "error"
+    }
+  ],
+  "markets": [
+    "Canada",
+    "Spain"
+  ]
+}

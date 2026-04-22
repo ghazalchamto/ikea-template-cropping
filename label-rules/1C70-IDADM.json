@@ -1,0 +1,72 @@
+{
+  "label_type_id": "1C70-IDADM",
+  "label_type_name": "Card 70mm – Identity A (with COA/NUA variants)",
+  "source_pages": [
+    47
+  ],
+  "description": "Card label with optional Certificate of Analysis (COA) and Nutritional/Usage Analysis (NUA) sections. Three layout modes.",
+  "physical_dimensions_mm": {
+    "width": 70,
+    "height": "variable"
+  },
+  "shape": "card_portrait",
+  "copy_count_default": 1,
+  "datamatrix": {
+    "symbol_size": "26x26",
+    "x_dimension_options_mm": [
+      0.4
+    ],
+    "specs": {
+      "symbol_rows": 26,
+      "symbol_cols": 26,
+      "x_dim_mm": 0.4,
+      "physical_mm": "10.4x10.4",
+      "physical_incl_qz_mm": "11.2x11.2"
+    },
+    "gs1_ais_present": [
+      "AI_240",
+      "AI_13"
+    ],
+    "encoding": "GS1"
+  },
+  "itf_barcode": null,
+  "required_fields": [
+    "product_name",
+    "article_number",
+    "human_readable_date",
+    "plant_identifier",
+    "supplier_name",
+    "supplier_address",
+    "copyright_notice",
+    "origin_text"
+  ],
+  "optional_fields": [
+    "coa_section",
+    "nua_section",
+    "compliance_marks",
+    "ikea_com_url"
+  ],
+  "layout_variants": {
+    "COA_and_NUA": "Share space when both present",
+    "NUA_only": "Center-aligned when no COA",
+    "COA_only": "Center-aligned when no NUA",
+    "including_compliance": "Adds compliance section at bottom",
+    "sewn_on": "Sewn-on tag variant",
+    "hung_on": "Hung-on tag variant"
+  },
+  "validation_rules": [
+    {
+      "rule_id": "1C70A-001",
+      "field": "coa_nua_layout",
+      "check": "correct_alignment",
+      "severity": "warning"
+    },
+    {
+      "rule_id": "1C70A-002",
+      "field": "article_number",
+      "check": "regex_match",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "severity": "error"
+    }
+  ]
+}

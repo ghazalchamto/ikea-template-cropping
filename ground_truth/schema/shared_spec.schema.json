@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "shared_spec.schema.json",
+  "title": "SharedSpec",
+  "description": "A reusable barcode or symbol specification referenced by templates",
+  "type": "object",
+  "required": ["spec_id", "spec_type", "standard", "evidence"],
+  "properties": {
+    "spec_id": { "type": "string", "description": "Unique identifier for this spec" },
+    "spec_type": {
+      "type": "string",
+      "enum": ["datamatrix_rectangular", "datamatrix_square", "itf", "ean13", "ean13_80pct"]
+    },
+    "standard": { "type": "string", "description": "Relevant standard or symbology name" },
+    "x_dim_variants": {
+      "type": "array",
+      "description": "Physical size data keyed by x-dimension value",
+      "items": {
+        "type": "object",
+        "required": ["x_dim_mm", "role", "symbol_config", "physical_size_mm"],
+        "properties": {
+          "x_dim_mm": { "type": "number" },
+          "role": { "type": "string", "enum": ["minimum", "target", "maximum"] },
+          "symbol_config": {
+            "type": "object",
+            "properties": {
+              "rows": { "type": "integer" },
+              "columns": { "type": "integer" },
+              "includes_find_pattern": { "type": "boolean" },
+              "includes_quiet_zone": { "type": "boolean" }
+            }
+          },
+          "physical_size_mm": {
+            "type": "object",
+            "required": ["width_mm", "height_mm"],
+            "properties": {
+              "width_mm": { "type": "number" },
+              "height_mm": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "height_variants": {
+      "type": "array",
+      "description": "Used for linear barcodes with multiple height options",
+      "items": {
+        "type": "object",
+        "required": ["height_role", "bar_height_mm", "x_dim_mm", "physical_size_mm"],
+        "properties": {
+          "height_role": { "type": "string", "enum": ["lowest", "low", "standard"] },
+          "bar_height_mm": { "type": "number" },
+          "x_dim_mm": { "type": "number" },
+          "physical_size_mm": {
+            "type": "object",
+            "required": ["width_mm", "height_mm"],
+            "properties": {
+              "width_mm": { "type": "number" },
+              "height_mm": { "type": "number" },
+              "note": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "size_variants": {
+      "type": "array",
+      "description": "Used for ITF barcodes with named size tiers",
+      "items": {
+        "type": "object",
+        "required": ["size_role", "physical_size_mm"],
+        "properties": {
+          "size_role": { "type": "string", "enum": ["micro", "small", "medium", "large"] },
+          "physical_size_mm": {
+            "type": "object",
+            "required": ["width_mm", "height_mm"],
+            "properties": {
+              "width_mm": { "type": "number" },
+              "height_mm": { "type": "number" },
+              "includes_quiet_zone": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "magnification_factor": { "type": "number", "description": "e.g. 0.8 for 80% EAN" },
+    "notes": { "type": "string" },
+    "evidence": {
+      "type": "object",
+      "required": ["page", "evidence_type"],
+      "properties": {
+        "page": { "type": "integer" },
+        "evidence_type": { "type": "string" },
+        "snippet": { "type": "string" }
+      }
+    }
+  }
+}

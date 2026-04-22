@@ -1,0 +1,189 @@
+{
+  "version": "1.0",
+  "generated_from": "label_designs_changes_13_01_2026.pdf",
+  "total_templates": 15,
+  "families": ["1R10-PRADM", "1R20-PRADM"],
+  "templates": [
+    {
+      "template_id": "1R10-PRADM_v1",
+      "display_name": "1R10-PRADM Variant 1 — Basic with copy count",
+      "page": 3,
+      "family": "1R10-PRADM",
+      "x_dimension_mm": 0.5,
+      "notes": "No compliance, no date, no legal symbols. Copy count strip present.",
+      "confidence": 0.85,
+      "needs_review": false
+    },
+    {
+      "template_id": "1R10-PRADM_v2",
+      "display_name": "1R10-PRADM Variant 2 — Full compliance + patents + DATE",
+      "page": 3,
+      "family": "1R10-PRADM",
+      "x_dimension_mm": 0.5,
+      "notes": "US EPA TSCA + ULEF compliance, patents URL, ABCD block, DATE: YYWW-1234. No copy count.",
+      "confidence": 0.88,
+      "needs_review": false
+    },
+    {
+      "template_id": "1R10-PRADM_v3",
+      "display_name": "1R10-PRADM Variant 3 — Copy count + YYWW date, no compliance",
+      "page": 3,
+      "family": "1R10-PRADM",
+      "x_dimension_mm": 0.5,
+      "notes": "YYWW date strip + copy count. No compliance block.",
+      "confidence": 0.82,
+      "needs_review": true
+    },
+    {
+      "template_id": "1R10-PRADM_v4",
+      "display_name": "1R10-PRADM Variant 4 — Legal symbols + ABCD-YYWW rotated, no copy count",
+      "page": 3,
+      "family": "1R10-PRADM",
+      "x_dimension_mm": 0.5,
+      "notes": "Legal symbols column rotated 90° CW. ABCD-YYWW-1234 vertical strip.",
+      "confidence": 0.78,
+      "needs_review": true
+    },
+    {
+      "template_id": "1R10-PRADM_v5",
+      "display_name": "1R10-PRADM Variant 5 — Legal symbols + YYWW + copy count all rotated",
+      "page": 3,
+      "family": "1R10-PRADM",
+      "x_dimension_mm": 0.5,
+      "notes": "Full right-zone: legal symbols + date strip + copy count, all rotated.",
+      "confidence": 0.80,
+      "needs_review": true
+    },
+    {
+      "template_id": "1R20-PRADM_04x_v1",
+      "display_name": "1R20-PRADM 0.4x Variant 1 — Basic with copy count",
+      "page": 4,
+      "family": "1R20-PRADM",
+      "x_dimension_mm": 0.4,
+      "notes": "Large label, no compliance, no date. Assembled in USA from Imported Materials origin.",
+      "confidence": 0.85,
+      "needs_review": false
+    },
+    {
+      "template_id": "1R20-PRADM_04x_v2",
+      "display_name": "1R20-PRADM 0.4x Variant 2 — Compliance + patents + DATE horizontal",
+      "page": 4,
+      "family": "1R20-PRADM",
+      "x_dimension_mm": 0.4,
+      "notes": "Compliance vertical, DATE horizontal. No copy count.",
+      "confidence": 0.85,
+      "needs_review": false
+    },
+    {
+      "template_id": "1R20-PRADM_04x_v3",
+      "display_name": "1R20-PRADM 0.4x Variant 3 — Colour dot + compliance + DATE",
+      "page": 4,
+      "family": "1R20-PRADM",
+      "x_dimension_mm": 0.4,
+      "notes": "Adds colour dot element. Same compliance/date as v2.",
+      "confidence": 0.80,
+      "needs_review": true
+    },
+    {
+      "template_id": "1R20-PRADM_04x_v4",
+      "display_name": "1R20-PRADM 0.4x Variant 4 — Legal symbols + compliance + date strip rotated",
+      "page": 4,
+      "family": "1R20-PRADM",
+      "x_dimension_mm": 0.4,
+      "notes": "Legal symbols + compliance + ABCD-YYWW-1234 all rotated. No copy count.",
+      "confidence": 0.80,
+      "needs_review": true
+    },
+    {
+      "template_id": "1R20-PRADM_04x_v5",
+      "display_name": "1R20-PRADM 0.4x Variant 5 — All right-zone elements rotated, with copy count",
+      "page": 4,
+      "family": "1R20-PRADM",
+      "x_dimension_mm": 0.4,
+      "notes": "Full variant. Legal symbols + compliance + date strip + copy count.",
+      "confidence": 0.80,
+      "needs_review": true
+    },
+    {
+      "template_id": "1R20-PRADM_075x_v1",
+      "display_name": "1R20-PRADM 0.75x Variant 1 — Basic with copy count",
+      "page": 5,
+      "family": "1R20-PRADM",
+      "x_dimension_mm": 0.75,
+      "notes": "Same as 04x_v1 but with 0.75 x-dim DataMatrix.",
+      "confidence": 0.85,
+      "needs_review": false
+    },
+    {
+      "template_id": "1R20-PRADM_075x_v2",
+      "display_name": "1R20-PRADM 0.75x Variant 2 — Compliance + patents + DATE",
+      "page": 5,
+      "family": "1R20-PRADM",
+      "x_dimension_mm": 0.75,
+      "notes": "Same as 04x_v2 but with 0.75 x-dim DataMatrix.",
+      "confidence": 0.85,
+      "needs_review": false
+    },
+    {
+      "template_id": "1R20-PRADM_075x_v3",
+      "display_name": "1R20-PRADM 0.75x Variant 3 — Colour dot + compliance + DATE",
+      "page": 5,
+      "family": "1R20-PRADM",
+      "x_dimension_mm": 0.75,
+      "notes": "Same as 04x_v3 but with 0.75 x-dim.",
+      "confidence": 0.80,
+      "needs_review": true
+    },
+    {
+      "template_id": "1R20-PRADM_075x_v4",
+      "display_name": "1R20-PRADM 0.75x Variant 4 — Legal symbols + compliance + date strip rotated",
+      "page": 5,
+      "family": "1R20-PRADM",
+      "x_dimension_mm": 0.75,
+      "notes": "Same as 04x_v4 but with 0.75 x-dim.",
+      "confidence": 0.80,
+      "needs_review": true
+    },
+    {
+      "template_id": "1R20-PRADM_075x_v5",
+      "display_name": "1R20-PRADM 0.75x Variant 5 — Full all rotated",
+      "page": 5,
+      "family": "1R20-PRADM",
+      "x_dimension_mm": 0.75,
+      "notes": "Same as 04x_v5 but with 0.75 x-dim.",
+      "confidence": 0.80,
+      "needs_review": true
+    }
+  ],
+  "element_variants_inventory": {
+    "ikea_logo_variants": {
+      "source_page": 2,
+      "variants": [
+        { "variant_id": "LOGO_XS", "description": "IKEA wordmark only, smallest size", "page": 2 },
+        { "variant_id": "LOGO_SM", "description": "IKEA wordmark, medium size", "page": 2 },
+        { "variant_id": "LOGO_MD", "description": "IKEA logo + Design and Quality tagline, medium size", "page": 2 },
+        { "variant_id": "LOGO_LG", "description": "IKEA logo + Design and Quality IKEA of Sweden, full version", "page": 2 }
+      ]
+    },
+    "product_name_variants": {
+      "source_page": 2,
+      "variants": [
+        { "variant_id": "PNAME_XS", "description": "PRODUCTNAME smallest, regular weight", "page": 2 },
+        { "variant_id": "PNAME_SM", "description": "PRODUCTNAME small, bold", "page": 2 },
+        { "variant_id": "PNAME_MD", "description": "PRODUCTNAME medium, bold", "page": 2 },
+        { "variant_id": "PNAME_LG", "description": "PRODUCTNAME large, bold", "page": 2 },
+        { "variant_id": "PNAME_XL", "description": "PRODUCTNAME extra large, bold", "page": 2 }
+      ]
+    },
+    "article_number_variants": {
+      "source_page": 2,
+      "variants": [
+        { "variant_id": "ARTNO_XS", "description": "000.000.00 smallest, no background", "page": 2 },
+        { "variant_id": "ARTNO_SM", "description": "000.000.00 small, no background", "page": 2 },
+        { "variant_id": "ARTNO_MD", "description": "000.000.00 medium, light background box", "page": 2 },
+        { "variant_id": "ARTNO_LG", "description": "000.000.00 large, grey background box", "page": 2 },
+        { "variant_id": "ARTNO_XL", "description": "000.000.00 extra large, black background white text", "page": 2 }
+      ]
+    }
+  }
+}

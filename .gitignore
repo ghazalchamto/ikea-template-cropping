@@ -1,0 +1,91 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+develop-eggs/
+downloads/
+sdist/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.manifest
+*.spec
+pip-log.txt
+MANIFEST
+
+# Virtual environments (any name / location)
+.venv/
+.venv*/
+.venv312/
+venv/
+ENV/
+env/
+
+# --- Env & secrets (never commit) ---
+.env
+.env.*
+!.env.example
+
+# --- Streamlit ---
+.streamlit/secrets.toml
+
+# --- Testing / coverage ---
+.pytest_cache/
+.tox/
+.nox/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+nosetests.xml
+
+# --- Type checkers / linters ---
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+.pytype/
+.pyre/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- ML / OCR (downloaded weights & local caches) ---
+.paddle/
+.paddlex/
+.paddleocr/
+inference/
+
+# --- IDE & editors ---
+.idea/
+*.swp
+*.swo
+*~
+
+# --- OS ---
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- Logs & temp ---
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+*.temp
+
+# --- Cursor / Claude (local settings, e.g. settings.local.json) ---
+.claude/

@@ -1,0 +1,182 @@
+{
+  "label_type_id": "L10555-MIADM",
+  "label_type_name": "Large Landscape 105x55mm – Multi-Item A",
+  "source_pages": [
+    31
+  ],
+  "description": "Large landscape label 105x55mm for multi-pack products. RTS SS FS module. Quantity multiplier (x 123). DM 26x26 at 0.75mm. Gross + Net weight separately.",
+  "physical_dimensions_mm": {
+    "width": 105,
+    "height": 55
+  },
+  "shape": "card_landscape",
+  "copy_count_default": 1,
+  "datamatrix": {
+    "symbol_size": "26x26",
+    "x_dimension_options_mm": [
+      0.75
+    ],
+    "specs": {
+      "symbol_rows": 26,
+      "symbol_cols": 26,
+      "x_dim_mm": 0.75,
+      "physical_mm": "19.5x19.5",
+      "physical_incl_qz_mm": "21x21"
+    },
+    "gs1_ais_present": [
+      "AI_240",
+      "AI_13"
+    ],
+    "encoding": "GS1"
+  },
+  "itf_barcode": null,
+  "ean13_barcode": null,
+  "required_fields": [
+    "ikea_logo",
+    "product_name",
+    "article_number",
+    "internal_item_number",
+    "quantity_multiplier",
+    "origin_text",
+    "supplier_name",
+    "supplier_address",
+    "copyright_notice",
+    "plant_identifier",
+    "human_readable_date",
+    "gross_weight",
+    "net_weight",
+    "dimensions_metric",
+    "dimensions_imperial",
+    "colour_dot"
+  ],
+  "optional_fields": [
+    "ikea_com_url",
+    "rts_module_flag"
+  ],
+  "special_fields": {
+    "rts_ss_fs_module": {
+      "type": "boolean",
+      "notes": "RTS = Ready To Ship, SS = Store Stock, FS = Full Shipment module flag"
+    },
+    "quantity_multiplier": {
+      "type": "string",
+      "pattern": "^[xX]\\s?\\d{1,3}$",
+      "example": "x 123",
+      "notes": "Multi-pack quantity"
+    }
+  },
+  "field_patterns": {
+    "product_name": {
+      "type": "string",
+      "pattern": "^[A-ZÅÄÖ][A-ZÅÄÖ0-9 /\\-]{0,39}$",
+      "notes": "ALL-CAPS, max 40 chars"
+    },
+    "article_number": {
+      "type": "string",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "example": "803.812.94"
+    },
+    "internal_item_number": {
+      "type": "string",
+      "pattern": "^\\d{5}$",
+      "example": "12345",
+      "notes": "5-digit number printed near barcode"
+    },
+    "origin_text": {
+      "type": "string",
+      "pattern": "^(Made in|Assembled in)\\s.+$",
+      "example": "Made in People's Republic of China"
+    },
+    "supplier_name": {
+      "type": "string",
+      "allowed_values": [
+        "IKEA of Sweden AB"
+      ]
+    },
+    "supplier_address": {
+      "type": "string",
+      "pattern": "^SE\\s[–-]\\s34381\\s[ÄA]lmhult$",
+      "allowed_values": [
+        "SE – 34381 Älmhult"
+      ]
+    },
+    "copyright_notice": {
+      "type": "string",
+      "pattern": "^©\\s+Inter\\s+IKEA\\s+Systems\\s+B\\.V\\.\\s+\\d{4}$",
+      "example": "© Inter IKEA Systems B.V. 2022"
+    },
+    "plant_identifier": {
+      "type": "string",
+      "pattern": "^PI-\\d{6,9}-\\d{1,3}$",
+      "example": "PI-123456789-123"
+    },
+    "human_readable_date": {
+      "type": "string",
+      "pattern": "^\\d{2}-\\d{2}-\\d{2}$",
+      "example": "26-04-02",
+      "notes": "YY-MM-DD printed next to (YY-MM-DD) label"
+    },
+    "gross_weight": {
+      "type": "string",
+      "pattern": "^Gross\\s\\d+\\s?kg\\s+\\(\\d+\\s?lbs\\)$",
+      "example": "Gross 12 kg (26 lbs)"
+    },
+    "net_weight": {
+      "type": "string",
+      "pattern": "^Net\\s\\d+\\s?kg\\s+\\(\\d+\\s?lbs\\)$",
+      "example": "Net 10 kg (22 lbs)"
+    },
+    "dimensions_metric": {
+      "type": "string",
+      "pattern": "^\\d{1,4}x\\d{1,4}x?\\d{0,4}\\s?cm$",
+      "example": "000x000x000 cm"
+    },
+    "dimensions_imperial": {
+      "type": "string",
+      "pattern": "^\\(\\d+\\s\\d+/\\d+x.*\"\\)$",
+      "example": "(00 0/0x00 0/0x 00 0/0\")"
+    },
+    "quantity_multiplier": {
+      "type": "string",
+      "pattern": "^[xX]\\s?\\d{1,3}$",
+      "example": "x 123",
+      "notes": "Multi-pack quantity"
+    }
+  },
+  "validation_rules": [
+    {
+      "rule_id": "L10555-001",
+      "field": "gross_weight",
+      "check": "present",
+      "severity": "error"
+    },
+    {
+      "rule_id": "L10555-002",
+      "field": "net_weight",
+      "check": "present",
+      "severity": "error"
+    },
+    {
+      "rule_id": "L10555-003",
+      "field": "quantity_multiplier",
+      "check": "regex_match",
+      "pattern": "^x\\s?\\d{1,3}$",
+      "severity": "error"
+    },
+    {
+      "rule_id": "L10555-004",
+      "field": "datamatrix",
+      "check": "ai_field_present",
+      "ai": "13",
+      "severity": "error"
+    },
+    {
+      "rule_id": "L10555-005",
+      "field": "datamatrix",
+      "check": "x_dim",
+      "value": 0.75,
+      "severity": "error"
+    }
+  ],
+  "notes": "Only label type with separate Gross/Net weight fields. RTS/SS/FS module flag on front."
+}

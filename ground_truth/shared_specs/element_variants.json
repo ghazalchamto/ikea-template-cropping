@@ -1,0 +1,317 @@
+{
+  "version": "1.0",
+  "source_pdf_page": 2,
+  "description": "Usable specs for IKEA logo, product name, and article number display variants shown on PDF page 2. Each variant has visual/rendering specs and is mapped to the templates that use it.",
+  "ikea_logo_variants": [
+    {
+      "variant_id": "LOGO_XS",
+      "display_name": "IKEA logo — wordmark only, smallest",
+      "description": "IKEA wordmark in the standard IKEA blue-on-yellow or black-on-white colourway. No tagline. Smallest rendered size.",
+      "lines_present": ["IKEA wordmark"],
+      "tagline_present": false,
+      "design_quality_line": false,
+      "ikea_of_sweden_line": false,
+      "color": {
+        "text_color": "#000000",
+        "background_color": "#FFD100",
+        "border": "none",
+        "note": "IKEA corporate yellow background with black text in standard application; may render as black-on-white in monochrome print context"
+      },
+      "size_spec": {
+        "width_mm_approx": 8,
+        "height_mm_approx": 4,
+        "note": "Approximate — derived from relative size comparison on page 2"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "case": "upper"
+      },
+      "used_in_templates": [],
+      "evidence": { "page": 2, "evidence_type": "diagram_annotation", "snippet": "IKEA logo smallest variant — wordmark only" }
+    },
+    {
+      "variant_id": "LOGO_SM",
+      "display_name": "IKEA logo — wordmark only, small",
+      "description": "IKEA wordmark. No tagline. Medium-small rendered size.",
+      "lines_present": ["IKEA wordmark"],
+      "tagline_present": false,
+      "design_quality_line": false,
+      "ikea_of_sweden_line": false,
+      "color": {
+        "text_color": "#000000",
+        "background_color": "#FFD100",
+        "border": "none"
+      },
+      "size_spec": {
+        "width_mm_approx": 12,
+        "height_mm_approx": 6,
+        "note": "Approximate"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "case": "upper"
+      },
+      "used_in_templates": [],
+      "evidence": { "page": 2, "evidence_type": "diagram_annotation", "snippet": "IKEA logo second variant" }
+    },
+    {
+      "variant_id": "LOGO_MD",
+      "display_name": "IKEA logo — with Design and Quality tagline",
+      "description": "IKEA wordmark plus 'Design and Quality' tagline line below. No 'IKEA of Sweden' line.",
+      "lines_present": ["IKEA wordmark", "Design and Quality"],
+      "tagline_present": true,
+      "design_quality_line": true,
+      "ikea_of_sweden_line": false,
+      "color": {
+        "text_color": "#000000",
+        "background_color": "#FFD100",
+        "border": "solid_rectangle",
+        "note": "Rectangular border box around logo block"
+      },
+      "size_spec": {
+        "width_mm_approx": 15,
+        "height_mm_approx": 10,
+        "note": "Approximate"
+      },
+      "font": {
+        "wordmark": { "family": "IKEA proprietary sans-serif", "weight": "bold", "case": "upper" },
+        "tagline": { "family": "IKEA proprietary sans-serif", "weight": "regular", "size_relative": "smaller than wordmark", "case": "title" }
+      },
+      "used_in_templates": [],
+      "evidence": { "page": 2, "evidence_type": "diagram_annotation", "snippet": "IKEA logo with Design and Quality line" }
+    },
+    {
+      "variant_id": "LOGO_LG",
+      "display_name": "IKEA logo — full with Design and Quality + IKEA of Sweden",
+      "description": "Full IKEA logo: wordmark, 'Design and Quality' tagline, and 'IKEA of Sweden' line. This is the standard full variant used on most IKEA packaging labels.",
+      "lines_present": ["IKEA wordmark", "Design and Quality", "IKEA of Sweden"],
+      "tagline_present": true,
+      "design_quality_line": true,
+      "ikea_of_sweden_line": true,
+      "color": {
+        "text_color": "#000000",
+        "background_color": "#FFD100",
+        "border": "solid_rectangle"
+      },
+      "size_spec": {
+        "width_mm_approx": 20,
+        "height_mm_approx": 15,
+        "note": "Approximate — this is the largest logo variant"
+      },
+      "font": {
+        "wordmark": { "family": "IKEA proprietary sans-serif", "weight": "bold", "case": "upper" },
+        "design_quality_line": { "family": "IKEA proprietary sans-serif", "weight": "regular", "case": "title" },
+        "ikea_of_sweden_line": { "family": "IKEA proprietary sans-serif", "weight": "regular", "case": "title" }
+      },
+      "used_in_templates": [
+        "1R10-PRADM_v1", "1R10-PRADM_v2", "1R10-PRADM_v3", "1R10-PRADM_v4", "1R10-PRADM_v5",
+        "1R20-PRADM_04x_v1", "1R20-PRADM_04x_v2", "1R20-PRADM_04x_v3", "1R20-PRADM_04x_v4", "1R20-PRADM_04x_v5",
+        "1R20-PRADM_075x_v1", "1R20-PRADM_075x_v2", "1R20-PRADM_075x_v3", "1R20-PRADM_075x_v4", "1R20-PRADM_075x_v5"
+      ],
+      "evidence": { "page": 2, "evidence_type": "diagram_annotation", "snippet": "IKEA logo largest variant — Design and Quality, IKEA of Sweden" }
+    }
+  ],
+  "product_name_variants": [
+    {
+      "variant_id": "PNAME_XS",
+      "display_name": "Product name — smallest, regular weight",
+      "example_text": "PRODUCTNAME",
+      "color": { "text_color": "#000000", "background_color": "transparent" },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "case": "upper",
+        "size_mm_approx": 2.0,
+        "size_pt_approx": 6
+      },
+      "used_in_templates": [],
+      "evidence": { "page": 2, "evidence_type": "diagram_annotation", "snippet": "PRODUCTNAME smallest regular" }
+    },
+    {
+      "variant_id": "PNAME_SM",
+      "display_name": "Product name — small, bold",
+      "example_text": "PRODUCTNAME",
+      "color": { "text_color": "#000000", "background_color": "transparent" },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "case": "upper",
+        "size_mm_approx": 3.0,
+        "size_pt_approx": 8
+      },
+      "used_in_templates": ["1R10-PRADM_v1", "1R10-PRADM_v2", "1R10-PRADM_v3", "1R10-PRADM_v4", "1R10-PRADM_v5"],
+      "evidence": { "page": 2, "evidence_type": "diagram_annotation", "snippet": "PRODUCTNAME small bold" }
+    },
+    {
+      "variant_id": "PNAME_MD",
+      "display_name": "Product name — medium, bold",
+      "example_text": "PRODUCTNAME",
+      "color": { "text_color": "#000000", "background_color": "transparent" },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "case": "upper",
+        "size_mm_approx": 4.0,
+        "size_pt_approx": 11
+      },
+      "used_in_templates": [
+        "1R20-PRADM_04x_v1", "1R20-PRADM_04x_v2", "1R20-PRADM_04x_v3", "1R20-PRADM_04x_v4", "1R20-PRADM_04x_v5",
+        "1R20-PRADM_075x_v1", "1R20-PRADM_075x_v2", "1R20-PRADM_075x_v3", "1R20-PRADM_075x_v4", "1R20-PRADM_075x_v5"
+      ],
+      "evidence": { "page": 2, "evidence_type": "diagram_annotation", "snippet": "PRODUCTNAME medium bold" }
+    },
+    {
+      "variant_id": "PNAME_LG",
+      "display_name": "Product name — large, bold",
+      "example_text": "PRODUCTNAME",
+      "color": { "text_color": "#000000", "background_color": "transparent" },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "case": "upper",
+        "size_mm_approx": 5.5,
+        "size_pt_approx": 15
+      },
+      "used_in_templates": [],
+      "evidence": { "page": 2, "evidence_type": "diagram_annotation", "snippet": "PRODUCTNAME large bold" }
+    },
+    {
+      "variant_id": "PNAME_XL",
+      "display_name": "Product name — extra large, bold",
+      "example_text": "PRODUCTNAME",
+      "color": { "text_color": "#000000", "background_color": "transparent" },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "case": "upper",
+        "size_mm_approx": 8.0,
+        "size_pt_approx": 22
+      },
+      "used_in_templates": [],
+      "evidence": { "page": 2, "evidence_type": "diagram_annotation", "snippet": "PRODUCTNAME extra large bold" }
+    }
+  ],
+  "article_number_variants": [
+    {
+      "variant_id": "ARTNO_XS",
+      "display_name": "Article number — smallest, no background",
+      "example_text": "000.000.00",
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent",
+        "border": "none"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "case": "mixed",
+        "size_mm_approx": 1.8,
+        "size_pt_approx": 5
+      },
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "used_in_templates": [],
+      "evidence": { "page": 2, "evidence_type": "diagram_annotation", "snippet": "000.000.00 smallest no background" }
+    },
+    {
+      "variant_id": "ARTNO_SM",
+      "display_name": "Article number — small, no background",
+      "example_text": "000.000.00",
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent",
+        "border": "none"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "case": "mixed",
+        "size_mm_approx": 2.5,
+        "size_pt_approx": 7
+      },
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "used_in_templates": ["1R10-PRADM_v1", "1R10-PRADM_v2", "1R10-PRADM_v3", "1R10-PRADM_v4", "1R10-PRADM_v5"],
+      "evidence": { "page": 2, "evidence_type": "diagram_annotation", "snippet": "000.000.00 small no background" }
+    },
+    {
+      "variant_id": "ARTNO_MD",
+      "display_name": "Article number — medium, light grey background box",
+      "example_text": "000.000.00",
+      "color": {
+        "text_color": "#000000",
+        "background_color": "#E0E0E0",
+        "border": "none",
+        "note": "Light grey fill box, no border"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "case": "mixed",
+        "size_mm_approx": 3.0,
+        "size_pt_approx": 8
+      },
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "used_in_templates": [
+        "1R20-PRADM_04x_v1", "1R20-PRADM_04x_v2", "1R20-PRADM_04x_v3", "1R20-PRADM_04x_v4", "1R20-PRADM_04x_v5"
+      ],
+      "evidence": { "page": 2, "evidence_type": "diagram_annotation", "snippet": "000.000.00 medium light grey background" }
+    },
+    {
+      "variant_id": "ARTNO_LG",
+      "display_name": "Article number — large, grey background box",
+      "example_text": "000.000.00",
+      "color": {
+        "text_color": "#000000",
+        "background_color": "#B0B0B0",
+        "border": "none",
+        "note": "Darker grey fill box"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "case": "mixed",
+        "size_mm_approx": 4.0,
+        "size_pt_approx": 11
+      },
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "used_in_templates": [
+        "1R20-PRADM_075x_v1", "1R20-PRADM_075x_v2", "1R20-PRADM_075x_v3", "1R20-PRADM_075x_v4", "1R20-PRADM_075x_v5"
+      ],
+      "evidence": { "page": 2, "evidence_type": "diagram_annotation", "snippet": "000.000.00 large grey background" }
+    },
+    {
+      "variant_id": "ARTNO_XL",
+      "display_name": "Article number — extra large, black background white text",
+      "example_text": "000.000.00",
+      "color": {
+        "text_color": "#FFFFFF",
+        "background_color": "#000000",
+        "border": "none",
+        "note": "Inverted: white text on solid black background box"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "case": "mixed",
+        "size_mm_approx": 5.5,
+        "size_pt_approx": 15
+      },
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "used_in_templates": [],
+      "evidence": { "page": 2, "evidence_type": "diagram_annotation", "snippet": "000.000.00 extra large black background white text" }
+    }
+  ]
+}

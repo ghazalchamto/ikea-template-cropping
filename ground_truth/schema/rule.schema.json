@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "rule.schema.json",
+  "title": "Rule",
+  "description": "A structured behavioral rule derived from PDF notes or instructions",
+  "type": "object",
+  "required": ["rule_id", "rule_type", "scope", "condition", "target", "actions", "severity", "normalized_text", "evidence"],
+  "properties": {
+    "rule_id": { "type": "string" },
+    "rule_type": {
+      "type": "string",
+      "enum": [
+        "presence_rule",
+        "conditional_layout_transform",
+        "alignment_rule",
+        "placement_rule",
+        "resize_rule",
+        "orientation_rule",
+        "application_method_rule",
+        "symbol_logic_rule"
+      ]
+    },
+    "scope": {
+      "type": "string",
+      "description": "Template ID, family ID, or 'global' if applies across all"
+    },
+    "condition": {
+      "type": "string",
+      "description": "The trigger condition in plain language"
+    },
+    "target": {
+      "type": "string",
+      "description": "element_id or zone this rule acts upon"
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["action_type", "description"],
+        "properties": {
+          "action_type": {
+            "type": "string",
+            "enum": [
+              "grow", "shrink", "rotate", "reposition", "add", "remove",
+              "replace", "apply_spec", "lock_adjacency"
+            ]
+          },
+          "description": { "type": "string" },
+          "parameter": {}
+        }
+      }
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["must", "should", "may"]
+    },
+    "normalized_text": {
+      "type": "string",
+      "description": "Concise machine-readable restatement of the original note"
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["page", "evidence_type"],
+      "properties": {
+        "page": { "type": "integer" },
+        "evidence_type": { "type": "string", "enum": ["caption_note", "diagram_annotation", "label_spec_text", "inline_note"] },
+        "snippet": { "type": "string" }
+      }
+    }
+  }
+}

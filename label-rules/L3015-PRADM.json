@@ -1,0 +1,83 @@
+{
+  "label_type_id": "L3015-PRADM",
+  "label_type_name": "Long Narrow 30x15mm – Product Reference A",
+  "source_pages": [
+    40
+  ],
+  "description": "Compact tag 30x15mm. DM 26x26 at 0.3mm. 'Made in China' origin.",
+  "physical_dimensions_mm": {
+    "width": 30,
+    "height": 15
+  },
+  "shape": "long_narrow",
+  "copy_count_default": 1,
+  "datamatrix": {
+    "symbol_size": "26x26",
+    "x_dimension_options_mm": [
+      0.3
+    ],
+    "specs": {
+      "symbol_rows": 26,
+      "symbol_cols": 26,
+      "x_dim_mm": 0.3,
+      "physical_mm": "7.8x7.8",
+      "physical_incl_qz_mm": "8.4x8.4"
+    },
+    "gs1_ais_present": [
+      "AI_240",
+      "AI_11"
+    ],
+    "encoding": "GS1"
+  },
+  "itf_barcode": null,
+  "required_fields": [
+    "product_name",
+    "article_number",
+    "human_readable_date",
+    "origin_text"
+  ],
+  "optional_fields": [
+    "internal_item_number",
+    "ikea_com_url",
+    "plant_identifier"
+  ],
+  "field_patterns": {
+    "product_name": {
+      "type": "string",
+      "pattern": "^[A-ZÅÄÖ][A-ZÅÄÖ0-9 /\\-]{0,39}$",
+      "notes": "ALL-CAPS, max 40 chars"
+    },
+    "article_number": {
+      "type": "string",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "example": "803.812.94"
+    },
+    "human_readable_date": {
+      "type": "string",
+      "pattern": "^\\d{2}-\\d{2}-\\d{2}$",
+      "example": "26-04-02",
+      "notes": "YY-MM-DD printed next to (YY-MM-DD) label"
+    },
+    "origin_text": {
+      "type": "string",
+      "pattern": "^(Made in|Assembled in)\\s.+$",
+      "example": "Made in People's Republic of China"
+    }
+  },
+  "validation_rules": [
+    {
+      "rule_id": "L3015-001",
+      "field": "datamatrix_x_dim",
+      "check": "exact",
+      "value": 0.3,
+      "severity": "error"
+    },
+    {
+      "rule_id": "L3015-002",
+      "field": "article_number",
+      "check": "regex_match",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "severity": "error"
+    }
+  ]
+}

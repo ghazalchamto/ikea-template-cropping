@@ -1,0 +1,167 @@
+{
+  "label_type_id": "1C70-IDBDM",
+  "label_type_name": "Card 70mm – Identity B with DataMatrix",
+  "source_pages": [
+    14
+  ],
+  "description": "Landscape card label 70mm wide with compliance symbols zone. ITF 30% magnification. DM 26x26 0.4mm.",
+  "physical_dimensions_mm": {
+    "width": 70,
+    "height": "variable"
+  },
+  "shape": "card_landscape",
+  "copy_count_default": 1,
+  "datamatrix": {
+    "symbol_size": "26x26",
+    "x_dimension_options_mm": [
+      0.4
+    ],
+    "specs": {
+      "symbol_rows": 26,
+      "symbol_cols": 26,
+      "x_dim_mm": 0.4,
+      "physical_mm": "10.4x10.4",
+      "physical_incl_qz_mm": "11.2x11.2"
+    },
+    "gs1_ais_present": [
+      "AI_240",
+      "AI_13"
+    ],
+    "encoding": "GS1"
+  },
+  "itf_barcode": {
+    "magnification_pct": 30,
+    "x_dim_mm": 0.305,
+    "ratio": 2.5,
+    "module_width": 2,
+    "barcode_height_mm": 10,
+    "barcode_length_mm": 36.7,
+    "total_length_incl_qz_mm": 42.8,
+    "quiet_zone": "10 x-dim each side (2x3.1mm)"
+  },
+  "required_fields": [
+    "ikea_logo",
+    "product_name",
+    "article_number",
+    "internal_item_number",
+    "origin_text",
+    "supplier_name",
+    "supplier_address",
+    "copyright_notice",
+    "plant_identifier",
+    "human_readable_date",
+    "custom_identifier",
+    "dimensions_metric",
+    "dimensions_imperial",
+    "weight_compact",
+    "copy_count_inline"
+  ],
+  "optional_fields": [
+    "compliance_marks",
+    "legal_symbols",
+    "ikea_com_url"
+  ],
+  "field_patterns": {
+    "product_name": {
+      "type": "string",
+      "pattern": "^[A-ZÅÄÖ][A-ZÅÄÖ0-9 /\\-]{0,39}$",
+      "notes": "ALL-CAPS, max 40 chars"
+    },
+    "article_number": {
+      "type": "string",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "example": "803.812.94"
+    },
+    "internal_item_number": {
+      "type": "string",
+      "pattern": "^\\d{5}$",
+      "example": "12345",
+      "notes": "5-digit number printed near barcode"
+    },
+    "origin_text": {
+      "type": "string",
+      "pattern": "^(Made in|Assembled in)\\s.+$",
+      "example": "Made in People's Republic of China"
+    },
+    "supplier_name": {
+      "type": "string",
+      "allowed_values": [
+        "IKEA of Sweden AB"
+      ]
+    },
+    "supplier_address": {
+      "type": "string",
+      "pattern": "^SE\\s[–-]\\s34381\\s[ÄA]lmhult$",
+      "allowed_values": [
+        "SE – 34381 Älmhult"
+      ]
+    },
+    "copyright_notice": {
+      "type": "string",
+      "pattern": "^©\\s+Inter\\s+IKEA\\s+Systems\\s+B\\.V\\.\\s+\\d{4}$",
+      "example": "© Inter IKEA Systems B.V. 2022"
+    },
+    "plant_identifier": {
+      "type": "string",
+      "pattern": "^PI-\\d{6,9}-\\d{1,3}$",
+      "example": "PI-123456789-123"
+    },
+    "custom_identifier": {
+      "type": "string",
+      "pattern": "^[A-Z]{4}-\\d{4}-\\d{3,4}$",
+      "example": "ABCD-YYWW-1234",
+      "notes": "ALPHA-YYWW-NUM; date section changes weekly"
+    },
+    "human_readable_date": {
+      "type": "string",
+      "pattern": "^\\d{2}-\\d{2}-\\d{2}$",
+      "example": "26-04-02",
+      "notes": "YY-MM-DD printed next to (YY-MM-DD) label"
+    },
+    "dimensions_metric": {
+      "type": "string",
+      "pattern": "^\\d{1,4}x\\d{1,4}x?\\d{0,4}\\s?cm$",
+      "example": "000x000x000 cm"
+    },
+    "dimensions_imperial": {
+      "type": "string",
+      "pattern": "^\\(\\d+\\s\\d+/\\d+x.*\"\\)$",
+      "example": "(00 0/0x00 0/0x 00 0/0\")"
+    },
+    "weight_compact": {
+      "type": "string",
+      "pattern": "^\\d+\\s?kg\\n\\(\\d+\\s?lbs\\)$",
+      "example": "00 kg\n(00 lbs)",
+      "notes": "Compact two-line format on small labels"
+    },
+    "copy_count_inline": {
+      "type": "string",
+      "pattern": "^1\\(\\d+\\)$",
+      "example": "1(3)",
+      "notes": "Copy n of total, printed on label face"
+    }
+  },
+  "validation_rules": [
+    {
+      "rule_id": "1C70B-001",
+      "field": "compliance_symbols_alignment",
+      "check": "bottom_aligned",
+      "severity": "warning"
+    },
+    {
+      "rule_id": "1C70B-002",
+      "field": "article_number",
+      "check": "regex_match",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "severity": "error"
+    },
+    {
+      "rule_id": "1C70B-003",
+      "field": "datamatrix",
+      "check": "ai_field_present",
+      "ai": "13",
+      "severity": "error"
+    }
+  ],
+  "layout_notes": "Compliance symbols must be bottom-aligned when present."
+}

@@ -1,0 +1,91 @@
+{
+  "label_type_id": "CMB-STANDALONE-DM",
+  "label_type_name": "Standalone DataMatrix / CMB Combination Labels",
+  "source_pages": [
+    34
+  ],
+  "description": "Standalone DataMatrix-only labels and Compliance Module Board (CMB) combination labels. Used when DM must appear alone or combined with TSCA compliance text.",
+  "physical_dimensions_mm": {
+    "1R20_standalone": {
+      "width": 33,
+      "height": 20
+    },
+    "1R10_cmb": {
+      "width": 40,
+      "height": 10
+    },
+    "1R20_cmb": {
+      "width": 40,
+      "height": 20
+    },
+    "1R35_cmb": {
+      "width": 40,
+      "height": 35
+    }
+  },
+  "shape": "rectangular",
+  "copy_count_default": 1,
+  "datamatrix": {
+    "symbol_size": "26x26",
+    "x_dimension_options_mm": [
+      0.4,
+      0.5
+    ],
+    "specs_0.4": {
+      "symbol_rows": 26,
+      "symbol_cols": 26,
+      "x_dim_mm": 0.4,
+      "physical_mm": "10.4x10.4",
+      "physical_incl_qz_mm": "11.2x11.2"
+    },
+    "specs_0.5": {
+      "symbol_rows": 26,
+      "symbol_cols": 26,
+      "x_dim_mm": 0.5,
+      "physical_mm": "13x13",
+      "physical_incl_qz_mm": "14x14"
+    },
+    "gs1_ais_present": [
+      "AI_240",
+      "AI_13"
+    ],
+    "encoding": "GS1"
+  },
+  "itf_barcode": null,
+  "required_fields": [
+    "human_readable_date",
+    "plant_identifier"
+  ],
+  "optional_fields": [
+    "tsca_text",
+    "origin_text",
+    "article_number"
+  ],
+  "cmb_fields": {
+    "tsca_text": {
+      "type": "string",
+      "allowed_values": [
+        "US EPA TSCA title VI compliant ULEF",
+        "Conforme au US EPA TSCA titre VI TFEF"
+      ]
+    },
+    "note": "CMB variants add TSCA ULEF compliance text block alongside the DM"
+  },
+  "validation_rules": [
+    {
+      "rule_id": "CMB-001",
+      "field": "datamatrix",
+      "check": "ai_field_present",
+      "ai": "13",
+      "severity": "error"
+    },
+    {
+      "rule_id": "CMB-002",
+      "field": "human_readable_date",
+      "check": "regex_match",
+      "pattern": "^\\d{2}-\\d{2}-\\d{2}$",
+      "severity": "error"
+    }
+  ],
+  "notes": "Standalone = DM only. CMB = DM + TSCA/ULEF compliance text side-by-side."
+}

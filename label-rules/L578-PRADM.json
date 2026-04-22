@@ -1,0 +1,84 @@
+{
+  "label_type_id": "L578-PRADM",
+  "label_type_name": "Long Narrow 5x78mm – Product Reference A",
+  "source_pages": [
+    22
+  ],
+  "description": "Very narrow long label 5x78mm. DataMatrix 16x48 at 0.4mm. Minimal text fields. Used for small accessories.",
+  "physical_dimensions_mm": {
+    "width": 78,
+    "height": 5
+  },
+  "shape": "long_narrow",
+  "copy_count_default": 1,
+  "datamatrix": {
+    "symbol_size": "16x48",
+    "x_dimension_options_mm": [
+      0.4
+    ],
+    "specs": {
+      "symbol_rows": 16,
+      "symbol_cols": 48,
+      "x_dim_mm": 0.4,
+      "physical_mm": "19.2x6.4",
+      "physical_incl_qz_mm": "20x7.2"
+    },
+    "gs1_ais_present": [
+      "AI_240",
+      "AI_11"
+    ],
+    "encoding": "GS1"
+  },
+  "itf_barcode": null,
+  "required_fields": [
+    "article_number",
+    "internal_item_number",
+    "human_readable_date",
+    "origin_text"
+  ],
+  "optional_fields": [
+    "ikea_com_url",
+    "plant_identifier",
+    "supplier_address"
+  ],
+  "field_patterns": {
+    "article_number": {
+      "type": "string",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "example": "803.812.94"
+    },
+    "internal_item_number": {
+      "type": "string",
+      "pattern": "^\\d{5}$",
+      "example": "12345",
+      "notes": "5-digit number printed near barcode"
+    },
+    "human_readable_date": {
+      "type": "string",
+      "pattern": "^\\d{2}-\\d{2}-\\d{2}$",
+      "example": "26-04-02",
+      "notes": "YY-MM-DD printed next to (YY-MM-DD) label"
+    },
+    "origin_text": {
+      "type": "string",
+      "pattern": "^(Made in|Assembled in)\\s.+$",
+      "example": "Made in People's Republic of China"
+    }
+  },
+  "validation_rules": [
+    {
+      "rule_id": "L578-001",
+      "field": "datamatrix",
+      "check": "ai_field_present",
+      "ai": "11",
+      "severity": "error"
+    },
+    {
+      "rule_id": "L578-002",
+      "field": "article_number",
+      "check": "regex_match",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "severity": "error"
+    }
+  ]
+}

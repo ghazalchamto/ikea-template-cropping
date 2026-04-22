@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "element.schema.json",
+  "title": "Element",
+  "description": "A single visual/data element on an IKEA label",
+  "type": "object",
+  "required": ["element_id", "label", "semantic_role", "type", "required", "content_type", "placement", "evidence"],
+  "properties": {
+    "element_id": { "type": "string" },
+    "label": { "type": "string", "description": "Human-readable element name" },
+    "semantic_role": {
+      "type": "string",
+      "enum": [
+        "product_identity", "brand_identity", "barcode_symbol", "address_block",
+        "compliance_text", "legal_symbol", "date_stamp", "copy_count",
+        "patents_reference", "origin_text", "illustration", "layout_marker"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": ["text", "image", "barcode", "datamatrix", "symbol_block", "composite_block"]
+    },
+    "required": { "type": "boolean" },
+    "repeatable": { "type": "boolean" },
+    "content_type": {
+      "type": "string",
+      "enum": ["static", "variable", "conditional", "placeholder"]
+    },
+    "example_value": { "type": "string" },
+    "allowed_patterns": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Regex or format strings"
+    },
+    "placement": {
+      "type": "object",
+      "required": ["zone"],
+      "properties": {
+        "zone": {
+          "type": "string",
+          "enum": [
+            "left_identity", "center_barcode", "center_address",
+            "right_compliance", "right_patents", "right_date",
+            "right_copy_count", "right_legal_symbols", "far_right_strip"
+          ]
+        },
+        "relative_to": { "type": "string" },
+        "position_notes": { "type": "string" }
+      }
+    },
+    "orientation": {
+      "type": "string",
+      "enum": ["horizontal", "vertical_cw90", "vertical_ccw90"],
+      "default": "horizontal"
+    },
+    "size_spec": {
+      "type": "object",
+      "properties": {
+        "width_mm": { "type": ["number", "string"] },
+        "height_mm": { "type": ["number", "string"] },
+        "note": { "type": "string" }
+      }
+    },
+    "shared_spec_ref": {
+      "type": "string",
+      "description": "Reference to a spec_id in shared_specs/barcode_specs.json"
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["page", "evidence_type"],
+      "properties": {
+        "page": { "type": "integer" },
+        "evidence_type": { "type": "string" },
+        "snippet": { "type": "string" }
+      }
+    }
+  }
+}

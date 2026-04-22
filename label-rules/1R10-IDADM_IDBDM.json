@@ -1,0 +1,242 @@
+{
+  "label_type_id": "1R10-IDADM_IDBDM",
+  "label_type_name": "Rectangular 10mm – Identity A / Identity B",
+  "source_pages": [
+    6
+  ],
+  "description": "Small rectangular label for individual product packaging. IDA = no compliance space. IDB = includes compliance symbol area.",
+  "physical_dimensions_mm": {
+    "width": "~100 (varies)",
+    "height": 10
+  },
+  "shape": "rectangular",
+  "copy_count_default": 1,
+  "datamatrix": {
+    "symbol_size": "16x48 (rectangular)",
+    "x_dimension_options_mm": [
+      0.4
+    ],
+    "specs": {
+      "symbol_rows": 16,
+      "symbol_cols": 48,
+      "x_dim_mm": 0.4,
+      "physical_mm": "19.2x6.4",
+      "physical_incl_qz_mm": "20x7.2"
+    },
+    "gs1_ais_present": [
+      "AI_240",
+      "AI_13"
+    ],
+    "encoding": "GS1"
+  },
+  "itf_barcode": {
+    "magnification_pct": 25,
+    "x_dim_mm": 0.254,
+    "ratio": 2.5,
+    "module_width": 2,
+    "barcode_height_mm": 5,
+    "barcode_length_mm": 30.1,
+    "total_length_incl_qz_mm": 35.1,
+    "quiet_zone": "10 x-dim each side (2x2.5mm)"
+  },
+  "ean13_barcode": null,
+  "required_fields": [
+    "ikea_logo",
+    "product_name",
+    "article_number",
+    "internal_item_number",
+    "origin_text",
+    "supplier_name",
+    "supplier_address",
+    "copyright_notice",
+    "plant_identifier",
+    "human_readable_date",
+    "custom_identifier",
+    "date_alpha_code",
+    "date_stamp_yyww",
+    "date_numeric_prefix",
+    "dimensions_metric",
+    "dimensions_imperial",
+    "weight_compact",
+    "copy_count_inline"
+  ],
+  "optional_fields": [
+    "ikea_com_url",
+    "compliance_marks",
+    "legal_symbols",
+    "tsca_text",
+    "patents_url",
+    "colour_dot"
+  ],
+  "idb_additional_fields": [
+    "compliance_marks",
+    "legal_symbols"
+  ],
+  "field_patterns": {
+    "product_name": {
+      "type": "string",
+      "pattern": "^[A-ZÅÄÖ][A-ZÅÄÖ0-9 /\\-]{0,39}$",
+      "notes": "ALL-CAPS, max 40 chars"
+    },
+    "article_number": {
+      "type": "string",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "example": "803.812.94"
+    },
+    "internal_item_number": {
+      "type": "string",
+      "pattern": "^\\d{5}$",
+      "example": "12345",
+      "notes": "5-digit number printed near barcode"
+    },
+    "origin_text": {
+      "type": "string",
+      "pattern": "^(Made in|Assembled in)\\s.+$",
+      "example": "Made in People's Republic of China"
+    },
+    "plant_identifier": {
+      "type": "string",
+      "pattern": "^PI-\\d{6,9}-\\d{1,3}$",
+      "example": "PI-123456789-123"
+    },
+    "supplier_name": {
+      "type": "string",
+      "allowed_values": [
+        "IKEA of Sweden AB"
+      ]
+    },
+    "supplier_address": {
+      "type": "string",
+      "pattern": "^SE\\s[–-]\\s34381\\s[ÄA]lmhult$",
+      "allowed_values": [
+        "SE – 34381 Älmhult"
+      ]
+    },
+    "copyright_notice": {
+      "type": "string",
+      "pattern": "^©\\s+Inter\\s+IKEA\\s+Systems\\s+B\\.V\\.\\s+\\d{4}$",
+      "example": "© Inter IKEA Systems B.V. 2022"
+    },
+    "custom_identifier": {
+      "type": "string",
+      "pattern": "^[A-Z]{4}-\\d{4}-\\d{3,4}$",
+      "example": "ABCD-YYWW-1234",
+      "notes": "ALPHA-YYWW-NUM; date section changes weekly"
+    },
+    "human_readable_date": {
+      "type": "string",
+      "pattern": "^\\d{2}-\\d{2}-\\d{2}$",
+      "example": "26-04-02",
+      "notes": "YY-MM-DD printed next to (YY-MM-DD) label"
+    },
+    "weight_compact": {
+      "type": "string",
+      "pattern": "^\\d+\\s?kg\\n\\(\\d+\\s?lbs\\)$",
+      "example": "00 kg\n(00 lbs)",
+      "notes": "Compact two-line format on small labels"
+    },
+    "dimensions_metric": {
+      "type": "string",
+      "pattern": "^\\d{1,4}x\\d{1,4}x?\\d{0,4}\\s?cm$",
+      "example": "000x000x000 cm"
+    },
+    "dimensions_imperial": {
+      "type": "string",
+      "pattern": "^\\(\\d+\\s\\d+/\\d+x.*\"\\)$",
+      "example": "(00 0/0x00 0/0x 00 0/0\")"
+    },
+    "copy_count_inline": {
+      "type": "string",
+      "pattern": "^1\\(\\d+\\)$",
+      "example": "1(3)",
+      "notes": "Copy n of total, printed on label face"
+    }
+  },
+  "layout_zones": {
+    "left": "IKEA logo + product name + article number",
+    "center": "ITF barcode + internal item number",
+    "right_dm": "DataMatrix + AI fields + address block",
+    "right_date": "Custom identifier (ABCD-YYWW-1234) printed vertically",
+    "right_copy": "Copy count strip (1) on far right edge, rotated 90°"
+  },
+  "validation_rules": [
+    {
+      "rule_id": "1R10-001",
+      "field": "article_number",
+      "check": "regex_match",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "severity": "error"
+    },
+    {
+      "rule_id": "1R10-002",
+      "field": "internal_item_number",
+      "check": "regex_match",
+      "pattern": "^\\d{5}$",
+      "severity": "error"
+    },
+    {
+      "rule_id": "1R10-003",
+      "field": "custom_identifier",
+      "check": "regex_match",
+      "pattern": "^[A-Z]{4}-\\d{4}-\\d{3,4}$",
+      "severity": "error"
+    },
+    {
+      "rule_id": "1R10-004",
+      "field": "plant_identifier",
+      "check": "regex_match",
+      "pattern": "^PI-\\d{6,9}-\\d{1,3}$",
+      "severity": "error"
+    },
+    {
+      "rule_id": "1R10-005",
+      "field": "supplier_address",
+      "check": "exact_match",
+      "value": "SE – 34381 Älmhult",
+      "severity": "error"
+    },
+    {
+      "rule_id": "1R10-006",
+      "field": "origin_text",
+      "check": "starts_with_one_of",
+      "values": [
+        "Made in",
+        "Assembled in"
+      ],
+      "severity": "error"
+    },
+    {
+      "rule_id": "1R10-007",
+      "field": "datamatrix",
+      "check": "ai_field_present",
+      "ai": "240",
+      "severity": "error"
+    },
+    {
+      "rule_id": "1R10-008",
+      "field": "datamatrix",
+      "check": "ai_field_present",
+      "ai": "13",
+      "severity": "error"
+    },
+    {
+      "rule_id": "1R10-009",
+      "field": "dimensions_metric",
+      "check": "regex_match",
+      "pattern": "^\\d{1,4}x\\d{1,4}(x\\d{1,4})?\\s?cm$",
+      "severity": "warning"
+    },
+    {
+      "rule_id": "1R10-010",
+      "field": "copy_count_inline",
+      "check": "regex_match",
+      "pattern": "^1\\(\\d+\\)$",
+      "severity": "warning"
+    }
+  ],
+  "date_section_rules": {
+    "normal_mode": "ABCD-YYWW-1234 printed vertically on right strip",
+    "date_label_mode": "When DATE: field is present — grow section to 22.5mm, rotate text horizontal, YYWW always directly after DATE:"
+  },
+  "notes": "IDA and IDB share the same physical template; IDB has additional compliance symbol placeholder."
+}

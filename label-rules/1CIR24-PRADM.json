@@ -1,0 +1,99 @@
+{
+  "label_type_id": "1CIR24-PRADM",
+  "label_type_name": "Circular 24mm – Product Reference A",
+  "source_pages": [
+    45
+  ],
+  "description": "Small circular label 24mm diameter. DM 26x26 at 0.3mm. Text printed radially. AI(11) pack date.",
+  "physical_dimensions_mm": {
+    "diameter": 24
+  },
+  "shape": "circular",
+  "copy_count_default": 1,
+  "datamatrix": {
+    "symbol_size": "26x26",
+    "x_dimension_options_mm": [
+      0.3
+    ],
+    "specs": {
+      "symbol_rows": 26,
+      "symbol_cols": 26,
+      "x_dim_mm": 0.3,
+      "physical_mm": "7.8x7.8",
+      "physical_incl_qz_mm": "8.4x8.4"
+    },
+    "gs1_ais_present": [
+      "AI_240",
+      "AI_11"
+    ],
+    "encoding": "GS1"
+  },
+  "itf_barcode": null,
+  "required_fields": [
+    "article_number",
+    "internal_item_number",
+    "human_readable_date",
+    "origin_text",
+    "supplier_name",
+    "supplier_address",
+    "ikea_com_url"
+  ],
+  "optional_fields": [
+    "plant_identifier",
+    "copyright_notice"
+  ],
+  "field_patterns": {
+    "article_number": {
+      "type": "string",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "example": "803.812.94"
+    },
+    "internal_item_number": {
+      "type": "string",
+      "pattern": "^\\d{5}$",
+      "example": "12345",
+      "notes": "5-digit number printed near barcode"
+    },
+    "human_readable_date": {
+      "type": "string",
+      "pattern": "^\\d{2}-\\d{2}-\\d{2}$",
+      "example": "26-04-02",
+      "notes": "YY-MM-DD printed next to (YY-MM-DD) label"
+    },
+    "origin_text": {
+      "type": "string",
+      "pattern": "^(Made in|Assembled in)\\s.+$",
+      "example": "Made in People's Republic of China"
+    },
+    "supplier_name": {
+      "type": "string",
+      "allowed_values": [
+        "IKEA of Sweden AB"
+      ]
+    },
+    "supplier_address": {
+      "type": "string",
+      "pattern": "^SE\\s[–-]\\s34381\\s[ÄA]lmhult$",
+      "allowed_values": [
+        "SE – 34381 Älmhult"
+      ]
+    }
+  },
+  "validation_rules": [
+    {
+      "rule_id": "CIR24-001",
+      "field": "datamatrix",
+      "check": "ai_field_present",
+      "ai": "11",
+      "severity": "error"
+    },
+    {
+      "rule_id": "CIR24-002",
+      "field": "article_number",
+      "check": "regex_match",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "severity": "error"
+    }
+  ],
+  "notes": "Text is radially positioned around the DM symbol."
+}

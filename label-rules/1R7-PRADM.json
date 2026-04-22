@@ -1,0 +1,79 @@
+{
+  "label_type_id": "1R7-PRADM",
+  "label_type_name": "Rectangular 7mm – Product Reference A (Micro)",
+  "source_pages": [
+    22
+  ],
+  "description": "Very small label 35x8mm. Minimal fields. DataMatrix 16x48 at 0.4mm.",
+  "physical_dimensions_mm": {
+    "width": 35,
+    "height": 8
+  },
+  "shape": "rectangular",
+  "copy_count_default": 1,
+  "datamatrix": {
+    "symbol_size": "16x48",
+    "x_dimension_options_mm": [
+      0.4
+    ],
+    "specs": {
+      "symbol_rows": 16,
+      "symbol_cols": 48,
+      "x_dim_mm": 0.4,
+      "physical_mm": "19.2x6.4",
+      "physical_incl_qz_mm": "20x7.2"
+    },
+    "gs1_ais_present": [
+      "AI_240",
+      "AI_11"
+    ],
+    "encoding": "GS1"
+  },
+  "itf_barcode": null,
+  "required_fields": [
+    "article_number",
+    "internal_item_number",
+    "human_readable_date"
+  ],
+  "optional_fields": [
+    "ikea_com_url",
+    "origin_text",
+    "plant_identifier"
+  ],
+  "field_patterns": {
+    "article_number": {
+      "type": "string",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "example": "803.812.94"
+    },
+    "internal_item_number": {
+      "type": "string",
+      "pattern": "^\\d{5}$",
+      "example": "12345",
+      "notes": "5-digit number printed near barcode"
+    },
+    "human_readable_date": {
+      "type": "string",
+      "pattern": "^\\d{2}-\\d{2}-\\d{2}$",
+      "example": "26-04-02",
+      "notes": "YY-MM-DD printed next to (YY-MM-DD) label"
+    }
+  },
+  "validation_rules": [
+    {
+      "rule_id": "1R7P-001",
+      "field": "article_number",
+      "check": "regex_match",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "severity": "error"
+    },
+    {
+      "rule_id": "1R7P-002",
+      "field": "datamatrix",
+      "check": "ai_field_present",
+      "ai": "11",
+      "severity": "error"
+    }
+  ],
+  "notes": "Smallest rectangular label. Minimal address — IKEA.com only on some variants."
+}

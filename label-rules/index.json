@@ -1,0 +1,953 @@
+{
+  "schema_version": "1.0.0",
+  "source_document": "label_designs_changes_13_01_2026.pdf",
+  "total_label_types": 34,
+  "global_specs": {
+    "datamatrix_specs": {
+      "16x48_0.3": {
+        "symbol_rows": 16,
+        "symbol_cols": 48,
+        "x_dim_mm": 0.3,
+        "physical_mm": "14.4x4.8",
+        "physical_incl_qz_mm": "15x5.4"
+      },
+      "16x48_0.4": {
+        "symbol_rows": 16,
+        "symbol_cols": 48,
+        "x_dim_mm": 0.4,
+        "physical_mm": "19.2x6.4",
+        "physical_incl_qz_mm": "20x7.2"
+      },
+      "16x48_0.5": {
+        "symbol_rows": 16,
+        "symbol_cols": 48,
+        "x_dim_mm": 0.5,
+        "physical_mm": "24x8",
+        "physical_incl_qz_mm": "25x9"
+      },
+      "16x48_0.75": {
+        "symbol_rows": 16,
+        "symbol_cols": 48,
+        "x_dim_mm": 0.75,
+        "physical_mm": "36x12",
+        "physical_incl_qz_mm": "37.5x13.5"
+      },
+      "26x26_0.25": {
+        "symbol_rows": 26,
+        "symbol_cols": 26,
+        "x_dim_mm": 0.25,
+        "physical_mm": "6.5x6.5",
+        "physical_incl_qz_mm": "N/A (micro)"
+      },
+      "26x26_0.3": {
+        "symbol_rows": 26,
+        "symbol_cols": 26,
+        "x_dim_mm": 0.3,
+        "physical_mm": "7.8x7.8",
+        "physical_incl_qz_mm": "8.4x8.4"
+      },
+      "26x26_0.4": {
+        "symbol_rows": 26,
+        "symbol_cols": 26,
+        "x_dim_mm": 0.4,
+        "physical_mm": "10.4x10.4",
+        "physical_incl_qz_mm": "11.2x11.2"
+      },
+      "26x26_0.5": {
+        "symbol_rows": 26,
+        "symbol_cols": 26,
+        "x_dim_mm": 0.5,
+        "physical_mm": "13x13",
+        "physical_incl_qz_mm": "14x14"
+      },
+      "26x26_0.75": {
+        "symbol_rows": 26,
+        "symbol_cols": 26,
+        "x_dim_mm": 0.75,
+        "physical_mm": "19.5x19.5",
+        "physical_incl_qz_mm": "21x21"
+      }
+    },
+    "itf_barcode_specs": {
+      "micro_25pct": {
+        "magnification_pct": 25,
+        "x_dim_mm": 0.254,
+        "ratio": 2.5,
+        "module_width": 2,
+        "barcode_height_mm": 5,
+        "barcode_length_mm": 30.1,
+        "total_length_incl_qz_mm": 35.1,
+        "quiet_zone": "10 x-dim each side (2x2.5mm)"
+      },
+      "small_30pct": {
+        "magnification_pct": 30,
+        "x_dim_mm": 0.305,
+        "ratio": 2.5,
+        "module_width": 2,
+        "barcode_height_mm": 10,
+        "barcode_length_mm": 36.7,
+        "total_length_incl_qz_mm": 42.8,
+        "quiet_zone": "10 x-dim each side (2x3.1mm)"
+      },
+      "medium_45pct": {
+        "magnification_pct": 45,
+        "x_dim_mm": 0.457,
+        "ratio": 2.5,
+        "module_width": 2,
+        "barcode_height_mm": 15,
+        "barcode_length_mm": 55.1,
+        "total_length_incl_qz_mm": 64.2,
+        "quiet_zone": "min 10 x-dim each side (2x4.6mm)"
+      }
+    },
+    "ean13_specs": {
+      "lowest_100pct": {
+        "bar_height_mm": 10,
+        "x_dim_mm": 0.33,
+        "physical_size_mm": "39.29x15.08"
+      },
+      "low_100pct": {
+        "bar_height_mm": 15,
+        "x_dim_mm": 0.33,
+        "physical_size_mm": "39.29x20.08"
+      },
+      "standard_100pct": {
+        "bar_height_mm": 22.85,
+        "x_dim_mm": 0.33,
+        "physical_size_mm": "39.29x27.39"
+      },
+      "lowest_80pct": {
+        "bar_height_mm": 10,
+        "x_dim_mm": 0.264,
+        "physical_size_mm": "31.83x14.46"
+      },
+      "low_80pct": {
+        "bar_height_mm": 10,
+        "x_dim_mm": 0.264,
+        "physical_size_mm": "31.83x19.46"
+      },
+      "standard_80pct": {
+        "bar_height_mm": 10,
+        "x_dim_mm": 0.264,
+        "physical_size_mm": "31.83x22.74"
+      }
+    },
+    "gs1_ai_fields": {
+      "AI_240": {
+        "code": "240",
+        "name": "Additional Product ID",
+        "format": "\\d{1,30}",
+        "notes": "Item product code (always 14 digits for IKEA labels)"
+      },
+      "AI_11": {
+        "code": "11",
+        "name": "Production Date",
+        "format": "YYMMDD",
+        "notes": "Date of packaging/assembly"
+      },
+      "AI_13": {
+        "code": "13",
+        "name": "Packaging Date",
+        "format": "YYMMDD",
+        "notes": "Date of production/manufacture"
+      },
+      "AI_10": {
+        "code": "10",
+        "name": "Batch / Lot Number",
+        "format": "alphanumeric",
+        "notes": "Optional — not always present"
+      }
+    },
+    "field_patterns": {
+      "product_name": {
+        "type": "string",
+        "pattern": "^[A-ZÅÄÖ][A-ZÅÄÖ0-9 /\\-]{0,39}$",
+        "notes": "ALL-CAPS, max 40 chars"
+      },
+      "article_number": {
+        "type": "string",
+        "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+        "example": "803.812.94"
+      },
+      "internal_item_number": {
+        "type": "string",
+        "pattern": "^\\d{5}$",
+        "example": "12345",
+        "notes": "5-digit number printed near barcode"
+      },
+      "custom_identifier": {
+        "type": "string",
+        "pattern": "^[A-Z]{4}-\\d{4}-\\d{3,4}$",
+        "example": "ABCD-YYWW-1234",
+        "notes": "ALPHA-YYWW-NUM; date section changes weekly"
+      },
+      "human_readable_date": {
+        "type": "string",
+        "pattern": "^\\d{2}-\\d{2}-\\d{2}$",
+        "example": "26-04-02",
+        "notes": "YY-MM-DD printed next to (YY-MM-DD) label"
+      },
+      "plant_identifier": {
+        "type": "string",
+        "pattern": "^PI-\\d{6,9}-\\d{1,3}$",
+        "example": "PI-123456789-123"
+      },
+      "supplier_name": {
+        "type": "string",
+        "allowed_values": [
+          "IKEA of Sweden AB"
+        ]
+      },
+      "supplier_address": {
+        "type": "string",
+        "pattern": "^SE\\s[–-]\\s34381\\s[ÄA]lmhult$",
+        "allowed_values": [
+          "SE – 34381 Älmhult"
+        ]
+      },
+      "copyright_notice": {
+        "type": "string",
+        "pattern": "^©\\s+Inter\\s+IKEA\\s+Systems\\s+B\\.V\\.\\s+\\d{4}$",
+        "example": "© Inter IKEA Systems B.V. 2022"
+      },
+      "ikea_logo": {
+        "type": "boolean",
+        "notes": "IKEA wordmark must be present"
+      },
+      "ikea_com_url": {
+        "type": "boolean",
+        "notes": "IKEA.com printed on some variants"
+      },
+      "origin_text": {
+        "type": "string",
+        "pattern": "^(Made in|Assembled in)\\s.+$",
+        "example": "Made in People's Republic of China"
+      },
+      "gross_weight": {
+        "type": "string",
+        "pattern": "^Gross\\s\\d+\\s?kg\\s+\\(\\d+\\s?lbs\\)$",
+        "example": "Gross 12 kg (26 lbs)"
+      },
+      "net_weight": {
+        "type": "string",
+        "pattern": "^Net\\s\\d+\\s?kg\\s+\\(\\d+\\s?lbs\\)$",
+        "example": "Net 10 kg (22 lbs)"
+      },
+      "weight_compact": {
+        "type": "string",
+        "pattern": "^\\d+\\s?kg\\n\\(\\d+\\s?lbs\\)$",
+        "example": "00 kg\n(00 lbs)",
+        "notes": "Compact two-line format on small labels"
+      },
+      "dimensions_metric": {
+        "type": "string",
+        "pattern": "^\\d{1,4}x\\d{1,4}x?\\d{0,4}\\s?cm$",
+        "example": "000x000x000 cm"
+      },
+      "dimensions_imperial": {
+        "type": "string",
+        "pattern": "^\\(\\d+\\s\\d+/\\d+x.*\"\\)$",
+        "example": "(00 0/0x00 0/0x 00 0/0\")"
+      },
+      "copy_count_inline": {
+        "type": "string",
+        "pattern": "^1\\(\\d+\\)$",
+        "example": "1(3)",
+        "notes": "Copy n of total, printed on label face"
+      },
+      "copy_count_strip": {
+        "type": "string",
+        "pattern": "^\\d{1,2}$",
+        "notes": "Single digit on right-edge strip"
+      },
+      "date_stamp_yyww": {
+        "type": "string",
+        "pattern": "^\\d{4}$",
+        "example": "2614",
+        "notes": "YYWW year-week stamp"
+      },
+      "date_alpha_code": {
+        "type": "string",
+        "pattern": "^[A-Z]{4}$",
+        "example": "ABCD",
+        "notes": "4-letter plant/batch code"
+      },
+      "date_numeric_prefix": {
+        "type": "string",
+        "pattern": "^\\d{3,4}$",
+        "example": "1234"
+      },
+      "quantity_multiplier": {
+        "type": "string",
+        "pattern": "^[xX]\\s?\\d{1,3}$",
+        "example": "x 123",
+        "notes": "Multi-pack quantity"
+      },
+      "colour_dot": {
+        "type": "object",
+        "size_mm": "8x8",
+        "notes": "Physical colour swatch dot printed on label"
+      },
+      "compliance_marks": {
+        "type": "array",
+        "allowed_values": [
+          "CE",
+          "TSCA ULEF",
+          "CARB",
+          "RoHS",
+          "EPEAT"
+        ]
+      },
+      "tsca_text": {
+        "type": "string",
+        "allowed_values": [
+          "US EPA TSCA title VI compliant ULEF",
+          "Conforme au US EPA TSCA titre VI TFEF"
+        ]
+      },
+      "patents_url": {
+        "type": "string",
+        "allowed_values": [
+          "www.IKEA.com/patents",
+          "IKEA.com/patents"
+        ]
+      },
+      "wash_symbols": {
+        "type": "array",
+        "notes": "ISO 3758 care symbols; count varies by product"
+      },
+      "legal_symbols": {
+        "type": "array",
+        "notes": "Market-specific legal icons"
+      },
+      "ca_code": {
+        "type": "string",
+        "pattern": "^CA\\s?0?5404$",
+        "example": "CA 05404",
+        "notes": "Canadian compliance code"
+      },
+      "nif_code": {
+        "type": "string",
+        "pattern": "^NIF\\sN[0-9A-Z]+$",
+        "example": "NIF N03918B57J",
+        "notes": "Spanish NIF code"
+      },
+      "ma_ice_code": {
+        "type": "string",
+        "pattern": "^MA-ICE\\s\\d+$",
+        "example": "MA-ICE 001524613000018"
+      },
+      "gb_import_text": {
+        "type": "string",
+        "allowed_values": [
+          "Imported to GB by: IKEA Ltd., 100 Avebury Blvd, Milton Keynes, UK, MK9 1FH"
+        ]
+      },
+      "design_credit": {
+        "type": "string",
+        "allowed_values": [
+          "Design: IKEA of Sweden"
+        ]
+      },
+      "ikea_websites": {
+        "type": "string",
+        "example": "IKEA.com"
+      },
+      "product_image": {
+        "type": "boolean",
+        "notes": "Main product photo; present on 1C70-IDDDM and large labels"
+      },
+      "scientific_name": {
+        "type": "string",
+        "notes": "Plant scientific name; present on 1CIR40-IDFDM"
+      },
+      "care_symbols_plants": {
+        "type": "array",
+        "notes": "Care icons for plants (water, sun, etc.)"
+      },
+      "korean_text": {
+        "type": "boolean",
+        "notes": "Korean language text block; present on candle labels"
+      }
+    }
+  },
+  "naming_convention": {
+    "copies": "Leading digit (1=single, 2=double row)",
+    "shape": "R=Rectangular, C=Card/Landscape, CIR=Circular, L=Long Narrow, B=Booklet",
+    "size": "Nominal height in mm (or diameter for circular)",
+    "template": {
+      "IDA": "Identity A — base: logo, name, article, DM, address",
+      "IDB": "Identity B — IDA + compliance symbol zone",
+      "IDC": "Identity C — compact/reduced fields",
+      "IDD": "Identity D — IDA + product image",
+      "IDE": "Identity E — textiles: wash symbols, legal symbols",
+      "IDF": "Identity F — plants/flowers: scientific name, care icons",
+      "IDG": "Identity G — Purchase Order (PO) variant",
+      "PRA": "Product Reference A — small label, minimal fields",
+      "PRB": "Product Reference B — small label, micro DM",
+      "MIA": "Multi-Item A — multiple articles, gross+net weight",
+      "MIB": "Multi-Item B — multiple articles, table rows",
+      "CAA": "Canada A — CA code, NIF code, wash symbols",
+      "IDID": "Candle label"
+    },
+    "suffix": "DM = DataMatrix present; no suffix = no DM"
+  },
+  "label_types": [
+    {
+      "file": "1C50-CAA.json",
+      "label_type_id": "1C50-CAA",
+      "label_type_name": "Card 50mm – Canada A",
+      "shape": "card_portrait",
+      "physical_dimensions_mm": {
+        "width": 50,
+        "height": "variable"
+      },
+      "source_pages": [
+        29
+      ],
+      "has_itf": true,
+      "has_datamatrix": true,
+      "required_field_count": 13
+    },
+    {
+      "file": "1C50-IDBDM.json",
+      "label_type_id": "1C50-IDBDM",
+      "label_type_name": "Card 50x35mm – Identity B with DataMatrix",
+      "shape": "card_landscape",
+      "physical_dimensions_mm": {
+        "width": 50,
+        "height": 35
+      },
+      "source_pages": [
+        15
+      ],
+      "has_itf": true,
+      "has_datamatrix": true,
+      "required_field_count": 15
+    },
+    {
+      "file": "1C50-IDEDM.json",
+      "label_type_id": "1C50-IDEDM",
+      "label_type_name": "Card 50mm – Identity E (Textile/Care Label)",
+      "shape": "card_portrait",
+      "physical_dimensions_mm": {
+        "width": 50,
+        "height": "variable"
+      },
+      "source_pages": [
+        25
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 15
+    },
+    {
+      "file": "1C70-CAA.json",
+      "label_type_id": "1C70-CAA",
+      "label_type_name": "Card 70x107mm – Canada A",
+      "shape": "card_portrait",
+      "physical_dimensions_mm": {
+        "width": 70,
+        "height": 107
+      },
+      "source_pages": [
+        30
+      ],
+      "has_itf": true,
+      "has_datamatrix": true,
+      "required_field_count": 16
+    },
+    {
+      "file": "1C70-IDADM.json",
+      "label_type_id": "1C70-IDADM",
+      "label_type_name": "Card 70mm – Identity A (with COA/NUA variants)",
+      "shape": "card_portrait",
+      "physical_dimensions_mm": {
+        "width": 70,
+        "height": "variable"
+      },
+      "source_pages": [
+        47
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 8
+    },
+    {
+      "file": "1C70-IDBDM.json",
+      "label_type_id": "1C70-IDBDM",
+      "label_type_name": "Card 70mm – Identity B with DataMatrix",
+      "shape": "card_landscape",
+      "physical_dimensions_mm": {
+        "width": 70,
+        "height": "variable"
+      },
+      "source_pages": [
+        14
+      ],
+      "has_itf": true,
+      "has_datamatrix": true,
+      "required_field_count": 15
+    },
+    {
+      "file": "1C70-IDDDM.json",
+      "label_type_id": "1C70-IDDDM",
+      "label_type_name": "Card 70mm – Identity D (with product image + wash symbols)",
+      "shape": "card_portrait",
+      "physical_dimensions_mm": {
+        "width": 70,
+        "height": "variable"
+      },
+      "source_pages": [
+        27
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 14
+    },
+    {
+      "file": "1C70-MIBDM.json",
+      "label_type_id": "1C70-MIBDM",
+      "label_type_name": "Card 70mm – Multi-Item B (multiple article numbers)",
+      "shape": "card_portrait",
+      "physical_dimensions_mm": {
+        "width": 70,
+        "height": "variable"
+      },
+      "source_pages": [
+        28
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 13
+    },
+    {
+      "file": "1CIR24-PRADM.json",
+      "label_type_id": "1CIR24-PRADM",
+      "label_type_name": "Circular 24mm – Product Reference A",
+      "shape": "circular",
+      "physical_dimensions_mm": {
+        "diameter": 24
+      },
+      "source_pages": [
+        45
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 7
+    },
+    {
+      "file": "1CIR40-IDBDM.json",
+      "label_type_id": "1CIR40-IDBDM",
+      "label_type_name": "Circular 40mm – Identity B with DataMatrix",
+      "shape": "circular",
+      "physical_dimensions_mm": {
+        "diameter": 40
+      },
+      "source_pages": [
+        46
+      ],
+      "has_itf": true,
+      "has_datamatrix": true,
+      "required_field_count": 9
+    },
+    {
+      "file": "1CIR40-IDFDM.json",
+      "label_type_id": "1CIR40-IDFDM",
+      "label_type_name": "Circular 40mm – Identity F (Plants and Pots)",
+      "shape": "circular",
+      "physical_dimensions_mm": {
+        "diameter": 40
+      },
+      "source_pages": [
+        48
+      ],
+      "has_itf": true,
+      "has_datamatrix": true,
+      "required_field_count": 5
+    },
+    {
+      "file": "1CIR50-IDIDM.json",
+      "label_type_id": "1CIR50-IDIDM",
+      "label_type_name": "Circular 50mm – Candle (IDID)",
+      "shape": "circular",
+      "physical_dimensions_mm": {
+        "diameter": 50
+      },
+      "source_pages": [
+        20
+      ],
+      "has_itf": false,
+      "has_datamatrix": false,
+      "required_field_count": 3
+    },
+    {
+      "file": "1CIR60-IDIDM.json",
+      "label_type_id": "1CIR60-IDIDM",
+      "label_type_name": "Circular 60mm – Candle (IDID)",
+      "shape": "circular",
+      "physical_dimensions_mm": {
+        "diameter": 60
+      },
+      "source_pages": [
+        20
+      ],
+      "has_itf": false,
+      "has_datamatrix": false,
+      "required_field_count": 3
+    },
+    {
+      "file": "1R10-IDADM_IDBDM.json",
+      "label_type_id": "1R10-IDADM_IDBDM",
+      "label_type_name": "Rectangular 10mm – Identity A / Identity B",
+      "shape": "rectangular",
+      "physical_dimensions_mm": {
+        "width": "~100 (varies)",
+        "height": 10
+      },
+      "source_pages": [
+        6
+      ],
+      "has_itf": true,
+      "has_datamatrix": true,
+      "required_field_count": 18
+    },
+    {
+      "file": "1R12-IDADM_IDBDM.json",
+      "label_type_id": "1R12-IDADM_IDBDM",
+      "label_type_name": "Rectangular 12mm – Identity A / Identity B",
+      "shape": "rectangular",
+      "physical_dimensions_mm": {
+        "width": "~100 (varies)",
+        "height": 12
+      },
+      "source_pages": [
+        7
+      ],
+      "has_itf": true,
+      "has_datamatrix": true,
+      "required_field_count": 18
+    },
+    {
+      "file": "1R20-PRADM.json",
+      "label_type_id": "1R20-PRADM",
+      "label_type_name": "Rectangular 20mm – Product Reference with DataMatrix",
+      "shape": "rectangular",
+      "physical_dimensions_mm": {
+        "width": "~120 (varies by content)",
+        "height": 20
+      },
+      "source_pages": [
+        4,
+        5
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 11
+    },
+    {
+      "file": "1R25-IDCDM_IDCSDM.json",
+      "label_type_id": "1R25-IDCDM_IDCSDM",
+      "label_type_name": "Rectangular 25mm – Identity C (Compact) / Identity C Short",
+      "shape": "rectangular",
+      "physical_dimensions_mm": {
+        "width": "~90",
+        "height": 25
+      },
+      "source_pages": [
+        13
+      ],
+      "has_itf": true,
+      "has_datamatrix": true,
+      "required_field_count": 8
+    },
+    {
+      "file": "1R35-IDADM_IDBDM.json",
+      "label_type_id": "1R35-IDADM_IDBDM",
+      "label_type_name": "Rectangular 35mm – Identity A / Identity B (Full Feature)",
+      "shape": "rectangular",
+      "physical_dimensions_mm": {
+        "width": "~120 (varies)",
+        "height": 35
+      },
+      "source_pages": [
+        10,
+        11,
+        12
+      ],
+      "has_itf": true,
+      "has_datamatrix": true,
+      "required_field_count": 18
+    },
+    {
+      "file": "1R35-IDGDM.json",
+      "label_type_id": "1R35-IDGDM",
+      "label_type_name": "Rectangular 35mm – Identity G (Purchase Order variant)",
+      "shape": "rectangular",
+      "physical_dimensions_mm": {
+        "width": 80,
+        "height": 35
+      },
+      "source_pages": [
+        17,
+        49
+      ],
+      "has_itf": true,
+      "has_datamatrix": true,
+      "required_field_count": 9
+    },
+    {
+      "file": "1R50.json",
+      "label_type_id": "1R50",
+      "label_type_name": "Rectangular 50mm – Large Format",
+      "shape": "rectangular",
+      "physical_dimensions_mm": {
+        "width": 80,
+        "height": 50
+      },
+      "source_pages": [
+        37
+      ],
+      "has_itf": true,
+      "has_datamatrix": true,
+      "required_field_count": 15
+    },
+    {
+      "file": "1R7-IDBDM.json",
+      "label_type_id": "1R7-IDBDM",
+      "label_type_name": "Rectangular 7mm – Identity B (with compliance)",
+      "shape": "rectangular",
+      "physical_dimensions_mm": {
+        "width": "~60",
+        "height": 7
+      },
+      "source_pages": [
+        38
+      ],
+      "has_itf": true,
+      "has_datamatrix": true,
+      "required_field_count": 10
+    },
+    {
+      "file": "1R7-PRADM.json",
+      "label_type_id": "1R7-PRADM",
+      "label_type_name": "Rectangular 7mm – Product Reference A (Micro)",
+      "shape": "rectangular",
+      "physical_dimensions_mm": {
+        "width": 35,
+        "height": 8
+      },
+      "source_pages": [
+        22
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 3
+    },
+    {
+      "file": "1R70.json",
+      "label_type_id": "1R70",
+      "label_type_name": "Rectangular 70mm – Large Format",
+      "shape": "rectangular",
+      "physical_dimensions_mm": {
+        "width": 95,
+        "height": 70
+      },
+      "source_pages": [
+        37
+      ],
+      "has_itf": true,
+      "has_datamatrix": true,
+      "required_field_count": 15
+    },
+    {
+      "file": "1R90.json",
+      "label_type_id": "1R90",
+      "label_type_name": "Rectangular 90mm – Large Format",
+      "shape": "rectangular",
+      "physical_dimensions_mm": {
+        "width": 90,
+        "height": 90
+      },
+      "source_pages": [
+        37
+      ],
+      "has_itf": true,
+      "has_datamatrix": true,
+      "required_field_count": 15
+    },
+    {
+      "file": "2R35-IDEDM.json",
+      "label_type_id": "2R35-IDEDM",
+      "label_type_name": "Double-Row 35mm – Identity E (Textile, 2 products)",
+      "shape": "rectangular_double_row",
+      "physical_dimensions_mm": {
+        "width": "~140",
+        "height": 35
+      },
+      "source_pages": [
+        36
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 10
+    },
+    {
+      "file": "BCIR38-IDIDM.json",
+      "label_type_id": "BCIR38-IDIDM",
+      "label_type_name": "Booklet Circular 38mm – Candle/IDID",
+      "shape": "circular_booklet",
+      "physical_dimensions_mm": {
+        "diameter": 38
+      },
+      "source_pages": [
+        20
+      ],
+      "has_itf": false,
+      "has_datamatrix": false,
+      "required_field_count": 4
+    },
+    {
+      "file": "CMB-STANDALONE-DM.json",
+      "label_type_id": "CMB-STANDALONE-DM",
+      "label_type_name": "Standalone DataMatrix / CMB Combination Labels",
+      "shape": "rectangular",
+      "physical_dimensions_mm": {
+        "1R20_standalone": {
+          "width": 33,
+          "height": 20
+        },
+        "1R10_cmb": {
+          "width": 40,
+          "height": 10
+        },
+        "1R20_cmb": {
+          "width": 40,
+          "height": 20
+        },
+        "1R35_cmb": {
+          "width": 40,
+          "height": 35
+        }
+      },
+      "source_pages": [
+        34
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 2
+    },
+    {
+      "file": "L10555-MIADM.json",
+      "label_type_id": "L10555-MIADM",
+      "label_type_name": "Large Landscape 105x55mm – Multi-Item A",
+      "shape": "card_landscape",
+      "physical_dimensions_mm": {
+        "width": 105,
+        "height": 55
+      },
+      "source_pages": [
+        31
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 16
+    },
+    {
+      "file": "L2611-PRBDM.json",
+      "label_type_id": "L2611-PRBDM",
+      "label_type_name": "Long Narrow 26x11mm – Product Reference B",
+      "shape": "long_narrow",
+      "physical_dimensions_mm": {
+        "width": 26,
+        "height": 11
+      },
+      "source_pages": [
+        40
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 3
+    },
+    {
+      "file": "L3015-PRADM.json",
+      "label_type_id": "L3015-PRADM",
+      "label_type_name": "Long Narrow 30x15mm – Product Reference A",
+      "shape": "long_narrow",
+      "physical_dimensions_mm": {
+        "width": 30,
+        "height": 15
+      },
+      "source_pages": [
+        40
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 4
+    },
+    {
+      "file": "L3815-PRADM.json",
+      "label_type_id": "L3815-PRADM",
+      "label_type_name": "Long Narrow 38x15mm – Product Reference A",
+      "shape": "long_narrow",
+      "physical_dimensions_mm": {
+        "width": 38,
+        "height": 15
+      },
+      "source_pages": [
+        21
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 6
+    },
+    {
+      "file": "L5727-PRADM.json",
+      "label_type_id": "L5727-PRADM",
+      "label_type_name": "Long Narrow 57x27mm – Product Reference A (Hinge Hole, Kitchen)",
+      "shape": "long_narrow",
+      "physical_dimensions_mm": {
+        "width": 57,
+        "height": 27
+      },
+      "source_pages": [
+        32
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 9
+    },
+    {
+      "file": "L578-PRADM.json",
+      "label_type_id": "L578-PRADM",
+      "label_type_name": "Long Narrow 5x78mm – Product Reference A",
+      "shape": "long_narrow",
+      "physical_dimensions_mm": {
+        "width": 78,
+        "height": 5
+      },
+      "source_pages": [
+        22
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 4
+    },
+    {
+      "file": "L8015-PRADM.json",
+      "label_type_id": "L8015-PRADM",
+      "label_type_name": "Long Narrow 80x15mm – Product Reference A",
+      "shape": "long_narrow",
+      "physical_dimensions_mm": {
+        "width": 80,
+        "height": 15
+      },
+      "source_pages": [
+        21
+      ],
+      "has_itf": false,
+      "has_datamatrix": true,
+      "required_field_count": 10
+    }
+  ]
+}

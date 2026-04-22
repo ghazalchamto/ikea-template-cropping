@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "template.schema.json",
+  "title": "Template",
+  "description": "Full specification for a single IKEA packaging label template variant",
+  "type": "object",
+  "required": ["template_id", "display_name", "family", "source_evidence", "elements", "rules", "review_state"],
+  "properties": {
+    "template_id": { "type": "string" },
+    "display_name": { "type": "string" },
+    "family": { "type": "string", "description": "Family ID this template belongs to" },
+    "inherits_from": {
+      "type": "string",
+      "description": "template_id of parent template, or family_id for family-level inheritance"
+    },
+    "x_dimension_mm": { "type": "number" },
+    "orientation": { "type": "string", "enum": ["landscape", "portrait"] },
+    "notes": { "type": "string" },
+    "source_evidence": {
+      "type": "object",
+      "required": ["page"],
+      "properties": {
+        "page": { "type": "integer" },
+        "position_on_page": { "type": "string" },
+        "snippet": { "type": "string" }
+      }
+    },
+    "elements": {
+      "type": "array",
+      "description": "Elements present in this variant. May reference family elements or override them.",
+      "items": { "$ref": "element.schema.json" }
+    },
+    "overrides": {
+      "type": "array",
+      "description": "Per-element overrides relative to the parent template or family",
+      "items": {
+        "type": "object",
+        "required": ["element_id", "override_fields"],
+        "properties": {
+          "element_id": { "type": "string" },
+          "override_fields": { "type": "object" }
+        }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": { "$ref": "rule.schema.json" }
+    },
+    "review_state": {
+      "type": "object",
+      "required": ["confidence", "needs_review"],
+      "properties": {
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "needs_review": { "type": "boolean" },
+        "review_notes": { "type": "string" }
+      }
+    }
+  }
+}

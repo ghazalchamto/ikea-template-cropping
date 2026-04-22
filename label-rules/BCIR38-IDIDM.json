@@ -1,0 +1,46 @@
+{
+  "label_type_id": "BCIR38-IDIDM",
+  "label_type_name": "Booklet Circular 38mm – Candle/IDID",
+  "source_pages": [
+    20
+  ],
+  "description": "Booklet-format circular label 38mm diameter for candles. 4, 8, or 12 pages depending on number of symbols. IKEA address and IKEA.com on last page with symbols.",
+  "physical_dimensions_mm": {
+    "diameter": 38
+  },
+  "shape": "circular_booklet",
+  "copy_count_default": 1,
+  "datamatrix": null,
+  "itf_barcode": null,
+  "required_fields": [
+    "supplier_name",
+    "supplier_address",
+    "copyright_notice",
+    "ikea_com_url"
+  ],
+  "optional_fields": [
+    "legal_symbols",
+    "compliance_marks",
+    "korean_text"
+  ],
+  "layout_rules": {
+    "ikea_address_placement": "Last page that contains symbols",
+    "ikea_com_placement": "Same page as IKEA address",
+    "page_count": "4, 8, or 12 pages (multiples of 4)"
+  },
+  "validation_rules": [
+    {
+      "rule_id": "BCIR38-001",
+      "field": "supplier_address",
+      "check": "on_last_symbol_page",
+      "severity": "error"
+    },
+    {
+      "rule_id": "BCIR38-002",
+      "field": "page_count",
+      "check": "multiple_of_4",
+      "severity": "error"
+    }
+  ],
+  "notes": "Pages count: 4/8/12 depending on symbol count. IKEA address always on last symbol page."
+}

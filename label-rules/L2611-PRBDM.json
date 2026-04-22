@@ -1,0 +1,78 @@
+{
+  "label_type_id": "L2611-PRBDM",
+  "label_type_name": "Long Narrow 26x11mm – Product Reference B",
+  "source_pages": [
+    40
+  ],
+  "description": "Small tag label 26x11mm. DM 26x26 at 0.25mm (micro). Origin 'Made in China' (short form).",
+  "physical_dimensions_mm": {
+    "width": 26,
+    "height": 11
+  },
+  "shape": "long_narrow",
+  "copy_count_default": 1,
+  "datamatrix": {
+    "symbol_size": "26x26",
+    "x_dimension_options_mm": [
+      0.25
+    ],
+    "specs": {
+      "symbol_rows": 26,
+      "symbol_cols": 26,
+      "x_dim_mm": 0.25,
+      "physical_mm": "6.5x6.5",
+      "physical_incl_qz_mm": "N/A (micro)"
+    },
+    "gs1_ais_present": [
+      "AI_240",
+      "AI_11"
+    ],
+    "encoding": "GS1"
+  },
+  "itf_barcode": null,
+  "required_fields": [
+    "article_number",
+    "human_readable_date",
+    "origin_text"
+  ],
+  "optional_fields": [
+    "internal_item_number",
+    "ikea_com_url",
+    "plant_identifier"
+  ],
+  "field_patterns": {
+    "article_number": {
+      "type": "string",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "example": "803.812.94"
+    },
+    "human_readable_date": {
+      "type": "string",
+      "pattern": "^\\d{2}-\\d{2}-\\d{2}$",
+      "example": "26-04-02",
+      "notes": "YY-MM-DD printed next to (YY-MM-DD) label"
+    },
+    "origin_text": {
+      "type": "string",
+      "pattern": "^(Made in|Assembled in)\\s.+$",
+      "example": "Made in People's Republic of China"
+    }
+  },
+  "validation_rules": [
+    {
+      "rule_id": "L2611-001",
+      "field": "datamatrix_x_dim",
+      "check": "exact",
+      "value": 0.25,
+      "severity": "error"
+    },
+    {
+      "rule_id": "L2611-002",
+      "field": "article_number",
+      "check": "regex_match",
+      "pattern": "^\\d{3}\\.\\d{3}\\.\\d{2}$",
+      "severity": "error"
+    }
+  ],
+  "notes": "Micro DM at 0.25mm. Origin often 'Made in China' (short form)."
+}

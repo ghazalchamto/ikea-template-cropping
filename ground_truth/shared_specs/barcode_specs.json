@@ -1,0 +1,341 @@
+{
+  "$schema": "../schema/shared_spec.schema.json",
+  "version": "1.0",
+  "source_pdf": "label_designs_changes_13_01_2026.pdf",
+  "specs": [
+    {
+      "spec_id": "DM_RECT",
+      "spec_type": "datamatrix_rectangular",
+      "standard": "ISO/IEC 16022 DataMatrix ECC200 rectangular",
+      "notes": "Both 16x48 and 18x50 module configurations shown. Quiet zone not included in find-pattern measurement. Size does not include quiet zone unless stated.",
+      "quiet_zone": { "width_modules": 1, "width_mm_at_0_4x": 0.4, "width_mm_at_0_5x": 0.5, "width_mm_at_0_75x": 0.75, "note": "Per ISO/IEC 16022: minimum 1 module quiet zone on all sides" },
+      "print_quality": { "min_contrast_ratio": "3:1", "min_dpi": 203, "recommended_dpi": 300, "note": "Minimum print contrast and resolution for reliable scanning" },
+      "content_rules": {
+        "encoding": "GS1 DataMatrix",
+        "required_ais": ["AI(240)"],
+        "ai_240_description": "Additional product identification — 14-20 numeric digits",
+        "ai_240_pattern": "^\\(240\\)[0-9]{14,20}$",
+        "ai_11_description": "Production date — YYMMDD format",
+        "ai_11_pattern": "^\\(11\\)\\d{6}$",
+        "ai_10_description": "Batch/lot number",
+        "ai_10_pattern": "^\\(10\\)[0-9A-Z]{1,20}$",
+        "gs1_separator": "GS character (ASCII 29) between AIs in GS1 DataMatrix",
+        "check_digit": "Computed per ECC200 error correction — not manually settable"
+      },
+      "x_dim_variants": [
+        {
+          "x_dim_mm": 0.4,
+          "role": "minimum",
+          "symbol_config": { "rows": 16, "columns": 48, "includes_find_pattern": true, "includes_quiet_zone": false },
+          "physical_size_mm": { "width_mm": 19.2, "height_mm": 6.4 }
+        },
+        {
+          "x_dim_mm": 0.4,
+          "role": "minimum",
+          "symbol_config": { "rows": 18, "columns": 50, "includes_find_pattern": false, "includes_quiet_zone": true },
+          "physical_size_mm": { "width_mm": 20.0, "height_mm": 7.2 }
+        },
+        {
+          "x_dim_mm": 0.5,
+          "role": "target",
+          "symbol_config": { "rows": 16, "columns": 48, "includes_find_pattern": true, "includes_quiet_zone": false },
+          "physical_size_mm": { "width_mm": 24.0, "height_mm": 8.0 }
+        },
+        {
+          "x_dim_mm": 0.5,
+          "role": "target",
+          "symbol_config": { "rows": 18, "columns": 50, "includes_find_pattern": false, "includes_quiet_zone": true },
+          "physical_size_mm": { "width_mm": 25.0, "height_mm": 9.0 }
+        },
+        {
+          "x_dim_mm": 0.75,
+          "role": "maximum",
+          "symbol_config": { "rows": 16, "columns": 48, "includes_find_pattern": true, "includes_quiet_zone": false },
+          "physical_size_mm": { "width_mm": 36.0, "height_mm": 12.0 }
+        },
+        {
+          "x_dim_mm": 0.75,
+          "role": "maximum",
+          "symbol_config": { "rows": 18, "columns": 50, "includes_find_pattern": false, "includes_quiet_zone": true },
+          "physical_size_mm": { "width_mm": 37.5, "height_mm": 13.5 }
+        }
+      ],
+      "evidence": {
+        "page": 1,
+        "evidence_type": "label_spec_text",
+        "snippet": "Total physical size (rectangular) — Minimum x-dim 0,4: 16x48*0,4= 6,4x19,2mm (incl find pattern); 18x50*0,4=7,2x20mm (incl quiet zone)"
+      }
+    },
+    {
+      "spec_id": "DM_SQ",
+      "spec_type": "datamatrix_square",
+      "standard": "ISO/IEC 16022 DataMatrix ECC200 square",
+      "notes": "Both 26x26 and 28x28 module configurations shown.",
+      "quiet_zone": { "width_modules": 1, "width_mm_at_0_4x": 0.4, "width_mm_at_0_5x": 0.5, "width_mm_at_0_75x": 0.75, "note": "Per ISO/IEC 16022: minimum 1 module quiet zone on all sides" },
+      "print_quality": { "min_contrast_ratio": "3:1", "min_dpi": 203, "recommended_dpi": 300 },
+      "content_rules": {
+        "encoding": "GS1 DataMatrix",
+        "required_ais": ["AI(240)"],
+        "same_as": "DM_RECT content_rules"
+      },
+      "x_dim_variants": [
+        {
+          "x_dim_mm": 0.4,
+          "role": "minimum",
+          "symbol_config": { "rows": 26, "columns": 26, "includes_find_pattern": true, "includes_quiet_zone": false },
+          "physical_size_mm": { "width_mm": 10.4, "height_mm": 10.4 }
+        },
+        {
+          "x_dim_mm": 0.4,
+          "role": "minimum",
+          "symbol_config": { "rows": 28, "columns": 28, "includes_find_pattern": false, "includes_quiet_zone": true },
+          "physical_size_mm": { "width_mm": 11.2, "height_mm": 11.2 }
+        },
+        {
+          "x_dim_mm": 0.5,
+          "role": "target",
+          "symbol_config": { "rows": 26, "columns": 26, "includes_find_pattern": true, "includes_quiet_zone": false },
+          "physical_size_mm": { "width_mm": 13.0, "height_mm": 13.0 }
+        },
+        {
+          "x_dim_mm": 0.5,
+          "role": "target",
+          "symbol_config": { "rows": 28, "columns": 28, "includes_find_pattern": false, "includes_quiet_zone": true },
+          "physical_size_mm": { "width_mm": 14.0, "height_mm": 14.0 }
+        },
+        {
+          "x_dim_mm": 0.75,
+          "role": "maximum",
+          "symbol_config": { "rows": 26, "columns": 26, "includes_find_pattern": true, "includes_quiet_zone": false },
+          "physical_size_mm": { "width_mm": 19.5, "height_mm": 19.5 }
+        },
+        {
+          "x_dim_mm": 0.75,
+          "role": "maximum",
+          "symbol_config": { "rows": 28, "columns": 28, "includes_find_pattern": false, "includes_quiet_zone": true },
+          "physical_size_mm": { "width_mm": 21.0, "height_mm": 21.0 }
+        }
+      ],
+      "evidence": {
+        "page": 1,
+        "evidence_type": "label_spec_text",
+        "snippet": "Total physical size (square) — Minimum x-dim 0,4: 26*0,4= 10,4x10,4mm (incl find pattern); 28*0,4= 11,2x11,2mm (incl quiet zone)"
+      }
+    },
+    {
+      "spec_id": "ITF_MICRO",
+      "spec_type": "itf",
+      "standard": "ITF-14 / Interleaved 2-of-5",
+      "quiet_zone": { "width_mm_each_side": 10, "note": "Per GS1 ITF-14: minimum 10mm quiet zone on both left and right sides" },
+      "size_variants": [
+        {
+          "size_role": "micro",
+          "physical_size_mm": {
+            "width_mm": null,
+            "height_mm": null,
+            "includes_quiet_zone": true,
+            "note": "Micro tier — exact dimensions not legible in PDF at this resolution. Estimated: approx 25×3mm based on visual scale relative to Small tier. See open_questions.json OQ-007."
+          }
+        }
+      ],
+      "content_rules": {
+        "digit_count": 14,
+        "check_digit": "Modulo-10 check digit on last position",
+        "encoding": "Interleaved 2-of-5 (ITF)",
+        "bearer_bar": "recommended for small/micro sizes",
+        "quiet_zone_each_side_mm": 10,
+        "note": "Same content rules apply across all ITF size tiers; only physical dimensions differ"
+      },
+      "print_quality": { "min_contrast_ratio": "3:1", "min_dpi": 203 },
+      "evidence": {
+        "page": 1,
+        "evidence_type": "diagram_annotation",
+        "snippet": "ITF Barcodes — Micro"
+      }
+    },
+    {
+      "spec_id": "ITF_SMALL",
+      "spec_type": "itf",
+      "standard": "ITF-14 / Interleaved 2-of-5",
+      "quiet_zone": { "width_mm_each_side": 10, "note": "Per GS1 ITF-14: minimum 10mm quiet zone on both sides" },
+      "content_rules": { "same_as": "ITF_MICRO content_rules" },
+      "print_quality": { "min_contrast_ratio": "3:1", "min_dpi": 203 },
+      "size_variants": [
+        {
+          "size_role": "small",
+          "physical_size_mm": {
+            "width_mm": 37.0,
+            "height_mm": 5.0,
+            "includes_quiet_zone": true
+          }
+        }
+      ],
+      "evidence": {
+        "page": 1,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Barcode 37x5 including quiet zone — Small"
+      }
+    },
+    {
+      "spec_id": "ITF_MEDIUM",
+      "spec_type": "itf",
+      "standard": "ITF-14 / Interleaved 2-of-5",
+      "notes": "Magnification factor 100% (0.635 x-dim), ratio 2.5, module width 1.5mm, quiet zone 10mm, length incl quiet zone 42.8mm",
+      "quiet_zone": { "width_mm_each_side": 10, "note": "Per GS1 ITF-14: minimum 10mm quiet zone. At 100% mag: 10mm each side confirmed from spec annotation (42.8mm total incl 2×10mm)" },
+      "content_rules": { "same_as": "ITF_MICRO content_rules" },
+      "print_quality": { "magnification_factor": 1.0, "x_dim_mm": 0.635, "ratio": 2.5, "min_contrast_ratio": "3:1", "min_dpi": 203 },
+      "size_variants": [
+        {
+          "size_role": "medium",
+          "physical_size_mm": {
+            "width_mm": 48.0,
+            "height_mm": 10.0,
+            "includes_quiet_zone": true
+          }
+        }
+      ],
+      "evidence": {
+        "page": 1,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Barcode 48x10 including quiet zone — Medium"
+      }
+    },
+    {
+      "spec_id": "ITF_LARGE",
+      "spec_type": "itf",
+      "standard": "ITF-14 / Interleaved 2-of-5",
+      "notes": "Magnification factor 100% (0.635 x-dim), ratio 2.5, module width 1.5mm, quiet zone 10mm, full length incl quiet zone 62.8mm",
+      "quiet_zone": { "width_mm_each_side": 10, "note": "Per GS1 ITF-14: minimum 10mm quiet zone. At 100% mag: 10mm each side confirmed from spec annotation (62.8mm total incl 2×10mm)" },
+      "content_rules": { "same_as": "ITF_MICRO content_rules" },
+      "print_quality": { "magnification_factor": 1.0, "x_dim_mm": 0.635, "ratio": 2.5, "min_contrast_ratio": "3:1", "min_dpi": 203 },
+      "size_variants": [
+        {
+          "size_role": "large",
+          "physical_size_mm": {
+            "width_mm": 65.0,
+            "height_mm": 15.0,
+            "includes_quiet_zone": true
+          }
+        }
+      ],
+      "evidence": {
+        "page": 1,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Barcode 65x15 including quiet zone — Large"
+      }
+    },
+    {
+      "spec_id": "EAN13_100PCT",
+      "spec_type": "ean13",
+      "standard": "EAN-13 at 100% magnification",
+      "magnification_factor": 1.0,
+      "quiet_zone": {
+        "left_modules": 11,
+        "right_modules": 7,
+        "left_mm_at_100pct": 3.63,
+        "right_mm_at_100pct": 2.31,
+        "note": "Per GS1 EAN-13: 11-module left quiet zone, 7-module right quiet zone. At x_dim=0.33mm: left=3.63mm, right=2.31mm"
+      },
+      "content_rules": {
+        "digit_count": 13,
+        "check_digit": "Modulo-10 check digit on last (13th) position",
+        "encoding": "EAN-13 linear barcode",
+        "structure": "Country code (2-3 digits) + company code + item code + check digit",
+        "human_readable_text": "13 digits printed below bars, split 1+6+6 with guard bars",
+        "quiet_zone_left_modules": 11,
+        "quiet_zone_right_modules": 7,
+        "note": "Physical quiet zone width = quiet_zone_modules × x_dim_mm"
+      },
+      "print_quality": { "min_contrast_ratio": "3:1", "min_dpi": 203, "recommended_dpi": 300 },
+      "height_variants": [
+        {
+          "height_role": "lowest",
+          "bar_height_mm": 10.0,
+          "x_dim_mm": 0.33,
+          "physical_size_mm": {
+            "width_mm": 39.29,
+            "height_mm": 15.08,
+            "note": "includes quiet & safe zones"
+          }
+        },
+        {
+          "height_role": "low",
+          "bar_height_mm": 15.0,
+          "x_dim_mm": 0.33,
+          "physical_size_mm": {
+            "width_mm": 39.29,
+            "height_mm": 20.08,
+            "note": "includes quiet & safe zones"
+          }
+        },
+        {
+          "height_role": "standard",
+          "bar_height_mm": 22.85,
+          "x_dim_mm": 0.330,
+          "physical_size_mm": {
+            "width_mm": 39.29,
+            "height_mm": 27.39,
+            "note": "includes quiet & safe zones"
+          }
+        }
+      ],
+      "evidence": {
+        "page": 1,
+        "evidence_type": "label_spec_text",
+        "snippet": "Total physical size EAN-13 (100%) — Lowest height: Bar height Lowest 10mm, X-dimension: 0,33mm, Physical size*(WxH): 39,29x15,08mm"
+      }
+    },
+    {
+      "spec_id": "EAN13_80PCT",
+      "spec_type": "ean13_80pct",
+      "standard": "EAN-13 at 80% magnification",
+      "magnification_factor": 0.8,
+      "quiet_zone": {
+        "left_modules": 11,
+        "right_modules": 7,
+        "left_mm_at_80pct": 2.90,
+        "right_mm_at_80pct": 1.85,
+        "note": "Same module count as 100%; at x_dim=0.264mm (80% of 0.33mm): left=2.90mm, right=1.85mm"
+      },
+      "content_rules": { "same_as": "EAN13_100PCT content_rules", "note": "Same digit/check rules; only physical size differs due to 80% magnification" },
+      "print_quality": { "magnification_factor": 0.8, "min_contrast_ratio": "3:1", "min_dpi": 203 },
+      "height_variants": [
+        {
+          "height_role": "lowest",
+          "bar_height_mm": 10.0,
+          "x_dim_mm": 0.264,
+          "physical_size_mm": {
+            "width_mm": 31.83,
+            "height_mm": 14.46,
+            "note": "includes quiet & safe zones"
+          }
+        },
+        {
+          "height_role": "low",
+          "bar_height_mm": 10.0,
+          "x_dim_mm": 0.264,
+          "physical_size_mm": {
+            "width_mm": 31.83,
+            "height_mm": 19.46,
+            "note": "includes quiet & safe zones"
+          }
+        },
+        {
+          "height_role": "standard",
+          "bar_height_mm": 10.0,
+          "x_dim_mm": 0.264,
+          "physical_size_mm": {
+            "width_mm": 31.83,
+            "height_mm": 22.74,
+            "note": "includes quiet & safe zones"
+          }
+        }
+      ],
+      "evidence": {
+        "page": 1,
+        "evidence_type": "label_spec_text",
+        "snippet": "Total physical size EAN-13 (80%) — Lowest height: Bar height Lowest 10mm, X-dimension: 0,264mm, Physical size*(WxH): 31,83x14,46mm"
+      }
+    }
+  ]
+}

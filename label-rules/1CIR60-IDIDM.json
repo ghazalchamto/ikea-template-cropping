@@ -1,0 +1,46 @@
+{
+  "label_type_id": "1CIR60-IDIDM",
+  "label_type_name": "Circular 60mm – Candle (IDID)",
+  "source_pages": [
+    20
+  ],
+  "description": "Candle label 60mm circular. Korean text optional. IKEA address and IKEA.com bottom-center aligned. If Korean text absent, address shifts to stay center-aligned.",
+  "physical_dimensions_mm": {
+    "diameter": 60
+  },
+  "shape": "circular",
+  "copy_count_default": 1,
+  "datamatrix": null,
+  "itf_barcode": null,
+  "required_fields": [
+    "supplier_name",
+    "supplier_address",
+    "ikea_com_url"
+  ],
+  "optional_fields": [
+    "korean_text",
+    "legal_symbols",
+    "compliance_marks",
+    "copyright_notice"
+  ],
+  "layout_rules": {
+    "address_alignment": "Center-aligned at bottom",
+    "korean_text_alignment": "Center-aligned at bottom when present",
+    "address_shift": "Shifts up when Korean text absent, stays center-aligned"
+  },
+  "validation_rules": [
+    {
+      "rule_id": "1CIR60-IDIDM-001",
+      "field": "supplier_address",
+      "check": "center_bottom_aligned",
+      "severity": "warning"
+    },
+    {
+      "rule_id": "1CIR60-IDIDM-002",
+      "field": "korean_text",
+      "check": "if_absent_address_stays_center",
+      "severity": "warning"
+    }
+  ],
+  "notes": "Korean text optional. Address center-bottom always."
+}

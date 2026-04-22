@@ -1,0 +1,358 @@
+IKEA LABEL HYBRID VALIDATION SYSTEM — DESIGN DOCUMENT
+======================================================
+
+
+OVERVIEW
+--------
+A production label enters the system as two inputs:
+  1. An image of the label
+  2. Extracted data — text, barcode content, positions (from OCR / barcode scanner)
+
+The validator loads the matching ground truth template and runs three comparison
+layers against it: rules validation, field validation, and image validation.
+
+The ground truth files are loaded once and reused for every label. They do not
+change per production label.
+
+
+REPOSITORY STRUCTURE
+--------------------
+ground_truth/
+  schema/           JSON schemas — shape contracts for all file types
+  shared_specs/     Reusable specs referenced by templates
+  families/         Base definitions shared across template variants
+  templates/        One file per label template (15 total)
+  review/           Inventory + documented ambiguities
+  validation/       Scripts (validate_specs.py, enrich_templates.py)
+
+
+THE 15 TEMPLATES
+----------------
+Each file in templates/ is a complete, standalone spec for one label variant.
+Your validator loads the matching file directly — no resolution against other
+files is needed.
+
+  1R10-PRADM_v1   Small label — product + barcode + address only
+  1R10-PRADM_v2   + compliance block + date strip
+  1R10-PRADM_v3   + YYWW stamp + copy count
+  1R10-PRADM_v4   + legal symbols column (rotated 90 degrees CW)
+  1R10-PRADM_v5   + copy count rotated
+
+  1R20-PRADM_04x_v1   Large label at 0.4mm x-dim, basic layout
+  1R20-PRADM_04x_v2   + compliance + date
+  1R20-PRADM_04x_v3   + YYWW + copy count + colour dot
+  1R20-PRADM_04x_v4   + legal symbols rotated
+  1R20-PRADM_04x_v5   + full rotated strip
+
+  1R20-PRADM_075x_v1  Large label at 0.75mm x-dim, basic layout
+  1R20-PRADM_075x_v2  + compliance + date
+  1R20-PRADM_075x_v3  + YYWW + copy count + colour dot
+  1R20-PRADM_075x_v4  + legal symbols rotated
+  1R20-PRADM_075x_v5  + full rotated strip
+
+Each template file contains three key sections:
+
+  elements[]
+    Every element on that label, fully described:
+      - element_id, type, required
+      - allowed_patterns (regex)
+      - font: weight, size_mm_approx, case
+      - color: text_color (hex), background_color (hex), border
+      - placement: zone, alignment, relative_to
+      - orientation: horizontal / vertical_cw90 / vertical_ccw90
+      - shared_spec_ref: points to barcode_specs.json where applicable
+
+  rules[]
+    Variant-specific constraints, e.g.:
+      - compliance_block MUST NOT be present in v1
+      - legal_symbols_column MUST be rotated 90 degrees CW in v4
+      - copy_count MUST be present in v5
+
+  validation_targets[]
+    Flat ordered checklist — one entry per thing the validator checks.
+    Check types:
+      element_presence          Is this element present in the extracted data?
+      element_content_format    Does extracted text match allowed_patterns?
+      element_placement         Is the element in the correct zone?
+      element_orientation       Is the element rotated correctly?
+      barcode_spec              Do dimensions, quiet zone, and content match the spec?
+      cross_element_consistency Do related elements agree (e.g. origin vs address)?
+      zone_order                Do zones appear in correct left-to-right sequence?
+      visual_hierarchy          Is font size ordering correct across elements?
+
+    Each entry has a check_id (e.g. CHK-003) and severity (must / should / may).
+    Every failure is traceable to a check_id which links back to PDF evidence.
+
+
+FAMILY FILES
+------------
+Two files in families/ contain base elements and shared rules that apply across
+all variants within a family.
+
+  1R10-PRADM.json   7 base elements, 9 base rules
+  1R20-PRADM.json   7 base elements, 8 base rules
+
+Base elements carry the same full specs as template elements (font, color, size,
+placement, content patterns). Templates inherit from these and add or override
+where their variant differs.
+
+Base rules cover:
+  - Zone ordering — all zones must appear left-to-right in defined sequence
+  - Date section resize — if DATE present, section grows from 7mm to 22.5mm (1R10)
+                          or from 5mm to 22.5mm (1R20)
+  - Date rotation — if DATE present, stamp rotates to horizontal
+  - YYWW positioning — YYWW must appear directly after DATE label with no gap
+  - Compliance rotation — 1R20 family: compliance_block always rotated 90 degrees CW
+  - Visual hierarchy — product_name font > article_number font > article_code font
+  - Cross-element consistency — if origin_text = USA, address_block must not
+                                indicate a conflicting country
+  - DataMatrix AI requirement — AI(240) must be present; AI(11) should be present
+  - Article number format — must match pattern \d{3}.\d{3}.\d{2}
+
+
+SHARED SPECS — BARCODE_SPECS.JSON
+----------------------------------
+8 barcode specs. Your validator loads the spec referenced by
+element["shared_spec_ref"] and validates the production barcode against it.
+
+  DM_RECT       DataMatrix rectangular (16x48 and 18x50 module configs)
+                x-dim variants: 0.4mm min, 0.5mm target, 0.75mm max
+                quiet zone: 1 module on all sides
+                content rules: AI(240) required; AI(11) YYMMDD format; AI(10) batch
+
+  DM_SQ         DataMatrix square (26x26 and 28x28 module configs)
+                same x-dim variants and content rules as DM_RECT
+
+  ITF_MICRO     ITF-14, micro tier (~25x3mm estimated — see OQ-007)
+  ITF_SMALL     ITF-14, 37x5mm including quiet zone
+  ITF_MEDIUM    ITF-14, 48x10mm; x-dim 0.635mm; magnification 100%
+  ITF_LARGE     ITF-14, 65x15mm; x-dim 0.635mm; magnification 100%
+                All ITF: quiet zone 10mm each side; 14 digits; modulo-10 check digit
+
+  EAN13_100PCT  EAN-13 at 100%; x-dim 0.33mm; 3 height variants (10/15/22.85mm bar)
+                Physical sizes: 39.29mm wide across all heights
+                Quiet zone: 11 modules left (3.63mm), 7 modules right (2.31mm)
+
+  EAN13_80PCT   EAN-13 at 80%; x-dim 0.264mm; quiet zone 2.90mm left, 1.85mm right
+
+Every spec has: quiet_zone, print_quality (min DPI, contrast ratio), content_rules.
+
+
+SHARED SPECS — ZONE_DEFINITIONS.JSON
+--------------------------------------
+Defines what each zone name means spatially so the image validator knows where
+to look on the label.
+
+  left_identity       Leftmost strip: product name, article number, article code, logo
+  center_barcode      DataMatrix symbol
+  center_address      IKEA address block + origin text
+  right_legal_symbols Rotated legal symbol column (v4/v5 only)
+  right_compliance    Compliance text block (rotated 90 degrees CW in 1R20)
+  right_patents       Patent text
+  right_date          Date stamp / YYWW
+  right_copy_count    Copy count
+  far_right_strip     Rotated combined strip (v4/v5)
+
+Each zone entry contains:
+  - relative_position (leftmost / left-of-centre / centre / right / far-right)
+  - stacking_direction (top_to_bottom or left_to_right)
+  - typical_width_mm_range and typical_height_mm_range
+  - element_stacking_order — ordered list of element IDs within the zone
+  - rotation_degrees where applicable
+  - applicable_families and applicable_variants
+
+Canonical left-to-right zone order:
+  left_identity → center_barcode → center_address → right_legal_symbols →
+  right_compliance → right_patents → right_date → right_copy_count → far_right_strip
+
+
+SHARED SPECS — ELEMENT_VARIANTS.JSON
+--------------------------------------
+All display variants from page 2 of the PDF. Used by image validation to confirm
+the correct visual form of key elements.
+
+  IKEA Logo (4 variants):
+    LOGO_XS   ~8x4mm, wordmark only, no tagline
+    LOGO_SM   ~12x6mm, wordmark only
+    LOGO_MD   ~15x10mm, wordmark + "Design and Quality"
+    LOGO_LG   ~20x15mm, wordmark + "Design and Quality" + "IKEA of Sweden"
+              All 15 current templates use LOGO_LG.
+              Background: #FFD100 (IKEA yellow), border: solid rectangle.
+
+  Product Name (5 variants):
+    PNAME_XS  2.0mm, regular weight
+    PNAME_SM  3.0mm, bold  — used by all 1R10 templates
+    PNAME_MD  4.0mm, bold  — used by all 1R20 templates
+    PNAME_LG  5.5mm, bold
+    PNAME_XL  8.0mm, bold
+
+  Article Number (5 variants):
+    ARTNO_XS  1.8mm, transparent background
+    ARTNO_SM  2.5mm, transparent background  — 1R10 templates
+    ARTNO_MD  3.0mm, light grey background (#E0E0E0)  — 1R20_04x templates
+    ARTNO_LG  4.0mm, dark grey background (#B0B0B0)  — 1R20_075x templates
+    ARTNO_XL  5.5mm, black background (#000000), white text (#FFFFFF)
+
+Each variant includes: used_in_templates[], hex color values, font weight,
+size in mm, and pattern "^\d{3}\.\d{3}\.\d{2}$" for article numbers.
+
+
+VALIDATION FLOW
+---------------
+
+Step 1 — Template Identification
+  Determine which of the 15 templates the production label matches.
+  Decision criteria:
+    Is compliance_block present?     No  → v1 candidate
+                                     Yes → v2/v4/v5 candidate
+    Is date_stamp present?           Yes + horizontal → v2
+                                     Yes + rotated    → v4/v5
+    Is it large format?              Yes → 1R20 family
+                                     No  → 1R10 family
+    What is DataMatrix x-dim?        0.4mm  → 1R20_04x
+                                     0.75mm → 1R20_075x
+  Load: templates/{matched_template_id}.json
+
+Step 2 — Rules Validation
+  Load families/{family_id}.json and apply each entry in base_rules[].
+  Also apply template["rules"] for variant-specific constraints.
+  For each rule:
+    Read condition — if condition is met on the production label, enforce the action.
+    Check severity: "must" → hard fail, "should" → warning, "may" → informational.
+
+  Key rules to implement:
+    presence_rule          Check element present or absent as required
+    resize_rule            Check section dimensions against parameter from/to values
+    orientation_rule       Check element rotation matches parameter degrees/direction
+    alignment_rule         Check element positioned adjacent to target element
+    symbol_logic_rule      Compare font sizes / visual scale between two elements
+    conditional_layout_transform  Cross-element content consistency check
+    application_method_rule  Regex match on field content
+
+Step 3 — Field Validation
+  Iterate template["validation_targets"][].
+  For each check, look up the element from template["elements"] by element_id.
+
+  element_presence:
+    Confirm the element exists in extracted data.
+    Fail with severity from check["severity"].
+
+  element_content_format:
+    Run extracted text through element["allowed_patterns"] regexes.
+    For DataMatrix: validate AI structure using content_rules patterns.
+    For date fields: confirm YYMMDD format.
+    For article number: confirm \d{3}.\d{3}.\d{2} pattern.
+
+  barcode_spec:
+    Load shared_specs/barcode_specs.json, find spec by element["shared_spec_ref"].
+    Validate:
+      - Physical dimensions against x_dim_variants[target_xdim]["physical_size_mm"]
+      - Quiet zone measured on image >= spec["quiet_zone"]["width_mm_at_{xdim}"]
+      - Print quality: measured DPI >= spec["print_quality"]["min_dpi"]
+      - Contrast ratio >= 3:1
+      - Encoded content against spec["content_rules"] patterns
+
+  element_orientation:
+    Confirm element["orientation"] matches what is detected in the image.
+    vertical_cw90 = text runs bottom-to-top on the right side of the label.
+
+  visual_hierarchy:
+    Confirm font size ordering from image matches family rule:
+    product_name > article_number > article_code
+
+  zone_order:
+    Confirm zones appear in left-to-right sequence from zone_definitions.json.
+
+  cross_element_consistency:
+    Apply family rule R006: if origin_text contains "USA", address_block must
+    not indicate a conflicting manufacturing country.
+
+Step 4 — Image Validation
+  Use zone_definitions.json to locate elements spatially.
+    - Crop each zone based on relative_position and typical_width_mm_range.
+    - Within each zone, look for elements in element_stacking_order sequence.
+    - For rotated zones, apply rotation_degrees before element detection.
+
+  Use element_variants.json to validate visual appearance.
+    For IKEA logo:
+      - Find yellow rectangle (#FFD100) in left_identity zone.
+      - Confirm 3 lines of text present (LOGO_LG variant).
+      - Confirm approximate dimensions (~20x15mm).
+    For article number:
+      - Confirm background color matches expected variant for the family:
+          1R10  → transparent
+          1R20_04x → light grey (#E0E0E0)
+          1R20_075x → dark grey (#B0B0B0)
+    For product name:
+      - Confirm bold weight, uppercase, correct approximate font size in mm.
+
+Step 5 — Output Report
+  Produce a structured report. Every failure is keyed to a check_id or rule_id.
+  Each check_id traces back to a PDF evidence entry:
+    { "page": 3, "evidence_type": "diagram_annotation", "snippet": "..." }
+  This tells you exactly where in the source document the requirement came from.
+
+  Report structure per finding:
+    check_id or rule_id
+    severity (must / should / may)
+    result (pass / fail / warning)
+    element_id
+    expected value (from ground truth)
+    actual value (from production label)
+    evidence page reference
+
+
+OPEN QUESTIONS
+--------------
+10 ambiguities documented in review/open_questions.json that could not be
+resolved from the available PDF. Each has an assumption recorded so validation
+behaves consistently until resolved.
+
+  OQ-001  What does the ABCD block mean semantically?
+  OQ-002  Individual legal symbol cell IDs in v4/v5
+  OQ-003  Whether DATE: prefix is literal text or a label artifact
+  OQ-004  Purpose of the small colour dot in 1R20 v3 variants
+  OQ-005  What the 4-digit numeric suffix (1234) below YYWW represents
+  OQ-006  Stacking order of elements in the far_right_strip zone
+  OQ-007  ITF Micro exact dimensions (estimated ~25x3mm at available resolution)
+  OQ-008  Which article number variant maps to which template exactly
+  OQ-009  Which IKEA logo variant is prescribed per template family
+  OQ-010  Which DataMatrix AI fields are mandatory vs optional for 1R20
+
+Resolve these by providing a higher-resolution PDF or original artwork files.
+
+
+WHAT YOU BUILD vs WHAT IS ALREADY BUILT
+-----------------------------------------
+Already built (ground truth repository):
+  All 15 template specs with elements, rules, validation_targets
+  Both family files with base elements and base rules
+  All 8 barcode specs with quiet zones, content rules, print quality
+  Zone definitions with spatial layout for all 9 zones
+  Element variants with hex colors and mm dimensions for all 14 variants
+  Schemas for all file types
+  Inventory and open questions documentation
+  validate_specs.py — passes 0 errors, 0 warnings
+
+You build (the validator):
+  OCR pipeline — extracts text and positions from the label image
+  Barcode scanner — reads DataMatrix and ITF/EAN content
+  Template matcher — identifies which of 15 templates the input matches
+  Rules engine — iterates base_rules and template rules, evaluates conditions
+  Field validator — iterates validation_targets, applies regex and value checks
+  Image validator — uses zone_definitions to locate elements spatially,
+                    uses element_variants to confirm visual attributes
+  Report generator — outputs structured findings keyed by check_id / rule_id
+
+
+RUNNING THE GROUND TRUTH SELF-CHECK
+-------------------------------------
+To verify the ground truth files are internally consistent:
+
+  python3 ground_truth/validation/validate_specs.py
+
+Expected output:
+  RESULT: PASSED — 0 errors, 0 warnings
+
+This checks: JSON validity, required fields, valid enum values, cross-reference
+integrity, evidence page coverage, inventory/template consistency.

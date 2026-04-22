@@ -1,0 +1,54 @@
+# ── Core image handling ───────────────────────────────────────────────────────
+Pillow>=10.0.0
+
+# ── PDF → image rendering ─────────────────────────────────────────────────────
+# Requires system poppler: brew install poppler  (macOS)
+#                           apt install poppler-utils  (Debian/Ubuntu)
+pdf2image>=1.16.3
+
+# ── PDF native text + image extraction (Pass 1 & 2 of the dissection pipeline) ─
+# PyMuPDF provides exact span-level text positions directly from the PDF vector
+# data — no OCR needed for programmatically-generated labels.  Also extracts
+# embedded raster images (logos, icons) with their page coordinates.
+# No system dependency required.
+pymupdf>=1.23.0
+
+# ── OCR ───────────────────────────────────────────────────────────────────────
+# Requires system Tesseract: brew install tesseract  (macOS)
+#                             apt install tesseract-ocr  (Debian/Ubuntu)
+pytesseract>=0.3.10
+
+# ── Linear barcode decoding (ITF-14, EAN-13) ─────────────────────────────────
+# Requires system zbar: brew install zbar  (macOS)
+#                        apt install libzbar0  (Debian/Ubuntu)
+pyzbar>=0.1.9
+
+# ── DataMatrix (2-D) barcode decoding ────────────────────────────────────────
+# Requires system libdmtx: brew install libdmtx  (macOS)
+#                           apt install libdmtx-dev  (Debian/Ubuntu)
+pylibdmtx>=0.1.10
+
+# ── Numeric / array utilities ────────────────────────────────────────────────
+numpy>=1.24.0
+
+# ── Image preprocessing (barcode & OCR robustness for PNG/JPG inputs) ────────
+# Provides adaptive threshold, Otsu threshold, histogram equalisation, and
+# morphological filters used when a scanned/photographed label is degraded.
+# Falls back gracefully to PIL-only variants if not installed.
+opencv-python>=4.8.0
+
+# ── OCR — primary engine (best-in-class for structured documents) ────────────
+# PaddleOCR (PP-OCRv5): 100% vs 62% accuracy vs EasyOCR on structured docs.
+# Requires Python 3.8–3.12 (NOT 3.13+).  Use the .venv312 venv.
+# First run downloads ~100 MB model weights from HuggingFace.
+paddlepaddle>=3.0.0
+paddleocr>=3.0.0
+
+# ── OCR — secondary engine / ensemble ────────────────────────────────────────
+# EasyOCR is merged with PaddleOCR results for additional coverage.
+# First run downloads ~200 MB model weights to ~/.EasyOCR/
+easyocr>=1.7.0
+
+# ── Web UI (optional) ─────────────────────────────────────────────────────────
+# Run: streamlit run streamlit_app.py
+streamlit>=1.28.0
