@@ -11,13 +11,12 @@ from typing import Optional
 
 try:
     import numpy as _np
-    _NP_INTEGER = _np.integer
-    _NP_FLOATING = _np.floating
     _NP_NDARRAY = _np.ndarray
+    _NP_GENERIC = _np.generic
 except ImportError:  # numpy not available in some test environments
-    _NP_INTEGER = None
-    _NP_FLOATING = None
+    _np = None  # type: ignore[assignment, misc]
     _NP_NDARRAY = None
+    _NP_GENERIC = None
 
 
 @dataclass
@@ -223,28 +222,29 @@ class ExtractedLabel:
     raw_elements: list = field(default_factory=list)
 
     def to_dict(self) -> dict:
-        """Serialise to a plain dict ready for json.dumps()."""
+        """Serialise to a plain dict ready for json.dumps() / Pydantic (no numpy scalars)."""
         def _serialise(obj):
             if obj is None:
                 return None
-            if _NP_INTEGER is not None and isinstance(obj, _NP_INTEGER):
-                return int(obj)
-            if _NP_FLOATING is not None and isinstance(obj, _NP_FLOATING):
-                return float(obj)
             if _NP_NDARRAY is not None and isinstance(obj, _NP_NDARRAY):
                 return obj.tolist()
-            if hasattr(obj, "to_dict"):
-                return obj.to_dict()
+            # Py 3.14+ / NumPy 2: concrete dtypes may not always match old np.integer
+            if _NP_GENERIC is not None and isinstance(obj, _NP_GENERIC):
+                return obj.item()
+            if hasattr(obj, "to_dict") and not isinstance(
+                obj, (str, bytes, bytearray)
+            ):
+                return _serialise(obj.to_dict())
             if hasattr(obj, "__dataclass_fields__"):
-                return asdict(obj)
+                return _serialise(asdict(obj))
             if isinstance(obj, dict):
                 return {k: _serialise(v) for k, v in obj.items()}
-            if isinstance(obj, list):
+            if isinstance(obj, (list, tuple)):
                 return [_serialise(i) for i in obj]
             return obj
 
         return {
-            "extraction_metadata": asdict(self.metadata),
+            "extraction_metadata": _serialise(asdict(self.metadata)),
             "elements": {
                 # product identification
                 "product_name":               _serialise(self.product_name),
@@ -285,7 +285,7 @@ class ExtractedLabel:
                 # date
                 "human_readable_date": _serialise(self.human_readable_date),
                 "date_stamp":          _serialise(self.date_stamp),
-                "date_label_present":  self.date_label_present,
+                "date_label_present":  _serialise(self.date_label_present),
                 "date_alpha_code":     _serialise(self.date_alpha_code),
                 "date_numeric_prefix": _serialise(self.date_numeric_prefix),
                 "custom_identifier":   _serialise(self.custom_identifier),
@@ -304,9 +304,7 @@ class ExtractedLabel:
                 # copy count
                 "copy_count":          _serialise(self.copy_count),
             },
-            "zones": {
-                k: asdict(v) for k, v in self.zones.items()
-            },
+            "zones": {k: _serialise(asdict(v)) for k, v in self.zones.items()},
             "raw_words": _serialise(self.all_word_boxes),
             "raw_elements": [_serialise(e) for e in self.raw_elements],
         }

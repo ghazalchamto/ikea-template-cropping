@@ -26,12 +26,17 @@ from typing import Optional
 
 import numpy as _np
 import streamlit as st
+
+import streamlit_drawable_canvas_compat  # noqa: F401 — before streamlit_drawable_canvas
+
 from PIL import Image, ImageDraw, ImageFont
 
 from config import (
     DEFAULT_DPI, UI_DPI_MIN, UI_DPI_MAX, UI_DPI_DEFAULT, UI_DPI_STEP,
     ALLOWED_UPLOAD_TYPES,
 )
+from human_correction import render_human_correction_tab
+from label_upload import materialise as _materialise, sniff_suffix as _sniff_suffix
 from extractor import LabelExtractor, warmup_ocr_readers
 from extractor.models import ExtractedLabel, ExtractedField
 from validator import (
@@ -98,36 +103,7 @@ _FIELD_SECTION = {
 }
 
 
-# ── File helpers ──────────────────────────────────────────────────────────────
-
-def _sniff_suffix(data: bytes) -> str | None:
-    if data[:4] == b"%PDF":             return ".pdf"
-    if data[:3] == b"\xff\xd8\xff":    return ".jpg"
-    if data[:8] == b"\x89PNG\r\n\x1a\n": return ".png"
-    if data[:4] in (b"II*\x00", b"MM\x00*"): return ".tif"
-    if data[:2] == b"BM":              return ".bmp"
-    return None
-
-
-def _materialise(data: bytes) -> str:
-    if not data:
-        raise ValueError("Uploaded file is empty.")
-    sniff = _sniff_suffix(data)
-    if sniff in {".pdf", ".jpg", ".png", ".tif", ".bmp"}:
-        fd, p = tempfile.mkstemp(suffix=sniff, prefix="ikea_")
-        os.close(fd)
-        Path(p).write_bytes(data)
-        return p
-    try:
-        im = Image.open(io.BytesIO(data))
-        im.load()
-    except Exception as e:
-        raise ValueError(f"Cannot read image: {e}") from e
-    fd, p = tempfile.mkstemp(suffix=".png", prefix="ikea_")
-    os.close(fd)
-    im.convert("RGB").save(p, "PNG")
-    return p
-
+# ── File helpers (materialise: label_upload) ─────────────────────────────────
 
 def _get_preview_image(data: bytes, tmp_path: str, dpi: int) -> Optional[Image.Image]:
     sniff = _sniff_suffix(data)
@@ -829,9 +805,12 @@ def main():
 
     st.divider()
 
+    file_hash = _file_hash(data, dpi)
+
     # ── Tabs ──────────────────────────────────────────────────────────────────
-    tab_view, tab_rules, tab_layout, tab_overlaps, tab_complete, tab_json = st.tabs([
+    tab_view, tab_hc, tab_rules, tab_layout, tab_overlaps, tab_complete, tab_json = st.tabs([
         "🖼️  Label View",
+        "✏️ Human correction",
         "✅ Field Validation",
         "📐 Layout & Zones",
         "⚡ Overlaps",
@@ -841,6 +820,15 @@ def main():
 
     with tab_view:
         _render_label_view(data, result, dpi, show_words, show_regions, show_pdf_text, show_clean)
+
+    with tab_hc:
+        render_human_correction_tab(
+            file_bytes=data,
+            file_hash=file_hash,
+            dpi=dpi,
+            base_result=result,
+            upload_stem=Path(uploaded.name).stem,
+        )
 
     with tab_rules:
         _render_field_validation(validation_report, type_shortlist)

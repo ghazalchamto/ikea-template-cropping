@@ -57,3 +57,6 @@ UI_DPI_STEP    = 50
 
 # Allowed file types for the file uploader
 ALLOWED_UPLOAD_TYPES = ["pdf", "png", "jpg", "jpeg", "tiff", "tif", "bmp"]
+
+# Human corrections & JSONL fine-tune export
+FINETUNE_DATA_DIR = ROOT_DIR / "finetune_data"

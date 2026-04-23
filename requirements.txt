@@ -37,12 +37,12 @@ numpy>=1.24.0
 # Falls back gracefully to PIL-only variants if not installed.
 opencv-python>=4.8.0
 
-# ── OCR — primary engine (best-in-class for structured documents) ────────────
-# PaddleOCR (PP-OCRv5): 100% vs 62% accuracy vs EasyOCR on structured docs.
-# Requires Python 3.8–3.12 (NOT 3.13+).  Use the .venv312 venv.
-# First run downloads ~100 MB model weights from HuggingFace.
-paddlepaddle>=3.0.0
-paddleocr>=3.0.0
+# ── OCR — primary engine (optional, separate file) ─────────────────────────────
+# PaddleOCR (PP-OCRv5) is the best option when installable, but many platforms
+# have no PyPI wheel (e.g. macOS arm64, Python 3.13+). If `pip` cannot find
+# paddlepaddle, skip and install: pip install -r requirements-optional-paddle.txt
+# on a supported Linux/Windows venv (Python 3.8–3.12; see that file). The
+# pipeline uses EasyOCR + Tesseract when Paddle is absent.
 
 # ── OCR — secondary engine / ensemble ────────────────────────────────────────
 # EasyOCR is merged with PaddleOCR results for additional coverage.
@@ -50,5 +50,10 @@ paddleocr>=3.0.0
 easyocr>=1.7.0
 
 # ── Web UI (optional) ─────────────────────────────────────────────────────────
-# Run: streamlit run streamlit_app.py
+# Run: streamlit run app.py
 streamlit>=1.28.0
+
+# Web API (optional): uvicorn server.main:app --reload --port 8000
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+python-multipart>=0.0.9

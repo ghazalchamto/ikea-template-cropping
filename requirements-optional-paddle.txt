@@ -1,0 +1,9 @@
+# Optional: install only where official wheels exist (see https://www.paddlepaddle.org.cn/ ).
+# Typical: Linux x86_64 or Windows, Python 3.8–3.12. Many Mac setups report
+# "No matching distribution" from PyPI — in that case omit this file; the app
+# uses EasyOCR + Tesseract without PaddleOCR.
+#
+#   pip install -r requirements-optional-paddle.txt
+#
+paddlepaddle>=3.0.0
+paddleocr>=3.0.0
