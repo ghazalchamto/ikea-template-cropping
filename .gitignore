@@ -71,6 +71,20 @@ inference/
 *.swo
 *~
 
+# --- Node / npm (install with npm ci / npm install; do not commit) ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.npm
+.eslintcache
+# Vite pre-bundle & optimize cache
+.vite/
+# Optional: local package tarballs
+*.tgz
+
 # --- OS ---
 .DS_Store
 .AppleDouble
