@@ -1,0 +1,45 @@
+{
+  "product_code": "1R25-IDEDM",
+  "page_size": {
+    "width": 1000,
+    "height": 210
+  },
+  "regions": [
+    {
+      "name": "left_identity",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.01,
+        0.32,
+        0.2561,
+        0.5955
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "center_barcode",
+      "type": "text_block",
+      "bbox_norm": [
+        0.31,
+        0.49,
+        0.0432,
+        0.3404
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "1R25-IDEDM_v15",
+    "family": "1R25",
+    "template_version": "v15"
+  },
+  "label_rect_pts": [
+    0.12,
+    446.86,
+    269.17,
+    503.31
+  ]
+}

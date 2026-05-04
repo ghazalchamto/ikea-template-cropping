@@ -1,0 +1,93 @@
+{
+  "product_code": "1R12-IDADM-IDBDM",
+  "page_size": {
+    "width": 1000,
+    "height": 90
+  },
+  "regions": [
+    {
+      "name": "left_identity",
+      "type": "text_block",
+      "bbox_norm": [
+        0.19,
+        0.03,
+        0.1493,
+        0.7812
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "center_barcode",
+      "type": "text_block",
+      "bbox_norm": [
+        0.37,
+        0.06,
+        0.1336,
+        0.8629
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "center_address",
+      "type": "text_block",
+      "bbox_norm": [
+        0.52,
+        0.63,
+        0.2076,
+        0.3012
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "right_legal_symbols",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.7236,
+        0.022,
+        0.0729,
+        0.436
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "right_date_logo",
+      "type": "logo_block",
+      "bbox_norm": [
+        0.8439,
+        0.0946,
+        0.0767,
+        0.394
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    },
+    {
+      "name": "right_optional_strip",
+      "type": "text_block",
+      "bbox_norm": [
+        0.9147,
+        0.0913,
+        0.0566,
+        0.3999
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "1R12-IDADM-IDBDM_v24",
+    "family": "1R12",
+    "template_version": "v24"
+  },
+  "label_rect_pts": [
+    0.25,
+    526.63,
+    626.69,
+    582.83
+  ]
+}

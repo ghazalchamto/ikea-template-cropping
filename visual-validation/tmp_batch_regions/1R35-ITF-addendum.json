@@ -1,0 +1,69 @@
+{
+  "product_code": "1R35-ITF-addendum",
+  "page_size": {
+    "width": 1000,
+    "height": 288
+  },
+  "regions": [
+    {
+      "name": "center_barcode",
+      "type": "text_block",
+      "bbox_norm": [
+        0.3,
+        0.36,
+        0.1893,
+        0.1662
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "center_address",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.51,
+        0.35,
+        0.1785,
+        0.2644
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "right_date_logo",
+      "type": "optional_image",
+      "bbox_norm": [
+        0.855,
+        0.8099,
+        0.03,
+        0.0401
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    },
+    {
+      "name": "right_optional_strip",
+      "type": "text_block",
+      "bbox_norm": [
+        0.9243,
+        0.2111,
+        0.0314,
+        0.2579
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "1R35-ITF-addendum_v9",
+    "family": "1R35",
+    "template_version": "v9"
+  },
+  "label_rect_pts": [
+    0.25,
+    342.37,
+    343.12,
+    441.33
+  ]
+}

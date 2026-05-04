@@ -1,0 +1,58 @@
+{
+  "$schema": "../../schema/template.schema.json",
+  "template_id": "1R50-ITF-addendum_v3",
+  "display_name": "1R50-ITF-addendum Variant 3 — base",
+  "family": "1R50",
+  "inherits_from": "1R50-ITF-addendum",
+  "label_image": "label.png",
+  "source_page": 43,
+  "label_rect_pts": {
+    "x0": 105.61,
+    "y0": 170.82,
+    "x1": 147.13,
+    "y1": 306.38
+  },
+  "label_size_mm": {
+    "width_mm": 14.6,
+    "height_mm": 47.8
+  },
+  "orientation": "portrait",
+  "source_evidence": {
+    "page": 43,
+    "position_on_page": "variant row 3",
+    "snippet": "1R50-ITF-addendum — base",
+    "evidence_type": "label_spec_text"
+  },
+  "elements": [],
+  "overrides": [],
+  "rules": [
+    {
+      "rule_id": "1R50-ITF-addendum_v3-R001",
+      "rule_type": "presence_rule",
+      "scope": "1R50-ITF-addendum_v3",
+      "condition": "always",
+      "target": "compliance_block",
+      "actions": [
+        {
+          "action_type": "remove",
+          "description": "No compliance block in this variant"
+        }
+      ],
+      "severity": "must",
+      "normalized_text": "compliance_block MUST NOT be present",
+      "evidence": {
+        "page": null,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Variant v3 diagram shows no compliance zone"
+      }
+    }
+  ],
+  "validation_targets": [],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": false,
+    "review_notes": "REFERENCE ONLY: Plant passport placeholder — blank rectangle indicating where plant passport attaches. Not a printable label template."
+  },
+  "is_reference_only": true,
+  "reference_notes": "Plant passport placeholder — blank rectangle indicating where plant passport attaches"
+}

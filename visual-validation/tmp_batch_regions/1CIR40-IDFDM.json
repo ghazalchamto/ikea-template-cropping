@@ -1,0 +1,81 @@
+{
+  "product_code": "1CIR40-IDFDM",
+  "page_size": {
+    "width": 1000,
+    "height": 1000
+  },
+  "regions": [
+    {
+      "name": "center_barcode",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.51,
+        0.54,
+        0.4035,
+        0.0476
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "bot_address",
+      "type": "text_block",
+      "bbox_norm": [
+        0.24,
+        0.88,
+        0.0426,
+        0.0501
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    },
+    {
+      "name": "bot_legal",
+      "type": "text_block",
+      "bbox_norm": [
+        0.2,
+        0.71,
+        0.609,
+        0.0476
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "mid_dimensions",
+      "type": "logo_block",
+      "bbox_norm": [
+        0.17,
+        0.16,
+        0.5764,
+        0.1751
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "top_identity",
+      "type": "text_block",
+      "bbox_norm": [
+        0.29,
+        0.05,
+        0.4286,
+        0.0727
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "1CIR40-IDFDM_v1",
+    "family": "1CIR40",
+    "template_version": "v1"
+  },
+  "label_rect_pts": [
+    0.12,
+    0.13,
+    113.26,
+    113.26
+  ]
+}

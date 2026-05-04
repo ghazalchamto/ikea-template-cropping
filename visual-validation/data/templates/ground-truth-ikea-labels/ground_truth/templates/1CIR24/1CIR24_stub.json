@@ -1,0 +1,20 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "1CIR24",
+  "display_name": "1CIR24 — 24mm circular label (0.3mm x-dim DM)",
+  "family": "1CIR",
+  "source_pages": [
+    45
+  ],
+  "visual_artifacts": [
+    "page_45.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

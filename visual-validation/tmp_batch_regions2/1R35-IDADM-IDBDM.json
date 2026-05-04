@@ -1,0 +1,81 @@
+{
+  "product_code": "1R35-IDADM-IDBDM",
+  "page_size": {
+    "width": 1000,
+    "height": 119
+  },
+  "regions": [
+    {
+      "name": "left_identity",
+      "type": "text_block",
+      "bbox_norm": [
+        0.23,
+        0.06,
+        0.1411,
+        0.2977
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "center_barcode",
+      "type": "text_block",
+      "bbox_norm": [
+        0.34,
+        0.26,
+        0.216,
+        0.6792
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "center_address",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.52,
+        0.4526,
+        0.1565,
+        0.3548
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "right_legal_symbols",
+      "type": "optional_image",
+      "bbox_norm": [
+        0.765,
+        0.1027,
+        0.03,
+        0.0546
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    },
+    {
+      "name": "right_date_logo",
+      "type": "text_block",
+      "bbox_norm": [
+        0.8535,
+        0.0,
+        0.0883,
+        0.4828
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "1R35-IDADM-IDBDM_v15",
+    "family": "1R35",
+    "template_version": "v15"
+  },
+  "label_rect_pts": [
+    0.22,
+    453.76,
+    830.33,
+    552.54
+  ]
+}

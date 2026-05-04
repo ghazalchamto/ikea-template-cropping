@@ -1,0 +1,81 @@
+{
+  "product_code": "1R50-ITF-addendum",
+  "page_size": {
+    "width": 1000,
+    "height": 1430
+  },
+  "regions": [
+    {
+      "name": "center_barcode",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.1,
+        0.4819,
+        0.8913,
+        0.1461
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "bot_address",
+      "type": "text_block",
+      "bbox_norm": [
+        0.07,
+        0.811,
+        0.7688,
+        0.1271
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "bot_legal",
+      "type": "logo_block",
+      "bbox_norm": [
+        0.53,
+        0.73,
+        0.3553,
+        0.0381
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "mid_dimensions",
+      "type": "text_block",
+      "bbox_norm": [
+        0.6755,
+        0.291,
+        0.1289,
+        0.0581
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    },
+    {
+      "name": "top_identity",
+      "type": "text_block",
+      "bbox_norm": [
+        0.07,
+        0.0,
+        0.7106,
+        0.0862
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "1R50-ITF-addendum_v5",
+    "family": "1R50",
+    "template_version": "v5"
+  },
+  "label_rect_pts": [
+    0.12,
+    358.15,
+    99.09,
+    499.63
+  ]
+}

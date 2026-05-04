@@ -1,0 +1,143 @@
+{
+  "$schema": "../../schema/template.schema.json",
+  "template_id": "1CIR30_v3",
+  "display_name": "1CIR30 Variant 3 — copy-count",
+  "family": "1CIR",
+  "inherits_from": "1CIR30",
+  "label_image": "label.png",
+  "source_page": 23,
+  "label_rect_pts": {
+    "x0": 0.12,
+    "y0": 198.55,
+    "x1": 67.91,
+    "y1": 266.33
+  },
+  "label_size_mm": {
+    "width_mm": 23.9,
+    "height_mm": 23.9
+  },
+  "orientation": "square",
+  "source_evidence": {
+    "page": 23,
+    "position_on_page": "variant row 3",
+    "snippet": "1CIR30 — copy-count",
+    "evidence_type": "label_spec_text"
+  },
+  "elements": [
+    {
+      "element_id": "copy_count",
+      "label": "Copy count",
+      "semantic_role": "copy_count",
+      "type": "text",
+      "required": false,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "1",
+      "placement": {
+        "zone": "bot_legal",
+        "position_notes": "Detected at relative position (0.08, 0.69) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 23,
+        "evidence_type": "label_spec_text",
+        "snippet": "1"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 1.4,
+        "case": "numeric"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 1.9,
+        "height_mm_approx": 1.5
+      },
+      "allowed_patterns": [
+        "^\\d+$"
+      ]
+    }
+  ],
+  "overrides": [],
+  "rules": [
+    {
+      "rule_id": "1CIR30_v3-R001",
+      "rule_type": "presence_rule",
+      "scope": "1CIR30_v3",
+      "condition": "always",
+      "target": "compliance_block",
+      "actions": [
+        {
+          "action_type": "remove",
+          "description": "No compliance block in this variant"
+        }
+      ],
+      "severity": "must",
+      "normalized_text": "compliance_block MUST NOT be present",
+      "evidence": {
+        "page": null,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Variant v3 diagram shows no compliance zone"
+      }
+    },
+    {
+      "rule_id": "1CIR30_v3-R002",
+      "rule_type": "presence_rule",
+      "scope": "1CIR30_v3",
+      "condition": "always",
+      "target": "copy_count",
+      "actions": [
+        {
+          "action_type": "require",
+          "description": "Copy count strip must be present"
+        }
+      ],
+      "severity": "must",
+      "normalized_text": "copy_count MUST be present",
+      "evidence": {
+        "page": null,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Variant v3 shows copy count strip"
+      }
+    }
+  ],
+  "validation_targets": [
+    {
+      "check_id": "1CIR30_v3-CHK-001",
+      "check_type": "element_presence",
+      "element_id": "copy_count",
+      "severity": "should",
+      "description": "Optional element 'copy_count' should be present"
+    },
+    {
+      "check_id": "1CIR30_v3-CHK-002",
+      "check_type": "element_content_format",
+      "element_id": "copy_count",
+      "severity": "should",
+      "description": "Element 'copy_count' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^\\d+$"
+      ]
+    },
+    {
+      "check_id": "1CIR30_v3-CHK-003",
+      "check_type": "element_placement",
+      "element_id": "copy_count",
+      "severity": "should",
+      "description": "Element 'copy_count' must be in zone 'bot_legal'",
+      "expected_zone": "bot_legal"
+    }
+  ],
+  "review_state": {
+    "confidence": 0.5,
+    "needs_review": true,
+    "review_notes": "Auto-generated from PDF text extraction (page 23). Elements detected: ['copy_count']. Verify font sizes, zone boundaries, and rule completeness against label image."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "1R15-PRADM-USA",
+  "display_name": "1R15-PRADM — US 'Assembled in USA from Imported Materials' variant",
+  "family": "1R15",
+  "source_pages": [
+    18,
+    19
+  ],
+  "visual_artifacts": [
+    "page_18.png",
+    "page_19.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

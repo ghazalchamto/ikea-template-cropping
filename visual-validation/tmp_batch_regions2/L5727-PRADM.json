@@ -1,0 +1,45 @@
+{
+  "product_code": "L5727-PRADM",
+  "page_size": {
+    "width": 1000,
+    "height": 482
+  },
+  "regions": [
+    {
+      "name": "left_identity",
+      "type": "text_block",
+      "bbox_norm": [
+        0.02,
+        0.01,
+        0.2968,
+        0.3293
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "center_barcode",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.35,
+        0.02,
+        0.283,
+        0.3166
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "L5727-PRADM_v1",
+    "family": "L-PRADM",
+    "template_version": "v1"
+  },
+  "label_rect_pts": [
+    0.12,
+    0.12,
+    161.45,
+    77.83
+  ]
+}

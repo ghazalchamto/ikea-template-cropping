@@ -1,0 +1,57 @@
+{
+  "product_code": "2R35-IDEDM",
+  "page_size": {
+    "width": 1000,
+    "height": 216
+  },
+  "regions": [
+    {
+      "name": "left_identity",
+      "type": "logo_block",
+      "bbox_norm": [
+        0.0862,
+        0.3,
+        0.03,
+        0.0546
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "center_barcode",
+      "type": "text_block",
+      "bbox_norm": [
+        0.41,
+        0.49,
+        0.278,
+        0.0805
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "right_date_logo",
+      "type": "text_block",
+      "bbox_norm": [
+        0.905,
+        0.5636,
+        0.03,
+        0.2529
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "2R35-IDEDM_v4",
+    "family": "2R35",
+    "template_version": "v4"
+  },
+  "label_rect_pts": [
+    0.22,
+    397.07,
+    456.16,
+    495.85
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "L4515-PRADM",
+  "display_name": "L4515-PRADM — 45×15mm press-on label",
+  "family": "L-PRADM",
+  "source_pages": [
+    33,
+    34
+  ],
+  "visual_artifacts": [
+    "page_33.png",
+    "page_34.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

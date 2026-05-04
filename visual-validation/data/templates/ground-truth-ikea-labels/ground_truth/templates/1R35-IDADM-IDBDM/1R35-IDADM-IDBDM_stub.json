@@ -1,0 +1,24 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "1R35-IDADM-IDBDM",
+  "display_name": "1R35-IDADM/IDBDM — 1-row 35× label (0.5 and 0.75 x-dim)",
+  "family": "1R35",
+  "source_pages": [
+    10,
+    11,
+    12
+  ],
+  "visual_artifacts": [
+    "page_10.png",
+    "page_11.png",
+    "page_12.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

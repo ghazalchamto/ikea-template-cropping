@@ -1,0 +1,115 @@
+{
+  "generated_at_utc": "2026-05-03T19:44:26.802477+00:00",
+  "product_code": "L10555-MIADM",
+  "candidate_pdf": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/labels/label (1).pdf",
+  "template_pdf": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/L10555-MIADM/v1/label.pdf",
+  "config_path": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/config/regions/L10555-MIADM.json",
+  "metric_settings": {
+    "weights": {
+      "ssim": 0.5,
+      "pixel": 0.3,
+      "edge": 0.2
+    },
+    "pixel_diff_tolerance": 24,
+    "canny_low": 50,
+    "canny_high": 150
+  },
+  "regions": [
+    {
+      "region_name": "header",
+      "mandatory": true,
+      "weight": 1.0,
+      "scores": {
+        "ssim": 0.8032,
+        "pixel": 0.8092,
+        "edge": 0.0068,
+        "combined": 0.6457
+      },
+      "size": [
+        1748,
+        520
+      ],
+      "notes": []
+    },
+    {
+      "region_name": "middle_information_block",
+      "mandatory": true,
+      "weight": 1.0,
+      "scores": {
+        "ssim": 0.6743,
+        "pixel": 0.7634,
+        "edge": 0.0188,
+        "combined": 0.5699
+      },
+      "size": [
+        1748,
+        1050
+      ],
+      "notes": []
+    },
+    {
+      "region_name": "barcode_block",
+      "mandatory": true,
+      "weight": 1.0,
+      "scores": {
+        "ssim": 0.5886,
+        "pixel": 0.5666,
+        "edge": 0.0182,
+        "combined": 0.4679
+      },
+      "size": [
+        600,
+        900
+      ],
+      "notes": []
+    },
+    {
+      "region_name": "footer",
+      "mandatory": true,
+      "weight": 1.0,
+      "scores": {
+        "ssim": 0.589,
+        "pixel": 0.345,
+        "edge": 0.0095,
+        "combined": 0.3999
+      },
+      "size": [
+        1748,
+        530
+      ],
+      "notes": []
+    },
+    {
+      "region_name": "main_product_illustration",
+      "mandatory": false,
+      "weight": 0.0,
+      "scores": {
+        "ssim": 0.9298,
+        "pixel": 0.3705,
+        "edge": 0.0,
+        "combined": 0.5761
+      },
+      "size": [
+        282,
+        753
+      ],
+      "notes": []
+    },
+    {
+      "region_name": "sales_solution_image",
+      "mandatory": false,
+      "weight": 0.0,
+      "scores": {
+        "ssim": 0.7228,
+        "pixel": 0.5744,
+        "edge": 0.0,
+        "combined": 0.5337
+      },
+      "size": [
+        281,
+        753
+      ],
+      "notes": []
+    }
+  ]
+}

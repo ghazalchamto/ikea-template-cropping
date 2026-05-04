@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Region validation — 1R10-PRADM</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            margin: 24px; max-width: 1200px; color: #222; }
+    h1 { font-size: 1.35rem; }
+    .summary { background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 8px;
+                padding: 16px 20px; margin-bottom: 24px; }
+    .summary.ok { border-left: 6px solid #2da44e; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin-top: 12px; }
+    th, td { border: 1px solid #d0d7de; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #f6f8fa; }
+    td.notes { font-size: 0.82rem; max-width: 320px; word-break: break-word; }
+    .overview { margin-top: 28px; }
+    .overview img { max-width: 100%; height: auto; border: 1px solid #d0d7de;
+                     border-radius: 6px; }
+    code { font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>Region validation report</h1>
+  <div class="summary ok">
+    <p><strong>Verdict:</strong> VALID &nbsp;|&nbsp;
+       <strong>Final score:</strong> 1.0000
+       &nbsp;(global threshold 0.8800)</p>
+    <p><strong>Product:</strong> <code>1R10-PRADM</code></p>
+    <p><strong>Candidate PDF:</strong><br/><code>/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/labels/label (2).pdf</code></p>
+    <p><strong>Template PDF:</strong><br/><code>/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/1R10-PRADM/v6/label.pdf</code>
+       &nbsp;—&nbsp; version <code>v6</code></p>
+    <p><strong>Region schema:</strong> manual<br/><strong>Template JSON:</strong><br/><code>/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/1R10-PRADM/v6/template.json</code><br/><strong>Template PNG:</strong><br/><code>/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/1R10-PRADM/v6/label.png</code></p>
+    <p><strong>Regions:</strong> 5 total &nbsp;|&nbsp;
+       mandatory passed <strong>4</strong>,
+       failed <strong>0</strong> &nbsp;|&nbsp;
+       optional ignored <strong>1</strong></p>
+    <p><strong>Config:</strong> <code>/Users/sundari/Desktop/ikea-template-cropping/visual-validation/config/regions/1R10-PRADM.json</code></p>
+  </div>
+
+  <h2>Per-region results</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th><th>Type</th><th>Method</th><th>Score</th><th>Threshold</th>
+        <th>Status</th><th>Mandatory</th><th>Weight</th><th>Notes</th><th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>left_identity</td><td>text_block</td><td>text_layout_outlined</td><td>1.0000</td><td>0.8500</td><td><b>PASS</b></td><td>yes</td><td>1.0000</td><td class='notes'>candidate_text_outlined</td><td class='notes'>{&quot;dark_frac&quot;: 0.106633, &quot;edge_frac&quot;: 0.057588}</td></tr><tr><td>center_barcode</td><td>barcode_block</td><td>barcode_presence</td><td>1.0000</td><td>0.8500</td><td><b>PASS</b></td><td>yes</td><td>1.0000</td><td class='notes'>—</td><td class='notes'>{&quot;dark_frac&quot;: 0.186432, &quot;edge_frac&quot;: 0.126583}</td></tr><tr><td>right_legal_symbols</td><td>text_block</td><td>text_layout_outlined</td><td>1.0000</td><td>0.8500</td><td><b>PASS</b></td><td>yes</td><td>1.0000</td><td class='notes'>candidate_text_outlined</td><td class='notes'>{&quot;dark_frac&quot;: 0.255849, &quot;edge_frac&quot;: 0.166151}</td></tr><tr><td>right_date_logo</td><td>text_block</td><td>text_layout_outlined</td><td>1.0000</td><td>0.8500</td><td><b>PASS</b></td><td>yes</td><td>1.0000</td><td class='notes'>candidate_text_outlined</td><td class='notes'>{&quot;dark_frac&quot;: 0.110151, &quot;edge_frac&quot;: 0.124824}</td></tr><tr><td>right_optional_strip</td><td>optional_image</td><td>optional_skip</td><td>—</td><td>0.8500</td><td><b>OPTIONAL</b></td><td>no</td><td>0.0000</td><td class='notes'>optional</td><td class='notes'>{&quot;dark_frac&quot;: 0.130303, &quot;present&quot;: true}</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Optional regions (ignored for score)</h2>
+  <p>right_optional_strip</p>
+
+  <h2>Failed mandatory regions</h2>
+  <p>— none —</p>
+
+  <div class="overview">
+    <h2>Visual overview (candidate page)</h2>
+    <p>Green = PASS, red = FAIL, cyan = OPTIONAL.</p>
+    <img src="report_1R10-PRADM_label_2_overview.png" alt="Candidate page with region outlines"/>
+  </div>
+</body>
+</html>

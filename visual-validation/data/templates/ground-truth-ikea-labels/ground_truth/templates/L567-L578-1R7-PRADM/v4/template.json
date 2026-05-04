@@ -1,0 +1,197 @@
+{
+  "$schema": "../../schema/template.schema.json",
+  "template_id": "L567-L578-1R7-PRADM_v4",
+  "display_name": "L567-L578-1R7-PRADM Variant 4 — base",
+  "family": "L-PRADM",
+  "inherits_from": "L567-L578-1R7-PRADM",
+  "label_image": "label.png",
+  "source_page": 22,
+  "label_rect_pts": {
+    "x0": 0.12,
+    "y0": 170.2,
+    "x1": 99.09,
+    "y1": 192.63
+  },
+  "label_size_mm": {
+    "width_mm": 34.9,
+    "height_mm": 7.9
+  },
+  "orientation": "landscape",
+  "source_evidence": {
+    "page": 22,
+    "position_on_page": "variant row 4",
+    "snippet": "L567-L578-1R7-PRADM — base",
+    "evidence_type": "label_spec_text"
+  },
+  "elements": [
+    {
+      "element_id": "article_number",
+      "label": "Article number",
+      "semantic_role": "product_identity",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "000.000.00",
+      "placement": {
+        "zone": "left_identity",
+        "position_notes": "Detected at relative position (0.04, 0.34) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 22,
+        "evidence_type": "label_spec_text",
+        "snippet": "000.000.00"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 2.1,
+        "case": "mixed"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "variant_dependent",
+        "note": "Background: transparent (SM), grey (MD/LG), black (XL) — see element_variants.json"
+      },
+      "size_spec": {
+        "width_mm_approx": 11.5,
+        "height_mm_approx": 2.9
+      },
+      "allowed_patterns": [
+        "^\\d{3}[.\\-]\\d{3}[.\\-]\\d{2}$"
+      ]
+    },
+    {
+      "element_id": "article_code",
+      "label": "Article code (short)",
+      "semantic_role": "product_identity",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "12345",
+      "placement": {
+        "zone": "left_identity",
+        "position_notes": "Detected at relative position (0.03, 0.69) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 22,
+        "evidence_type": "label_spec_text",
+        "snippet": "12345"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 1.4,
+        "case": "mixed"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 3.8,
+        "height_mm_approx": 1.9
+      },
+      "allowed_patterns": [
+        "^\\d{5}$"
+      ]
+    }
+  ],
+  "overrides": [],
+  "rules": [
+    {
+      "rule_id": "L567-L578-1R7-PRADM_v4-R001",
+      "rule_type": "presence_rule",
+      "scope": "L567-L578-1R7-PRADM_v4",
+      "condition": "always",
+      "target": "compliance_block",
+      "actions": [
+        {
+          "action_type": "remove",
+          "description": "No compliance block in this variant"
+        }
+      ],
+      "severity": "must",
+      "normalized_text": "compliance_block MUST NOT be present",
+      "evidence": {
+        "page": null,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Variant v4 diagram shows no compliance zone"
+      }
+    }
+  ],
+  "validation_targets": [
+    {
+      "check_id": "L567-L578-1R7-PRADM_v4-CHK-001",
+      "check_type": "element_presence",
+      "element_id": "article_number",
+      "severity": "must",
+      "description": "Required element 'article_number' must be present"
+    },
+    {
+      "check_id": "L567-L578-1R7-PRADM_v4-CHK-002",
+      "check_type": "element_content_format",
+      "element_id": "article_number",
+      "severity": "must",
+      "description": "Element 'article_number' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^\\d{3}[.\\-]\\d{3}[.\\-]\\d{2}$"
+      ]
+    },
+    {
+      "check_id": "L567-L578-1R7-PRADM_v4-CHK-003",
+      "check_type": "element_placement",
+      "element_id": "article_number",
+      "severity": "must",
+      "description": "Element 'article_number' must be in zone 'left_identity'",
+      "expected_zone": "left_identity"
+    },
+    {
+      "check_id": "L567-L578-1R7-PRADM_v4-CHK-004",
+      "check_type": "element_presence",
+      "element_id": "article_code",
+      "severity": "must",
+      "description": "Required element 'article_code' must be present"
+    },
+    {
+      "check_id": "L567-L578-1R7-PRADM_v4-CHK-005",
+      "check_type": "element_content_format",
+      "element_id": "article_code",
+      "severity": "must",
+      "description": "Element 'article_code' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^\\d{5}$"
+      ]
+    },
+    {
+      "check_id": "L567-L578-1R7-PRADM_v4-CHK-006",
+      "check_type": "element_placement",
+      "element_id": "article_code",
+      "severity": "must",
+      "description": "Element 'article_code' must be in zone 'left_identity'",
+      "expected_zone": "left_identity"
+    },
+    {
+      "check_id": "L567-L578-1R7-PRADM_v4-CHK-007",
+      "check_type": "visual_hierarchy",
+      "element_id": "article_number",
+      "related_element_id": "article_code",
+      "severity": "must",
+      "description": "article_number font size must be visually larger than article_code"
+    }
+  ],
+  "review_state": {
+    "confidence": 0.58,
+    "needs_review": true,
+    "review_notes": "Auto-generated from PDF text extraction (page 22). Elements detected: ['article_number', 'article_code']. Verify font sizes, zone boundaries, and rule completeness against label image."
+  }
+}

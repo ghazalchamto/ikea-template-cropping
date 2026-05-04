@@ -1,0 +1,123 @@
+{
+  "$schema": "../../schema/template.schema.json",
+  "template_id": "L4515-PRADM_v12",
+  "display_name": "L4515-PRADM Variant 12 — base",
+  "family": "L-PRADM",
+  "inherits_from": "L4515-PRADM",
+  "label_image": "label.png",
+  "source_page": 34,
+  "label_rect_pts": {
+    "x0": 0.1,
+    "y0": 85.14,
+    "x1": 93.44,
+    "y1": 141.63
+  },
+  "label_size_mm": {
+    "width_mm": 32.9,
+    "height_mm": 19.9
+  },
+  "orientation": "landscape",
+  "source_evidence": {
+    "page": 34,
+    "position_on_page": "variant row 12",
+    "snippet": "L4515-PRADM — base",
+    "evidence_type": "label_spec_text"
+  },
+  "elements": [
+    {
+      "element_id": "datamatrix_block",
+      "label": "DataMatrix barcode block",
+      "semantic_role": "barcode_symbol",
+      "type": "datamatrix",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "AI(240)12345678123451",
+      "placement": {
+        "zone": "left_identity",
+        "position_notes": "Detected at relative position (0.06, 0.58) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 34,
+        "evidence_type": "label_spec_text",
+        "snippet": "AI(240)12345678123451"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 1.4
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 15.2,
+        "height_mm_approx": 1.9
+      },
+      "allowed_patterns": [
+        "GS1 DataMatrix application identifiers"
+      ],
+      "shared_spec_ref": "DM_RECT"
+    }
+  ],
+  "overrides": [],
+  "rules": [
+    {
+      "rule_id": "L4515-PRADM_v12-R001",
+      "rule_type": "presence_rule",
+      "scope": "L4515-PRADM_v12",
+      "condition": "always",
+      "target": "compliance_block",
+      "actions": [
+        {
+          "action_type": "remove",
+          "description": "No compliance block in this variant"
+        }
+      ],
+      "severity": "must",
+      "normalized_text": "compliance_block MUST NOT be present",
+      "evidence": {
+        "page": null,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Variant v12 diagram shows no compliance zone"
+      }
+    }
+  ],
+  "validation_targets": [
+    {
+      "check_id": "L4515-PRADM_v12-CHK-001",
+      "check_type": "element_presence",
+      "element_id": "datamatrix_block",
+      "severity": "must",
+      "description": "Required element 'datamatrix_block' must be present"
+    },
+    {
+      "check_id": "L4515-PRADM_v12-CHK-002",
+      "check_type": "element_content_format",
+      "element_id": "datamatrix_block",
+      "severity": "must",
+      "description": "Element 'datamatrix_block' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "GS1 DataMatrix application identifiers"
+      ]
+    },
+    {
+      "check_id": "L4515-PRADM_v12-CHK-003",
+      "check_type": "element_placement",
+      "element_id": "datamatrix_block",
+      "severity": "must",
+      "description": "Element 'datamatrix_block' must be in zone 'left_identity'",
+      "expected_zone": "left_identity"
+    }
+  ],
+  "review_state": {
+    "confidence": 0.58,
+    "needs_review": true,
+    "review_notes": "Auto-generated from PDF text extraction (page 34). Elements detected: ['datamatrix_block']. Verify font sizes, zone boundaries, and rule completeness against label image."
+  }
+}

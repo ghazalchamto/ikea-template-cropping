@@ -1,0 +1,22 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "1C70-IDDDM",
+  "display_name": "1C70-IDDDM — 1-column 70mm label with product picture zone",
+  "family": "1C70",
+  "source_pages": [
+    27,
+    28
+  ],
+  "visual_artifacts": [
+    "page_27.png",
+    "page_28.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

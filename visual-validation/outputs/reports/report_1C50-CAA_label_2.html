@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Region validation — 1C50-CAA</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            margin: 24px; max-width: 1200px; color: #222; }
+    h1 { font-size: 1.35rem; }
+    .summary { background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 8px;
+                padding: 16px 20px; margin-bottom: 24px; }
+    .summary.bad { border-left: 6px solid #cf222e; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin-top: 12px; }
+    th, td { border: 1px solid #d0d7de; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #f6f8fa; }
+    td.notes { font-size: 0.82rem; max-width: 320px; word-break: break-word; }
+    .overview { margin-top: 28px; }
+    .overview img { max-width: 100%; height: auto; border: 1px solid #d0d7de;
+                     border-radius: 6px; }
+    code { font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>Region validation report</h1>
+  <div class="summary bad">
+    <p><strong>Verdict:</strong> INVALID &nbsp;|&nbsp;
+       <strong>Final score:</strong> 0.0000
+       &nbsp;(global threshold 0.8800)</p>
+    <p><strong>Product:</strong> <code>1C50-CAA</code></p>
+    <p><strong>Candidate PDF:</strong><br/><code>/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/labels/label (2).pdf</code></p>
+    <p><strong>Template PDF:</strong><br/><code>/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/1C50-CAA/v1/label.pdf</code>
+       &nbsp;—&nbsp; version <code>v1</code></p>
+    <p><strong>Region schema:</strong> auto-generated<br/><strong>Template JSON:</strong><br/><code>/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/1C50-CAA/v1/template.json</code><br/><strong>Template PNG:</strong><br/><code>/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/1C50-CAA/v1/label.png</code></p>
+    <p><strong>Regions:</strong> 5 total &nbsp;|&nbsp;
+       mandatory passed <strong>0</strong>,
+       failed <strong>5</strong> &nbsp;|&nbsp;
+       optional ignored <strong>0</strong></p>
+    <p><strong>Config:</strong> <code>/Users/sundari/Desktop/ikea-template-cropping/visual-validation/outputs/generated_regions/1C50-CAA_v1.json</code></p>
+  </div>
+
+  <h2>Per-region results</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th><th>Type</th><th>Method</th><th>Score</th><th>Threshold</th>
+        <th>Status</th><th>Mandatory</th><th>Weight</th><th>Notes</th><th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>center_barcode</td><td>text_block</td><td>text_layout_outlined</td><td>0.0000</td><td>0.8500</td><td><b>FAIL</b></td><td>yes</td><td>1.0000</td><td class='notes'>candidate_text_outlined; region_appears_empty</td><td class='notes'>{&quot;dark_frac&quot;: 0.0, &quot;edge_frac&quot;: 0.0}</td></tr><tr><td>bot_address</td><td>barcode_block</td><td>barcode_presence</td><td>0.0000</td><td>0.8500</td><td><b>FAIL</b></td><td>yes</td><td>1.0000</td><td class='notes'>no_barcode_content; low_dark_frac:0.0000; low_edge_frac:0.0000</td><td class='notes'>{&quot;dark_frac&quot;: 0.0, &quot;edge_frac&quot;: 0.0}</td></tr><tr><td>bot_legal</td><td>text_block</td><td>text_layout_outlined</td><td>0.0000</td><td>0.8500</td><td><b>FAIL</b></td><td>yes</td><td>1.0000</td><td class='notes'>candidate_text_outlined; region_appears_empty</td><td class='notes'>{&quot;dark_frac&quot;: 0.0, &quot;edge_frac&quot;: 0.0}</td></tr><tr><td>mid_dimensions</td><td>text_block</td><td>text_layout_outlined</td><td>0.0000</td><td>0.8500</td><td><b>FAIL</b></td><td>yes</td><td>1.0000</td><td class='notes'>candidate_text_outlined; region_appears_empty</td><td class='notes'>{&quot;dark_frac&quot;: 0.0, &quot;edge_frac&quot;: 0.0}</td></tr><tr><td>top_identity</td><td>text_block</td><td>text_layout_outlined</td><td>0.0000</td><td>0.8500</td><td><b>FAIL</b></td><td>yes</td><td>1.0000</td><td class='notes'>candidate_text_outlined; region_appears_empty</td><td class='notes'>{&quot;dark_frac&quot;: 0.0, &quot;edge_frac&quot;: 0.0}</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Optional regions (ignored for score)</h2>
+  <p>— none —</p>
+
+  <h2>Failed mandatory regions</h2>
+  <p>center_barcode, bot_address, bot_legal, mid_dimensions, top_identity</p>
+
+  <div class="overview">
+    <h2>Visual overview (candidate page)</h2>
+    <p>Green = PASS, red = FAIL, cyan = OPTIONAL.</p>
+    <img src="report_1C50-CAA_label_2_overview.png" alt="Candidate page with region outlines"/>
+  </div>
+</body>
+</html>

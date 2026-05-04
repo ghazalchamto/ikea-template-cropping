@@ -1,0 +1,20 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "1R50-ITF-addendum",
+  "display_name": "1R50 ITF barcode addendum page",
+  "family": "1R50",
+  "source_pages": [
+    43
+  ],
+  "visual_artifacts": [
+    "page_43.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

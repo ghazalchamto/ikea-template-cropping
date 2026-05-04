@@ -1,0 +1,81 @@
+{
+  "product_code": "1C70-CAA",
+  "page_size": {
+    "width": 1000,
+    "height": 2059
+  },
+  "regions": [
+    {
+      "name": "center_barcode",
+      "type": "text_block",
+      "bbox_norm": [
+        0.06,
+        0.4,
+        0.6953,
+        0.1532
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "bot_address",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.07,
+        0.82,
+        0.9005,
+        0.0929
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "bot_legal",
+      "type": "text_block",
+      "bbox_norm": [
+        0.06,
+        0.7365,
+        0.7468,
+        0.03
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "mid_dimensions",
+      "type": "text_block",
+      "bbox_norm": [
+        0.08,
+        0.1885,
+        0.6079,
+        0.1512
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "top_identity",
+      "type": "text_block",
+      "bbox_norm": [
+        0.06,
+        0.0182,
+        0.8165,
+        0.1417
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "1C70-CAA_v1",
+    "family": "1C70",
+    "template_version": "v1"
+  },
+  "label_rect_pts": [
+    0.12,
+    0.12,
+    198.3,
+    408.06
+  ]
+}

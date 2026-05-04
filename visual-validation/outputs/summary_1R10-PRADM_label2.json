@@ -1,0 +1,210 @@
+{
+  "generated_at_utc": "2026-05-03T21:00:28.512604+00:00",
+  "product_code": "1R10-PRADM",
+  "candidate_pdf": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/labels/label (2).pdf",
+  "template_pdf": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/1R10-PRADM/v1/label.pdf",
+  "config_path": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/config/regions/1R10-PRADM.json",
+  "label_rect_pts_config": null,
+  "label_rect_pdf_template": [
+    0.0,
+    0.0,
+    289.3299865722656,
+    31.100000381469727
+  ],
+  "label_rect_pdf_candidate": [
+    0.0,
+    0.0,
+    807.6058959960938,
+    42.2068977355957
+  ],
+  "summary": {
+    "verdict": "VALID",
+    "final_score": 1.0,
+    "global_threshold": 0.88,
+    "mandatory_passed": 4,
+    "mandatory_failed": 0,
+    "optional_count": 1,
+    "total_regions": 5,
+    "failed_regions": [],
+    "ignored_regions": [
+      "right_optional_strip"
+    ],
+    "region_results": [
+      {
+        "name": "left_identity",
+        "mandatory": true,
+        "weight": 1.0,
+        "combined_score": 1.0,
+        "threshold": 0.85,
+        "passed": true,
+        "status": "PASS",
+        "region_type": "text_block",
+        "method": "text_layout_outlined"
+      },
+      {
+        "name": "center_barcode",
+        "mandatory": true,
+        "weight": 1.0,
+        "combined_score": 1.0,
+        "threshold": 0.85,
+        "passed": true,
+        "status": "PASS",
+        "region_type": "barcode_block",
+        "method": "barcode_presence"
+      },
+      {
+        "name": "right_legal_symbols",
+        "mandatory": true,
+        "weight": 1.0,
+        "combined_score": 1.0,
+        "threshold": 0.85,
+        "passed": true,
+        "status": "PASS",
+        "region_type": "text_block",
+        "method": "text_layout_outlined"
+      },
+      {
+        "name": "right_date_logo",
+        "mandatory": true,
+        "weight": 1.0,
+        "combined_score": 1.0,
+        "threshold": 0.85,
+        "passed": true,
+        "status": "PASS",
+        "region_type": "text_block",
+        "method": "text_layout_outlined"
+      },
+      {
+        "name": "right_optional_strip",
+        "mandatory": false,
+        "weight": 0.0,
+        "combined_score": 1.0,
+        "threshold": 0.85,
+        "passed": true,
+        "status": "OPTIONAL",
+        "region_type": "optional_image",
+        "method": "optional_skip"
+      }
+    ]
+  },
+  "region_scores": [
+    {
+      "region_name": "left_identity",
+      "mandatory": true,
+      "weight": 1.0,
+      "scores": {
+        "ssim": 0.0,
+        "pixel": 1.0,
+        "edge": 1.0,
+        "combined": 1.0
+      },
+      "size": [
+        398,
+        100
+      ],
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "region_type": "text_block",
+      "method": "text_layout_outlined",
+      "details": {
+        "dark_frac": 0.106633,
+        "edge_frac": 0.057588
+      }
+    },
+    {
+      "region_name": "center_barcode",
+      "mandatory": true,
+      "weight": 1.0,
+      "scores": {
+        "ssim": 0.0,
+        "pixel": 1.0,
+        "edge": 1.0,
+        "combined": 1.0
+      },
+      "size": [
+        398,
+        100
+      ],
+      "notes": [],
+      "region_type": "barcode_block",
+      "method": "barcode_presence",
+      "details": {
+        "dark_frac": 0.186432,
+        "edge_frac": 0.126583
+      }
+    },
+    {
+      "region_name": "right_legal_symbols",
+      "mandatory": true,
+      "weight": 1.0,
+      "scores": {
+        "ssim": 0.0,
+        "pixel": 1.0,
+        "edge": 1.0,
+        "combined": 1.0
+      },
+      "size": [
+        265,
+        100
+      ],
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "region_type": "text_block",
+      "method": "text_layout_outlined",
+      "details": {
+        "dark_frac": 0.255849,
+        "edge_frac": 0.166151
+      }
+    },
+    {
+      "region_name": "right_date_logo",
+      "mandatory": true,
+      "weight": 1.0,
+      "scores": {
+        "ssim": 0.0,
+        "pixel": 1.0,
+        "edge": 1.0,
+        "combined": 1.0
+      },
+      "size": [
+        199,
+        100
+      ],
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "region_type": "text_block",
+      "method": "text_layout_outlined",
+      "details": {
+        "dark_frac": 0.110151,
+        "edge_frac": 0.124824
+      }
+    },
+    {
+      "region_name": "right_optional_strip",
+      "mandatory": false,
+      "weight": 0.0,
+      "scores": {
+        "ssim": 0.0,
+        "pixel": 0.0,
+        "edge": 0.0,
+        "combined": 1.0
+      },
+      "size": [
+        66,
+        100
+      ],
+      "notes": [
+        "optional"
+      ],
+      "region_type": "optional_image",
+      "method": "optional_skip",
+      "details": {
+        "present": true,
+        "dark_frac": 0.130303
+      }
+    }
+  ]
+}

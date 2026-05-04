@@ -1,0 +1,93 @@
+{
+  "product_code": "1R10-PRADM",
+  "page_size": {
+    "width": 1000,
+    "height": 45
+  },
+  "regions": [
+    {
+      "name": "left_identity",
+      "type": "text_block",
+      "bbox_norm": [
+        0.13,
+        0.0,
+        0.1919,
+        0.7649
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "center_barcode",
+      "type": "text_block",
+      "bbox_norm": [
+        0.33,
+        0.63,
+        0.081,
+        0.3059
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "center_address",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.5546,
+        0.0,
+        0.1108,
+        0.8669
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "right_legal_symbols",
+      "type": "logo_block",
+      "bbox_norm": [
+        0.6617,
+        0.0,
+        0.1144,
+        0.4414
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "right_date_logo",
+      "type": "text_block",
+      "bbox_norm": [
+        0.8793,
+        0.0102,
+        0.0415,
+        0.4796
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    },
+    {
+      "name": "right_optional_strip",
+      "type": "text_block",
+      "bbox_norm": [
+        0.9145,
+        0.0,
+        0.057,
+        0.4849
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "1R10-PRADM_v15",
+    "family": "1R10-PRADM",
+    "template_version": "v15"
+  },
+  "label_rect_pts": [
+    0.25,
+    509.54,
+    622.01,
+    537.38
+  ]
+}

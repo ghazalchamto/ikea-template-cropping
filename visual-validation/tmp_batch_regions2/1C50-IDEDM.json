@@ -1,0 +1,81 @@
+{
+  "product_code": "1C50-IDEDM",
+  "page_size": {
+    "width": 1000,
+    "height": 2076
+  },
+  "regions": [
+    {
+      "name": "center_barcode",
+      "type": "text_block",
+      "bbox_norm": [
+        0.06,
+        0.43,
+        0.6774,
+        0.1331
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "bot_address",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.07,
+        0.83,
+        0.9005,
+        0.0927
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "bot_legal",
+      "type": "text_block",
+      "bbox_norm": [
+        0.06,
+        0.7464,
+        0.7468,
+        0.03
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "mid_dimensions",
+      "type": "text_block",
+      "bbox_norm": [
+        0.06,
+        0.1786,
+        0.6953,
+        0.2476
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "top_identity",
+      "type": "text_block",
+      "bbox_norm": [
+        0.06,
+        0.01,
+        0.8943,
+        0.1572
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "1C50-IDEDM_v6",
+    "family": "1C50",
+    "template_version": "v6"
+  },
+  "label_rect_pts": [
+    510.36,
+    11.46,
+    708.54,
+    422.74
+  ]
+}

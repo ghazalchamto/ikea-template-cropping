@@ -1,0 +1,235 @@
+{
+  "generated_at_utc": "2026-05-03T20:30:14.582239+00:00",
+  "product_code": "L10555-MIADM",
+  "candidate_pdf": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/labels/label (1).pdf",
+  "template_pdf": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/L10555-MIADM/v1/label.pdf",
+  "config_path": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/config/regions/L10555-MIADM.json",
+  "summary": {
+    "verdict": "VALID",
+    "final_score": 0.9984,
+    "global_threshold": 0.88,
+    "mandatory_passed": 4,
+    "mandatory_failed": 0,
+    "optional_count": 2,
+    "total_regions": 6,
+    "failed_regions": [],
+    "ignored_regions": [
+      "main_product_illustration",
+      "sales_solution_image"
+    ],
+    "region_results": [
+      {
+        "name": "header",
+        "mandatory": true,
+        "weight": 1.0,
+        "combined_score": 1.0,
+        "threshold": 0.85,
+        "passed": true,
+        "status": "PASS",
+        "region_type": "text_block",
+        "method": "text_layout_outlined"
+      },
+      {
+        "name": "middle_information_block",
+        "mandatory": true,
+        "weight": 1.0,
+        "combined_score": 1.0,
+        "threshold": 0.85,
+        "passed": true,
+        "status": "PASS",
+        "region_type": "text_block",
+        "method": "text_layout_outlined"
+      },
+      {
+        "name": "barcode_block",
+        "mandatory": true,
+        "weight": 1.0,
+        "combined_score": 0.9935,
+        "threshold": 0.85,
+        "passed": true,
+        "status": "PASS",
+        "region_type": "barcode_block",
+        "method": "barcode_presence"
+      },
+      {
+        "name": "footer",
+        "mandatory": true,
+        "weight": 1.0,
+        "combined_score": 1.0,
+        "threshold": 0.85,
+        "passed": true,
+        "status": "PASS",
+        "region_type": "text_block",
+        "method": "text_layout_outlined"
+      },
+      {
+        "name": "main_product_illustration",
+        "mandatory": false,
+        "weight": 0.0,
+        "combined_score": 0.0,
+        "threshold": 0.85,
+        "passed": true,
+        "status": "OPTIONAL",
+        "region_type": "optional_image",
+        "method": "optional_skip"
+      },
+      {
+        "name": "sales_solution_image",
+        "mandatory": false,
+        "weight": 0.0,
+        "combined_score": 0.0,
+        "threshold": 0.85,
+        "passed": true,
+        "status": "OPTIONAL",
+        "region_type": "optional_image",
+        "method": "optional_skip"
+      }
+    ]
+  },
+  "region_scores": [
+    {
+      "region_name": "header",
+      "mandatory": true,
+      "weight": 1.0,
+      "scores": {
+        "ssim": 0.0,
+        "pixel": 1.0,
+        "edge": 1.0,
+        "combined": 1.0
+      },
+      "size": [
+        1748,
+        520
+      ],
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "region_type": "text_block",
+      "method": "text_layout_outlined",
+      "details": {
+        "dark_frac": 0.215085,
+        "edge_frac": 0.01899
+      }
+    },
+    {
+      "region_name": "middle_information_block",
+      "mandatory": true,
+      "weight": 1.0,
+      "scores": {
+        "ssim": 0.0,
+        "pixel": 1.0,
+        "edge": 1.0,
+        "combined": 1.0
+      },
+      "size": [
+        1748,
+        1050
+      ],
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "region_type": "text_block",
+      "method": "text_layout_outlined",
+      "details": {
+        "dark_frac": 0.190235,
+        "edge_frac": 0.03463
+      }
+    },
+    {
+      "region_name": "barcode_block",
+      "mandatory": true,
+      "weight": 1.0,
+      "scores": {
+        "ssim": 0.0,
+        "pixel": 1.0,
+        "edge": 0.9674,
+        "combined": 0.9935
+      },
+      "size": [
+        600,
+        900
+      ],
+      "notes": [],
+      "region_type": "barcode_block",
+      "method": "barcode_presence",
+      "details": {
+        "dark_frac": 0.192291,
+        "edge_frac": 0.048372
+      }
+    },
+    {
+      "region_name": "footer",
+      "mandatory": true,
+      "weight": 1.0,
+      "scores": {
+        "ssim": 0.0,
+        "pixel": 1.0,
+        "edge": 1.0,
+        "combined": 1.0
+      },
+      "size": [
+        1748,
+        530
+      ],
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "region_type": "text_block",
+      "method": "text_layout_outlined",
+      "details": {
+        "dark_frac": 0.202307,
+        "edge_frac": 0.036174
+      }
+    },
+    {
+      "region_name": "main_product_illustration",
+      "mandatory": false,
+      "weight": 0.0,
+      "scores": {
+        "ssim": 0.0,
+        "pixel": 0.0,
+        "edge": 0.0,
+        "combined": 0.0
+      },
+      "size": [
+        282,
+        753
+      ],
+      "notes": [
+        "optional",
+        "optional_empty"
+      ],
+      "region_type": "optional_image",
+      "method": "optional_skip",
+      "details": {
+        "present": false,
+        "dark_frac": 0.0
+      }
+    },
+    {
+      "region_name": "sales_solution_image",
+      "mandatory": false,
+      "weight": 0.0,
+      "scores": {
+        "ssim": 0.0,
+        "pixel": 0.0,
+        "edge": 0.0,
+        "combined": 0.0
+      },
+      "size": [
+        281,
+        753
+      ],
+      "notes": [
+        "optional",
+        "optional_empty"
+      ],
+      "region_type": "optional_image",
+      "method": "optional_skip",
+      "details": {
+        "present": false,
+        "dark_frac": 0.0
+      }
+    }
+  ]
+}

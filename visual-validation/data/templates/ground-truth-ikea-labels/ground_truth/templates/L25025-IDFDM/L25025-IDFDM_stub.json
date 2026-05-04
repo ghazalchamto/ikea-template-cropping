@@ -1,0 +1,20 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "L25025-IDFDM",
+  "display_name": "L25025-IDFDM — 250×25mm UK import label",
+  "family": "L-IDFDM",
+  "source_pages": [
+    44
+  ],
+  "visual_artifacts": [
+    "page_44.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

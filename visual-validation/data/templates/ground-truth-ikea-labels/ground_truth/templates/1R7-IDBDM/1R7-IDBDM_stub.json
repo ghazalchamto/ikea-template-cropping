@@ -1,0 +1,20 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "1R7-IDBDM",
+  "display_name": "1R7-IDBDM — Ultra-narrow 7mm label with legal symbols",
+  "family": "1R7",
+  "source_pages": [
+    38
+  ],
+  "visual_artifacts": [
+    "page_38.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

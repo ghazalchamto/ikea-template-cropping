@@ -1,0 +1,88 @@
+{
+  "$schema": "../../schema/template.schema.json",
+  "template_id": "L4515-PRADM_v17",
+  "display_name": "L4515-PRADM Variant 17 — compliance",
+  "family": "L-PRADM",
+  "inherits_from": "L4515-PRADM",
+  "label_image": "label.png",
+  "source_page": 34,
+  "label_rect_pts": {
+    "x0": -0.0,
+    "y0": 422.46,
+    "x1": 113.19,
+    "y1": 521.48
+  },
+  "label_size_mm": {
+    "width_mm": 39.9,
+    "height_mm": 34.9
+  },
+  "orientation": "square",
+  "source_evidence": {
+    "page": 34,
+    "position_on_page": "variant row 17",
+    "snippet": "L4515-PRADM — compliance",
+    "evidence_type": "label_spec_text"
+  },
+  "elements": [
+    {
+      "element_id": "compliance_block",
+      "label": "US EPA TSCA compliance text",
+      "semantic_role": "compliance_text",
+      "type": "text",
+      "required": false,
+      "repeatable": false,
+      "content_type": "static",
+      "example_value": "US EPA TSCA title VI compliant ULEF",
+      "placement": {
+        "zone": "top_identity",
+        "position_notes": "Detected at relative position (0.02, 0.01) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 34,
+        "evidence_type": "label_spec_text",
+        "snippet": "US EPA TSCA title VI compliant ULEF"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 2.1
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 35.8,
+        "height_mm_approx": 2.8
+      }
+    }
+  ],
+  "overrides": [],
+  "rules": [],
+  "validation_targets": [
+    {
+      "check_id": "L4515-PRADM_v17-CHK-001",
+      "check_type": "element_presence",
+      "element_id": "compliance_block",
+      "severity": "should",
+      "description": "Optional element 'compliance_block' should be present"
+    },
+    {
+      "check_id": "L4515-PRADM_v17-CHK-002",
+      "check_type": "element_placement",
+      "element_id": "compliance_block",
+      "severity": "should",
+      "description": "Element 'compliance_block' must be in zone 'top_identity'",
+      "expected_zone": "top_identity"
+    }
+  ],
+  "review_state": {
+    "confidence": 0.5,
+    "needs_review": true,
+    "review_notes": "Auto-generated from PDF text extraction (page 34). Elements detected: ['compliance_block']. Verify font sizes, zone boundaries, and rule completeness against label image."
+  }
+}

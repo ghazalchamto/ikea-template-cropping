@@ -1,0 +1,24 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "1R25-IDEDM",
+  "display_name": "1R25-IDEDM — 1-row 25mm label with dimensions/weight/ITF",
+  "family": "1R25",
+  "source_pages": [
+    39,
+    40,
+    41
+  ],
+  "visual_artifacts": [
+    "page_39.png",
+    "page_40.png",
+    "page_41.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

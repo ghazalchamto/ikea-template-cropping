@@ -1,0 +1,894 @@
+{
+  "$schema": "../../schema/template.schema.json",
+  "template_id": "1C70-IDDDM_v4",
+  "display_name": "1C70-IDDDM Variant 4 — date, legal-symbols",
+  "family": "1C70",
+  "inherits_from": "1C70-IDDDM",
+  "label_image": "label.png",
+  "source_page": 28,
+  "label_rect_pts": {
+    "x0": 255.24,
+    "y0": 0.12,
+    "x1": 453.42,
+    "y1": 410.9
+  },
+  "label_size_mm": {
+    "width_mm": 69.9,
+    "height_mm": 144.9
+  },
+  "orientation": "portrait",
+  "source_evidence": {
+    "page": 28,
+    "position_on_page": "variant row 4",
+    "snippet": "1C70-IDDDM — date, legal-symbols",
+    "evidence_type": "label_spec_text"
+  },
+  "elements": [
+    {
+      "element_id": "product_name",
+      "label": "Product name",
+      "semantic_role": "product_identity",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "PRODUCTNAME",
+      "placement": {
+        "zone": "top_identity",
+        "position_notes": "Detected at relative position (0.06, 0.07) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 28,
+        "evidence_type": "label_spec_text",
+        "snippet": "PRODUCTNAME"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 7.1,
+        "case": "upper"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 55.0,
+        "height_mm_approx": 9.6
+      },
+      "allowed_patterns": [
+        "^[A-ZÅÄÖ0-9 /\\-]+$"
+      ]
+    },
+    {
+      "element_id": "article_number",
+      "label": "Article number",
+      "semantic_role": "product_identity",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "000.000.00",
+      "placement": {
+        "zone": "mid_dimensions",
+        "position_notes": "Detected at relative position (0.08, 0.28) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 28,
+        "evidence_type": "label_spec_text",
+        "snippet": "000.000.00"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 6.3,
+        "case": "mixed"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "variant_dependent",
+        "note": "Background: transparent (SM), grey (MD/LG), black (XL) — see element_variants.json"
+      },
+      "size_spec": {
+        "width_mm_approx": 34.4,
+        "height_mm_approx": 8.6
+      },
+      "allowed_patterns": [
+        "^\\d{3}[.\\-]\\d{3}[.\\-]\\d{2}$"
+      ]
+    },
+    {
+      "element_id": "article_code",
+      "label": "Article code (short)",
+      "semantic_role": "product_identity",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "12345",
+      "placement": {
+        "zone": "mid_dimensions",
+        "position_notes": "Detected at relative position (0.64, 0.19) within label",
+        "alignment": "center",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 28,
+        "evidence_type": "label_spec_text",
+        "snippet": "12345"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 2.5,
+        "case": "mixed"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 6.7,
+        "height_mm_approx": 3.3
+      },
+      "allowed_patterns": [
+        "^\\d{5}$"
+      ]
+    },
+    {
+      "element_id": "ikea_logo",
+      "label": "IKEA logo",
+      "semantic_role": "brand_identity",
+      "type": "image",
+      "required": true,
+      "repeatable": false,
+      "content_type": "static",
+      "example_value": "IKEA of Sweden AB",
+      "placement": {
+        "zone": "center_barcode",
+        "position_notes": "Detected at relative position (0.06, 0.43) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 28,
+        "evidence_type": "label_spec_text",
+        "snippet": "IKEA of Sweden AB"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 2.5,
+        "case": "upper",
+        "note": "Logo asset; use LOGO_LG variant — see element_variants.json"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "#FFD100",
+        "border": "solid_rectangle",
+        "note": "IKEA corporate yellow"
+      },
+      "size_spec": {
+        "width_mm_approx": 21.8,
+        "height_mm_approx": 3.3
+      }
+    },
+    {
+      "element_id": "datamatrix_block",
+      "label": "DataMatrix barcode block",
+      "semantic_role": "barcode_symbol",
+      "type": "datamatrix",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "AI(240)12345678123451",
+      "placement": {
+        "zone": "bot_address",
+        "position_notes": "Detected at relative position (0.59, 0.90) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 28,
+        "evidence_type": "label_spec_text",
+        "snippet": "AI(240)12345678123451"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 2.5
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 26.6,
+        "height_mm_approx": 3.3
+      },
+      "allowed_patterns": [
+        "GS1 DataMatrix application identifiers"
+      ],
+      "shared_spec_ref": "DM_RECT"
+    },
+    {
+      "element_id": "origin_text",
+      "label": "Country of origin / assembly text",
+      "semantic_role": "origin_text",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "Made in People’s Republic of China",
+      "placement": {
+        "zone": "mid_dimensions",
+        "position_notes": "Detected at relative position (0.06, 0.40) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 28,
+        "evidence_type": "label_spec_text",
+        "snippet": "Made in People’s Republic of China"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 2.8,
+        "case": "mixed"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 48.6,
+        "height_mm_approx": 3.8
+      },
+      "allowed_patterns": [
+        "^(Made in|Assembled in USA from Imported Materials|Assembled in) .+$"
+      ],
+      "allowed_values": [
+        "Made in People's Republic of China",
+        "Assembled in USA from Imported Materials",
+        "Made in Vietnam",
+        "Made in Poland",
+        "Made in India",
+        "Made in Bangladesh",
+        "Made in Pakistan"
+      ]
+    },
+    {
+      "element_id": "legal_symbol",
+      "label": "Legal / compliance symbol",
+      "semantic_role": "compliance_symbol",
+      "type": "image",
+      "required": false,
+      "repeatable": true,
+      "content_type": "static",
+      "example_value": "Legal",
+      "placement": {
+        "zone": "bot_address",
+        "position_notes": "Detected at relative position (0.07, 0.83) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 28,
+        "evidence_type": "label_spec_text",
+        "snippet": "Legal"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 1.4
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 3.6,
+        "height_mm_approx": 1.9
+      }
+    },
+    {
+      "element_id": "wash_care_symbol",
+      "label": "Wash / care care symbol",
+      "semantic_role": "care_symbol",
+      "type": "image",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "Wash",
+      "placement": {
+        "zone": "center_barcode",
+        "position_notes": "Detected at relative position (0.17, 0.55) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 28,
+        "evidence_type": "label_spec_text",
+        "snippet": "Wash"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 1.4
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 3.6,
+        "height_mm_approx": 1.9
+      }
+    },
+    {
+      "element_id": "care_instruction_text",
+      "label": "Care instruction text",
+      "semantic_role": "care_text",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "AU: Wash by hand, max 40°C. Do not bleach.",
+      "placement": {
+        "zone": "bot_legal",
+        "position_notes": "Detected at relative position (0.06, 0.75) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 28,
+        "evidence_type": "label_spec_text",
+        "snippet": "AU: Wash by hand, max 40°C. Do not bleach."
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 2.5
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 52.2,
+        "height_mm_approx": 3.3
+      }
+    },
+    {
+      "element_id": "catalog_number",
+      "label": "Care label catalog number",
+      "semantic_role": "reference_text",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "CA05404",
+      "placement": {
+        "zone": "center_barcode",
+        "position_notes": "Detected at relative position (0.60, 0.43) within label",
+        "alignment": "center",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 28,
+        "evidence_type": "label_spec_text",
+        "snippet": "CA05404"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 2.5
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 10.3,
+        "height_mm_approx": 3.3
+      }
+    },
+    {
+      "element_id": "date_stamp",
+      "label": "YYWW datestamp",
+      "semantic_role": "date_stamp",
+      "type": "text",
+      "required": false,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "YYWW",
+      "placement": {
+        "zone": "top_identity",
+        "position_notes": "Detected at relative position (0.93, 0.14) within label",
+        "alignment": "center",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "vertical_cw90",
+      "evidence": {
+        "page": 28,
+        "evidence_type": "label_spec_text",
+        "snippet": "YYWW"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 2.5,
+        "case": "numeric"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 3.4,
+        "height_mm_approx": 7.9
+      },
+      "allowed_patterns": [
+        "^\\d{4}$"
+      ],
+      "content_rules": {
+        "format": "YYWW",
+        "yyww_pattern": "^(2[0-9]|[3-9][0-9])(0[1-9]|[1-4][0-9]|5[0-3])$",
+        "note": "YY = 2-digit year; WW = ISO week 01-53"
+      }
+    },
+    {
+      "element_id": "dimensions",
+      "label": "Product dimensions",
+      "semantic_role": "product_spec",
+      "type": "text",
+      "required": false,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "000x000x000_ cm",
+      "placement": {
+        "zone": "top_identity",
+        "position_notes": "Detected at relative position (0.06, 0.13) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 28,
+        "evidence_type": "label_spec_text",
+        "snippet": "000x000x000_ cm"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 3.2
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 27.8,
+        "height_mm_approx": 4.3
+      },
+      "allowed_patterns": [
+        "^\\d+[x×]\\d+[x×]\\d+\\s*(cm|mm)?$"
+      ]
+    },
+    {
+      "element_id": "weight",
+      "label": "Product weight",
+      "semantic_role": "product_spec",
+      "type": "text",
+      "required": false,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "000 kg",
+      "placement": {
+        "zone": "top_identity",
+        "position_notes": "Detected at relative position (0.63, 0.13) within label",
+        "alignment": "center",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 28,
+        "evidence_type": "label_spec_text",
+        "snippet": "000 kg"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 3.2
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 10.6,
+        "height_mm_approx": 4.3
+      },
+      "allowed_patterns": [
+        "^\\d+(\\.\\d+)?\\s*(kg|lbs)$"
+      ]
+    }
+  ],
+  "overrides": [],
+  "rules": [
+    {
+      "rule_id": "1C70-IDDDM_v4-R001",
+      "rule_type": "presence_rule",
+      "scope": "1C70-IDDDM_v4",
+      "condition": "always",
+      "target": "compliance_block",
+      "actions": [
+        {
+          "action_type": "remove",
+          "description": "No compliance block in this variant"
+        }
+      ],
+      "severity": "must",
+      "normalized_text": "compliance_block MUST NOT be present",
+      "evidence": {
+        "page": null,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Variant v4 diagram shows no compliance zone"
+      }
+    },
+    {
+      "rule_id": "1C70-IDDDM_v4-R002",
+      "rule_type": "format_rule",
+      "scope": "1C70-IDDDM_v4",
+      "condition": "always",
+      "target": "date_stamp",
+      "actions": [
+        {
+          "action_type": "validate",
+          "description": "Date must be YYWW (2-digit year + ISO week)"
+        }
+      ],
+      "severity": "must",
+      "normalized_text": "date_stamp content MUST match ^(2[0-9]|[3-9][0-9])(0[1-9]|[1-4][0-9]|5[0-3])$",
+      "evidence": {
+        "page": null,
+        "evidence_type": "diagram_annotation",
+        "snippet": "YYWW date format shown in right date strip"
+      }
+    }
+  ],
+  "validation_targets": [
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-001",
+      "check_type": "element_presence",
+      "element_id": "product_name",
+      "severity": "must",
+      "description": "Required element 'product_name' must be present"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-002",
+      "check_type": "element_content_format",
+      "element_id": "product_name",
+      "severity": "must",
+      "description": "Element 'product_name' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^[A-ZÅÄÖ0-9 /\\-]+$"
+      ]
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-003",
+      "check_type": "element_placement",
+      "element_id": "product_name",
+      "severity": "must",
+      "description": "Element 'product_name' must be in zone 'top_identity'",
+      "expected_zone": "top_identity"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-004",
+      "check_type": "element_presence",
+      "element_id": "article_number",
+      "severity": "must",
+      "description": "Required element 'article_number' must be present"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-005",
+      "check_type": "element_content_format",
+      "element_id": "article_number",
+      "severity": "must",
+      "description": "Element 'article_number' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^\\d{3}[.\\-]\\d{3}[.\\-]\\d{2}$"
+      ]
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-006",
+      "check_type": "element_placement",
+      "element_id": "article_number",
+      "severity": "must",
+      "description": "Element 'article_number' must be in zone 'mid_dimensions'",
+      "expected_zone": "mid_dimensions"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-007",
+      "check_type": "element_presence",
+      "element_id": "article_code",
+      "severity": "must",
+      "description": "Required element 'article_code' must be present"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-008",
+      "check_type": "element_content_format",
+      "element_id": "article_code",
+      "severity": "must",
+      "description": "Element 'article_code' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^\\d{5}$"
+      ]
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-009",
+      "check_type": "element_placement",
+      "element_id": "article_code",
+      "severity": "must",
+      "description": "Element 'article_code' must be in zone 'mid_dimensions'",
+      "expected_zone": "mid_dimensions"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-010",
+      "check_type": "element_presence",
+      "element_id": "ikea_logo",
+      "severity": "must",
+      "description": "Required element 'ikea_logo' must be present"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-011",
+      "check_type": "element_placement",
+      "element_id": "ikea_logo",
+      "severity": "must",
+      "description": "Element 'ikea_logo' must be in zone 'center_barcode'",
+      "expected_zone": "center_barcode"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-012",
+      "check_type": "element_presence",
+      "element_id": "datamatrix_block",
+      "severity": "must",
+      "description": "Required element 'datamatrix_block' must be present"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-013",
+      "check_type": "element_content_format",
+      "element_id": "datamatrix_block",
+      "severity": "must",
+      "description": "Element 'datamatrix_block' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "GS1 DataMatrix application identifiers"
+      ]
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-014",
+      "check_type": "element_placement",
+      "element_id": "datamatrix_block",
+      "severity": "must",
+      "description": "Element 'datamatrix_block' must be in zone 'bot_address'",
+      "expected_zone": "bot_address"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-015",
+      "check_type": "element_presence",
+      "element_id": "origin_text",
+      "severity": "must",
+      "description": "Required element 'origin_text' must be present"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-016",
+      "check_type": "element_content_format",
+      "element_id": "origin_text",
+      "severity": "must",
+      "description": "Element 'origin_text' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^(Made in|Assembled in USA from Imported Materials|Assembled in) .+$"
+      ]
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-017",
+      "check_type": "element_placement",
+      "element_id": "origin_text",
+      "severity": "must",
+      "description": "Element 'origin_text' must be in zone 'mid_dimensions'",
+      "expected_zone": "mid_dimensions"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-018",
+      "check_type": "element_presence",
+      "element_id": "legal_symbol",
+      "severity": "should",
+      "description": "Optional element 'legal_symbol' should be present"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-019",
+      "check_type": "element_placement",
+      "element_id": "legal_symbol",
+      "severity": "should",
+      "description": "Element 'legal_symbol' must be in zone 'bot_address'",
+      "expected_zone": "bot_address"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-020",
+      "check_type": "element_presence",
+      "element_id": "wash_care_symbol",
+      "severity": "must",
+      "description": "Required element 'wash_care_symbol' must be present"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-021",
+      "check_type": "element_placement",
+      "element_id": "wash_care_symbol",
+      "severity": "must",
+      "description": "Element 'wash_care_symbol' must be in zone 'center_barcode'",
+      "expected_zone": "center_barcode"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-022",
+      "check_type": "element_presence",
+      "element_id": "care_instruction_text",
+      "severity": "must",
+      "description": "Required element 'care_instruction_text' must be present"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-023",
+      "check_type": "element_placement",
+      "element_id": "care_instruction_text",
+      "severity": "must",
+      "description": "Element 'care_instruction_text' must be in zone 'bot_legal'",
+      "expected_zone": "bot_legal"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-024",
+      "check_type": "element_presence",
+      "element_id": "catalog_number",
+      "severity": "must",
+      "description": "Required element 'catalog_number' must be present"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-025",
+      "check_type": "element_placement",
+      "element_id": "catalog_number",
+      "severity": "must",
+      "description": "Element 'catalog_number' must be in zone 'center_barcode'",
+      "expected_zone": "center_barcode"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-026",
+      "check_type": "element_presence",
+      "element_id": "date_stamp",
+      "severity": "should",
+      "description": "Optional element 'date_stamp' should be present"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-027",
+      "check_type": "element_content_format",
+      "element_id": "date_stamp",
+      "severity": "should",
+      "description": "Element 'date_stamp' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^\\d{4}$"
+      ]
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-028",
+      "check_type": "element_placement",
+      "element_id": "date_stamp",
+      "severity": "should",
+      "description": "Element 'date_stamp' must be in zone 'top_identity'",
+      "expected_zone": "top_identity"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-029",
+      "check_type": "element_orientation",
+      "element_id": "date_stamp",
+      "severity": "should",
+      "description": "Element 'date_stamp' must be oriented vertical_cw90",
+      "expected_orientation": "vertical_cw90"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-030",
+      "check_type": "element_presence",
+      "element_id": "dimensions",
+      "severity": "should",
+      "description": "Optional element 'dimensions' should be present"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-031",
+      "check_type": "element_content_format",
+      "element_id": "dimensions",
+      "severity": "should",
+      "description": "Element 'dimensions' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^\\d+[x×]\\d+[x×]\\d+\\s*(cm|mm)?$"
+      ]
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-032",
+      "check_type": "element_placement",
+      "element_id": "dimensions",
+      "severity": "should",
+      "description": "Element 'dimensions' must be in zone 'top_identity'",
+      "expected_zone": "top_identity"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-033",
+      "check_type": "element_presence",
+      "element_id": "weight",
+      "severity": "should",
+      "description": "Optional element 'weight' should be present"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-034",
+      "check_type": "element_content_format",
+      "element_id": "weight",
+      "severity": "should",
+      "description": "Element 'weight' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^\\d+(\\.\\d+)?\\s*(kg|lbs)$"
+      ]
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-035",
+      "check_type": "element_placement",
+      "element_id": "weight",
+      "severity": "should",
+      "description": "Element 'weight' must be in zone 'top_identity'",
+      "expected_zone": "top_identity"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-036",
+      "check_type": "visual_hierarchy",
+      "element_id": "product_name",
+      "related_element_id": "article_number",
+      "severity": "must",
+      "description": "product_name font size must be visually larger than article_number"
+    },
+    {
+      "check_id": "1C70-IDDDM_v4-CHK-037",
+      "check_type": "visual_hierarchy",
+      "element_id": "article_number",
+      "related_element_id": "article_code",
+      "severity": "must",
+      "description": "article_number font size must be visually larger than article_code"
+    }
+  ],
+  "review_state": {
+    "confidence": 0.85,
+    "needs_review": false,
+    "review_notes": "Auto-generated from PDF text extraction (page 28). Elements detected: ['product_name', 'article_number', 'article_code', 'ikea_logo', 'datamatrix_block', 'origin_text', 'legal_symbol', 'wash_care_symbol', 'care_instruction_text', 'catalog_number', 'date_stamp', 'dimensions', 'weight']. Verify font sizes, zone boundaries, and rule completeness against label image."
+  }
+}

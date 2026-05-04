@@ -1,0 +1,20 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "2R20-IDEDM",
+  "display_name": "2R20-IDEDM — 2-row 20mm label with legal symbols",
+  "family": "2R20",
+  "source_pages": [
+    35
+  ],
+  "visual_artifacts": [
+    "page_35.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

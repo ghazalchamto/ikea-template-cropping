@@ -1,0 +1,2458 @@
+{
+  "version": "2.0",
+  "source_pdf": "label 2.pdf",
+  "total_pages": 49,
+  "total_atomic_variants": 211,
+  "description": "Atomic IKEA label ground truth. Each variant folder contains: label.png (300 DPI raster crop), label.pdf (vector-preserving single-page PDF), and template.json (elements, rules, validation_targets). Use label.pdf for text/color/geometry checks; label.png for visual/ML checks.",
+  "templates": [
+    {
+      "key": "general_rules",
+      "title": "general_rules",
+      "family": null,
+      "source_pages": [
+        1
+      ],
+      "folder": "templates/general_rules",
+      "visual_artifacts": [
+        "templates/general_rules/page_01.png"
+      ],
+      "variants": [],
+      "has_rich_json": false
+    },
+    {
+      "key": "element_variants",
+      "title": "element_variants",
+      "family": null,
+      "source_pages": [
+        2
+      ],
+      "folder": "templates/element_variants",
+      "visual_artifacts": [
+        "templates/element_variants/page_02.png"
+      ],
+      "variants": [],
+      "has_rich_json": false
+    },
+    {
+      "key": "1R10-PRADM",
+      "title": "1R10 PRADM",
+      "family": "1R10-PRADM",
+      "source_pages": [
+        3,
+        6
+      ],
+      "folder": "templates/1R10-PRADM",
+      "visual_artifacts": [
+        "templates/1R10-PRADM/page_03.png",
+        "templates/1R10-PRADM/page_06.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1R10-PRADM_v1",
+          "source_page": 3,
+          "label_image": "templates/1R10-PRADM/v1/label.png",
+          "template_json": "templates/1R10-PRADM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R10-PRADM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1R10-PRADM_v2",
+          "source_page": 3,
+          "label_image": "templates/1R10-PRADM/v2/label.png",
+          "template_json": "templates/1R10-PRADM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R10-PRADM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1R10-PRADM_v3",
+          "source_page": 3,
+          "label_image": "templates/1R10-PRADM/v3/label.png",
+          "template_json": "templates/1R10-PRADM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R10-PRADM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1R10-PRADM_v4",
+          "source_page": 3,
+          "label_image": "templates/1R10-PRADM/v4/label.png",
+          "template_json": "templates/1R10-PRADM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R10-PRADM/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "1R10-PRADM_v5",
+          "source_page": 3,
+          "label_image": "templates/1R10-PRADM/v5/label.png",
+          "template_json": "templates/1R10-PRADM/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R10-PRADM/v5/label.pdf"
+        },
+        {
+          "variant_id": "v6",
+          "template_id": "1R10-PRADM_v6",
+          "source_page": 6,
+          "label_image": "templates/1R10-PRADM/v6/label.png",
+          "template_json": "templates/1R10-PRADM/v6/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R10-PRADM/v6/label.pdf"
+        },
+        {
+          "variant_id": "v7",
+          "template_id": "1R10-PRADM_v7",
+          "source_page": 6,
+          "label_image": "templates/1R10-PRADM/v7/label.png",
+          "template_json": "templates/1R10-PRADM/v7/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R10-PRADM/v7/label.pdf"
+        },
+        {
+          "variant_id": "v8",
+          "template_id": "1R10-PRADM_v8",
+          "source_page": 6,
+          "label_image": "templates/1R10-PRADM/v8/label.png",
+          "template_json": "templates/1R10-PRADM/v8/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R10-PRADM/v8/label.pdf"
+        },
+        {
+          "variant_id": "v9",
+          "template_id": "1R10-PRADM_v9",
+          "source_page": 6,
+          "label_image": "templates/1R10-PRADM/v9/label.png",
+          "template_json": "templates/1R10-PRADM/v9/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R10-PRADM/v9/label.pdf"
+        },
+        {
+          "variant_id": "v10",
+          "template_id": "1R10-PRADM_v10",
+          "source_page": 6,
+          "label_image": "templates/1R10-PRADM/v10/label.png",
+          "template_json": "templates/1R10-PRADM/v10/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R10-PRADM/v10/label.pdf"
+        },
+        {
+          "variant_id": "v11",
+          "template_id": "1R10-PRADM_v11",
+          "source_page": 6,
+          "label_image": "templates/1R10-PRADM/v11/label.png",
+          "template_json": "templates/1R10-PRADM/v11/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R10-PRADM/v11/label.pdf"
+        },
+        {
+          "variant_id": "v12",
+          "template_id": "1R10-PRADM_v12",
+          "source_page": 6,
+          "label_image": "templates/1R10-PRADM/v12/label.png",
+          "template_json": "templates/1R10-PRADM/v12/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R10-PRADM/v12/label.pdf"
+        },
+        {
+          "variant_id": "v13",
+          "template_id": "1R10-PRADM_v13",
+          "source_page": 6,
+          "label_image": "templates/1R10-PRADM/v13/label.png",
+          "template_json": "templates/1R10-PRADM/v13/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R10-PRADM/v13/label.pdf"
+        },
+        {
+          "variant_id": "v14",
+          "template_id": "1R10-PRADM_v14",
+          "source_page": 6,
+          "label_image": "templates/1R10-PRADM/v14/label.png",
+          "template_json": "templates/1R10-PRADM/v14/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R10-PRADM/v14/label.pdf"
+        },
+        {
+          "variant_id": "v15",
+          "template_id": "1R10-PRADM_v15",
+          "source_page": 6,
+          "label_image": "templates/1R10-PRADM/v15/label.png",
+          "template_json": "templates/1R10-PRADM/v15/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R10-PRADM/v15/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1R20-PRADM",
+      "title": "1R20 PRADM",
+      "family": "1R20-PRADM",
+      "source_pages": [
+        4,
+        5
+      ],
+      "folder": "templates/1R20-PRADM",
+      "visual_artifacts": [
+        "templates/1R20-PRADM/page_04.png",
+        "templates/1R20-PRADM/page_05.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1R20-PRADM_04x_v1",
+          "source_page": 4,
+          "label_image": "templates/1R20-PRADM/v1/label.png",
+          "template_json": "templates/1R20-PRADM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R20-PRADM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1R20-PRADM_04x_v2",
+          "source_page": 4,
+          "label_image": "templates/1R20-PRADM/v2/label.png",
+          "template_json": "templates/1R20-PRADM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R20-PRADM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1R20-PRADM_04x_v3",
+          "source_page": 4,
+          "label_image": "templates/1R20-PRADM/v3/label.png",
+          "template_json": "templates/1R20-PRADM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R20-PRADM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1R20-PRADM_04x_v4",
+          "source_page": 4,
+          "label_image": "templates/1R20-PRADM/v4/label.png",
+          "template_json": "templates/1R20-PRADM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R20-PRADM/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "1R20-PRADM_04x_v5",
+          "source_page": 4,
+          "label_image": "templates/1R20-PRADM/v5/label.png",
+          "template_json": "templates/1R20-PRADM/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R20-PRADM/v5/label.pdf"
+        },
+        {
+          "variant_id": "v6",
+          "template_id": "1R20-PRADM_075x_v1",
+          "source_page": 5,
+          "label_image": "templates/1R20-PRADM/v6/label.png",
+          "template_json": "templates/1R20-PRADM/v6/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R20-PRADM/v6/label.pdf"
+        },
+        {
+          "variant_id": "v7",
+          "template_id": "1R20-PRADM_075x_v2",
+          "source_page": 5,
+          "label_image": "templates/1R20-PRADM/v7/label.png",
+          "template_json": "templates/1R20-PRADM/v7/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R20-PRADM/v7/label.pdf"
+        },
+        {
+          "variant_id": "v8",
+          "template_id": "1R20-PRADM_075x_v3",
+          "source_page": 5,
+          "label_image": "templates/1R20-PRADM/v8/label.png",
+          "template_json": "templates/1R20-PRADM/v8/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R20-PRADM/v8/label.pdf"
+        },
+        {
+          "variant_id": "v9",
+          "template_id": "1R20-PRADM_075x_v4",
+          "source_page": 5,
+          "label_image": "templates/1R20-PRADM/v9/label.png",
+          "template_json": "templates/1R20-PRADM/v9/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R20-PRADM/v9/label.pdf"
+        },
+        {
+          "variant_id": "v10",
+          "template_id": "1R20-PRADM_075x_v5",
+          "source_page": 5,
+          "label_image": "templates/1R20-PRADM/v10/label.png",
+          "template_json": "templates/1R20-PRADM/v10/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R20-PRADM/v10/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1R12-IDADM-IDBDM",
+      "title": "1R12 IDADM IDBDM",
+      "family": "1R12",
+      "source_pages": [
+        7,
+        8,
+        9
+      ],
+      "folder": "templates/1R12-IDADM-IDBDM",
+      "visual_artifacts": [
+        "templates/1R12-IDADM-IDBDM/page_07.png",
+        "templates/1R12-IDADM-IDBDM/page_08.png",
+        "templates/1R12-IDADM-IDBDM/page_09.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1R12-IDADM-IDBDM_v1",
+          "source_page": 7,
+          "label_image": "templates/1R12-IDADM-IDBDM/v1/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1R12-IDADM-IDBDM_v2",
+          "source_page": 7,
+          "label_image": "templates/1R12-IDADM-IDBDM/v2/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1R12-IDADM-IDBDM_v3",
+          "source_page": 7,
+          "label_image": "templates/1R12-IDADM-IDBDM/v3/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1R12-IDADM-IDBDM_v4",
+          "source_page": 7,
+          "label_image": "templates/1R12-IDADM-IDBDM/v4/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "1R12-IDADM-IDBDM_v5",
+          "source_page": 7,
+          "label_image": "templates/1R12-IDADM-IDBDM/v5/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v5/label.pdf"
+        },
+        {
+          "variant_id": "v6",
+          "template_id": "1R12-IDADM-IDBDM_v6",
+          "source_page": 7,
+          "label_image": "templates/1R12-IDADM-IDBDM/v6/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v6/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v6/label.pdf"
+        },
+        {
+          "variant_id": "v7",
+          "template_id": "1R12-IDADM-IDBDM_v7",
+          "source_page": 7,
+          "label_image": "templates/1R12-IDADM-IDBDM/v7/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v7/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v7/label.pdf"
+        },
+        {
+          "variant_id": "v8",
+          "template_id": "1R12-IDADM-IDBDM_v8",
+          "source_page": 7,
+          "label_image": "templates/1R12-IDADM-IDBDM/v8/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v8/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v8/label.pdf"
+        },
+        {
+          "variant_id": "v9",
+          "template_id": "1R12-IDADM-IDBDM_v9",
+          "source_page": 8,
+          "label_image": "templates/1R12-IDADM-IDBDM/v9/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v9/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v9/label.pdf"
+        },
+        {
+          "variant_id": "v10",
+          "template_id": "1R12-IDADM-IDBDM_v10",
+          "source_page": 8,
+          "label_image": "templates/1R12-IDADM-IDBDM/v10/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v10/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v10/label.pdf"
+        },
+        {
+          "variant_id": "v11",
+          "template_id": "1R12-IDADM-IDBDM_v11",
+          "source_page": 8,
+          "label_image": "templates/1R12-IDADM-IDBDM/v11/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v11/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v11/label.pdf"
+        },
+        {
+          "variant_id": "v12",
+          "template_id": "1R12-IDADM-IDBDM_v12",
+          "source_page": 8,
+          "label_image": "templates/1R12-IDADM-IDBDM/v12/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v12/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v12/label.pdf"
+        },
+        {
+          "variant_id": "v13",
+          "template_id": "1R12-IDADM-IDBDM_v13",
+          "source_page": 8,
+          "label_image": "templates/1R12-IDADM-IDBDM/v13/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v13/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v13/label.pdf"
+        },
+        {
+          "variant_id": "v14",
+          "template_id": "1R12-IDADM-IDBDM_v14",
+          "source_page": 8,
+          "label_image": "templates/1R12-IDADM-IDBDM/v14/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v14/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v14/label.pdf"
+        },
+        {
+          "variant_id": "v15",
+          "template_id": "1R12-IDADM-IDBDM_v15",
+          "source_page": 8,
+          "label_image": "templates/1R12-IDADM-IDBDM/v15/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v15/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v15/label.pdf"
+        },
+        {
+          "variant_id": "v16",
+          "template_id": "1R12-IDADM-IDBDM_v16",
+          "source_page": 8,
+          "label_image": "templates/1R12-IDADM-IDBDM/v16/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v16/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v16/label.pdf"
+        },
+        {
+          "variant_id": "v17",
+          "template_id": "1R12-IDADM-IDBDM_v17",
+          "source_page": 9,
+          "label_image": "templates/1R12-IDADM-IDBDM/v17/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v17/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v17/label.pdf"
+        },
+        {
+          "variant_id": "v18",
+          "template_id": "1R12-IDADM-IDBDM_v18",
+          "source_page": 9,
+          "label_image": "templates/1R12-IDADM-IDBDM/v18/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v18/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v18/label.pdf"
+        },
+        {
+          "variant_id": "v19",
+          "template_id": "1R12-IDADM-IDBDM_v19",
+          "source_page": 9,
+          "label_image": "templates/1R12-IDADM-IDBDM/v19/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v19/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v19/label.pdf"
+        },
+        {
+          "variant_id": "v20",
+          "template_id": "1R12-IDADM-IDBDM_v20",
+          "source_page": 9,
+          "label_image": "templates/1R12-IDADM-IDBDM/v20/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v20/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v20/label.pdf"
+        },
+        {
+          "variant_id": "v21",
+          "template_id": "1R12-IDADM-IDBDM_v21",
+          "source_page": 9,
+          "label_image": "templates/1R12-IDADM-IDBDM/v21/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v21/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v21/label.pdf"
+        },
+        {
+          "variant_id": "v22",
+          "template_id": "1R12-IDADM-IDBDM_v22",
+          "source_page": 9,
+          "label_image": "templates/1R12-IDADM-IDBDM/v22/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v22/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v22/label.pdf"
+        },
+        {
+          "variant_id": "v23",
+          "template_id": "1R12-IDADM-IDBDM_v23",
+          "source_page": 9,
+          "label_image": "templates/1R12-IDADM-IDBDM/v23/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v23/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v23/label.pdf"
+        },
+        {
+          "variant_id": "v24",
+          "template_id": "1R12-IDADM-IDBDM_v24",
+          "source_page": 9,
+          "label_image": "templates/1R12-IDADM-IDBDM/v24/label.png",
+          "template_json": "templates/1R12-IDADM-IDBDM/v24/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R12-IDADM-IDBDM/v24/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1R35-IDADM-IDBDM",
+      "title": "1R35 IDADM IDBDM",
+      "family": "1R35",
+      "source_pages": [
+        10,
+        11,
+        12
+      ],
+      "folder": "templates/1R35-IDADM-IDBDM",
+      "visual_artifacts": [
+        "templates/1R35-IDADM-IDBDM/page_10.png",
+        "templates/1R35-IDADM-IDBDM/page_11.png",
+        "templates/1R35-IDADM-IDBDM/page_12.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1R35-IDADM-IDBDM_v1",
+          "source_page": 10,
+          "label_image": "templates/1R35-IDADM-IDBDM/v1/label.png",
+          "template_json": "templates/1R35-IDADM-IDBDM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDADM-IDBDM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1R35-IDADM-IDBDM_v2",
+          "source_page": 10,
+          "label_image": "templates/1R35-IDADM-IDBDM/v2/label.png",
+          "template_json": "templates/1R35-IDADM-IDBDM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDADM-IDBDM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1R35-IDADM-IDBDM_v3",
+          "source_page": 10,
+          "label_image": "templates/1R35-IDADM-IDBDM/v3/label.png",
+          "template_json": "templates/1R35-IDADM-IDBDM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDADM-IDBDM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1R35-IDADM-IDBDM_v4",
+          "source_page": 10,
+          "label_image": "templates/1R35-IDADM-IDBDM/v4/label.png",
+          "template_json": "templates/1R35-IDADM-IDBDM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDADM-IDBDM/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "1R35-IDADM-IDBDM_v5",
+          "source_page": 10,
+          "label_image": "templates/1R35-IDADM-IDBDM/v5/label.png",
+          "template_json": "templates/1R35-IDADM-IDBDM/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDADM-IDBDM/v5/label.pdf"
+        },
+        {
+          "variant_id": "v6",
+          "template_id": "1R35-IDADM-IDBDM_v6",
+          "source_page": 11,
+          "label_image": "templates/1R35-IDADM-IDBDM/v6/label.png",
+          "template_json": "templates/1R35-IDADM-IDBDM/v6/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDADM-IDBDM/v6/label.pdf"
+        },
+        {
+          "variant_id": "v7",
+          "template_id": "1R35-IDADM-IDBDM_v7",
+          "source_page": 11,
+          "label_image": "templates/1R35-IDADM-IDBDM/v7/label.png",
+          "template_json": "templates/1R35-IDADM-IDBDM/v7/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDADM-IDBDM/v7/label.pdf"
+        },
+        {
+          "variant_id": "v8",
+          "template_id": "1R35-IDADM-IDBDM_v8",
+          "source_page": 11,
+          "label_image": "templates/1R35-IDADM-IDBDM/v8/label.png",
+          "template_json": "templates/1R35-IDADM-IDBDM/v8/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDADM-IDBDM/v8/label.pdf"
+        },
+        {
+          "variant_id": "v9",
+          "template_id": "1R35-IDADM-IDBDM_v9",
+          "source_page": 11,
+          "label_image": "templates/1R35-IDADM-IDBDM/v9/label.png",
+          "template_json": "templates/1R35-IDADM-IDBDM/v9/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDADM-IDBDM/v9/label.pdf"
+        },
+        {
+          "variant_id": "v10",
+          "template_id": "1R35-IDADM-IDBDM_v10",
+          "source_page": 11,
+          "label_image": "templates/1R35-IDADM-IDBDM/v10/label.png",
+          "template_json": "templates/1R35-IDADM-IDBDM/v10/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDADM-IDBDM/v10/label.pdf"
+        },
+        {
+          "variant_id": "v11",
+          "template_id": "1R35-IDADM-IDBDM_v11",
+          "source_page": 12,
+          "label_image": "templates/1R35-IDADM-IDBDM/v11/label.png",
+          "template_json": "templates/1R35-IDADM-IDBDM/v11/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDADM-IDBDM/v11/label.pdf"
+        },
+        {
+          "variant_id": "v12",
+          "template_id": "1R35-IDADM-IDBDM_v12",
+          "source_page": 12,
+          "label_image": "templates/1R35-IDADM-IDBDM/v12/label.png",
+          "template_json": "templates/1R35-IDADM-IDBDM/v12/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDADM-IDBDM/v12/label.pdf"
+        },
+        {
+          "variant_id": "v13",
+          "template_id": "1R35-IDADM-IDBDM_v13",
+          "source_page": 12,
+          "label_image": "templates/1R35-IDADM-IDBDM/v13/label.png",
+          "template_json": "templates/1R35-IDADM-IDBDM/v13/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDADM-IDBDM/v13/label.pdf"
+        },
+        {
+          "variant_id": "v14",
+          "template_id": "1R35-IDADM-IDBDM_v14",
+          "source_page": 12,
+          "label_image": "templates/1R35-IDADM-IDBDM/v14/label.png",
+          "template_json": "templates/1R35-IDADM-IDBDM/v14/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDADM-IDBDM/v14/label.pdf"
+        },
+        {
+          "variant_id": "v15",
+          "template_id": "1R35-IDADM-IDBDM_v15",
+          "source_page": 12,
+          "label_image": "templates/1R35-IDADM-IDBDM/v15/label.png",
+          "template_json": "templates/1R35-IDADM-IDBDM/v15/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDADM-IDBDM/v15/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1R25-IDCDM-IDCSDM",
+      "title": "1R25 IDCDM IDCSDM",
+      "family": "1R25",
+      "source_pages": [
+        13
+      ],
+      "folder": "templates/1R25-IDCDM-IDCSDM",
+      "visual_artifacts": [
+        "templates/1R25-IDCDM-IDCSDM/page_13.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1R25-IDCDM-IDCSDM_v1",
+          "source_page": 13,
+          "label_image": "templates/1R25-IDCDM-IDCSDM/v1/label.png",
+          "template_json": "templates/1R25-IDCDM-IDCSDM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDCDM-IDCSDM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1R25-IDCDM-IDCSDM_v2",
+          "source_page": 13,
+          "label_image": "templates/1R25-IDCDM-IDCSDM/v2/label.png",
+          "template_json": "templates/1R25-IDCDM-IDCSDM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDCDM-IDCSDM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1R25-IDCDM-IDCSDM_v3",
+          "source_page": 13,
+          "label_image": "templates/1R25-IDCDM-IDCSDM/v3/label.png",
+          "template_json": "templates/1R25-IDCDM-IDCSDM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDCDM-IDCSDM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1R25-IDCDM-IDCSDM_v4",
+          "source_page": 13,
+          "label_image": "templates/1R25-IDCDM-IDCSDM/v4/label.png",
+          "template_json": "templates/1R25-IDCDM-IDCSDM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDCDM-IDCSDM/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "1R25-IDCDM-IDCSDM_v5",
+          "source_page": 13,
+          "label_image": "templates/1R25-IDCDM-IDCSDM/v5/label.png",
+          "template_json": "templates/1R25-IDCDM-IDCSDM/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDCDM-IDCSDM/v5/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1C70-IDBDM",
+      "title": "1C70 IDBDM",
+      "family": "1C70",
+      "source_pages": [
+        14
+      ],
+      "folder": "templates/1C70-IDBDM",
+      "visual_artifacts": [
+        "templates/1C70-IDBDM/page_14.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1C70-IDBDM_v1",
+          "source_page": 14,
+          "label_image": "templates/1C70-IDBDM/v1/label.png",
+          "template_json": "templates/1C70-IDBDM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C70-IDBDM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1C70-IDBDM_v2",
+          "source_page": 14,
+          "label_image": "templates/1C70-IDBDM/v2/label.png",
+          "template_json": "templates/1C70-IDBDM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C70-IDBDM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1C70-IDBDM_v3",
+          "source_page": 14,
+          "label_image": "templates/1C70-IDBDM/v3/label.png",
+          "template_json": "templates/1C70-IDBDM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C70-IDBDM/v3/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1C50-IDBDM",
+      "title": "1C50 IDBDM",
+      "family": "1C50",
+      "source_pages": [
+        15,
+        16
+      ],
+      "folder": "templates/1C50-IDBDM",
+      "visual_artifacts": [
+        "templates/1C50-IDBDM/page_15.png",
+        "templates/1C50-IDBDM/page_16.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1C50-IDBDM_v1",
+          "source_page": 15,
+          "label_image": "templates/1C50-IDBDM/v1/label.png",
+          "template_json": "templates/1C50-IDBDM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C50-IDBDM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1C50-IDBDM_v2",
+          "source_page": 15,
+          "label_image": "templates/1C50-IDBDM/v2/label.png",
+          "template_json": "templates/1C50-IDBDM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C50-IDBDM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1C50-IDBDM_v3",
+          "source_page": 15,
+          "label_image": "templates/1C50-IDBDM/v3/label.png",
+          "template_json": "templates/1C50-IDBDM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C50-IDBDM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1C50-IDBDM_v4",
+          "source_page": 15,
+          "label_image": "templates/1C50-IDBDM/v4/label.png",
+          "template_json": "templates/1C50-IDBDM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C50-IDBDM/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "1C50-IDBDM_v5",
+          "source_page": 16,
+          "label_image": "templates/1C50-IDBDM/v5/label.png",
+          "template_json": "templates/1C50-IDBDM/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C50-IDBDM/v5/label.pdf"
+        },
+        {
+          "variant_id": "v6",
+          "template_id": "1C50-IDBDM_v6",
+          "source_page": 16,
+          "label_image": "templates/1C50-IDBDM/v6/label.png",
+          "template_json": "templates/1C50-IDBDM/v6/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C50-IDBDM/v6/label.pdf"
+        },
+        {
+          "variant_id": "v7",
+          "template_id": "1C50-IDBDM_v7",
+          "source_page": 16,
+          "label_image": "templates/1C50-IDBDM/v7/label.png",
+          "template_json": "templates/1C50-IDBDM/v7/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C50-IDBDM/v7/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1R35-IDGDM",
+      "title": "1R35 IDGDM",
+      "family": "1R35",
+      "source_pages": [
+        17
+      ],
+      "folder": "templates/1R35-IDGDM",
+      "visual_artifacts": [
+        "templates/1R35-IDGDM/page_17.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1R35-IDGDM_v1",
+          "source_page": 17,
+          "label_image": "templates/1R35-IDGDM/v1/label.png",
+          "template_json": "templates/1R35-IDGDM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDGDM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1R35-IDGDM_v2",
+          "source_page": 17,
+          "label_image": "templates/1R35-IDGDM/v2/label.png",
+          "template_json": "templates/1R35-IDGDM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDGDM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1R35-IDGDM_v3",
+          "source_page": 17,
+          "label_image": "templates/1R35-IDGDM/v3/label.png",
+          "template_json": "templates/1R35-IDGDM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDGDM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1R35-IDGDM_v4",
+          "source_page": 17,
+          "label_image": "templates/1R35-IDGDM/v4/label.png",
+          "template_json": "templates/1R35-IDGDM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-IDGDM/v4/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1R15-PRADM-USA",
+      "title": "1R15 PRADM USA",
+      "family": "1R15",
+      "source_pages": [
+        18,
+        19
+      ],
+      "folder": "templates/1R15-PRADM-USA",
+      "visual_artifacts": [
+        "templates/1R15-PRADM-USA/page_18.png",
+        "templates/1R15-PRADM-USA/page_19.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1R15-PRADM-USA_v1",
+          "source_page": 18,
+          "label_image": "templates/1R15-PRADM-USA/v1/label.png",
+          "template_json": "templates/1R15-PRADM-USA/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R15-PRADM-USA/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1R15-PRADM-USA_v2",
+          "source_page": 18,
+          "label_image": "templates/1R15-PRADM-USA/v2/label.png",
+          "template_json": "templates/1R15-PRADM-USA/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R15-PRADM-USA/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1R15-PRADM-USA_v3",
+          "source_page": 18,
+          "label_image": "templates/1R15-PRADM-USA/v3/label.png",
+          "template_json": "templates/1R15-PRADM-USA/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R15-PRADM-USA/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1R15-PRADM-USA_v4",
+          "source_page": 18,
+          "label_image": "templates/1R15-PRADM-USA/v4/label.png",
+          "template_json": "templates/1R15-PRADM-USA/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R15-PRADM-USA/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "1R15-PRADM-USA_v5",
+          "source_page": 18,
+          "label_image": "templates/1R15-PRADM-USA/v5/label.png",
+          "template_json": "templates/1R15-PRADM-USA/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R15-PRADM-USA/v5/label.pdf"
+        },
+        {
+          "variant_id": "v6",
+          "template_id": "1R15-PRADM-USA_v6",
+          "source_page": 19,
+          "label_image": "templates/1R15-PRADM-USA/v6/label.png",
+          "template_json": "templates/1R15-PRADM-USA/v6/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R15-PRADM-USA/v6/label.pdf"
+        },
+        {
+          "variant_id": "v7",
+          "template_id": "1R15-PRADM-USA_v7",
+          "source_page": 19,
+          "label_image": "templates/1R15-PRADM-USA/v7/label.png",
+          "template_json": "templates/1R15-PRADM-USA/v7/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R15-PRADM-USA/v7/label.pdf"
+        },
+        {
+          "variant_id": "v8",
+          "template_id": "1R15-PRADM-USA_v8",
+          "source_page": 19,
+          "label_image": "templates/1R15-PRADM-USA/v8/label.png",
+          "template_json": "templates/1R15-PRADM-USA/v8/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R15-PRADM-USA/v8/label.pdf"
+        },
+        {
+          "variant_id": "v9",
+          "template_id": "1R15-PRADM-USA_v9",
+          "source_page": 19,
+          "label_image": "templates/1R15-PRADM-USA/v9/label.png",
+          "template_json": "templates/1R15-PRADM-USA/v9/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R15-PRADM-USA/v9/label.pdf"
+        },
+        {
+          "variant_id": "v10",
+          "template_id": "1R15-PRADM-USA_v10",
+          "source_page": 19,
+          "label_image": "templates/1R15-PRADM-USA/v10/label.png",
+          "template_json": "templates/1R15-PRADM-USA/v10/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R15-PRADM-USA/v10/label.pdf"
+        },
+        {
+          "variant_id": "v11",
+          "template_id": "1R15-PRADM-USA_v11",
+          "source_page": 19,
+          "label_image": "templates/1R15-PRADM-USA/v11/label.png",
+          "template_json": "templates/1R15-PRADM-USA/v11/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R15-PRADM-USA/v11/label.pdf"
+        },
+        {
+          "variant_id": "v12",
+          "template_id": "1R15-PRADM-USA_v12",
+          "source_page": 19,
+          "label_image": "templates/1R15-PRADM-USA/v12/label.png",
+          "template_json": "templates/1R15-PRADM-USA/v12/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R15-PRADM-USA/v12/label.pdf"
+        },
+        {
+          "variant_id": "v13",
+          "template_id": "1R15-PRADM-USA_v13",
+          "source_page": 19,
+          "label_image": "templates/1R15-PRADM-USA/v13/label.png",
+          "template_json": "templates/1R15-PRADM-USA/v13/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R15-PRADM-USA/v13/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1CIR50-1CIR60",
+      "title": "1CIR50 1CIR60",
+      "family": "1CIR",
+      "source_pages": [
+        20
+      ],
+      "folder": "templates/1CIR50-1CIR60",
+      "visual_artifacts": [
+        "templates/1CIR50-1CIR60/page_20.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1CIR50-1CIR60_v1",
+          "source_page": 20,
+          "label_image": "templates/1CIR50-1CIR60/v1/label.png",
+          "template_json": "templates/1CIR50-1CIR60/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR50-1CIR60/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1CIR50-1CIR60_v2",
+          "source_page": 20,
+          "label_image": "templates/1CIR50-1CIR60/v2/label.png",
+          "template_json": "templates/1CIR50-1CIR60/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR50-1CIR60/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1CIR50-1CIR60_v3",
+          "source_page": 20,
+          "label_image": "templates/1CIR50-1CIR60/v3/label.png",
+          "template_json": "templates/1CIR50-1CIR60/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR50-1CIR60/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1CIR50-1CIR60_v4",
+          "source_page": 20,
+          "label_image": "templates/1CIR50-1CIR60/v4/label.png",
+          "template_json": "templates/1CIR50-1CIR60/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR50-1CIR60/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "1CIR50-1CIR60_v5",
+          "source_page": 20,
+          "label_image": "templates/1CIR50-1CIR60/v5/label.png",
+          "template_json": "templates/1CIR50-1CIR60/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR50-1CIR60/v5/label.pdf"
+        },
+        {
+          "variant_id": "v6",
+          "template_id": "1CIR50-1CIR60_v6",
+          "source_page": 20,
+          "label_image": "templates/1CIR50-1CIR60/v6/label.png",
+          "template_json": "templates/1CIR50-1CIR60/v6/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR50-1CIR60/v6/label.pdf"
+        },
+        {
+          "variant_id": "v7",
+          "template_id": "1CIR50-1CIR60_v7",
+          "source_page": 20,
+          "label_image": "templates/1CIR50-1CIR60/v7/label.png",
+          "template_json": "templates/1CIR50-1CIR60/v7/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR50-1CIR60/v7/label.pdf"
+        },
+        {
+          "variant_id": "v8",
+          "template_id": "1CIR50-1CIR60_v8",
+          "source_page": 20,
+          "label_image": "templates/1CIR50-1CIR60/v8/label.png",
+          "template_json": "templates/1CIR50-1CIR60/v8/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR50-1CIR60/v8/label.pdf"
+        },
+        {
+          "variant_id": "v9",
+          "template_id": "1CIR50-1CIR60_v9",
+          "source_page": 20,
+          "label_image": "templates/1CIR50-1CIR60/v9/label.png",
+          "template_json": "templates/1CIR50-1CIR60/v9/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR50-1CIR60/v9/label.pdf"
+        },
+        {
+          "variant_id": "v10",
+          "template_id": "1CIR50-1CIR60_v10",
+          "source_page": 20,
+          "label_image": "templates/1CIR50-1CIR60/v10/label.png",
+          "template_json": "templates/1CIR50-1CIR60/v10/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR50-1CIR60/v10/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "L3815-L8015-PRADM",
+      "title": "L3815 L8015 PRADM",
+      "family": "L-PRADM",
+      "source_pages": [
+        21
+      ],
+      "folder": "templates/L3815-L8015-PRADM",
+      "visual_artifacts": [
+        "templates/L3815-L8015-PRADM/page_21.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "L3815-L8015-PRADM_v1",
+          "source_page": 21,
+          "label_image": "templates/L3815-L8015-PRADM/v1/label.png",
+          "template_json": "templates/L3815-L8015-PRADM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L3815-L8015-PRADM/v1/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "L567-L578-1R7-PRADM",
+      "title": "L567 L578 1R7 PRADM",
+      "family": "L-PRADM",
+      "source_pages": [
+        22
+      ],
+      "folder": "templates/L567-L578-1R7-PRADM",
+      "visual_artifacts": [
+        "templates/L567-L578-1R7-PRADM/page_22.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "L567-L578-1R7-PRADM_v1",
+          "source_page": 22,
+          "label_image": "templates/L567-L578-1R7-PRADM/v1/label.png",
+          "template_json": "templates/L567-L578-1R7-PRADM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L567-L578-1R7-PRADM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "L567-L578-1R7-PRADM_v2",
+          "source_page": 22,
+          "label_image": "templates/L567-L578-1R7-PRADM/v2/label.png",
+          "template_json": "templates/L567-L578-1R7-PRADM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L567-L578-1R7-PRADM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "L567-L578-1R7-PRADM_v3",
+          "source_page": 22,
+          "label_image": "templates/L567-L578-1R7-PRADM/v3/label.png",
+          "template_json": "templates/L567-L578-1R7-PRADM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L567-L578-1R7-PRADM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "L567-L578-1R7-PRADM_v4",
+          "source_page": 22,
+          "label_image": "templates/L567-L578-1R7-PRADM/v4/label.png",
+          "template_json": "templates/L567-L578-1R7-PRADM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L567-L578-1R7-PRADM/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "L567-L578-1R7-PRADM_v5",
+          "source_page": 22,
+          "label_image": "templates/L567-L578-1R7-PRADM/v5/label.png",
+          "template_json": "templates/L567-L578-1R7-PRADM/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L567-L578-1R7-PRADM/v5/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1CIR30",
+      "title": "1CIR30",
+      "family": "1CIR",
+      "source_pages": [
+        23
+      ],
+      "folder": "templates/1CIR30",
+      "visual_artifacts": [
+        "templates/1CIR30/page_23.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1CIR30_v1",
+          "source_page": 23,
+          "label_image": "templates/1CIR30/v1/label.png",
+          "template_json": "templates/1CIR30/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR30/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1CIR30_v2",
+          "source_page": 23,
+          "label_image": "templates/1CIR30/v2/label.png",
+          "template_json": "templates/1CIR30/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR30/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1CIR30_v3",
+          "source_page": 23,
+          "label_image": "templates/1CIR30/v3/label.png",
+          "template_json": "templates/1CIR30/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR30/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1CIR30_v4",
+          "source_page": 23,
+          "label_image": "templates/1CIR30/v4/label.png",
+          "template_json": "templates/1CIR30/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR30/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "1CIR30_v5",
+          "source_page": 23,
+          "label_image": "templates/1CIR30/v5/label.png",
+          "template_json": "templates/1CIR30/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR30/v5/label.pdf"
+        },
+        {
+          "variant_id": "v6",
+          "template_id": "1CIR30_v6",
+          "source_page": 23,
+          "label_image": "templates/1CIR30/v6/label.png",
+          "template_json": "templates/1CIR30/v6/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR30/v6/label.pdf"
+        },
+        {
+          "variant_id": "v7",
+          "template_id": "1CIR30_v7",
+          "source_page": 23,
+          "label_image": "templates/1CIR30/v7/label.png",
+          "template_json": "templates/1CIR30/v7/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR30/v7/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "ITF-barcode-specs",
+      "title": "ITF barcode specs",
+      "family": null,
+      "source_pages": [
+        24
+      ],
+      "folder": "templates/ITF-barcode-specs",
+      "visual_artifacts": [
+        "templates/ITF-barcode-specs/page_24.png"
+      ],
+      "variants": [],
+      "has_rich_json": false
+    },
+    {
+      "key": "1C50-IDEDM",
+      "title": "1C50 IDEDM",
+      "family": "1C50",
+      "source_pages": [
+        25,
+        26
+      ],
+      "folder": "templates/1C50-IDEDM",
+      "visual_artifacts": [
+        "templates/1C50-IDEDM/page_25.png",
+        "templates/1C50-IDEDM/page_26.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1C50-IDEDM_v1",
+          "source_page": 25,
+          "label_image": "templates/1C50-IDEDM/v1/label.png",
+          "template_json": "templates/1C50-IDEDM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C50-IDEDM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1C50-IDEDM_v2",
+          "source_page": 25,
+          "label_image": "templates/1C50-IDEDM/v2/label.png",
+          "template_json": "templates/1C50-IDEDM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C50-IDEDM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1C50-IDEDM_v3",
+          "source_page": 25,
+          "label_image": "templates/1C50-IDEDM/v3/label.png",
+          "template_json": "templates/1C50-IDEDM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C50-IDEDM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1C50-IDEDM_v4",
+          "source_page": 26,
+          "label_image": "templates/1C50-IDEDM/v4/label.png",
+          "template_json": "templates/1C50-IDEDM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C50-IDEDM/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "1C50-IDEDM_v5",
+          "source_page": 26,
+          "label_image": "templates/1C50-IDEDM/v5/label.png",
+          "template_json": "templates/1C50-IDEDM/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C50-IDEDM/v5/label.pdf"
+        },
+        {
+          "variant_id": "v6",
+          "template_id": "1C50-IDEDM_v6",
+          "source_page": 26,
+          "label_image": "templates/1C50-IDEDM/v6/label.png",
+          "template_json": "templates/1C50-IDEDM/v6/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C50-IDEDM/v6/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1C70-IDDDM",
+      "title": "1C70 IDDDM",
+      "family": "1C70",
+      "source_pages": [
+        27,
+        28
+      ],
+      "folder": "templates/1C70-IDDDM",
+      "visual_artifacts": [
+        "templates/1C70-IDDDM/page_27.png",
+        "templates/1C70-IDDDM/page_28.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1C70-IDDDM_v1",
+          "source_page": 27,
+          "label_image": "templates/1C70-IDDDM/v1/label.png",
+          "template_json": "templates/1C70-IDDDM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C70-IDDDM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1C70-IDDDM_v2",
+          "source_page": 27,
+          "label_image": "templates/1C70-IDDDM/v2/label.png",
+          "template_json": "templates/1C70-IDDDM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C70-IDDDM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1C70-IDDDM_v3",
+          "source_page": 28,
+          "label_image": "templates/1C70-IDDDM/v3/label.png",
+          "template_json": "templates/1C70-IDDDM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C70-IDDDM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1C70-IDDDM_v4",
+          "source_page": 28,
+          "label_image": "templates/1C70-IDDDM/v4/label.png",
+          "template_json": "templates/1C70-IDDDM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C70-IDDDM/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "1C70-IDDDM_v5",
+          "source_page": 28,
+          "label_image": "templates/1C70-IDDDM/v5/label.png",
+          "template_json": "templates/1C70-IDDDM/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C70-IDDDM/v5/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1C50-CAA",
+      "title": "1C50 CAA",
+      "family": "1C50",
+      "source_pages": [
+        29
+      ],
+      "folder": "templates/1C50-CAA",
+      "visual_artifacts": [
+        "templates/1C50-CAA/page_29.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1C50-CAA_v1",
+          "source_page": 29,
+          "label_image": "templates/1C50-CAA/v1/label.png",
+          "template_json": "templates/1C50-CAA/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C50-CAA/v1/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1C70-CAA",
+      "title": "1C70 CAA",
+      "family": "1C70",
+      "source_pages": [
+        30
+      ],
+      "folder": "templates/1C70-CAA",
+      "visual_artifacts": [
+        "templates/1C70-CAA/page_30.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1C70-CAA_v1",
+          "source_page": 30,
+          "label_image": "templates/1C70-CAA/v1/label.png",
+          "template_json": "templates/1C70-CAA/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1C70-CAA/v1/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "L10555-MIADM",
+      "title": "L10555 MIADM",
+      "family": "L-MIADM",
+      "source_pages": [
+        31
+      ],
+      "folder": "templates/L10555-MIADM",
+      "visual_artifacts": [
+        "templates/L10555-MIADM/page_31.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "L10555-MIADM_v1",
+          "source_page": 31,
+          "label_image": "templates/L10555-MIADM/v1/label.png",
+          "template_json": "templates/L10555-MIADM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L10555-MIADM/v1/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "L5727-PRADM",
+      "title": "L5727 PRADM",
+      "family": "L-PRADM",
+      "source_pages": [
+        32
+      ],
+      "folder": "templates/L5727-PRADM",
+      "visual_artifacts": [
+        "templates/L5727-PRADM/page_32.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "L5727-PRADM_v1",
+          "source_page": 32,
+          "label_image": "templates/L5727-PRADM/v1/label.png",
+          "template_json": "templates/L5727-PRADM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L5727-PRADM/v1/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "L4515-PRADM",
+      "title": "L4515 PRADM",
+      "family": "L-PRADM",
+      "source_pages": [
+        33,
+        34
+      ],
+      "folder": "templates/L4515-PRADM",
+      "visual_artifacts": [
+        "templates/L4515-PRADM/page_33.png",
+        "templates/L4515-PRADM/page_34.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "L4515-PRADM_v1",
+          "source_page": 33,
+          "label_image": "templates/L4515-PRADM/v1/label.png",
+          "template_json": "templates/L4515-PRADM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "L4515-PRADM_v2",
+          "source_page": 33,
+          "label_image": "templates/L4515-PRADM/v2/label.png",
+          "template_json": "templates/L4515-PRADM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "L4515-PRADM_v3",
+          "source_page": 33,
+          "label_image": "templates/L4515-PRADM/v3/label.png",
+          "template_json": "templates/L4515-PRADM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "L4515-PRADM_v4",
+          "source_page": 33,
+          "label_image": "templates/L4515-PRADM/v4/label.png",
+          "template_json": "templates/L4515-PRADM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "L4515-PRADM_v5",
+          "source_page": 33,
+          "label_image": "templates/L4515-PRADM/v5/label.png",
+          "template_json": "templates/L4515-PRADM/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v5/label.pdf"
+        },
+        {
+          "variant_id": "v6",
+          "template_id": "L4515-PRADM_v6",
+          "source_page": 33,
+          "label_image": "templates/L4515-PRADM/v6/label.png",
+          "template_json": "templates/L4515-PRADM/v6/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v6/label.pdf"
+        },
+        {
+          "variant_id": "v7",
+          "template_id": "L4515-PRADM_v7",
+          "source_page": 33,
+          "label_image": "templates/L4515-PRADM/v7/label.png",
+          "template_json": "templates/L4515-PRADM/v7/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v7/label.pdf"
+        },
+        {
+          "variant_id": "v8",
+          "template_id": "L4515-PRADM_v8",
+          "source_page": 33,
+          "label_image": "templates/L4515-PRADM/v8/label.png",
+          "template_json": "templates/L4515-PRADM/v8/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v8/label.pdf"
+        },
+        {
+          "variant_id": "v9",
+          "template_id": "L4515-PRADM_v9",
+          "source_page": 34,
+          "label_image": "templates/L4515-PRADM/v9/label.png",
+          "template_json": "templates/L4515-PRADM/v9/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v9/label.pdf"
+        },
+        {
+          "variant_id": "v10",
+          "template_id": "L4515-PRADM_v10",
+          "source_page": 34,
+          "label_image": "templates/L4515-PRADM/v10/label.png",
+          "template_json": "templates/L4515-PRADM/v10/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v10/label.pdf"
+        },
+        {
+          "variant_id": "v11",
+          "template_id": "L4515-PRADM_v11",
+          "source_page": 34,
+          "label_image": "templates/L4515-PRADM/v11/label.png",
+          "template_json": "templates/L4515-PRADM/v11/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v11/label.pdf"
+        },
+        {
+          "variant_id": "v12",
+          "template_id": "L4515-PRADM_v12",
+          "source_page": 34,
+          "label_image": "templates/L4515-PRADM/v12/label.png",
+          "template_json": "templates/L4515-PRADM/v12/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v12/label.pdf"
+        },
+        {
+          "variant_id": "v13",
+          "template_id": "L4515-PRADM_v13",
+          "source_page": 34,
+          "label_image": "templates/L4515-PRADM/v13/label.png",
+          "template_json": "templates/L4515-PRADM/v13/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v13/label.pdf"
+        },
+        {
+          "variant_id": "v14",
+          "template_id": "L4515-PRADM_v14",
+          "source_page": 34,
+          "label_image": "templates/L4515-PRADM/v14/label.png",
+          "template_json": "templates/L4515-PRADM/v14/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v14/label.pdf"
+        },
+        {
+          "variant_id": "v15",
+          "template_id": "L4515-PRADM_v15",
+          "source_page": 34,
+          "label_image": "templates/L4515-PRADM/v15/label.png",
+          "template_json": "templates/L4515-PRADM/v15/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v15/label.pdf"
+        },
+        {
+          "variant_id": "v16",
+          "template_id": "L4515-PRADM_v16",
+          "source_page": 34,
+          "label_image": "templates/L4515-PRADM/v16/label.png",
+          "template_json": "templates/L4515-PRADM/v16/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v16/label.pdf"
+        },
+        {
+          "variant_id": "v17",
+          "template_id": "L4515-PRADM_v17",
+          "source_page": 34,
+          "label_image": "templates/L4515-PRADM/v17/label.png",
+          "template_json": "templates/L4515-PRADM/v17/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L4515-PRADM/v17/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "2R20-IDEDM",
+      "title": "2R20 IDEDM",
+      "family": "2R20",
+      "source_pages": [
+        35
+      ],
+      "folder": "templates/2R20-IDEDM",
+      "visual_artifacts": [
+        "templates/2R20-IDEDM/page_35.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "2R20-IDEDM_v1",
+          "source_page": 35,
+          "label_image": "templates/2R20-IDEDM/v1/label.png",
+          "template_json": "templates/2R20-IDEDM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/2R20-IDEDM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "2R20-IDEDM_v2",
+          "source_page": 35,
+          "label_image": "templates/2R20-IDEDM/v2/label.png",
+          "template_json": "templates/2R20-IDEDM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/2R20-IDEDM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "2R20-IDEDM_v3",
+          "source_page": 35,
+          "label_image": "templates/2R20-IDEDM/v3/label.png",
+          "template_json": "templates/2R20-IDEDM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/2R20-IDEDM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "2R20-IDEDM_v4",
+          "source_page": 35,
+          "label_image": "templates/2R20-IDEDM/v4/label.png",
+          "template_json": "templates/2R20-IDEDM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/2R20-IDEDM/v4/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "2R35-IDEDM",
+      "title": "2R35 IDEDM",
+      "family": "2R35",
+      "source_pages": [
+        36
+      ],
+      "folder": "templates/2R35-IDEDM",
+      "visual_artifacts": [
+        "templates/2R35-IDEDM/page_36.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "2R35-IDEDM_v1",
+          "source_page": 36,
+          "label_image": "templates/2R35-IDEDM/v1/label.png",
+          "template_json": "templates/2R35-IDEDM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/2R35-IDEDM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "2R35-IDEDM_v2",
+          "source_page": 36,
+          "label_image": "templates/2R35-IDEDM/v2/label.png",
+          "template_json": "templates/2R35-IDEDM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/2R35-IDEDM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "2R35-IDEDM_v3",
+          "source_page": 36,
+          "label_image": "templates/2R35-IDEDM/v3/label.png",
+          "template_json": "templates/2R35-IDEDM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/2R35-IDEDM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "2R35-IDEDM_v4",
+          "source_page": 36,
+          "label_image": "templates/2R35-IDEDM/v4/label.png",
+          "template_json": "templates/2R35-IDEDM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/2R35-IDEDM/v4/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1R90-1R70-1R50",
+      "title": "1R90 1R70 1R50",
+      "family": "1R-large",
+      "source_pages": [
+        37
+      ],
+      "folder": "templates/1R90-1R70-1R50",
+      "visual_artifacts": [
+        "templates/1R90-1R70-1R50/page_37.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1R90-1R70-1R50_v1",
+          "source_page": 37,
+          "label_image": "templates/1R90-1R70-1R50/v1/label.png",
+          "template_json": "templates/1R90-1R70-1R50/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R90-1R70-1R50/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1R90-1R70-1R50_v2",
+          "source_page": 37,
+          "label_image": "templates/1R90-1R70-1R50/v2/label.png",
+          "template_json": "templates/1R90-1R70-1R50/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R90-1R70-1R50/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1R90-1R70-1R50_v3",
+          "source_page": 37,
+          "label_image": "templates/1R90-1R70-1R50/v3/label.png",
+          "template_json": "templates/1R90-1R70-1R50/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R90-1R70-1R50/v3/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1R7-IDBDM",
+      "title": "1R7 IDBDM",
+      "family": "1R7",
+      "source_pages": [
+        38
+      ],
+      "folder": "templates/1R7-IDBDM",
+      "visual_artifacts": [
+        "templates/1R7-IDBDM/page_38.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1R7-IDBDM_v1",
+          "source_page": 38,
+          "label_image": "templates/1R7-IDBDM/v1/label.png",
+          "template_json": "templates/1R7-IDBDM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R7-IDBDM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1R7-IDBDM_v2",
+          "source_page": 38,
+          "label_image": "templates/1R7-IDBDM/v2/label.png",
+          "template_json": "templates/1R7-IDBDM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R7-IDBDM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1R7-IDBDM_v3",
+          "source_page": 38,
+          "label_image": "templates/1R7-IDBDM/v3/label.png",
+          "template_json": "templates/1R7-IDBDM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R7-IDBDM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1R7-IDBDM_v4",
+          "source_page": 38,
+          "label_image": "templates/1R7-IDBDM/v4/label.png",
+          "template_json": "templates/1R7-IDBDM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R7-IDBDM/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "1R7-IDBDM_v5",
+          "source_page": 38,
+          "label_image": "templates/1R7-IDBDM/v5/label.png",
+          "template_json": "templates/1R7-IDBDM/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R7-IDBDM/v5/label.pdf"
+        },
+        {
+          "variant_id": "v6",
+          "template_id": "1R7-IDBDM_v6",
+          "source_page": 38,
+          "label_image": "templates/1R7-IDBDM/v6/label.png",
+          "template_json": "templates/1R7-IDBDM/v6/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R7-IDBDM/v6/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1R25-IDEDM",
+      "title": "1R25 IDEDM",
+      "family": "1R25",
+      "source_pages": [
+        39,
+        40,
+        41
+      ],
+      "folder": "templates/1R25-IDEDM",
+      "visual_artifacts": [
+        "templates/1R25-IDEDM/page_39.png",
+        "templates/1R25-IDEDM/page_40.png",
+        "templates/1R25-IDEDM/page_41.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1R25-IDEDM_v1",
+          "source_page": 39,
+          "label_image": "templates/1R25-IDEDM/v1/label.png",
+          "template_json": "templates/1R25-IDEDM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDEDM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1R25-IDEDM_v2",
+          "source_page": 39,
+          "label_image": "templates/1R25-IDEDM/v2/label.png",
+          "template_json": "templates/1R25-IDEDM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDEDM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1R25-IDEDM_v3",
+          "source_page": 39,
+          "label_image": "templates/1R25-IDEDM/v3/label.png",
+          "template_json": "templates/1R25-IDEDM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDEDM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1R25-IDEDM_v4",
+          "source_page": 39,
+          "label_image": "templates/1R25-IDEDM/v4/label.png",
+          "template_json": "templates/1R25-IDEDM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDEDM/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "1R25-IDEDM_v5",
+          "source_page": 39,
+          "label_image": "templates/1R25-IDEDM/v5/label.png",
+          "template_json": "templates/1R25-IDEDM/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDEDM/v5/label.pdf"
+        },
+        {
+          "variant_id": "v6",
+          "template_id": "1R25-IDEDM_v6",
+          "source_page": 40,
+          "label_image": "templates/1R25-IDEDM/v6/label.png",
+          "template_json": "templates/1R25-IDEDM/v6/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDEDM/v6/label.pdf"
+        },
+        {
+          "variant_id": "v7",
+          "template_id": "1R25-IDEDM_v7",
+          "source_page": 40,
+          "label_image": "templates/1R25-IDEDM/v7/label.png",
+          "template_json": "templates/1R25-IDEDM/v7/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDEDM/v7/label.pdf"
+        },
+        {
+          "variant_id": "v8",
+          "template_id": "1R25-IDEDM_v8",
+          "source_page": 40,
+          "label_image": "templates/1R25-IDEDM/v8/label.png",
+          "template_json": "templates/1R25-IDEDM/v8/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDEDM/v8/label.pdf"
+        },
+        {
+          "variant_id": "v9",
+          "template_id": "1R25-IDEDM_v9",
+          "source_page": 41,
+          "label_image": "templates/1R25-IDEDM/v9/label.png",
+          "template_json": "templates/1R25-IDEDM/v9/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDEDM/v9/label.pdf"
+        },
+        {
+          "variant_id": "v10",
+          "template_id": "1R25-IDEDM_v10",
+          "source_page": 41,
+          "label_image": "templates/1R25-IDEDM/v10/label.png",
+          "template_json": "templates/1R25-IDEDM/v10/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDEDM/v10/label.pdf"
+        },
+        {
+          "variant_id": "v11",
+          "template_id": "1R25-IDEDM_v11",
+          "source_page": 41,
+          "label_image": "templates/1R25-IDEDM/v11/label.png",
+          "template_json": "templates/1R25-IDEDM/v11/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDEDM/v11/label.pdf"
+        },
+        {
+          "variant_id": "v12",
+          "template_id": "1R25-IDEDM_v12",
+          "source_page": 41,
+          "label_image": "templates/1R25-IDEDM/v12/label.png",
+          "template_json": "templates/1R25-IDEDM/v12/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDEDM/v12/label.pdf"
+        },
+        {
+          "variant_id": "v13",
+          "template_id": "1R25-IDEDM_v13",
+          "source_page": 41,
+          "label_image": "templates/1R25-IDEDM/v13/label.png",
+          "template_json": "templates/1R25-IDEDM/v13/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDEDM/v13/label.pdf"
+        },
+        {
+          "variant_id": "v14",
+          "template_id": "1R25-IDEDM_v14",
+          "source_page": 41,
+          "label_image": "templates/1R25-IDEDM/v14/label.png",
+          "template_json": "templates/1R25-IDEDM/v14/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDEDM/v14/label.pdf"
+        },
+        {
+          "variant_id": "v15",
+          "template_id": "1R25-IDEDM_v15",
+          "source_page": 41,
+          "label_image": "templates/1R25-IDEDM/v15/label.png",
+          "template_json": "templates/1R25-IDEDM/v15/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R25-IDEDM/v15/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1R35-ITF-addendum",
+      "title": "1R35 ITF addendum",
+      "family": "1R35",
+      "source_pages": [
+        42,
+        49
+      ],
+      "folder": "templates/1R35-ITF-addendum",
+      "visual_artifacts": [
+        "templates/1R35-ITF-addendum/page_42.png",
+        "templates/1R35-ITF-addendum/page_49.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1R35-ITF-addendum_v1",
+          "source_page": 42,
+          "label_image": "templates/1R35-ITF-addendum/v1/label.png",
+          "template_json": "templates/1R35-ITF-addendum/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-ITF-addendum/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1R35-ITF-addendum_v2",
+          "source_page": 42,
+          "label_image": "templates/1R35-ITF-addendum/v2/label.png",
+          "template_json": "templates/1R35-ITF-addendum/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-ITF-addendum/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1R35-ITF-addendum_v3",
+          "source_page": 42,
+          "label_image": "templates/1R35-ITF-addendum/v3/label.png",
+          "template_json": "templates/1R35-ITF-addendum/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-ITF-addendum/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1R35-ITF-addendum_v4",
+          "source_page": 42,
+          "label_image": "templates/1R35-ITF-addendum/v4/label.png",
+          "template_json": "templates/1R35-ITF-addendum/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-ITF-addendum/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "1R35-ITF-addendum_v5",
+          "source_page": 42,
+          "label_image": "templates/1R35-ITF-addendum/v5/label.png",
+          "template_json": "templates/1R35-ITF-addendum/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-ITF-addendum/v5/label.pdf"
+        },
+        {
+          "variant_id": "v6",
+          "template_id": "1R35-ITF-addendum_v6",
+          "source_page": 49,
+          "label_image": "templates/1R35-ITF-addendum/v6/label.png",
+          "template_json": "templates/1R35-ITF-addendum/v6/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-ITF-addendum/v6/label.pdf"
+        },
+        {
+          "variant_id": "v7",
+          "template_id": "1R35-ITF-addendum_v7",
+          "source_page": 49,
+          "label_image": "templates/1R35-ITF-addendum/v7/label.png",
+          "template_json": "templates/1R35-ITF-addendum/v7/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-ITF-addendum/v7/label.pdf"
+        },
+        {
+          "variant_id": "v8",
+          "template_id": "1R35-ITF-addendum_v8",
+          "source_page": 49,
+          "label_image": "templates/1R35-ITF-addendum/v8/label.png",
+          "template_json": "templates/1R35-ITF-addendum/v8/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-ITF-addendum/v8/label.pdf"
+        },
+        {
+          "variant_id": "v9",
+          "template_id": "1R35-ITF-addendum_v9",
+          "source_page": 49,
+          "label_image": "templates/1R35-ITF-addendum/v9/label.png",
+          "template_json": "templates/1R35-ITF-addendum/v9/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R35-ITF-addendum/v9/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1R50-ITF-addendum",
+      "title": "1R50 ITF addendum",
+      "family": "1R50",
+      "source_pages": [
+        43
+      ],
+      "folder": "templates/1R50-ITF-addendum",
+      "visual_artifacts": [
+        "templates/1R50-ITF-addendum/page_43.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1R50-ITF-addendum_v1",
+          "source_page": 43,
+          "label_image": "templates/1R50-ITF-addendum/v1/label.png",
+          "template_json": "templates/1R50-ITF-addendum/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R50-ITF-addendum/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "1R50-ITF-addendum_v2",
+          "source_page": 43,
+          "label_image": "templates/1R50-ITF-addendum/v2/label.png",
+          "template_json": "templates/1R50-ITF-addendum/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R50-ITF-addendum/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "1R50-ITF-addendum_v3",
+          "source_page": 43,
+          "label_image": "templates/1R50-ITF-addendum/v3/label.png",
+          "template_json": "templates/1R50-ITF-addendum/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R50-ITF-addendum/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "1R50-ITF-addendum_v4",
+          "source_page": 43,
+          "label_image": "templates/1R50-ITF-addendum/v4/label.png",
+          "template_json": "templates/1R50-ITF-addendum/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R50-ITF-addendum/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "1R50-ITF-addendum_v5",
+          "source_page": 43,
+          "label_image": "templates/1R50-ITF-addendum/v5/label.png",
+          "template_json": "templates/1R50-ITF-addendum/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1R50-ITF-addendum/v5/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "L25025-IDFDM",
+      "title": "L25025 IDFDM",
+      "family": "L-IDFDM",
+      "source_pages": [
+        44
+      ],
+      "folder": "templates/L25025-IDFDM",
+      "visual_artifacts": [
+        "templates/L25025-IDFDM/page_44.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "L25025-IDFDM_v1",
+          "source_page": 44,
+          "label_image": "templates/L25025-IDFDM/v1/label.png",
+          "template_json": "templates/L25025-IDFDM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L25025-IDFDM/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "L25025-IDFDM_v2",
+          "source_page": 44,
+          "label_image": "templates/L25025-IDFDM/v2/label.png",
+          "template_json": "templates/L25025-IDFDM/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L25025-IDFDM/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "L25025-IDFDM_v3",
+          "source_page": 44,
+          "label_image": "templates/L25025-IDFDM/v3/label.png",
+          "template_json": "templates/L25025-IDFDM/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L25025-IDFDM/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "L25025-IDFDM_v4",
+          "source_page": 44,
+          "label_image": "templates/L25025-IDFDM/v4/label.png",
+          "template_json": "templates/L25025-IDFDM/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/L25025-IDFDM/v4/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1CIR24",
+      "title": "1CIR24",
+      "family": "1CIR",
+      "source_pages": [
+        45
+      ],
+      "folder": "templates/1CIR24",
+      "visual_artifacts": [
+        "templates/1CIR24/page_45.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1CIR24_v1",
+          "source_page": 45,
+          "label_image": "templates/1CIR24/v1/label.png",
+          "template_json": "templates/1CIR24/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR24/v1/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1CIR40-IDBDM",
+      "title": "1CIR40 IDBDM",
+      "family": "1CIR40",
+      "source_pages": [
+        46
+      ],
+      "folder": "templates/1CIR40-IDBDM",
+      "visual_artifacts": [
+        "templates/1CIR40-IDBDM/page_46.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1CIR40-IDBDM_v1",
+          "source_page": 46,
+          "label_image": "templates/1CIR40-IDBDM/v1/label.png",
+          "template_json": "templates/1CIR40-IDBDM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR40-IDBDM/v1/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "COA-IDADM-NUA",
+      "title": "COA IDADM NUA",
+      "family": "COA",
+      "source_pages": [
+        47
+      ],
+      "folder": "templates/COA-IDADM-NUA",
+      "visual_artifacts": [
+        "templates/COA-IDADM-NUA/page_47.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "COA-IDADM-NUA_v1",
+          "source_page": 47,
+          "label_image": "templates/COA-IDADM-NUA/v1/label.png",
+          "template_json": "templates/COA-IDADM-NUA/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/COA-IDADM-NUA/v1/label.pdf"
+        },
+        {
+          "variant_id": "v2",
+          "template_id": "COA-IDADM-NUA_v2",
+          "source_page": 47,
+          "label_image": "templates/COA-IDADM-NUA/v2/label.png",
+          "template_json": "templates/COA-IDADM-NUA/v2/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/COA-IDADM-NUA/v2/label.pdf"
+        },
+        {
+          "variant_id": "v3",
+          "template_id": "COA-IDADM-NUA_v3",
+          "source_page": 47,
+          "label_image": "templates/COA-IDADM-NUA/v3/label.png",
+          "template_json": "templates/COA-IDADM-NUA/v3/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/COA-IDADM-NUA/v3/label.pdf"
+        },
+        {
+          "variant_id": "v4",
+          "template_id": "COA-IDADM-NUA_v4",
+          "source_page": 47,
+          "label_image": "templates/COA-IDADM-NUA/v4/label.png",
+          "template_json": "templates/COA-IDADM-NUA/v4/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/COA-IDADM-NUA/v4/label.pdf"
+        },
+        {
+          "variant_id": "v5",
+          "template_id": "COA-IDADM-NUA_v5",
+          "source_page": 47,
+          "label_image": "templates/COA-IDADM-NUA/v5/label.png",
+          "template_json": "templates/COA-IDADM-NUA/v5/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/COA-IDADM-NUA/v5/label.pdf"
+        },
+        {
+          "variant_id": "v6",
+          "template_id": "COA-IDADM-NUA_v6",
+          "source_page": 47,
+          "label_image": "templates/COA-IDADM-NUA/v6/label.png",
+          "template_json": "templates/COA-IDADM-NUA/v6/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/COA-IDADM-NUA/v6/label.pdf"
+        },
+        {
+          "variant_id": "v7",
+          "template_id": "COA-IDADM-NUA_v7",
+          "source_page": 47,
+          "label_image": "templates/COA-IDADM-NUA/v7/label.png",
+          "template_json": "templates/COA-IDADM-NUA/v7/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/COA-IDADM-NUA/v7/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    },
+    {
+      "key": "1CIR40-IDFDM",
+      "title": "1CIR40 IDFDM",
+      "family": "1CIR40",
+      "source_pages": [
+        48
+      ],
+      "folder": "templates/1CIR40-IDFDM",
+      "visual_artifacts": [
+        "templates/1CIR40-IDFDM/page_48.png"
+      ],
+      "variants": [
+        {
+          "variant_id": "v1",
+          "template_id": "1CIR40-IDFDM_v1",
+          "source_page": 48,
+          "label_image": "templates/1CIR40-IDFDM/v1/label.png",
+          "template_json": "templates/1CIR40-IDFDM/v1/template.json",
+          "has_rich_json": true,
+          "label_pdf": "templates/1CIR40-IDFDM/v1/label.pdf"
+        }
+      ],
+      "has_rich_json": true
+    }
+  ]
+}

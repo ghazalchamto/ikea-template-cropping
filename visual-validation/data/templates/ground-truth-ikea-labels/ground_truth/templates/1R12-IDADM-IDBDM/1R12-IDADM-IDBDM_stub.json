@@ -1,0 +1,24 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "1R12-IDADM-IDBDM",
+  "display_name": "1R12-IDADM/IDBDM — 1-row 12× label with DataMatrix",
+  "family": "1R12",
+  "source_pages": [
+    7,
+    8,
+    9
+  ],
+  "visual_artifacts": [
+    "page_07.png",
+    "page_08.png",
+    "page_09.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

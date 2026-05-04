@@ -1,0 +1,20 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "1CIR30",
+  "display_name": "1CIR30 — 30mm circular label (Patents layout)",
+  "family": "1CIR",
+  "source_pages": [
+    23
+  ],
+  "visual_artifacts": [
+    "page_23.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

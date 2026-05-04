@@ -1,0 +1,45 @@
+{
+  "product_code": "1CIR24",
+  "page_size": {
+    "width": 1000,
+    "height": 962
+  },
+  "regions": [
+    {
+      "name": "bot_legal",
+      "type": "text_block",
+      "bbox_norm": [
+        0.15,
+        0.78,
+        0.0795,
+        0.0826
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    },
+    {
+      "name": "mid_dimensions",
+      "type": "text_block",
+      "bbox_norm": [
+        0.31,
+        0.22,
+        0.3975,
+        0.1043
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "1CIR24_v1",
+    "family": "1CIR",
+    "template_version": "v1"
+  },
+  "label_rect_pts": [
+    0.12,
+    2.61,
+    67.91,
+    67.91
+  ]
+}

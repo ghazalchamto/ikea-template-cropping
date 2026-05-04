@@ -1,0 +1,531 @@
+{
+  "$schema": "../../schema/template.schema.json",
+  "template_id": "1R25-IDEDM_v9",
+  "display_name": "1R25-IDEDM Variant 9 — copy-count, legal-symbols",
+  "family": "1R25",
+  "inherits_from": "1R25-IDEDM",
+  "label_image": "label.png",
+  "source_page": 41,
+  "label_rect_pts": {
+    "x0": 0.25,
+    "y0": 0.43,
+    "x1": 100.03,
+    "y1": 58.54
+  },
+  "label_size_mm": {
+    "width_mm": 35.2,
+    "height_mm": 20.5
+  },
+  "orientation": "landscape",
+  "source_evidence": {
+    "page": 41,
+    "position_on_page": "variant row 9",
+    "snippet": "1R25-IDEDM — copy-count, legal-symbols",
+    "evidence_type": "label_spec_text"
+  },
+  "elements": [
+    {
+      "element_id": "article_number",
+      "label": "Article number",
+      "semantic_role": "product_identity",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "000.000.00",
+      "placement": {
+        "zone": "left_identity",
+        "position_notes": "Detected at relative position (0.09, 0.33) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 41,
+        "evidence_type": "label_spec_text",
+        "snippet": "000.000.00"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 1.8,
+        "case": "mixed"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "variant_dependent",
+        "note": "Background: transparent (SM), grey (MD/LG), black (XL) — see element_variants.json"
+      },
+      "size_spec": {
+        "width_mm_approx": 9.5,
+        "height_mm_approx": 2.4
+      },
+      "allowed_patterns": [
+        "^\\d{3}[.\\-]\\d{3}[.\\-]\\d{2}$"
+      ]
+    },
+    {
+      "element_id": "article_code",
+      "label": "Article code (short)",
+      "semantic_role": "product_identity",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "12345",
+      "placement": {
+        "zone": "center_barcode",
+        "position_notes": "Detected at relative position (0.39, 0.34) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 41,
+        "evidence_type": "label_spec_text",
+        "snippet": "12345"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 1.4,
+        "case": "mixed"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 3.8,
+        "height_mm_approx": 1.9
+      },
+      "allowed_patterns": [
+        "^\\d{5}$"
+      ]
+    },
+    {
+      "element_id": "datamatrix_block",
+      "label": "DataMatrix barcode block",
+      "semantic_role": "barcode_symbol",
+      "type": "datamatrix",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "AI(240)12345678123451",
+      "placement": {
+        "zone": "center_barcode",
+        "position_notes": "Detected at relative position (0.32, 0.54) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 41,
+        "evidence_type": "label_spec_text",
+        "snippet": "AI(240)12345678123451"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 1.4
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 15.2,
+        "height_mm_approx": 1.9
+      },
+      "allowed_patterns": [
+        "GS1 DataMatrix application identifiers"
+      ],
+      "shared_spec_ref": "DM_RECT"
+    },
+    {
+      "element_id": "address_block",
+      "label": "Address and copyright block",
+      "semantic_role": "address_block",
+      "type": "composite_block",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "IKEA.com",
+      "placement": {
+        "zone": "center_address",
+        "position_notes": "Detected at relative position (0.58, 0.62) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 41,
+        "evidence_type": "label_spec_text",
+        "snippet": "IKEA.com"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 1.4
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 6.6,
+        "height_mm_approx": 1.9
+      }
+    },
+    {
+      "element_id": "origin_text",
+      "label": "Country of origin / assembly text",
+      "semantic_role": "origin_text",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "Made in People’s Republic of China",
+      "placement": {
+        "zone": "left_identity",
+        "position_notes": "Detected at relative position (0.07, 0.88) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 41,
+        "evidence_type": "label_spec_text",
+        "snippet": "Made in People’s Republic of China"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 1.4,
+        "case": "mixed"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 24.3,
+        "height_mm_approx": 1.9
+      },
+      "allowed_patterns": [
+        "^(Made in|Assembled in USA from Imported Materials|Assembled in) .+$"
+      ],
+      "allowed_values": [
+        "Made in People's Republic of China",
+        "Assembled in USA from Imported Materials",
+        "Made in Vietnam",
+        "Made in Poland",
+        "Made in India",
+        "Made in Bangladesh",
+        "Made in Pakistan"
+      ]
+    },
+    {
+      "element_id": "legal_symbol",
+      "label": "Legal / compliance symbol",
+      "semantic_role": "compliance_symbol",
+      "type": "image",
+      "required": false,
+      "repeatable": true,
+      "content_type": "static",
+      "example_value": "Legal",
+      "placement": {
+        "zone": "right_date",
+        "position_notes": "Detected at relative position (0.86, 0.76) within label",
+        "alignment": "center",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 41,
+        "evidence_type": "label_spec_text",
+        "snippet": "Legal"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 1.1
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 2.7,
+        "height_mm_approx": 1.4
+      }
+    },
+    {
+      "element_id": "copy_count",
+      "label": "Copy count",
+      "semantic_role": "copy_count",
+      "type": "text",
+      "required": false,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "1(3)",
+      "placement": {
+        "zone": "center_address",
+        "position_notes": "Detected at relative position (0.53, 0.34) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 41,
+        "evidence_type": "label_spec_text",
+        "snippet": "1(3)"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 1.4,
+        "case": "numeric"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 2.3,
+        "height_mm_approx": 1.9
+      },
+      "allowed_patterns": [
+        "^\\d+$"
+      ]
+    }
+  ],
+  "overrides": [],
+  "rules": [
+    {
+      "rule_id": "1R25-IDEDM_v9-R001",
+      "rule_type": "presence_rule",
+      "scope": "1R25-IDEDM_v9",
+      "condition": "always",
+      "target": "compliance_block",
+      "actions": [
+        {
+          "action_type": "remove",
+          "description": "No compliance block in this variant"
+        }
+      ],
+      "severity": "must",
+      "normalized_text": "compliance_block MUST NOT be present",
+      "evidence": {
+        "page": null,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Variant v9 diagram shows no compliance zone"
+      }
+    },
+    {
+      "rule_id": "1R25-IDEDM_v9-R002",
+      "rule_type": "presence_rule",
+      "scope": "1R25-IDEDM_v9",
+      "condition": "always",
+      "target": "copy_count",
+      "actions": [
+        {
+          "action_type": "require",
+          "description": "Copy count strip must be present"
+        }
+      ],
+      "severity": "must",
+      "normalized_text": "copy_count MUST be present",
+      "evidence": {
+        "page": null,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Variant v9 shows copy count strip"
+      }
+    }
+  ],
+  "validation_targets": [
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-001",
+      "check_type": "element_presence",
+      "element_id": "article_number",
+      "severity": "must",
+      "description": "Required element 'article_number' must be present"
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-002",
+      "check_type": "element_content_format",
+      "element_id": "article_number",
+      "severity": "must",
+      "description": "Element 'article_number' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^\\d{3}[.\\-]\\d{3}[.\\-]\\d{2}$"
+      ]
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-003",
+      "check_type": "element_placement",
+      "element_id": "article_number",
+      "severity": "must",
+      "description": "Element 'article_number' must be in zone 'left_identity'",
+      "expected_zone": "left_identity"
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-004",
+      "check_type": "element_presence",
+      "element_id": "article_code",
+      "severity": "must",
+      "description": "Required element 'article_code' must be present"
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-005",
+      "check_type": "element_content_format",
+      "element_id": "article_code",
+      "severity": "must",
+      "description": "Element 'article_code' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^\\d{5}$"
+      ]
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-006",
+      "check_type": "element_placement",
+      "element_id": "article_code",
+      "severity": "must",
+      "description": "Element 'article_code' must be in zone 'center_barcode'",
+      "expected_zone": "center_barcode"
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-007",
+      "check_type": "element_presence",
+      "element_id": "datamatrix_block",
+      "severity": "must",
+      "description": "Required element 'datamatrix_block' must be present"
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-008",
+      "check_type": "element_content_format",
+      "element_id": "datamatrix_block",
+      "severity": "must",
+      "description": "Element 'datamatrix_block' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "GS1 DataMatrix application identifiers"
+      ]
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-009",
+      "check_type": "element_placement",
+      "element_id": "datamatrix_block",
+      "severity": "must",
+      "description": "Element 'datamatrix_block' must be in zone 'center_barcode'",
+      "expected_zone": "center_barcode"
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-010",
+      "check_type": "element_presence",
+      "element_id": "address_block",
+      "severity": "must",
+      "description": "Required element 'address_block' must be present"
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-011",
+      "check_type": "element_placement",
+      "element_id": "address_block",
+      "severity": "must",
+      "description": "Element 'address_block' must be in zone 'center_address'",
+      "expected_zone": "center_address"
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-012",
+      "check_type": "element_presence",
+      "element_id": "origin_text",
+      "severity": "must",
+      "description": "Required element 'origin_text' must be present"
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-013",
+      "check_type": "element_content_format",
+      "element_id": "origin_text",
+      "severity": "must",
+      "description": "Element 'origin_text' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^(Made in|Assembled in USA from Imported Materials|Assembled in) .+$"
+      ]
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-014",
+      "check_type": "element_placement",
+      "element_id": "origin_text",
+      "severity": "must",
+      "description": "Element 'origin_text' must be in zone 'left_identity'",
+      "expected_zone": "left_identity"
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-015",
+      "check_type": "element_presence",
+      "element_id": "legal_symbol",
+      "severity": "should",
+      "description": "Optional element 'legal_symbol' should be present"
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-016",
+      "check_type": "element_placement",
+      "element_id": "legal_symbol",
+      "severity": "should",
+      "description": "Element 'legal_symbol' must be in zone 'right_date'",
+      "expected_zone": "right_date"
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-017",
+      "check_type": "element_presence",
+      "element_id": "copy_count",
+      "severity": "should",
+      "description": "Optional element 'copy_count' should be present"
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-018",
+      "check_type": "element_content_format",
+      "element_id": "copy_count",
+      "severity": "should",
+      "description": "Element 'copy_count' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^\\d+$"
+      ]
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-019",
+      "check_type": "element_placement",
+      "element_id": "copy_count",
+      "severity": "should",
+      "description": "Element 'copy_count' must be in zone 'center_address'",
+      "expected_zone": "center_address"
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-020",
+      "check_type": "visual_hierarchy",
+      "element_id": "article_number",
+      "related_element_id": "article_code",
+      "severity": "must",
+      "description": "article_number font size must be visually larger than article_code"
+    },
+    {
+      "check_id": "1R25-IDEDM_v9-CHK-021",
+      "check_type": "cross_element_consistency",
+      "element_id": "origin_text",
+      "related_element_id": "address_block",
+      "severity": "must",
+      "description": "Origin country must not contradict address block region"
+    }
+  ],
+  "review_state": {
+    "confidence": 0.82,
+    "needs_review": false,
+    "review_notes": "Auto-generated from PDF text extraction (page 41). Elements detected: ['article_number', 'article_code', 'datamatrix_block', 'address_block', 'origin_text', 'legal_symbol', 'copy_count']. Verify font sizes, zone boundaries, and rule completeness against label image."
+  }
+}

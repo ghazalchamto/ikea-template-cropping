@@ -1,0 +1,20 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "1CIR40-IDFDM",
+  "display_name": "1CIR40-IDFDM — 40mm circular label for plants/pots",
+  "family": "1CIR40",
+  "source_pages": [
+    48
+  ],
+  "visual_artifacts": [
+    "page_48.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

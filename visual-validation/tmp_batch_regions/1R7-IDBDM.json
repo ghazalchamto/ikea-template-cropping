@@ -1,0 +1,81 @@
+{
+  "product_code": "1R7-IDBDM",
+  "page_size": {
+    "width": 1000,
+    "height": 33
+  },
+  "regions": [
+    {
+      "name": "left_identity",
+      "type": "text_block",
+      "bbox_norm": [
+        0.02,
+        0.04,
+        0.2528,
+        0.9107
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "center_address",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.574,
+        0.0,
+        0.0721,
+        0.2577
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "right_legal_symbols",
+      "type": "logo_block",
+      "bbox_norm": [
+        0.6606,
+        0.2223,
+        0.147,
+        0.2754
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "right_date_logo",
+      "type": "optional_image",
+      "bbox_norm": [
+        0.865,
+        0.1986,
+        0.03,
+        0.2029
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    },
+    {
+      "name": "right_optional_strip",
+      "type": "text_block",
+      "bbox_norm": [
+        0.93,
+        0.0,
+        0.03,
+        0.5061
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "1R7-IDBDM_v6",
+    "family": "1R7",
+    "template_version": "v6"
+  },
+  "label_rect_pts": [
+    0.1,
+    259.0,
+    598.01,
+    278.65
+  ]
+}

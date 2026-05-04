@@ -1,0 +1,22 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "1C50-IDBDM",
+  "display_name": "1C50-IDBDM — 1-column 50×35mm label with DataMatrix",
+  "family": "1C50",
+  "source_pages": [
+    15,
+    16
+  ],
+  "visual_artifacts": [
+    "page_15.png",
+    "page_16.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

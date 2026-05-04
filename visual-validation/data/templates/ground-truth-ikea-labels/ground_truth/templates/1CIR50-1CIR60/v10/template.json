@@ -1,0 +1,58 @@
+{
+  "$schema": "../../schema/template.schema.json",
+  "template_id": "1CIR50-1CIR60_v10",
+  "display_name": "1CIR50-1CIR60 Variant 10 — base",
+  "family": "1CIR",
+  "inherits_from": "1CIR50-1CIR60",
+  "label_image": "label.png",
+  "source_page": 20,
+  "label_rect_pts": {
+    "x0": 243.24,
+    "y0": 478.0,
+    "x1": 381.85,
+    "y1": 539.33
+  },
+  "label_size_mm": {
+    "width_mm": 48.9,
+    "height_mm": 21.6
+  },
+  "orientation": "landscape",
+  "source_evidence": {
+    "page": 20,
+    "position_on_page": "variant row 10",
+    "snippet": "1CIR50-1CIR60 — base",
+    "evidence_type": "label_spec_text"
+  },
+  "elements": [],
+  "overrides": [],
+  "rules": [
+    {
+      "rule_id": "1CIR50-1CIR60_v10-R001",
+      "rule_type": "presence_rule",
+      "scope": "1CIR50-1CIR60_v10",
+      "condition": "always",
+      "target": "compliance_block",
+      "actions": [
+        {
+          "action_type": "remove",
+          "description": "No compliance block in this variant"
+        }
+      ],
+      "severity": "must",
+      "normalized_text": "compliance_block MUST NOT be present",
+      "evidence": {
+        "page": null,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Variant v10 diagram shows no compliance zone"
+      }
+    }
+  ],
+  "validation_targets": [],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": false,
+    "review_notes": "REFERENCE ONLY: Empty circular label outline — max-fill reference diagram only. Not a printable label template."
+  },
+  "is_reference_only": true,
+  "reference_notes": "Empty circular label outline — max-fill reference diagram only"
+}

@@ -1,0 +1,79 @@
+{
+  "product_code": "L10555-MIADM",
+  "page_size": {
+    "width": 1748,
+    "height": 2480
+  },
+  "regions": [
+    {
+      "name": "header",
+      "x": 0,
+      "y": 0,
+      "width": 1748,
+      "height": 560,
+      "type": "header",
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "middle_information_block",
+      "x": 0,
+      "y": 560,
+      "width": 1140,
+      "height": 320,
+      "type": "text_block",
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "right_codes_block",
+      "x": 1140,
+      "y": 560,
+      "width": 608,
+      "height": 320,
+      "type": "text_block",
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "main_product_illustration",
+      "x": 32,
+      "y": 920,
+      "width": 282,
+      "height": 600,
+      "type": "image",
+      "mandatory": false,
+      "weight": 0.0
+    },
+    {
+      "name": "sales_solution_image",
+      "x": 346,
+      "y": 920,
+      "width": 281,
+      "height": 600,
+      "type": "image",
+      "mandatory": false,
+      "weight": 0.0
+    },
+    {
+      "name": "barcode_block",
+      "x": 660,
+      "y": 920,
+      "width": 1080,
+      "height": 600,
+      "type": "barcode",
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "footer",
+      "x": 0,
+      "y": 1520,
+      "width": 1748,
+      "height": 200,
+      "type": "footer",
+      "mandatory": true,
+      "weight": 1.0
+    }
+  ]
+}

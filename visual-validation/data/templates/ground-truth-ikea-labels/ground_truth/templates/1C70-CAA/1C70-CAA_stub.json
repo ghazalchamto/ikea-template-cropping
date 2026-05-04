@@ -1,0 +1,20 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "1C70-CAA",
+  "display_name": "1C70-CAA — 1-column 70×107mm Care & Content label",
+  "family": "1C70",
+  "source_pages": [
+    30
+  ],
+  "visual_artifacts": [
+    "page_30.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

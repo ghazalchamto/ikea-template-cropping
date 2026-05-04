@@ -1,0 +1,57 @@
+{
+  "product_code": "2R20-IDEDM",
+  "page_size": {
+    "width": 1000,
+    "height": 163
+  },
+  "regions": [
+    {
+      "name": "left_identity",
+      "type": "logo_block",
+      "bbox_norm": [
+        0.1161,
+        0.23,
+        0.03,
+        0.0704
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "center_address",
+      "type": "text_block",
+      "bbox_norm": [
+        0.53,
+        0.5,
+        0.306,
+        0.1206
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "right_date_logo",
+      "type": "text_block",
+      "bbox_norm": [
+        0.905,
+        0.3966,
+        0.03,
+        0.3668
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "2R20-IDEDM_v4",
+    "family": "2R20",
+    "template_version": "v4"
+  },
+  "label_rect_pts": [
+    0.12,
+    232.57,
+    345.7,
+    289.01
+  ]
+}

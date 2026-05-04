@@ -1,0 +1,251 @@
+{
+  "generated_at_utc": "2026-05-04T12:16:18.719220+00:00",
+  "product_code": "L10555-MIADM",
+  "candidate_pdf": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/labels/label (1).pdf",
+  "template_pdf": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/L10555-MIADM/v1/label.pdf",
+  "template_version": "v1",
+  "region_config": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/config/regions/L10555-MIADM.json",
+  "overall_result": {
+    "verdict": "VALID",
+    "final_score": 0.9984,
+    "global_threshold": 0.88
+  },
+  "metrics": {
+    "total_regions": 6,
+    "mandatory_passed": 4,
+    "mandatory_failed": 0,
+    "optional_count": 2,
+    "warning_region_count": 1,
+    "skipped_optional_count": 0
+  },
+  "failed_regions": [],
+  "warning_regions": [
+    {
+      "name": "barcode_block",
+      "type": "barcode_block",
+      "method": "barcode_presence",
+      "combined_score": 0.9935,
+      "threshold": 0.85,
+      "severity": null,
+      "notes": [],
+      "shift_x_mm": null,
+      "shift_y_mm": null,
+      "width_delta_mm": null,
+      "height_delta_mm": null
+    }
+  ],
+  "skipped_optional_regions": [],
+  "verdict": "VALID",
+  "final_score": 0.9984,
+  "global_threshold": 0.88,
+  "total_regions": 6,
+  "mandatory_passed": 4,
+  "mandatory_failed": 0,
+  "optional_ignored": 2,
+  "failed_region_names": [],
+  "ignored_region_names": [
+    "main_product_illustration",
+    "sales_solution_image"
+  ],
+  "warning_region_names": [
+    "barcode_block"
+  ],
+  "overview_image": "report_L10555-MIADM_label_1_overview.png",
+  "regions": [
+    {
+      "name": "header",
+      "type": "text_block",
+      "method": "text_layout_outlined",
+      "score": 1.0,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "details": {
+        "dark_frac": 0.215085,
+        "edge_frac": 0.01899
+      },
+      "pdf_bbox_candidate": [
+        0.0,
+        0.0,
+        297.47369384765625,
+        32.676569784841234
+      ],
+      "pdf_bbox_region_template": [
+        0.0,
+        0.0,
+        300.510009765625,
+        33.29258038920741
+      ]
+    },
+    {
+      "name": "middle_information_block",
+      "type": "text_block",
+      "method": "text_layout_outlined",
+      "score": 1.0,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "details": {
+        "dark_frac": 0.190235,
+        "edge_frac": 0.03463
+      },
+      "pdf_bbox_candidate": [
+        0.0,
+        32.676569784841234,
+        297.47369384765625,
+        98.65810492730911
+      ],
+      "pdf_bbox_region_template": [
+        0.0,
+        33.29258038920741,
+        300.510009765625,
+        100.5179830981839
+      ]
+    },
+    {
+      "name": "barcode_block",
+      "type": "barcode_block",
+      "method": "barcode_presence",
+      "score": 0.9935,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [],
+      "details": {
+        "dark_frac": 0.192291,
+        "edge_frac": 0.048372
+      },
+      "pdf_bbox_candidate": [
+        187.19740459520702,
+        65.98153514246788,
+        289.3050798289563,
+        122.53713669315462
+      ],
+      "pdf_bbox_region_template": [
+        189.10812971521025,
+        67.22540270897649,
+        292.2580186507795,
+        124.84717645952777
+      ]
+    },
+    {
+      "name": "footer",
+      "type": "text_block",
+      "method": "text_layout_outlined",
+      "score": 1.0,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "details": {
+        "dark_frac": 0.202307,
+        "edge_frac": 0.036174
+      },
+      "pdf_bbox_candidate": [
+        0.0,
+        122.53713669315462,
+        297.47369384765625,
+        155.84210205078128
+      ],
+      "pdf_bbox_region_template": [
+        0.0,
+        124.84717645952777,
+        300.510009765625,
+        158.77999877929688
+      ]
+    },
+    {
+      "name": "main_product_illustration",
+      "type": "optional_image",
+      "method": "optional_skip",
+      "score": null,
+      "threshold": 0.85,
+      "status": "OPTIONAL",
+      "mandatory": false,
+      "weight": 0.0,
+      "passed": true,
+      "notes": [
+        "optional",
+        "optional_empty"
+      ],
+      "details": {
+        "present": false,
+        "dark_frac": 0.0
+      },
+      "pdf_bbox_candidate": [
+        5.4457426791332955,
+        100.04057518743701,
+        53.436350038995464,
+        147.35876181817827
+      ],
+      "pdf_bbox_region_template": [
+        5.5013274098970255,
+        101.9265153454196,
+        53.98177520961456,
+        150.13673271671416
+      ]
+    },
+    {
+      "name": "sales_solution_image",
+      "type": "optional_image",
+      "method": "optional_skip",
+      "score": null,
+      "threshold": 0.85,
+      "status": "OPTIONAL",
+      "mandatory": false,
+      "weight": 0.0,
+      "passed": true,
+      "notes": [
+        "optional",
+        "optional_empty"
+      ],
+      "details": {
+        "present": false,
+        "dark_frac": 0.0
+      },
+      "pdf_bbox_candidate": [
+        58.88209271812876,
+        100.04057518743701,
+        106.70252061926801,
+        147.35876181817827
+      ],
+      "pdf_bbox_region_template": [
+        59.48310261951159,
+        101.9265153454196,
+        107.79163393766984,
+        150.13673271671416
+      ]
+    }
+  ],
+  "template_overview_image": "report_L10555-MIADM_label_1_template_overview.png",
+  "pipeline": {
+    "selected_product": "L10555-MIADM",
+    "selected_version": "v1",
+    "template_json": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/L10555-MIADM/v1/template.json",
+    "template_version": "v1",
+    "region_schema_mode": "manual",
+    "hand_region_config": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/config/regions/L10555-MIADM.json",
+    "generated_regions_dir": null,
+    "label_png": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/L10555-MIADM/v1/label.png",
+    "validation_mode": "legacy",
+    "layout_tolerance_mm": null,
+    "page_index": 0
+  },
+  "template_json": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/L10555-MIADM/v1/template.json"
+}

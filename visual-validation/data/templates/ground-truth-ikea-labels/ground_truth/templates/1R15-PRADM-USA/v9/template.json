@@ -1,0 +1,527 @@
+{
+  "$schema": "../../schema/template.schema.json",
+  "template_id": "1R15-PRADM-USA_v9",
+  "display_name": "1R15-PRADM-USA Variant 9 — date, copy-count",
+  "family": "1R15",
+  "inherits_from": "1R15-PRADM-USA",
+  "label_image": "label.png",
+  "source_page": 19,
+  "label_rect_pts": {
+    "x0": 524.53,
+    "y0": 0.13,
+    "x1": 657.51,
+    "y1": 67.91
+  },
+  "label_size_mm": {
+    "width_mm": 46.9,
+    "height_mm": 23.9
+  },
+  "orientation": "landscape",
+  "source_evidence": {
+    "page": 19,
+    "position_on_page": "variant row 9",
+    "snippet": "1R15-PRADM-USA — date, copy-count",
+    "evidence_type": "label_spec_text"
+  },
+  "elements": [
+    {
+      "element_id": "article_number",
+      "label": "Article number",
+      "semantic_role": "product_identity",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "000.000.00",
+      "placement": {
+        "zone": "center_barcode",
+        "position_notes": "Detected at relative position (0.30, 0.26) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 19,
+        "evidence_type": "label_spec_text",
+        "snippet": "000.000.00"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 2.1,
+        "case": "mixed"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "variant_dependent",
+        "note": "Background: transparent (SM), grey (MD/LG), black (XL) — see element_variants.json"
+      },
+      "size_spec": {
+        "width_mm_approx": 11.5,
+        "height_mm_approx": 2.9
+      },
+      "allowed_patterns": [
+        "^\\d{3}[.\\-]\\d{3}[.\\-]\\d{2}$"
+      ]
+    },
+    {
+      "element_id": "article_code",
+      "label": "Article code (short)",
+      "semantic_role": "product_identity",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "12345",
+      "placement": {
+        "zone": "center_address",
+        "position_notes": "Detected at relative position (0.58, 0.25) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 19,
+        "evidence_type": "label_spec_text",
+        "snippet": "12345"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 1.4,
+        "case": "mixed"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 3.8,
+        "height_mm_approx": 1.9
+      },
+      "allowed_patterns": [
+        "^\\d{5}$"
+      ]
+    },
+    {
+      "element_id": "datamatrix_block",
+      "label": "DataMatrix barcode block",
+      "semantic_role": "barcode_symbol",
+      "type": "datamatrix",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "AI(240)12345678123451",
+      "placement": {
+        "zone": "center_address",
+        "position_notes": "Detected at relative position (0.60, 0.40) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 19,
+        "evidence_type": "label_spec_text",
+        "snippet": "AI(240)12345678123451"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 1.4
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 15.2,
+        "height_mm_approx": 1.9
+      },
+      "allowed_patterns": [
+        "GS1 DataMatrix application identifiers"
+      ],
+      "shared_spec_ref": "DM_RECT"
+    },
+    {
+      "element_id": "origin_text",
+      "label": "Country of origin / assembly text",
+      "semantic_role": "origin_text",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "Made in People’s",
+      "placement": {
+        "zone": "center_address",
+        "position_notes": "Detected at relative position (0.60, 0.83) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 19,
+        "evidence_type": "label_spec_text",
+        "snippet": "Made in People’s"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 1.4,
+        "case": "mixed"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 12.1,
+        "height_mm_approx": 1.9
+      },
+      "allowed_patterns": [
+        "^(Made in|Assembled in USA from Imported Materials|Assembled in) .+$"
+      ],
+      "allowed_values": [
+        "Made in People's Republic of China",
+        "Assembled in USA from Imported Materials",
+        "Made in Vietnam",
+        "Made in Poland",
+        "Made in India",
+        "Made in Bangladesh",
+        "Made in Pakistan"
+      ]
+    },
+    {
+      "element_id": "date_stamp",
+      "label": "YYWW datestamp",
+      "semantic_role": "date_stamp",
+      "type": "text",
+      "required": false,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "YYWW",
+      "placement": {
+        "zone": "right_copy_count",
+        "position_notes": "Detected at relative position (0.95, 0.59) within label",
+        "alignment": "center",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "vertical_cw90",
+      "evidence": {
+        "page": 19,
+        "evidence_type": "label_spec_text",
+        "snippet": "YYWW"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 1.4,
+        "case": "numeric"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 1.9,
+        "height_mm_approx": 4.5
+      },
+      "allowed_patterns": [
+        "^\\d{4}$"
+      ],
+      "content_rules": {
+        "format": "YYWW",
+        "yyww_pattern": "^(2[0-9]|[3-9][0-9])(0[1-9]|[1-4][0-9]|5[0-3])$",
+        "note": "YY = 2-digit year; WW = ISO week 01-53"
+      }
+    },
+    {
+      "element_id": "copy_count",
+      "label": "Copy count",
+      "semantic_role": "copy_count",
+      "type": "text",
+      "required": false,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "1(3)",
+      "placement": {
+        "zone": "right_date",
+        "position_notes": "Detected at relative position (0.85, 0.26) within label",
+        "alignment": "center",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "vertical_cw90",
+      "evidence": {
+        "page": 19,
+        "evidence_type": "label_spec_text",
+        "snippet": "1(3)"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "bold",
+        "style": "normal",
+        "size_mm_approx": 2.5,
+        "case": "numeric"
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 4.0,
+        "height_mm_approx": 3.3
+      },
+      "allowed_patterns": [
+        "^\\d+$"
+      ]
+    }
+  ],
+  "overrides": [],
+  "rules": [
+    {
+      "rule_id": "1R15-PRADM-USA_v9-R001",
+      "rule_type": "presence_rule",
+      "scope": "1R15-PRADM-USA_v9",
+      "condition": "always",
+      "target": "compliance_block",
+      "actions": [
+        {
+          "action_type": "remove",
+          "description": "No compliance block in this variant"
+        }
+      ],
+      "severity": "must",
+      "normalized_text": "compliance_block MUST NOT be present",
+      "evidence": {
+        "page": null,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Variant v9 diagram shows no compliance zone"
+      }
+    },
+    {
+      "rule_id": "1R15-PRADM-USA_v9-R002",
+      "rule_type": "presence_rule",
+      "scope": "1R15-PRADM-USA_v9",
+      "condition": "always",
+      "target": "copy_count",
+      "actions": [
+        {
+          "action_type": "require",
+          "description": "Copy count strip must be present"
+        }
+      ],
+      "severity": "must",
+      "normalized_text": "copy_count MUST be present",
+      "evidence": {
+        "page": null,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Variant v9 shows copy count strip"
+      }
+    },
+    {
+      "rule_id": "1R15-PRADM-USA_v9-R003",
+      "rule_type": "format_rule",
+      "scope": "1R15-PRADM-USA_v9",
+      "condition": "always",
+      "target": "date_stamp",
+      "actions": [
+        {
+          "action_type": "validate",
+          "description": "Date must be YYWW (2-digit year + ISO week)"
+        }
+      ],
+      "severity": "must",
+      "normalized_text": "date_stamp content MUST match ^(2[0-9]|[3-9][0-9])(0[1-9]|[1-4][0-9]|5[0-3])$",
+      "evidence": {
+        "page": null,
+        "evidence_type": "diagram_annotation",
+        "snippet": "YYWW date format shown in right date strip"
+      }
+    }
+  ],
+  "validation_targets": [
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-001",
+      "check_type": "element_presence",
+      "element_id": "article_number",
+      "severity": "must",
+      "description": "Required element 'article_number' must be present"
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-002",
+      "check_type": "element_content_format",
+      "element_id": "article_number",
+      "severity": "must",
+      "description": "Element 'article_number' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^\\d{3}[.\\-]\\d{3}[.\\-]\\d{2}$"
+      ]
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-003",
+      "check_type": "element_placement",
+      "element_id": "article_number",
+      "severity": "must",
+      "description": "Element 'article_number' must be in zone 'center_barcode'",
+      "expected_zone": "center_barcode"
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-004",
+      "check_type": "element_presence",
+      "element_id": "article_code",
+      "severity": "must",
+      "description": "Required element 'article_code' must be present"
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-005",
+      "check_type": "element_content_format",
+      "element_id": "article_code",
+      "severity": "must",
+      "description": "Element 'article_code' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^\\d{5}$"
+      ]
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-006",
+      "check_type": "element_placement",
+      "element_id": "article_code",
+      "severity": "must",
+      "description": "Element 'article_code' must be in zone 'center_address'",
+      "expected_zone": "center_address"
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-007",
+      "check_type": "element_presence",
+      "element_id": "datamatrix_block",
+      "severity": "must",
+      "description": "Required element 'datamatrix_block' must be present"
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-008",
+      "check_type": "element_content_format",
+      "element_id": "datamatrix_block",
+      "severity": "must",
+      "description": "Element 'datamatrix_block' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "GS1 DataMatrix application identifiers"
+      ]
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-009",
+      "check_type": "element_placement",
+      "element_id": "datamatrix_block",
+      "severity": "must",
+      "description": "Element 'datamatrix_block' must be in zone 'center_address'",
+      "expected_zone": "center_address"
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-010",
+      "check_type": "element_presence",
+      "element_id": "origin_text",
+      "severity": "must",
+      "description": "Required element 'origin_text' must be present"
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-011",
+      "check_type": "element_content_format",
+      "element_id": "origin_text",
+      "severity": "must",
+      "description": "Element 'origin_text' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^(Made in|Assembled in USA from Imported Materials|Assembled in) .+$"
+      ]
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-012",
+      "check_type": "element_placement",
+      "element_id": "origin_text",
+      "severity": "must",
+      "description": "Element 'origin_text' must be in zone 'center_address'",
+      "expected_zone": "center_address"
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-013",
+      "check_type": "element_presence",
+      "element_id": "date_stamp",
+      "severity": "should",
+      "description": "Optional element 'date_stamp' should be present"
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-014",
+      "check_type": "element_content_format",
+      "element_id": "date_stamp",
+      "severity": "should",
+      "description": "Element 'date_stamp' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^\\d{4}$"
+      ]
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-015",
+      "check_type": "element_placement",
+      "element_id": "date_stamp",
+      "severity": "should",
+      "description": "Element 'date_stamp' must be in zone 'right_copy_count'",
+      "expected_zone": "right_copy_count"
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-016",
+      "check_type": "element_orientation",
+      "element_id": "date_stamp",
+      "severity": "should",
+      "description": "Element 'date_stamp' must be oriented vertical_cw90",
+      "expected_orientation": "vertical_cw90"
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-017",
+      "check_type": "element_presence",
+      "element_id": "copy_count",
+      "severity": "should",
+      "description": "Optional element 'copy_count' should be present"
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-018",
+      "check_type": "element_content_format",
+      "element_id": "copy_count",
+      "severity": "should",
+      "description": "Element 'copy_count' content must match allowed pattern(s)",
+      "allowed_patterns": [
+        "^\\d+$"
+      ]
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-019",
+      "check_type": "element_placement",
+      "element_id": "copy_count",
+      "severity": "should",
+      "description": "Element 'copy_count' must be in zone 'right_date'",
+      "expected_zone": "right_date"
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-020",
+      "check_type": "element_orientation",
+      "element_id": "copy_count",
+      "severity": "should",
+      "description": "Element 'copy_count' must be oriented vertical_cw90",
+      "expected_orientation": "vertical_cw90"
+    },
+    {
+      "check_id": "1R15-PRADM-USA_v9-CHK-021",
+      "check_type": "visual_hierarchy",
+      "element_id": "article_number",
+      "related_element_id": "article_code",
+      "severity": "must",
+      "description": "article_number font size must be visually larger than article_code"
+    }
+  ],
+  "review_state": {
+    "confidence": 0.74,
+    "needs_review": true,
+    "review_notes": "Auto-generated from PDF text extraction (page 19). Elements detected: ['article_number', 'article_code', 'datamatrix_block', 'origin_text', 'date_stamp', 'copy_count']. Verify font sizes, zone boundaries, and rule completeness against label image."
+  }
+}

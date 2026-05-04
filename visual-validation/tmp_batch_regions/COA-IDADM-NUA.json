@@ -1,0 +1,81 @@
+{
+  "product_code": "COA-IDADM-NUA",
+  "page_size": {
+    "width": 1000,
+    "height": 499
+  },
+  "regions": [
+    {
+      "name": "center_barcode",
+      "type": "text_block",
+      "bbox_norm": [
+        0.37,
+        0.02,
+        0.3548,
+        0.5632
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "center_address",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.54,
+        0.4228,
+        0.3605,
+        0.5517
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "right_legal_symbols",
+      "type": "text_block",
+      "bbox_norm": [
+        0.6657,
+        0.1056,
+        0.0687,
+        0.0688
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    },
+    {
+      "name": "right_date_logo",
+      "type": "text_block",
+      "bbox_norm": [
+        0.8714,
+        0.0,
+        0.0572,
+        0.0773
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    },
+    {
+      "name": "right_optional_strip",
+      "type": "text_block",
+      "bbox_norm": [
+        0.945,
+        0.2355,
+        0.03,
+        0.1289
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "COA-IDADM-NUA_v7",
+    "family": "COA",
+    "template_version": "v7"
+  },
+  "label_rect_pts": [
+    0.12,
+    392.37,
+    198.3,
+    491.33
+  ]
+}

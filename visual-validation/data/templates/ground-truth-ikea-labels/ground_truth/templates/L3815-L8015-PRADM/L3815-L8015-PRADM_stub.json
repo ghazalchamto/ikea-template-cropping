@@ -1,0 +1,20 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "L3815-L8015-PRADM",
+  "display_name": "L3815-PRADM / L8015-PRADM — Small rectangular press-on labels",
+  "family": "L-PRADM",
+  "source_pages": [
+    21
+  ],
+  "visual_artifacts": [
+    "page_21.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

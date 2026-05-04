@@ -1,0 +1,69 @@
+{
+  "product_code": "L10555-MIADM",
+  "page_size": {
+    "width": 1748,
+    "height": 2480
+  },
+  "regions": [
+    {
+      "name": "header",
+      "type": "text_block",
+      "x": 0,
+      "y": 0,
+      "width": 1748,
+      "height": 520,
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "middle_information_block",
+      "type": "text_block",
+      "x": 0,
+      "y": 520,
+      "width": 1748,
+      "height": 1050,
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "barcode_block",
+      "type": "barcode_block",
+      "x": 1100,
+      "y": 1050,
+      "width": 600,
+      "height": 900,
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "footer",
+      "type": "text_block",
+      "x": 0,
+      "y": 1950,
+      "width": 1748,
+      "height": 530,
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "main_product_illustration",
+      "type": "optional_image",
+      "x": 32,
+      "y": 1592,
+      "width": 282,
+      "height": 753,
+      "mandatory": false,
+      "weight": 0.0
+    },
+    {
+      "name": "sales_solution_image",
+      "type": "optional_image",
+      "x": 346,
+      "y": 1592,
+      "width": 281,
+      "height": 753,
+      "mandatory": false,
+      "weight": 0.0
+    }
+  ]
+}

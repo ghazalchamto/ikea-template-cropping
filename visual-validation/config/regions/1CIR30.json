@@ -1,0 +1,84 @@
+{
+  "product_code": "1CIR30",
+  "page_size": {
+    "width": 1000,
+    "height": 1000
+  },
+  "regions": [
+    {
+      "name": "top_identity",
+      "type": "text_block",
+      "bbox_norm": [
+        0.0,
+        0.0,
+        1.0,
+        0.22
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "main_middle",
+      "type": "free_form_block",
+      "bbox_norm": [
+        0.0,
+        0.22,
+        1.0,
+        0.36
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "barcode_or_symbol_area",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.0,
+        0.48,
+        1.0,
+        0.27
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "footer_or_right_area",
+      "type": "text_block",
+      "bbox_norm": [
+        0.0,
+        0.72,
+        1.0,
+        0.2
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "optional_bottom_strip",
+      "type": "optional_image",
+      "bbox_norm": [
+        0.0,
+        0.92,
+        1.0,
+        0.08
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "coarse_fallback",
+    "template_version": "v7",
+    "orientation_mode": "square",
+    "page_rect_pts": [
+      0.0,
+      0.0,
+      56.77,
+      56.78
+    ],
+    "label_png_px": [
+      238,
+      238
+    ]
+  }
+}

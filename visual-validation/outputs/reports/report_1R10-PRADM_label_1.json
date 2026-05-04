@@ -1,0 +1,398 @@
+{
+  "generated_at_utc": "2026-05-04T10:38:30.690097+00:00",
+  "product_code": "1R10-PRADM",
+  "candidate_pdf": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/labels/label (1).pdf",
+  "template_pdf": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/1R10-PRADM/v6/label.pdf",
+  "template_version": "v6",
+  "region_config": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/config/regions/1R10-PRADM.json",
+  "verdict": "VALID",
+  "final_score": 1.0,
+  "global_threshold": 0.88,
+  "total_regions": 15,
+  "mandatory_passed": 8,
+  "mandatory_failed": 0,
+  "optional_ignored": 7,
+  "failed_region_names": [],
+  "ignored_region_names": [
+    "left_identity__footer",
+    "center_barcode__footer",
+    "right_legal_symbols__footer",
+    "right_date_logo__footer",
+    "right_optional_strip__header",
+    "right_optional_strip__body",
+    "right_optional_strip__footer"
+  ],
+  "overview_image": "report_1R10-PRADM_label_1_overview.png",
+  "regions": [
+    {
+      "name": "left_identity__header",
+      "type": "text_block",
+      "method": "text_layout_outlined",
+      "score": 1.0,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "details": {
+        "dark_frac": 0.456784,
+        "edge_frac": 0.196399
+      },
+      "pdf_bbox_candidate": [
+        0.0,
+        0.0,
+        89.24210815429687,
+        46.752630615234374
+      ]
+    },
+    {
+      "name": "left_identity__body",
+      "type": "text_block",
+      "method": "text_layout_outlined",
+      "score": 1.0,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "details": {
+        "dark_frac": 0.052502,
+        "edge_frac": 0.075586
+      },
+      "pdf_bbox_candidate": [
+        0.0,
+        46.752630615234374,
+        89.24210815429687,
+        121.55683959960938
+      ]
+    },
+    {
+      "name": "left_identity__footer",
+      "type": "text_block",
+      "method": "text_layout_outlined",
+      "score": null,
+      "threshold": 0.85,
+      "status": "OPTIONAL",
+      "mandatory": false,
+      "weight": 0.0,
+      "passed": true,
+      "notes": [
+        "candidate_text_outlined",
+        "region_appears_empty"
+      ],
+      "details": {
+        "dark_frac": 0.0,
+        "edge_frac": 0.0
+      },
+      "pdf_bbox_candidate": [
+        0.0,
+        121.55683959960938,
+        89.24210815429687,
+        155.84210205078125
+      ]
+    },
+    {
+      "name": "center_barcode__header",
+      "type": "barcode_block",
+      "method": "barcode_presence",
+      "score": 1.0,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [],
+      "details": {
+        "dark_frac": 0.145561,
+        "edge_frac": 0.06876
+      },
+      "pdf_bbox_candidate": [
+        89.24210815429687,
+        0.0,
+        178.48421630859374,
+        46.752630615234374
+      ]
+    },
+    {
+      "name": "center_barcode__body",
+      "type": "barcode_block",
+      "method": "barcode_presence",
+      "score": 1.0,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [],
+      "details": {
+        "dark_frac": 0.107307,
+        "edge_frac": 0.097152
+      },
+      "pdf_bbox_candidate": [
+        89.24210815429687,
+        46.752630615234374,
+        178.48421630859374,
+        121.55683959960938
+      ]
+    },
+    {
+      "name": "center_barcode__footer",
+      "type": "barcode_block",
+      "method": "barcode_presence",
+      "score": null,
+      "threshold": 0.85,
+      "status": "OPTIONAL",
+      "mandatory": false,
+      "weight": 0.0,
+      "passed": true,
+      "notes": [],
+      "details": {
+        "dark_frac": 0.228186,
+        "edge_frac": 0.068182
+      },
+      "pdf_bbox_candidate": [
+        89.24210815429687,
+        121.55683959960938,
+        178.48421630859374,
+        155.84210205078125
+      ]
+    },
+    {
+      "name": "right_legal_symbols__header",
+      "type": "text_block",
+      "method": "text_layout_outlined",
+      "score": 1.0,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "details": {
+        "dark_frac": 0.238491,
+        "edge_frac": 0.149182
+      },
+      "pdf_bbox_candidate": [
+        178.48421630859374,
+        0.0,
+        237.978955078125,
+        46.752630615234374
+      ]
+    },
+    {
+      "name": "right_legal_symbols__body",
+      "type": "text_block",
+      "method": "text_layout_outlined",
+      "score": 1.0,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "details": {
+        "dark_frac": 0.162421,
+        "edge_frac": 0.112264
+      },
+      "pdf_bbox_candidate": [
+        178.48421630859374,
+        46.752630615234374,
+        237.978955078125,
+        121.55683959960938
+      ]
+    },
+    {
+      "name": "right_legal_symbols__footer",
+      "type": "text_block",
+      "method": "text_layout_outlined",
+      "score": null,
+      "threshold": 0.85,
+      "status": "OPTIONAL",
+      "mandatory": false,
+      "weight": 0.0,
+      "passed": true,
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "details": {
+        "dark_frac": 0.41681,
+        "edge_frac": 0.112178
+      },
+      "pdf_bbox_candidate": [
+        178.48421630859374,
+        121.55683959960938,
+        237.978955078125,
+        155.84210205078125
+      ]
+    },
+    {
+      "name": "right_date_logo__header",
+      "type": "text_block",
+      "method": "text_layout_outlined",
+      "score": 1.0,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "details": {
+        "dark_frac": 0.356784,
+        "edge_frac": 0.228978
+      },
+      "pdf_bbox_candidate": [
+        237.978955078125,
+        0.0,
+        282.6000091552735,
+        46.752630615234374
+      ]
+    },
+    {
+      "name": "right_date_logo__body",
+      "type": "text_block",
+      "method": "text_layout_outlined",
+      "score": 1.0,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "details": {
+        "dark_frac": 0.296587,
+        "edge_frac": 0.233982
+      },
+      "pdf_bbox_candidate": [
+        237.978955078125,
+        46.752630615234374,
+        282.6000091552735,
+        121.55683959960938
+      ]
+    },
+    {
+      "name": "right_date_logo__footer",
+      "type": "text_block",
+      "method": "text_layout_outlined",
+      "score": null,
+      "threshold": 0.85,
+      "status": "OPTIONAL",
+      "mandatory": false,
+      "weight": 0.0,
+      "passed": true,
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "details": {
+        "dark_frac": 0.328917,
+        "edge_frac": 0.096391
+      },
+      "pdf_bbox_candidate": [
+        237.978955078125,
+        121.55683959960938,
+        282.6000091552735,
+        155.84210205078125
+      ]
+    },
+    {
+      "name": "right_optional_strip__header",
+      "type": "optional_image",
+      "method": "optional_skip",
+      "score": null,
+      "threshold": 0.85,
+      "status": "OPTIONAL",
+      "mandatory": false,
+      "weight": 0.0,
+      "passed": true,
+      "notes": [
+        "optional"
+      ],
+      "details": {
+        "present": true,
+        "dark_frac": 0.235354
+      },
+      "pdf_bbox_candidate": [
+        282.6000091552734,
+        0.0,
+        297.47369384765625,
+        46.752630615234374
+      ]
+    },
+    {
+      "name": "right_optional_strip__body",
+      "type": "optional_image",
+      "method": "optional_skip",
+      "score": null,
+      "threshold": 0.85,
+      "status": "OPTIONAL",
+      "mandatory": false,
+      "weight": 0.0,
+      "passed": true,
+      "notes": [
+        "optional"
+      ],
+      "details": {
+        "present": true,
+        "dark_frac": 0.112058
+      },
+      "pdf_bbox_candidate": [
+        282.6000091552734,
+        46.752630615234374,
+        297.47369384765625,
+        121.55683959960938
+      ]
+    },
+    {
+      "name": "right_optional_strip__footer",
+      "type": "optional_image",
+      "method": "optional_skip",
+      "score": null,
+      "threshold": 0.85,
+      "status": "OPTIONAL",
+      "mandatory": false,
+      "weight": 0.0,
+      "passed": true,
+      "notes": [
+        "optional",
+        "optional_empty"
+      ],
+      "details": {
+        "present": false,
+        "dark_frac": 0.0
+      },
+      "pdf_bbox_candidate": [
+        282.6000091552734,
+        121.55683959960938,
+        297.47369384765625,
+        155.84210205078125
+      ]
+    }
+  ],
+  "template_overview_image": "report_1R10-PRADM_label_1_template_overview.png",
+  "pipeline": {
+    "selected_product": "1R10-PRADM",
+    "selected_version": "v6",
+    "template_json": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/1R10-PRADM/v6/template.json",
+    "template_version": "v6",
+    "region_schema_mode": "manual",
+    "hand_region_config": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/config/regions/1R10-PRADM.json",
+    "generated_regions_dir": null,
+    "label_png": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/1R10-PRADM/v6/label.png",
+    "validation_mode": "legacy",
+    "layout_tolerance_mm": null
+  },
+  "template_json": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/1R10-PRADM/v6/template.json"
+}

@@ -1,0 +1,151 @@
+{
+  "generated_at_utc": "2026-05-03T22:03:01.801939+00:00",
+  "product_code": "1R10-PRADM",
+  "candidate_pdf": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/labels/label (2).pdf",
+  "template_pdf": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/1R10-PRADM/v6/label.pdf",
+  "template_version": "v6",
+  "region_config": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/config/regions/1R10-PRADM.json",
+  "verdict": "VALID",
+  "final_score": 1.0,
+  "global_threshold": 0.88,
+  "total_regions": 5,
+  "mandatory_passed": 4,
+  "mandatory_failed": 0,
+  "optional_ignored": 1,
+  "failed_region_names": [],
+  "ignored_region_names": [
+    "right_optional_strip"
+  ],
+  "overview_image": "report_1R10-PRADM_label_2_overview.png",
+  "regions": [
+    {
+      "name": "left_identity",
+      "type": "text_block",
+      "method": "text_layout_outlined",
+      "score": 1.0,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "details": {
+        "dark_frac": 0.106633,
+        "edge_frac": 0.057588
+      },
+      "pdf_bbox_candidate": [
+        0.0,
+        0.0,
+        242.28176879882812,
+        42.2068977355957
+      ]
+    },
+    {
+      "name": "center_barcode",
+      "type": "barcode_block",
+      "method": "barcode_presence",
+      "score": 1.0,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [],
+      "details": {
+        "dark_frac": 0.186432,
+        "edge_frac": 0.126583
+      },
+      "pdf_bbox_candidate": [
+        242.28176879882812,
+        0.0,
+        484.56353759765625,
+        42.2068977355957
+      ]
+    },
+    {
+      "name": "right_legal_symbols",
+      "type": "text_block",
+      "method": "text_layout_outlined",
+      "score": 1.0,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "details": {
+        "dark_frac": 0.255849,
+        "edge_frac": 0.166151
+      },
+      "pdf_bbox_candidate": [
+        484.56353759765625,
+        0.0,
+        646.084716796875,
+        42.2068977355957
+      ]
+    },
+    {
+      "name": "right_date_logo",
+      "type": "text_block",
+      "method": "text_layout_outlined",
+      "score": 1.0,
+      "threshold": 0.85,
+      "status": "PASS",
+      "mandatory": true,
+      "weight": 1.0,
+      "passed": true,
+      "notes": [
+        "candidate_text_outlined"
+      ],
+      "details": {
+        "dark_frac": 0.110151,
+        "edge_frac": 0.124824
+      },
+      "pdf_bbox_candidate": [
+        646.084716796875,
+        0.0,
+        767.2256011962891,
+        42.2068977355957
+      ]
+    },
+    {
+      "name": "right_optional_strip",
+      "type": "optional_image",
+      "method": "optional_skip",
+      "score": null,
+      "threshold": 0.85,
+      "status": "OPTIONAL",
+      "mandatory": false,
+      "weight": 0.0,
+      "passed": true,
+      "notes": [
+        "optional"
+      ],
+      "details": {
+        "present": true,
+        "dark_frac": 0.130303
+      },
+      "pdf_bbox_candidate": [
+        767.2256011962891,
+        0.0,
+        807.6058959960938,
+        42.2068977355957
+      ]
+    }
+  ],
+  "pipeline": {
+    "selected_product": "1R10-PRADM",
+    "selected_version": "v6",
+    "template_json": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/1R10-PRADM/v6/template.json",
+    "template_version": "v6",
+    "region_schema_mode": "manual",
+    "hand_region_config": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/config/regions/1R10-PRADM.json",
+    "generated_regions_dir": null,
+    "label_png": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/1R10-PRADM/v6/label.png"
+  },
+  "template_json": "/Users/sundari/Desktop/ikea-template-cropping/visual-validation/data/templates/ground-truth-ikea-labels/ground_truth/templates/1R10-PRADM/v6/template.json"
+}

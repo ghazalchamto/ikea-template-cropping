@@ -1,0 +1,33 @@
+{
+  "product_code": "1R25-IDCDM-IDCSDM",
+  "page_size": {
+    "width": 1000,
+    "height": 237
+  },
+  "regions": [
+    {
+      "name": "left_identity",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.03,
+        0.26,
+        0.2857,
+        0.7163
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "1R25-IDCDM-IDCSDM_v5",
+    "family": "1R25",
+    "template_version": "v5"
+  },
+  "label_rect_pts": [
+    0.12,
+    364.94,
+    297.51,
+    435.56
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "$schema": "../../schema/template.schema.json",
+  "template_id": "1CIR50-1CIR60_v2",
+  "display_name": "1CIR50-1CIR60 Variant 2 — legal-symbols",
+  "family": "1CIR",
+  "inherits_from": "1CIR50-1CIR60",
+  "label_image": "label.png",
+  "source_page": 20,
+  "label_rect_pts": {
+    "x0": 126.13,
+    "y0": 1.54,
+    "x1": 233.59,
+    "y1": 109.01
+  },
+  "label_size_mm": {
+    "width_mm": 37.9,
+    "height_mm": 37.9
+  },
+  "orientation": "square",
+  "source_evidence": {
+    "page": 20,
+    "position_on_page": "variant row 2",
+    "snippet": "1CIR50-1CIR60 — legal-symbols",
+    "evidence_type": "label_spec_text"
+  },
+  "elements": [
+    {
+      "element_id": "legal_symbol",
+      "label": "Legal / compliance symbol",
+      "semantic_role": "compliance_symbol",
+      "type": "image",
+      "required": false,
+      "repeatable": true,
+      "content_type": "static",
+      "example_value": "Legal",
+      "placement": {
+        "zone": "top_identity",
+        "position_notes": "Detected at relative position (0.37, 0.11) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 20,
+        "evidence_type": "label_spec_text",
+        "snippet": "Legal"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 1.4
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 3.6,
+        "height_mm_approx": 1.9
+      }
+    }
+  ],
+  "overrides": [],
+  "rules": [
+    {
+      "rule_id": "1CIR50-1CIR60_v2-R001",
+      "rule_type": "presence_rule",
+      "scope": "1CIR50-1CIR60_v2",
+      "condition": "always",
+      "target": "compliance_block",
+      "actions": [
+        {
+          "action_type": "remove",
+          "description": "No compliance block in this variant"
+        }
+      ],
+      "severity": "must",
+      "normalized_text": "compliance_block MUST NOT be present",
+      "evidence": {
+        "page": null,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Variant v2 diagram shows no compliance zone"
+      }
+    }
+  ],
+  "validation_targets": [
+    {
+      "check_id": "1CIR50-1CIR60_v2-CHK-001",
+      "check_type": "element_presence",
+      "element_id": "legal_symbol",
+      "severity": "should",
+      "description": "Optional element 'legal_symbol' should be present"
+    },
+    {
+      "check_id": "1CIR50-1CIR60_v2-CHK-002",
+      "check_type": "element_placement",
+      "element_id": "legal_symbol",
+      "severity": "should",
+      "description": "Element 'legal_symbol' must be in zone 'top_identity'",
+      "expected_zone": "top_identity"
+    }
+  ],
+  "review_state": {
+    "confidence": 0.5,
+    "needs_review": true,
+    "review_notes": "Auto-generated from PDF text extraction (page 20). Elements detected: ['legal_symbol']. Verify font sizes, zone boundaries, and rule completeness against label image."
+  }
+}

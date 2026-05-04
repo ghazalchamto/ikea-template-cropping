@@ -1,0 +1,211 @@
+{
+  "$schema": "../../schema/template.schema.json",
+  "template_id": "2R20-IDEDM_v4",
+  "display_name": "2R20-IDEDM Variant 4 — base",
+  "family": "2R20",
+  "inherits_from": "2R20-IDEDM",
+  "label_image": "label.png",
+  "source_page": 35,
+  "label_rect_pts": {
+    "x0": 0.12,
+    "y0": 232.57,
+    "x1": 345.7,
+    "y1": 289.01
+  },
+  "label_size_mm": {
+    "width_mm": 121.9,
+    "height_mm": 19.9
+  },
+  "orientation": "landscape",
+  "source_evidence": {
+    "page": 35,
+    "position_on_page": "variant row 4",
+    "snippet": "2R20-IDEDM — base",
+    "evidence_type": "label_spec_text"
+  },
+  "elements": [
+    {
+      "element_id": "wash_care_symbol",
+      "label": "Wash / care care symbol",
+      "semantic_role": "care_symbol",
+      "type": "image",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "Wash",
+      "placement": {
+        "zone": "left_identity",
+        "position_notes": "Detected at relative position (0.12, 0.23) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 35,
+        "evidence_type": "label_spec_text",
+        "snippet": "Wash"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 1.1
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 2.7,
+        "height_mm_approx": 1.4
+      }
+    },
+    {
+      "element_id": "care_instruction_text",
+      "label": "Care instruction text",
+      "semantic_role": "care_text",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "AU: Wash by hand, max 40°C. Do not bleach.",
+      "placement": {
+        "zone": "center_address",
+        "position_notes": "Detected at relative position (0.53, 0.50) within label",
+        "alignment": "left",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 35,
+        "evidence_type": "label_spec_text",
+        "snippet": "AU: Wash by hand, max 40°C. Do not bleach."
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 1.8
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 37.3,
+        "height_mm_approx": 2.4
+      }
+    },
+    {
+      "element_id": "catalog_number",
+      "label": "Care label catalog number",
+      "semantic_role": "reference_text",
+      "type": "text",
+      "required": true,
+      "repeatable": false,
+      "content_type": "variable",
+      "example_value": "CA05404",
+      "placement": {
+        "zone": "right_date",
+        "position_notes": "Detected at relative position (0.92, 0.58) within label",
+        "alignment": "center",
+        "relative_to": "label_top_left"
+      },
+      "orientation": "horizontal",
+      "evidence": {
+        "page": 35,
+        "evidence_type": "label_spec_text",
+        "snippet": "CA05404"
+      },
+      "font": {
+        "family": "IKEA proprietary sans-serif",
+        "weight": "regular",
+        "style": "normal",
+        "size_mm_approx": 1.8
+      },
+      "color": {
+        "text_color": "#000000",
+        "background_color": "transparent"
+      },
+      "size_spec": {
+        "width_mm_approx": 2.4,
+        "height_mm_approx": 7.3
+      }
+    }
+  ],
+  "overrides": [],
+  "rules": [
+    {
+      "rule_id": "2R20-IDEDM_v4-R001",
+      "rule_type": "presence_rule",
+      "scope": "2R20-IDEDM_v4",
+      "condition": "always",
+      "target": "compliance_block",
+      "actions": [
+        {
+          "action_type": "remove",
+          "description": "No compliance block in this variant"
+        }
+      ],
+      "severity": "must",
+      "normalized_text": "compliance_block MUST NOT be present",
+      "evidence": {
+        "page": null,
+        "evidence_type": "diagram_annotation",
+        "snippet": "Variant v4 diagram shows no compliance zone"
+      }
+    }
+  ],
+  "validation_targets": [
+    {
+      "check_id": "2R20-IDEDM_v4-CHK-001",
+      "check_type": "element_presence",
+      "element_id": "wash_care_symbol",
+      "severity": "must",
+      "description": "Required element 'wash_care_symbol' must be present"
+    },
+    {
+      "check_id": "2R20-IDEDM_v4-CHK-002",
+      "check_type": "element_placement",
+      "element_id": "wash_care_symbol",
+      "severity": "must",
+      "description": "Element 'wash_care_symbol' must be in zone 'left_identity'",
+      "expected_zone": "left_identity"
+    },
+    {
+      "check_id": "2R20-IDEDM_v4-CHK-003",
+      "check_type": "element_presence",
+      "element_id": "care_instruction_text",
+      "severity": "must",
+      "description": "Required element 'care_instruction_text' must be present"
+    },
+    {
+      "check_id": "2R20-IDEDM_v4-CHK-004",
+      "check_type": "element_placement",
+      "element_id": "care_instruction_text",
+      "severity": "must",
+      "description": "Element 'care_instruction_text' must be in zone 'center_address'",
+      "expected_zone": "center_address"
+    },
+    {
+      "check_id": "2R20-IDEDM_v4-CHK-005",
+      "check_type": "element_presence",
+      "element_id": "catalog_number",
+      "severity": "must",
+      "description": "Required element 'catalog_number' must be present"
+    },
+    {
+      "check_id": "2R20-IDEDM_v4-CHK-006",
+      "check_type": "element_placement",
+      "element_id": "catalog_number",
+      "severity": "must",
+      "description": "Element 'catalog_number' must be in zone 'right_date'",
+      "expected_zone": "right_date"
+    }
+  ],
+  "review_state": {
+    "confidence": 0.5,
+    "needs_review": true,
+    "review_notes": "Auto-generated from PDF text extraction (page 35). Elements detected: ['wash_care_symbol', 'care_instruction_text', 'catalog_number']. Verify font sizes, zone boundaries, and rule completeness against label image."
+  }
+}

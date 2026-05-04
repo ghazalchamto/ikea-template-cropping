@@ -1,0 +1,20 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "1R25-IDCDM-IDCSDM",
+  "display_name": "1R25-IDCDM / 1R25-IDCSDM — 1-row 25× with copy/ITF",
+  "family": "1R25",
+  "source_pages": [
+    13
+  ],
+  "visual_artifacts": [
+    "page_13.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

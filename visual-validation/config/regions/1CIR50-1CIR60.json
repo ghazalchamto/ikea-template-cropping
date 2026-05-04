@@ -1,0 +1,84 @@
+{
+  "product_code": "1CIR50-1CIR60",
+  "page_size": {
+    "width": 1000,
+    "height": 466
+  },
+  "regions": [
+    {
+      "name": "main_left",
+      "type": "text_block",
+      "bbox_norm": [
+        0.0,
+        0.0,
+        0.26,
+        1.0
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "main_middle",
+      "type": "free_form_block",
+      "bbox_norm": [
+        0.26,
+        0.0,
+        0.28,
+        1.0
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "barcode_or_symbol_area",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.54,
+        0.0,
+        0.22,
+        1.0
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "footer_or_right_area",
+      "type": "logo_block",
+      "bbox_norm": [
+        0.76,
+        0.0,
+        0.14,
+        1.0
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "optional_far_strip",
+      "type": "optional_image",
+      "bbox_norm": [
+        0.9,
+        0.0,
+        0.1,
+        1.0
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "coarse_fallback",
+    "template_version": "v10",
+    "orientation_mode": "landscape",
+    "page_rect_pts": [
+      0.0,
+      0.0,
+      144.61,
+      67.33
+    ],
+    "label_png_px": [
+      603,
+      281
+    ]
+  }
+}

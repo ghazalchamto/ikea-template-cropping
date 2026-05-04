@@ -1,0 +1,20 @@
+{
+  "$schema": "../../shared_specs/schema/template.schema.json",
+  "template_id": "COA-IDADM-NUA",
+  "display_name": "COA-IDADM-NUA — Country of Assembly + NUA compliance label",
+  "family": "COA",
+  "source_pages": [
+    47
+  ],
+  "visual_artifacts": [
+    "page_47.png"
+  ],
+  "review_state": {
+    "confidence": 0.0,
+    "needs_review": true,
+    "review_notes": "Stub — visual artifacts extracted from PDF. Elements, rules, and validation_targets not yet populated."
+  },
+  "elements": [],
+  "rules": [],
+  "validation_targets": []
+}

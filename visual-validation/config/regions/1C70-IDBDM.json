@@ -1,0 +1,69 @@
+{
+  "product_code": "1C70-IDBDM",
+  "page_size": {
+    "width": 1000,
+    "height": 828
+  },
+  "regions": [
+    {
+      "name": "left_identity",
+      "type": "logo_block",
+      "bbox_norm": [
+        0.06,
+        0.05,
+        0.3548,
+        0.6828
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "center_barcode",
+      "type": "barcode_block",
+      "bbox_norm": [
+        0.36,
+        0.85,
+        0.2303,
+        0.0328
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "center_address",
+      "type": "logo_block",
+      "bbox_norm": [
+        0.4362,
+        0.1615,
+        0.3476,
+        0.7349
+      ],
+      "mandatory": true,
+      "weight": 1.0
+    },
+    {
+      "name": "right_optional_strip",
+      "type": "text_block",
+      "bbox_norm": [
+        0.955,
+        0.3111,
+        0.03,
+        0.0777
+      ],
+      "mandatory": false,
+      "weight": 0.0
+    }
+  ],
+  "_meta": {
+    "generated_from": "template.json",
+    "template_id": "1C70-IDBDM_v3",
+    "family": "1C70",
+    "template_version": "v3"
+  },
+  "label_rect_pts": [
+    0.12,
+    351.98,
+    198.3,
+    516.14
+  ]
+}
