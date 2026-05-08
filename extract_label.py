@@ -55,6 +55,12 @@ def main() -> None:
         default=2,
         help="JSON indentation level (default: 2)",
     )
+    parser.add_argument(
+        "--no-intermediates",
+        action="store_true",
+        default=False,
+        help="Skip saving dissection.json and extraction.json to output/<stem>/",
+    )
     args = parser.parse_args()
 
     label_path = Path(args.label_file)
@@ -62,7 +68,11 @@ def main() -> None:
         print(f"ERROR: file not found: {label_path}", file=sys.stderr)
         sys.exit(1)
 
-    extractor = LabelExtractor(label_path, dpi=args.dpi)
+    extractor = LabelExtractor(
+        label_path,
+        dpi=args.dpi,
+        save_intermediates=not args.no_intermediates,
+    )
 
     try:
         result = extractor.run()
@@ -94,6 +104,16 @@ def main() -> None:
         print(f"  ⚠  {w}", file=sys.stderr)
     for e in md.errors:
         print(f"  ✗  {e}", file=sys.stderr)
+
+    if not args.no_intermediates:
+        from extractor.dissection_store import get_output_dir
+        out_dir = get_output_dir(label_path)
+        print(f"\n--- Intermediate results ---", file=sys.stderr)
+        for fname in ("dissection.json", "extraction.json"):
+            p = out_dir / fname
+            if p.exists():
+                size_kb = p.stat().st_size / 1024
+                print(f"  {fname:<20}: {p}  ({size_kb:.0f} KB)", file=sys.stderr)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,3411 @@
+{
+  "dissected_at": "2026-05-06T20:59:46.708522+00:00",
+  "source_file": "ikea_hivcx1bl.pdf",
+  "meta": {
+    "image_width_px": 2479,
+    "image_height_px": 1299,
+    "page_width_pt": 297.47,
+    "page_height_pt": 155.84,
+    "page_width_mm": 104.94,
+    "page_height_mm": 54.98,
+    "dpi": 600,
+    "px_to_mm": 0.042333
+  },
+  "data_layer": {
+    "text_elements": [
+      {
+        "content": "BLAVINGAD",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 87,
+          "y": 32,
+          "w": 701,
+          "h": 110
+        },
+        "bbox_mm": {
+          "x": 3.68,
+          "y": 1.35,
+          "w": 29.68,
+          "h": 4.66
+        },
+        "confidence": 0.9
+      },
+      {
+        "content": "780.420.39",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 130,
+          "y": 241,
+          "w": 723,
+          "h": 104
+        },
+        "bbox_mm": {
+          "x": 5.5,
+          "y": 10.2,
+          "w": 30.61,
+          "h": 4.4
+        },
+        "confidence": 0.89
+      },
+      {
+        "content": "X4",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 956,
+          "y": 222,
+          "w": 204,
+          "h": 128
+        },
+        "bbox_mm": {
+          "x": 40.47,
+          "y": 9.4,
+          "w": 8.64,
+          "h": 5.42
+        },
+        "confidence": 0.997
+      },
+      {
+        "content": "IKEA",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1459,
+          "y": 243,
+          "w": 362,
+          "h": 88
+        },
+        "bbox_mm": {
+          "x": 61.76,
+          "y": 10.29,
+          "w": 15.32,
+          "h": 3.73
+        },
+        "confidence": 0.528
+      },
+      {
+        "content": "133x133 cm",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 70,
+          "y": 428,
+          "w": 314,
+          "h": 56
+        },
+        "bbox_mm": {
+          "x": 2.96,
+          "y": 18.12,
+          "w": 13.29,
+          "h": 2.37
+        },
+        "confidence": 0.822
+      },
+      {
+        "content": "and",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1596,
+          "y": 422,
+          "w": 82,
+          "h": 39
+        },
+        "bbox_mm": {
+          "x": 67.56,
+          "y": 17.86,
+          "w": 3.47,
+          "h": 1.65
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "(4'4",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 70,
+          "y": 496,
+          "w": 120,
+          "h": 54
+        },
+        "bbox_mm": {
+          "x": 2.96,
+          "y": 21.0,
+          "w": 5.08,
+          "h": 2.29
+        },
+        "confidence": 0.959
+      },
+      {
+        "content": "16555",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 956,
+          "y": 458,
+          "w": 222,
+          "h": 74
+        },
+        "bbox_mm": {
+          "x": 40.47,
+          "y": 19.39,
+          "w": 9.4,
+          "h": 3.13
+        },
+        "confidence": 1.0
+      },
+      {
+        "content": "IKEA of Sweden",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1452,
+          "y": 478,
+          "w": 380,
+          "h": 54
+        },
+        "bbox_mm": {
+          "x": 61.47,
+          "y": 20.24,
+          "w": 16.09,
+          "h": 2.29
+        },
+        "confidence": 0.852
+      },
+      {
+        "content": "Not RTS Regular",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 314,
+          "y": 600,
+          "w": 620,
+          "h": 101
+        },
+        "bbox_mm": {
+          "x": 13.29,
+          "y": 25.4,
+          "w": 26.25,
+          "h": 4.28
+        },
+        "confidence": 0.988
+      },
+      {
+        "content": "Assembled in the US of imported",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1044,
+          "y": 601,
+          "w": 676,
+          "h": 55
+        },
+        "bbox_mm": {
+          "x": 44.2,
+          "y": 25.44,
+          "w": 28.62,
+          "h": 2.33
+        },
+        "confidence": 0.88
+      },
+      {
+        "content": "AI(240)78042039165.",
+        "source": "ocr",
+        "zone": "right_date",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1952,
+          "y": 601,
+          "w": 396,
+          "h": 50
+        },
+        "bbox_mm": {
+          "x": 82.63,
+          "y": 25.44,
+          "w": 16.76,
+          "h": 2.12
+        },
+        "confidence": 0.512
+      },
+      {
+        "content": "materials",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1049,
+          "y": 649,
+          "w": 202,
+          "h": 44
+        },
+        "bbox_mm": {
+          "x": 44.41,
+          "y": 27.47,
+          "w": 8.55,
+          "h": 1.86
+        },
+        "confidence": 1.0
+      },
+      {
+        "content": "AI(131260409",
+        "source": "ocr",
+        "zone": "right_compliance",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1952,
+          "y": 657,
+          "w": 254,
+          "h": 50
+        },
+        "bbox_mm": {
+          "x": 82.63,
+          "y": 27.81,
+          "w": 10.75,
+          "h": 2.12
+        },
+        "confidence": 0.519
+      },
+      {
+        "content": "43",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 150,
+          "y": 686,
+          "w": 46,
+          "h": 32
+        },
+        "bbox_mm": {
+          "x": 6.35,
+          "y": 29.04,
+          "w": 1.95,
+          "h": 1.35
+        },
+        "confidence": 1.0
+      },
+      {
+        "content": "kg",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 494,
+          "y": 718,
+          "w": 39,
+          "h": 41
+        },
+        "bbox_mm": {
+          "x": 20.91,
+          "y": 30.4,
+          "w": 1.65,
+          "h": 1.74
+        },
+        "confidence": 0.95
+      },
+      {
+        "content": "PI-585058-8",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1044,
+          "y": 710,
+          "w": 240,
+          "h": 48
+        },
+        "bbox_mm": {
+          "x": 44.2,
+          "y": 30.06,
+          "w": 10.16,
+          "h": 2.03
+        },
+        "confidence": 0.811
+      },
+      {
+        "content": "26-04-09 (YY-MM-DD",
+        "source": "ocr",
+        "zone": "right_date",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1952,
+          "y": 712,
+          "w": 403,
+          "h": 48
+        },
+        "bbox_mm": {
+          "x": 82.63,
+          "y": 30.14,
+          "w": 17.06,
+          "h": 2.03
+        },
+        "confidence": 0.971
+      },
+      {
+        "content": "kg",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 453,
+          "y": 764,
+          "w": 38,
+          "h": 41
+        },
+        "bbox_mm": {
+          "x": 19.18,
+          "y": 32.34,
+          "w": 1.61,
+          "h": 1.74
+        },
+        "confidence": 0.95
+      },
+      {
+        "content": "Sweden",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1197,
+          "y": 764,
+          "w": 149,
+          "h": 31
+        },
+        "bbox_mm": {
+          "x": 50.67,
+          "y": 32.34,
+          "w": 6.31,
+          "h": 1.31
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "34381 Almhult",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1498,
+          "y": 751,
+          "w": 288,
+          "h": 54
+        },
+        "bbox_mm": {
+          "x": 63.42,
+          "y": 31.79,
+          "w": 12.19,
+          "h": 2.29
+        },
+        "confidence": 1.0
+      },
+      {
+        "content": "Systems",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1296,
+          "y": 813,
+          "w": 159,
+          "h": 39
+        },
+        "bbox_mm": {
+          "x": 54.86,
+          "y": 34.42,
+          "w": 6.73,
+          "h": 1.65
+        },
+        "confidence": 0.93
+      },
+      {
+        "content": "ttjj-2615-rrr",
+        "source": "ocr",
+        "zone": "right_date",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1987,
+          "y": 781,
+          "w": 368,
+          "h": 87
+        },
+        "bbox_mm": {
+          "x": 84.12,
+          "y": 33.06,
+          "w": 15.58,
+          "h": 3.68
+        },
+        "confidence": 0.998
+      },
+      {
+        "content": "IKEA",
+        "source": "ocr",
+        "zone": "center_address",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1454,
+          "y": 243,
+          "w": 330,
+          "h": 88
+        },
+        "bbox_mm": {
+          "x": 61.55,
+          "y": 10.29,
+          "w": 13.97,
+          "h": 3.73
+        },
+        "confidence": 0.229
+      },
+      {
+        "content": "Jesign and Quz",
+        "source": "ocr",
+        "zone": "center_address",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1437,
+          "y": 410,
+          "w": 347,
+          "h": 73
+        },
+        "bbox_mm": {
+          "x": 60.83,
+          "y": 17.36,
+          "w": 14.69,
+          "h": 3.09
+        },
+        "confidence": 0.875
+      },
+      {
+        "content": "of",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1580,
+          "y": 485,
+          "w": 47,
+          "h": 37
+        },
+        "bbox_mm": {
+          "x": 66.89,
+          "y": 20.53,
+          "w": 1.99,
+          "h": 1.57
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "S of imported",
+        "source": "ocr",
+        "zone": "center_address",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1437,
+          "y": 601,
+          "w": 282,
+          "h": 55
+        },
+        "bbox_mm": {
+          "x": 60.83,
+          "y": 25.44,
+          "w": 11.94,
+          "h": 2.33
+        },
+        "confidence": 0.772
+      },
+      {
+        "content": "E",
+        "source": "ocr",
+        "zone": "center_address",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1437,
+          "y": 759,
+          "w": 37,
+          "h": 42
+        },
+        "bbox_mm": {
+          "x": 60.83,
+          "y": 32.13,
+          "w": 1.57,
+          "h": 1.78
+        },
+        "confidence": 1.0
+      },
+      {
+        "content": "s B.V.2021",
+        "source": "ocr",
+        "zone": "center_address",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1437,
+          "y": 805,
+          "w": 207,
+          "h": 44
+        },
+        "bbox_mm": {
+          "x": 60.83,
+          "y": 34.08,
+          "w": 8.76,
+          "h": 1.86
+        },
+        "confidence": 0.455
+      },
+      {
+        "content": "4",
+        "source": "ocr",
+        "zone": "right_compliance",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1981,
+          "y": 229,
+          "w": 92,
+          "h": 120
+        },
+        "bbox_mm": {
+          "x": 83.86,
+          "y": 9.69,
+          "w": 3.89,
+          "h": 5.08
+        },
+        "confidence": 0.175
+      },
+      {
+        "content": "lity",
+        "source": "ocr",
+        "zone": "right_compliance",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1784,
+          "y": 417,
+          "w": 87,
+          "h": 64
+        },
+        "bbox_mm": {
+          "x": 75.52,
+          "y": 17.65,
+          "w": 3.68,
+          "h": 2.71
+        },
+        "confidence": 0.957
+      },
+      {
+        "content": "n",
+        "source": "ocr",
+        "zone": "right_compliance",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1784,
+          "y": 487,
+          "w": 45,
+          "h": 42
+        },
+        "bbox_mm": {
+          "x": 75.52,
+          "y": 20.62,
+          "w": 1.91,
+          "h": 1.78
+        },
+        "confidence": 1.0
+      },
+      {
+        "content": "Al(240",
+        "source": "ocr",
+        "zone": "right_compliance",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1958,
+          "y": 612,
+          "w": 118,
+          "h": 35
+        },
+        "bbox_mm": {
+          "x": 82.89,
+          "y": 25.91,
+          "w": 5.0,
+          "h": 1.48
+        },
+        "confidence": 0.91
+      },
+      {
+        "content": "AI(13)2",
+        "source": "ocr",
+        "zone": "right_compliance",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1952,
+          "y": 658,
+          "w": 130,
+          "h": 50
+        },
+        "bbox_mm": {
+          "x": 82.63,
+          "y": 27.86,
+          "w": 5.5,
+          "h": 2.12
+        },
+        "confidence": 0.494
+      },
+      {
+        "content": "26-04",
+        "source": "ocr",
+        "zone": "right_compliance",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1953,
+          "y": 715,
+          "w": 118,
+          "h": 44
+        },
+        "bbox_mm": {
+          "x": 82.68,
+          "y": 30.27,
+          "w": 5.0,
+          "h": 1.86
+        },
+        "confidence": 1.0
+      },
+      {
+        "content": "ttjj",
+        "source": "ocr",
+        "zone": "right_compliance",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1990,
+          "y": 792,
+          "w": 92,
+          "h": 72
+        },
+        "bbox_mm": {
+          "x": 84.24,
+          "y": 33.53,
+          "w": 3.89,
+          "h": 3.05
+        },
+        "confidence": 1.0
+      },
+      {
+        "content": "J\"ik",
+        "source": "ocr",
+        "zone": "right_copy_count",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 2355,
+          "y": 0,
+          "w": 124,
+          "h": 1299
+        },
+        "bbox_mm": {
+          "x": 99.7,
+          "y": 0.0,
+          "w": 5.25,
+          "h": 54.99
+        },
+        "confidence": 0.019
+      },
+      {
+        "content": "133x133",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 76,
+          "y": 436,
+          "w": 210,
+          "h": 39
+        },
+        "bbox_mm": {
+          "x": 3.22,
+          "y": 18.46,
+          "w": 8.89,
+          "h": 1.65
+        },
+        "confidence": 0.91
+      },
+      {
+        "content": "cm",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 305,
+          "y": 444,
+          "w": 74,
+          "h": 31
+        },
+        "bbox_mm": {
+          "x": 12.91,
+          "y": 18.8,
+          "w": 3.13,
+          "h": 1.31
+        },
+        "confidence": 0.91
+      },
+      {
+        "content": "Not",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 322,
+          "y": 616,
+          "w": 132,
+          "h": 52
+        },
+        "bbox_mm": {
+          "x": 13.63,
+          "y": 26.08,
+          "w": 5.59,
+          "h": 2.2
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "RTS",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 482,
+          "y": 614,
+          "w": 124,
+          "h": 54
+        },
+        "bbox_mm": {
+          "x": 20.4,
+          "y": 25.99,
+          "w": 5.25,
+          "h": 2.29
+        },
+        "confidence": 0.95
+      },
+      {
+        "content": "Regula",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 636,
+          "y": 612,
+          "w": 246,
+          "h": 74
+        },
+        "bbox_mm": {
+          "x": 26.92,
+          "y": 25.91,
+          "w": 10.41,
+          "h": 3.13
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "Gross",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 318,
+          "y": 720,
+          "w": 108,
+          "h": 29
+        },
+        "bbox_mm": {
+          "x": 13.46,
+          "y": 30.48,
+          "w": 4.57,
+          "h": 1.23
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "12",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 441,
+          "y": 720,
+          "w": 37,
+          "h": 29
+        },
+        "bbox_mm": {
+          "x": 18.67,
+          "y": 30.48,
+          "w": 1.57,
+          "h": 1.23
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "(26",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 549,
+          "y": 720,
+          "w": 55,
+          "h": 35
+        },
+        "bbox_mm": {
+          "x": 23.24,
+          "y": 30.48,
+          "w": 2.33,
+          "h": 1.48
+        },
+        "confidence": 0.95
+      },
+      {
+        "content": "Ibs)",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 621,
+          "y": 718,
+          "w": 60,
+          "h": 37
+        },
+        "bbox_mm": {
+          "x": 26.29,
+          "y": 30.4,
+          "w": 2.54,
+          "h": 1.57
+        },
+        "confidence": 0.68
+      },
+      {
+        "content": "Net",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 320,
+          "y": 760,
+          "w": 58,
+          "h": 49
+        },
+        "bbox_mm": {
+          "x": 13.55,
+          "y": 32.17,
+          "w": 2.46,
+          "h": 2.07
+        },
+        "confidence": 0.95
+      },
+      {
+        "content": "10",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 397,
+          "y": 766,
+          "w": 34,
+          "h": 29
+        },
+        "bbox_mm": {
+          "x": 16.81,
+          "y": 32.43,
+          "w": 1.44,
+          "h": 1.23
+        },
+        "confidence": 0.95
+      },
+      {
+        "content": "(21",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 508,
+          "y": 766,
+          "w": 45,
+          "h": 35
+        },
+        "bbox_mm": {
+          "x": 21.51,
+          "y": 32.43,
+          "w": 1.91,
+          "h": 1.48
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "Ibs)",
+        "source": "ocr",
+        "zone": "left_identity",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 573,
+          "y": 764,
+          "w": 61,
+          "h": 37
+        },
+        "bbox_mm": {
+          "x": 24.26,
+          "y": 32.34,
+          "w": 2.58,
+          "h": 1.57
+        },
+        "confidence": 0.93
+      },
+      {
+        "content": "x4",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 891,
+          "y": 193,
+          "w": 249,
+          "h": 191
+        },
+        "bbox_mm": {
+          "x": 37.72,
+          "y": 8.17,
+          "w": 10.54,
+          "h": 8.09
+        },
+        "confidence": 0.46
+      },
+      {
+        "content": "Design",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1422,
+          "y": 424,
+          "w": 153,
+          "h": 49
+        },
+        "bbox_mm": {
+          "x": 60.2,
+          "y": 17.95,
+          "w": 6.48,
+          "h": 2.07
+        },
+        "confidence": 0.95
+      },
+      {
+        "content": "Quality",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1698,
+          "y": 422,
+          "w": 163,
+          "h": 50
+        },
+        "bbox_mm": {
+          "x": 71.88,
+          "y": 17.86,
+          "w": 6.9,
+          "h": 2.12
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "IKEA",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1461,
+          "y": 487,
+          "w": 102,
+          "h": 35
+        },
+        "bbox_mm": {
+          "x": 61.85,
+          "y": 20.62,
+          "w": 4.32,
+          "h": 1.48
+        },
+        "confidence": 0.95
+      },
+      {
+        "content": "Sweden",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1645,
+          "y": 485,
+          "w": 177,
+          "h": 37
+        },
+        "bbox_mm": {
+          "x": 69.64,
+          "y": 20.53,
+          "w": 7.49,
+          "h": 1.57
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "Assembled",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1049,
+          "y": 610,
+          "w": 216,
+          "h": 31
+        },
+        "bbox_mm": {
+          "x": 44.41,
+          "y": 25.82,
+          "w": 9.14,
+          "h": 1.31
+        },
+        "confidence": 0.95
+      },
+      {
+        "content": "in",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1282,
+          "y": 610,
+          "w": 31,
+          "h": 31
+        },
+        "bbox_mm": {
+          "x": 54.27,
+          "y": 25.82,
+          "w": 1.31,
+          "h": 1.31
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "the",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1327,
+          "y": 610,
+          "w": 69,
+          "h": 31
+        },
+        "bbox_mm": {
+          "x": 56.18,
+          "y": 25.82,
+          "w": 2.92,
+          "h": 1.31
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "US",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1410,
+          "y": 612,
+          "w": 49,
+          "h": 29
+        },
+        "bbox_mm": {
+          "x": 59.69,
+          "y": 25.91,
+          "w": 2.07,
+          "h": 1.23
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "of",
+        "source": "ocr",
+        "zone": "center_address",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1477,
+          "y": 610,
+          "w": 37,
+          "h": 31
+        },
+        "bbox_mm": {
+          "x": 62.53,
+          "y": 25.82,
+          "w": 1.57,
+          "h": 1.31
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "imported",
+        "source": "ocr",
+        "zone": "center_address",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1527,
+          "y": 610,
+          "w": 184,
+          "h": 41
+        },
+        "bbox_mm": {
+          "x": 64.64,
+          "y": 25.82,
+          "w": 7.79,
+          "h": 1.74
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "IKEA",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1053,
+          "y": 766,
+          "w": 82,
+          "h": 29
+        },
+        "bbox_mm": {
+          "x": 44.58,
+          "y": 32.43,
+          "w": 3.47,
+          "h": 1.23
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "of",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1148,
+          "y": 764,
+          "w": 38,
+          "h": 31
+        },
+        "bbox_mm": {
+          "x": 48.6,
+          "y": 32.34,
+          "w": 1.61,
+          "h": 1.31
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "AB",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1361,
+          "y": 766,
+          "w": 50,
+          "h": 29
+        },
+        "bbox_mm": {
+          "x": 57.62,
+          "y": 32.43,
+          "w": 2.12,
+          "h": 1.23
+        },
+        "confidence": 0.93
+      },
+      {
+        "content": "-",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1483,
+          "y": 784,
+          "w": 9,
+          "h": 1
+        },
+        "bbox_mm": {
+          "x": 62.78,
+          "y": 33.19,
+          "w": 0.38,
+          "h": 0.04
+        },
+        "confidence": 0.91
+      },
+      {
+        "content": "34381",
+        "source": "ocr",
+        "zone": "center_address",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1507,
+          "y": 766,
+          "w": 104,
+          "h": 29
+        },
+        "bbox_mm": {
+          "x": 63.8,
+          "y": 32.43,
+          "w": 4.4,
+          "h": 1.23
+        },
+        "confidence": 0.93
+      },
+      {
+        "content": "Almhult",
+        "source": "ocr",
+        "zone": "center_address",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1628,
+          "y": 758,
+          "w": 149,
+          "h": 37
+        },
+        "bbox_mm": {
+          "x": 68.92,
+          "y": 32.09,
+          "w": 6.31,
+          "h": 1.57
+        },
+        "confidence": 0.92
+      },
+      {
+        "content": "©",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1051,
+          "y": 813,
+          "w": 29,
+          "h": 29
+        },
+        "bbox_mm": {
+          "x": 44.49,
+          "y": 34.42,
+          "w": 1.23,
+          "h": 1.23
+        },
+        "confidence": 0.95
+      },
+      {
+        "content": "Inter",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1096,
+          "y": 813,
+          "w": 88,
+          "h": 29
+        },
+        "bbox_mm": {
+          "x": 46.4,
+          "y": 34.42,
+          "w": 3.73,
+          "h": 1.23
+        },
+        "confidence": 0.95
+      },
+      {
+        "content": "IKEA",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1201,
+          "y": 813,
+          "w": 82,
+          "h": 29
+        },
+        "bbox_mm": {
+          "x": 50.84,
+          "y": 34.42,
+          "w": 3.47,
+          "h": 1.23
+        },
+        "confidence": 0.94
+      },
+      {
+        "content": "B.V.",
+        "source": "ocr",
+        "zone": "center_address",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1471,
+          "y": 813,
+          "w": 69,
+          "h": 29
+        },
+        "bbox_mm": {
+          "x": 62.27,
+          "y": 34.42,
+          "w": 2.92,
+          "h": 1.23
+        },
+        "confidence": 0.74
+      },
+      {
+        "content": "2021",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1556,
+          "y": 813,
+          "w": 80,
+          "h": 29
+        },
+        "bbox_mm": {
+          "x": 65.87,
+          "y": 34.42,
+          "w": 3.39,
+          "h": 1.23
+        },
+        "confidence": 0.96
+      },
+      {
+        "content": "|",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1088,
+          "y": 894,
+          "w": 81,
+          "h": 348
+        },
+        "bbox_mm": {
+          "x": 46.06,
+          "y": 37.85,
+          "w": 3.43,
+          "h": 14.73
+        },
+        "confidence": 0.75
+      },
+      {
+        "content": "ih",
+        "source": "ocr",
+        "zone": "center_barcode",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1594,
+          "y": 894,
+          "w": 329,
+          "h": 348
+        },
+        "bbox_mm": {
+          "x": 67.48,
+          "y": 37.85,
+          "w": 13.93,
+          "h": 14.73
+        },
+        "confidence": 0.43
+      },
+      {
+        "content": "Qué",
+        "source": "ocr",
+        "zone": "center_address",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1698,
+          "y": 424,
+          "w": 86,
+          "h": 45
+        },
+        "bbox_mm": {
+          "x": 71.88,
+          "y": 17.95,
+          "w": 3.64,
+          "h": 1.91
+        },
+        "confidence": 0.67
+      },
+      {
+        "content": "s",
+        "source": "ocr",
+        "zone": "center_address",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1440,
+          "y": 821,
+          "w": 15,
+          "h": 21
+        },
+        "bbox_mm": {
+          "x": 60.96,
+          "y": 34.76,
+          "w": 0.64,
+          "h": 0.89
+        },
+        "confidence": 0.72
+      },
+      {
+        "content": "\"il",
+        "source": "ocr",
+        "zone": "right_compliance",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1993,
+          "y": 109,
+          "w": 89,
+          "h": 35
+        },
+        "bbox_mm": {
+          "x": 84.37,
+          "y": 4.61,
+          "w": 3.77,
+          "h": 1.48
+        },
+        "confidence": 0.4
+      },
+      {
+        "content": "an",
+        "source": "ocr",
+        "zone": "right_compliance",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 2011,
+          "y": 144,
+          "w": 53,
+          "h": 16
+        },
+        "bbox_mm": {
+          "x": 85.13,
+          "y": 6.1,
+          "w": 2.24,
+          "h": 0.68
+        },
+        "confidence": 0.56
+      },
+      {
+        "content": "ra",
+        "source": "ocr",
+        "zone": "right_compliance",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1993,
+          "y": 464,
+          "w": 71,
+          "h": 70
+        },
+        "bbox_mm": {
+          "x": 84.37,
+          "y": 19.64,
+          "w": 3.01,
+          "h": 2.96
+        },
+        "confidence": 0.22
+      },
+      {
+        "content": "ill",
+        "source": "ocr",
+        "zone": "right_compliance",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 1784,
+          "y": 894,
+          "w": 189,
+          "h": 348
+        },
+        "bbox_mm": {
+          "x": 75.52,
+          "y": 37.85,
+          "w": 8.0,
+          "h": 14.73
+        },
+        "confidence": 0.66
+      },
+      {
+        "content": "|",
+        "source": "ocr",
+        "zone": "right_date",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 2171,
+          "y": 109,
+          "w": 17,
+          "h": 35
+        },
+        "bbox_mm": {
+          "x": 91.91,
+          "y": 4.61,
+          "w": 0.72,
+          "h": 1.48
+        },
+        "confidence": 0.52
+      },
+      {
+        "content": "|",
+        "source": "ocr",
+        "zone": "right_date",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 2207,
+          "y": 109,
+          "w": 17,
+          "h": 35
+        },
+        "bbox_mm": {
+          "x": 93.43,
+          "y": 4.61,
+          "w": 0.72,
+          "h": 1.48
+        },
+        "confidence": 0.66
+      },
+      {
+        "content": "7",
+        "source": "ocr",
+        "zone": "right_date",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 2242,
+          "y": 109,
+          "w": 53,
+          "h": 35
+        },
+        "bbox_mm": {
+          "x": 94.91,
+          "y": 4.61,
+          "w": 2.24,
+          "h": 1.48
+        },
+        "confidence": 0.6
+      },
+      {
+        "content": "a",
+        "source": "ocr",
+        "zone": "right_date",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 2313,
+          "y": 109,
+          "w": 17,
+          "h": 17
+        },
+        "bbox_mm": {
+          "x": 97.92,
+          "y": 4.61,
+          "w": 0.72,
+          "h": 0.72
+        },
+        "confidence": 0.32
+      },
+      {
+        "content": "mai",
+        "source": "ocr",
+        "zone": "right_date",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 2082,
+          "y": 109,
+          "w": 273,
+          "h": 123
+        },
+        "bbox_mm": {
+          "x": 88.14,
+          "y": 4.61,
+          "w": 11.56,
+          "h": 5.21
+        },
+        "confidence": 0.39
+      },
+      {
+        "content": "c",
+        "source": "ocr",
+        "zone": "right_date",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 2082,
+          "y": 410,
+          "w": 35,
+          "h": 53
+        },
+        "bbox_mm": {
+          "x": 88.14,
+          "y": 17.36,
+          "w": 1.48,
+          "h": 2.24
+        },
+        "confidence": 0.56
+      },
+      {
+        "content": "i",
+        "source": "ocr",
+        "zone": "right_date",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 2136,
+          "y": 321,
+          "w": 70,
+          "h": 106
+        },
+        "bbox_mm": {
+          "x": 90.42,
+          "y": 13.59,
+          "w": 2.96,
+          "h": 4.49
+        },
+        "confidence": 0.23
+      },
+      {
+        "content": "\"a",
+        "source": "ocr",
+        "zone": "right_date",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 2242,
+          "y": 410,
+          "w": 53,
+          "h": 53
+        },
+        "bbox_mm": {
+          "x": 94.91,
+          "y": 17.36,
+          "w": 2.24,
+          "h": 2.24
+        },
+        "confidence": 0.13
+      },
+      {
+        "content": "60409",
+        "source": "ocr",
+        "zone": "right_date",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 2086,
+          "y": 667,
+          "w": 114,
+          "h": 29
+        },
+        "bbox_mm": {
+          "x": 88.31,
+          "y": 28.24,
+          "w": 4.83,
+          "h": 1.23
+        },
+        "confidence": 0.95
+      },
+      {
+        "content": "09",
+        "source": "ocr",
+        "zone": "right_date",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 2082,
+          "y": 722,
+          "w": 43,
+          "h": 29
+        },
+        "bbox_mm": {
+          "x": 88.14,
+          "y": 30.56,
+          "w": 1.82,
+          "h": 1.23
+        },
+        "confidence": 0.9
+      },
+      {
+        "content": "(YY-MM-DD",
+        "source": "ocr",
+        "zone": "right_date",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 2140,
+          "y": 722,
+          "w": 215,
+          "h": 35
+        },
+        "bbox_mm": {
+          "x": 90.59,
+          "y": 30.56,
+          "w": 9.1,
+          "h": 1.48
+        },
+        "confidence": 0.9
+      },
+      {
+        "content": "-2615-rrr",
+        "source": "ocr",
+        "zone": "right_date",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 2084,
+          "y": 798,
+          "w": 268,
+          "h": 46
+        },
+        "bbox_mm": {
+          "x": 88.22,
+          "y": 33.78,
+          "w": 11.35,
+          "h": 1.95
+        },
+        "confidence": 0.9
+      },
+      {
+        "content": "SS",
+        "source": "ocr",
+        "zone": "right_copy_count",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 2810,
+          "y": 0,
+          "w": 735,
+          "h": 65
+        },
+        "bbox_mm": {
+          "x": 118.96,
+          "y": 0.0,
+          "w": 31.12,
+          "h": 2.75
+        },
+        "confidence": 0.31
+      },
+      {
+        "content": "Be",
+        "source": "ocr",
+        "zone": "right_copy_count",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 3088,
+          "y": 0,
+          "w": 156,
+          "h": 124
+        },
+        "bbox_mm": {
+          "x": 130.73,
+          "y": 0.0,
+          "w": 6.6,
+          "h": 5.25
+        },
+        "confidence": 0.36
+      },
+      {
+        "content": "PAT",
+        "source": "ocr",
+        "zone": "right_copy_count",
+        "font": {
+          "name": "",
+          "size_pt": 0.0,
+          "size_mm": 0.0,
+          "bold": false,
+          "italic": false
+        },
+        "color": {
+          "hex": null,
+          "rgb": null
+        },
+        "bbox_px": {
+          "x": 3378,
+          "y": 0,
+          "w": 269,
+          "h": 124
+        },
+        "bbox_mm": {
+          "x": 143.0,
+          "y": 0.0,
+          "w": 11.39,
+          "h": 5.25
+        },
+        "confidence": 0.5
+      }
+    ],
+    "barcodes": [
+      {
+        "symbology": "I25",
+        "value": "60528367233392",
+        "confidence": 1.0,
+        "bbox_px": {
+          "x": 1049,
+          "y": 893,
+          "w": 1216,
+          "h": 349
+        },
+        "bbox_mm": {
+          "x": 44.41,
+          "y": 37.8,
+          "w": 51.48,
+          "h": 14.77
+        },
+        "width_mm": 51.48,
+        "height_mm": 14.77
+      },
+      {
+        "symbology": "DataMatrix",
+        "value": "https://www.goto.ikea.com/240/7804203916555?13=260409",
+        "confidence": 1.0,
+        "bbox_px": {
+          "x": 1957,
+          "y": 729,
+          "w": 462,
+          "h": 461
+        },
+        "bbox_mm": {
+          "x": 82.85,
+          "y": 30.86,
+          "w": 19.56,
+          "h": 19.52
+        },
+        "width_mm": 19.56,
+        "height_mm": 19.52,
+        "encoding": "GS1",
+        "gs1_fields": {
+          "240": {
+            "value": "7804203916555",
+            "formatted": null,
+            "name": "additional_id"
+          },
+          "13": {
+            "value": "260409",
+            "formatted": "26-04-09",
+            "name": "pack_date"
+          }
+        }
+      }
+    ],
+    "named_fields": {
+      "product_name": {
+        "value": "BLAVINGAD",
+        "confidence": 0.9,
+        "zone": "left_identity",
+        "source": "ocr",
+        "bbox_px": {
+          "x": 87,
+          "y": 32,
+          "w": 701,
+          "h": 110,
+          "x_frac": 0.03509479628882614,
+          "y_frac": 0.024634334103156273,
+          "w_frac": 0.2827753126260589,
+          "h_frac": 0.08468052347959969,
+          "zone": "left_identity"
+        }
+      },
+      "product_dimensions_metric": {
+        "value": "133x133 cm",
+        "confidence": 0.82,
+        "zone": "left_identity",
+        "source": "ocr",
+        "bbox_px": {
+          "x": 70,
+          "y": 428,
+          "w": 314,
+          "h": 56,
+          "x_frac": 0.028237192416296894,
+          "y_frac": 0.32948421862971516,
+          "w_frac": 0.12666397741024607,
+          "h_frac": 0.04311008468052348,
+          "zone": "left_identity"
+        }
+      },
+      "product_dimensions_imperial": {
+        "value": "4'4",
+        "confidence": 0.82,
+        "zone": "left_identity",
+        "source": "ocr",
+        "bbox_px": {
+          "x": 70,
+          "y": 496,
+          "w": 120,
+          "h": 54,
+          "x_frac": 0.028237192416296894,
+          "y_frac": 0.38183217859892227,
+          "w_frac": 0.048406615570794675,
+          "h_frac": 0.04157043879907621,
+          "zone": "left_identity"
+        }
+      },
+      "dimensions": {
+        "value": "420 cm, 133 cm, 43 cm, 133 cm, 12 cm, 26 cm, 10 cm, 21 cm",
+        "confidence": 0.82,
+        "zone": "left_identity",
+        "source": "ocr",
+        "bbox_px": {
+          "x": 70,
+          "y": 241,
+          "w": 783,
+          "h": 560,
+          "x_frac": 0.028237192416296894,
+          "y_frac": 0.1855273287143957,
+          "w_frac": 0.31585316659943524,
+          "h_frac": 0.4311008468052348,
+          "zone": "left_identity"
+        }
+      },
+      "article_number": {
+        "value": "605.283.67",
+        "confidence": 0.95,
+        "zone": "center_barcode",
+        "source": "barcode",
+        "bbox_px": {
+          "x": 1049,
+          "y": 893,
+          "w": 1216,
+          "h": 349,
+          "x_frac": 0.42315449778136344,
+          "y_frac": 0.6874518860662048,
+          "w_frac": 0.49052037111738606,
+          "h_frac": 0.2686682063125481,
+          "zone": ""
+        }
+      },
+      "article_code": {
+        "value": "23339",
+        "confidence": 1.0,
+        "zone": "left_identity",
+        "source": "barcode",
+        "bbox_px": {
+          "x": 1049,
+          "y": 893,
+          "w": 1216,
+          "h": 349,
+          "x_frac": 0.42315449778136344,
+          "y_frac": 0.6874518860662048,
+          "w_frac": 0.49052037111738606,
+          "h_frac": 0.2686682063125481,
+          "zone": ""
+        }
+      },
+      "internal_item_number": {
+        "value": "16555",
+        "confidence": 0.6000000000000001,
+        "zone": "center_barcode",
+        "source": "ocr",
+        "bbox_px": {
+          "x": 956,
+          "y": 458,
+          "w": 222,
+          "h": 74,
+          "x_frac": 0.38563937071399756,
+          "y_frac": 0.3525789068514242,
+          "w_frac": 0.08955223880597014,
+          "h_frac": 0.05696689761354888,
+          "zone": "center_barcode"
+        }
+      },
+      "gross_weight": {
+        "value": "Gross 26 lbs",
+        "confidence": 0.82,
+        "zone": "left_identity",
+        "source": "ocr",
+        "bbox_px": {
+          "x": 318,
+          "y": 720,
+          "w": 108,
+          "h": 29,
+          "x_frac": 0.12827753126260588,
+          "y_frac": 0.5542725173210161,
+          "w_frac": 0.04356595401371521,
+          "h_frac": 0.022324865280985373,
+          "zone": "left_identity"
+        }
+      },
+      "net_weight": {
+        "value": "Net 26 lbs",
+        "confidence": 0.82,
+        "zone": "left_identity",
+        "source": "ocr",
+        "bbox_px": {
+          "x": 320,
+          "y": 760,
+          "w": 58,
+          "h": 49,
+          "x_frac": 0.1290843081887858,
+          "y_frac": 0.5850654349499615,
+          "w_frac": 0.023396530859217425,
+          "h_frac": 0.037721324095458045,
+          "zone": "left_identity"
+        }
+      },
+      "weight": {
+        "value": "12 kg / 26 lbs",
+        "confidence": 0.82,
+        "zone": "left_identity",
+        "source": "ocr",
+        "bbox_px": null
+      },
+      "package_type": {
+        "value": "Not RTS Regular",
+        "confidence": 0.82,
+        "zone": "left_identity",
+        "source": "ocr",
+        "bbox_px": {
+          "x": 314,
+          "y": 600,
+          "w": 620,
+          "h": 101,
+          "x_frac": 0.12666397741024607,
+          "y_frac": 0.4618937644341801,
+          "w_frac": 0.25010084711577246,
+          "h_frac": 0.07775211701308699,
+          "zone": "left_identity"
+        }
+      },
+      "itf14_barcode": {
+        "value": "60528367233392"
+      },
+      "itf14_human_readable": {
+        "value": "605.283.67",
+        "confidence": 0.95,
+        "zone": "center_barcode",
+        "source": "barcode",
+        "bbox_px": {
+          "x": 1049,
+          "y": 893,
+          "w": 1216,
+          "h": 349,
+          "x_frac": 0.42315449778136344,
+          "y_frac": 0.6874518860662048,
+          "w_frac": 0.49052037111738606,
+          "h_frac": 0.2686682063125481,
+          "zone": ""
+        }
+      },
+      "date_stamp": {
+        "value": "2615",
+        "confidence": 0.616,
+        "zone": "right_date",
+        "source": "ocr",
+        "bbox_px": {
+          "x": 1987,
+          "y": 781,
+          "w": 368,
+          "h": 87,
+          "x_frac": 0.8015328761597418,
+          "y_frac": 0.6012317167051578,
+          "w_frac": 0.14844695441710368,
+          "h_frac": 0.06697459584295612,
+          "zone": "right_date"
+        }
+      },
+      "date_label_present": {
+        "value": false
+      },
+      "custom_identifier": {
+        "value": "ttjj-2615-rrr",
+        "confidence": 0.88,
+        "zone": "right_date",
+        "source": "ocr",
+        "bbox_px": {
+          "x": 1987,
+          "y": 781,
+          "w": 368,
+          "h": 87,
+          "x_frac": 0.8015328761597418,
+          "y_frac": 0.6012317167051578,
+          "w_frac": 0.14844695441710368,
+          "h_frac": 0.06697459584295612,
+          "zone": "right_date"
+        }
+      },
+      "address_block": {
+        "value": "E s B.V.2021 s B.V. 34381 Almhult",
+        "confidence": 0.85,
+        "zone": "center_address",
+        "source": "ocr",
+        "bbox_px": {
+          "x": 1437,
+          "y": 758,
+          "w": 340,
+          "h": 91,
+          "x_frac": 0.5796692214602662,
+          "y_frac": 0.5835257890685143,
+          "w_frac": 0.1371520774505849,
+          "h_frac": 0.07005388760585066,
+          "zone": "center_address"
+        }
+      },
+      "compliance_marks": {
+        "value": "compliance_symbols_detected, CE",
+        "confidence": 0.65,
+        "zone": "right_compliance",
+        "source": "ocr",
+        "bbox_px": null
+      }
+    }
+  },
+  "layout_layer": {
+    "zones": {
+      "left_identity": {
+        "zone_id": "left_identity",
+        "rotation": 0,
+        "bounds_px": {
+          "x": 0,
+          "y": 0,
+          "w": 891,
+          "h": 1299
+        },
+        "bounds_mm": {
+          "x": 0.0,
+          "y": 0.0,
+          "w": 37.72,
+          "h": 54.99
+        },
+        "background_color": null,
+        "text_count": 0,
+        "image_count": 0,
+        "path_count": 0,
+        "text_content": [],
+        "ocr_words": [
+          "BLAVINGAD",
+          "780.420.39",
+          "133x133 cm",
+          "(4'4",
+          "Not RTS Regular",
+          "43",
+          "kg",
+          "kg",
+          "133x133",
+          "cm",
+          "Not",
+          "RTS",
+          "Regula",
+          "Gross",
+          "12",
+          "(26",
+          "Ibs)",
+          "Net",
+          "10",
+          "(21",
+          "Ibs)"
+        ]
+      },
+      "center_barcode": {
+        "zone_id": "center_barcode",
+        "rotation": 0,
+        "bounds_px": {
+          "x": 891,
+          "y": 0,
+          "w": 1040,
+          "h": 1299
+        },
+        "bounds_mm": {
+          "x": 37.72,
+          "y": 0.0,
+          "w": 44.03,
+          "h": 54.99
+        },
+        "background_color": "#FFFFFF",
+        "text_count": 0,
+        "image_count": 0,
+        "path_count": 1,
+        "text_content": [],
+        "ocr_words": [
+          "X4",
+          "IKEA",
+          "and",
+          "16555",
+          "IKEA of Sweden",
+          "Assembled in the US of imported",
+          "materials",
+          "PI-585058-8",
+          "Sweden",
+          "34381 Almhult",
+          "Systems",
+          "of",
+          "x4",
+          "Design",
+          "Quality",
+          "IKEA",
+          "Sweden",
+          "Assembled",
+          "in",
+          "the",
+          "US",
+          "IKEA",
+          "of",
+          "AB",
+          "-",
+          "©",
+          "Inter",
+          "IKEA",
+          "2021",
+          "|",
+          "ih"
+        ]
+      },
+      "center_datamatrix": {
+        "zone_id": "center_datamatrix",
+        "rotation": 0,
+        "bounds_px": {
+          "x": 1932,
+          "y": 0,
+          "w": -494,
+          "h": 1299
+        },
+        "bounds_mm": {
+          "x": 81.79,
+          "y": 0.0,
+          "w": -20.91,
+          "h": 54.99
+        },
+        "background_color": null,
+        "text_count": 0,
+        "image_count": 0,
+        "path_count": 0,
+        "text_content": [],
+        "ocr_words": []
+      },
+      "center_address": {
+        "zone_id": "center_address",
+        "rotation": 0,
+        "bounds_px": {
+          "x": 1437,
+          "y": 0,
+          "w": 347,
+          "h": 1299
+        },
+        "bounds_mm": {
+          "x": 60.83,
+          "y": 0.0,
+          "w": 14.69,
+          "h": 54.99
+        },
+        "background_color": null,
+        "text_count": 0,
+        "image_count": 0,
+        "path_count": 0,
+        "text_content": [],
+        "ocr_words": [
+          "IKEA",
+          "Jesign and Quz",
+          "S of imported",
+          "E",
+          "s B.V.2021",
+          "of",
+          "imported",
+          "34381",
+          "Almhult",
+          "B.V.",
+          "Qué",
+          "s"
+        ]
+      },
+      "right_compliance": {
+        "zone_id": "right_compliance",
+        "rotation": 0,
+        "bounds_px": {
+          "x": 1784,
+          "y": 0,
+          "w": 297,
+          "h": 1299
+        },
+        "bounds_mm": {
+          "x": 75.52,
+          "y": 0.0,
+          "w": 12.57,
+          "h": 54.99
+        },
+        "background_color": null,
+        "text_count": 0,
+        "image_count": 0,
+        "path_count": 0,
+        "text_content": [],
+        "ocr_words": [
+          "AI(131260409",
+          "4",
+          "lity",
+          "n",
+          "Al(240",
+          "AI(13)2",
+          "26-04",
+          "ttjj",
+          "\"il",
+          "an",
+          "ra",
+          "ill"
+        ]
+      },
+      "right_date": {
+        "zone_id": "right_date",
+        "rotation": 0,
+        "bounds_px": {
+          "x": 2082,
+          "y": 0,
+          "w": 272,
+          "h": 1299
+        },
+        "bounds_mm": {
+          "x": 88.14,
+          "y": 0.0,
+          "w": 11.51,
+          "h": 54.99
+        },
+        "background_color": null,
+        "text_count": 0,
+        "image_count": 0,
+        "path_count": 0,
+        "text_content": [],
+        "ocr_words": [
+          "AI(240)78042039165.",
+          "26-04-09 (YY-MM-DD",
+          "ttjj-2615-rrr",
+          "|",
+          "|",
+          "7",
+          "a",
+          "mai",
+          "c",
+          "i",
+          "\"a",
+          "60409",
+          "09",
+          "(YY-MM-DD",
+          "-2615-rrr"
+        ]
+      },
+      "right_copy_count": {
+        "zone_id": "right_copy_count",
+        "rotation": -90,
+        "bounds_px": {
+          "x": 2355,
+          "y": 0,
+          "w": 123,
+          "h": 1299
+        },
+        "bounds_mm": {
+          "x": 99.7,
+          "y": 0.0,
+          "w": 5.21,
+          "h": 54.99
+        },
+        "background_color": null,
+        "text_count": 0,
+        "image_count": 0,
+        "path_count": 0,
+        "text_content": [],
+        "ocr_words": [
+          "J\"ik",
+          "SS",
+          "Be",
+          "PAT"
+        ]
+      }
+    },
+    "color_regions": [
+      {
+        "fill_hex": "#FFFFFF",
+        "fill_rgb": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "color_label": "white",
+        "zone": "center_barcode",
+        "bbox_px": {
+          "x": 0,
+          "y": 0,
+          "w": 2478,
+          "h": 1298
+        },
+        "bbox_mm": {
+          "x": 0.0,
+          "y": 0.0,
+          "w": 104.9,
+          "h": 54.95
+        },
+        "width_mm": 104.94,
+        "height_mm": 54.98,
+        "area_mm2": 5769.6,
+        "text_inside": [],
+        "image_inside": [
+          "[image]"
+        ]
+      }
+    ],
+    "typography": [],
+    "dividers": [],
+    "images": [
+      {
+        "zone": "",
+        "bbox_px": {
+          "x": 57,
+          "y": 25,
+          "w": 2362,
+          "h": 1231
+        },
+        "bbox_mm": {
+          "x": 2.41,
+          "y": 1.06,
+          "w": 99.99,
+          "h": 52.11
+        },
+        "width_mm": 99.99,
+        "height_mm": 52.11,
+        "aspect_ratio": 1.919,
+        "meta": {
+          "xref": 10,
+          "ext": "png",
+          "width_px": 624,
+          "height_px": 1197,
+          "colorspace": 1
+        }
+      }
+    ]
+  },
+  "raw_element_counts": {
+    "path_rect": 1,
+    "image_pdf": 1,
+    "region": 75,
+    "line": 428
+  }
+}

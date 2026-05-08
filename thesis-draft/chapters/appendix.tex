@@ -1,0 +1,123 @@
+\chapter{Appendix A: Label Schema Example}
+\label{app:schema}
+
+\Cref{lst:schema_example} shows an excerpt of the \texttt{1C50-IDBDM} schema file,
+illustrating the structure of a full label-type definition.
+
+\begin{lstlisting}[language={},
+  caption={Excerpt from label-rules/1C50-IDBDM.json.},
+  label={lst:schema_example}]
+{
+  "label_type_id": "1C50-IDBDM",
+  "label_type_name": "Card 50x35mm - Identity B with DataMatrix",
+  "physical_dimensions_mm": { "width": 50, "height": 35 },
+  "shape": "card_landscape",
+  "required_fields": [
+    "ikea_logo", "product_name", "article_number",
+    "internal_item_number", "origin_text", "supplier_name",
+    "supplier_address", "copyright_notice", "plant_identifier",
+    "human_readable_date", "custom_identifier",
+    "dimensions_metric", "dimensions_imperial",
+    "weight_compact", "copy_count_inline"
+  ],
+  "optional_fields": [
+    "compliance_marks", "age_rating", "quantity_multiplier"
+  ],
+  "datamatrix": {
+    "symbol_size": "26x26",
+    "x_dimension_options_mm": [0.4],
+    "gs1_ais_present": ["AI_240", "AI_13"]
+  },
+  "validation_rules": [
+    {
+      "rule_id": "R001",
+      "field": "article_number",
+      "check": "regex_match",
+      "pattern": "\\d{3}\\.\\d{3}\\.\\d{2}",
+      "severity": "error"
+    },
+    {
+      "rule_id": "R002",
+      "field": "supplier_name",
+      "check": "exact_match",
+      "value": "IKEA of Sweden AB",
+      "severity": "error"
+    }
+  ]
+}
+\end{lstlisting}
+
+\chapter{Appendix B: API Response Example}
+\label{app:api}
+
+\Cref{lst:api_response} shows a truncated example of the JSON response from
+\texttt{POST /api/merge-validate} for a non-compliant label.
+
+\begin{lstlisting}[language={},
+  caption={Truncated /api/merge-validate response for a non-compliant label.},
+  label={lst:api_response}]
+{
+  "validation": {
+    "label_type_id": "1C50-IDBDM",
+    "label_type_name": "Card 50x35mm - Identity B with DataMatrix",
+    "match_confidence": 0.812,
+    "compliance_score": 0.438,
+    "n_pass": 9,
+    "n_error": 3,
+    "n_warning": 1,
+    "n_skip": 0,
+    "results": [
+      {
+        "rule_id": "R001",
+        "field": "article_number",
+        "check": "regex_match",
+        "severity": "error",
+        "status": "fail",
+        "extracted_value": "12345678",
+        "expected": "\\d{3}\\.\\d{3}\\.\\d{2}",
+        "message": "Value '12345678' does not match /\\d{3}\\.\\d{3}\\.\\d{2}/."
+      },
+      {
+        "rule_id": "R003",
+        "field": "plant_identifier",
+        "check": "present",
+        "severity": "error",
+        "status": "fail",
+        "extracted_value": null,
+        "expected": null,
+        "message": "Field 'plant_identifier' not found in extraction."
+      }
+    ]
+  }
+}
+\end{lstlisting}
+
+\chapter{Appendix C: Individual Contribution Statement}
+
+This project was conducted as a bachelor's thesis in equal collaboration between
+Ghanasham Saravaiahgari and Ghazal Chamto. The division of primary responsibility
+was as follows:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Component} & \textbf{Primary Contributor} \\
+\midrule
+System architecture and API design & Ghanasham Saravaiahgari \\
+OCR engine integration and ensemble & Ghanasham Saravaiahgari \\
+Barcode decoding and GS1 parser & Ghanasham Saravaiahgari \\
+Rule schema corpus (34 JSON files) & Ghazal Chamto \\
+Validator implementation & Ghazal Chamto \\
+Dataset annotation and quality control & Both authors \\
+Streamlit UI implementation & Both authors \\
+Experimental evaluation & Both authors \\
+Report writing (Chapters 1--4) & Ghanasham Saravaiahgari \\
+Report writing (Chapters 5--9) & Ghazal Chamto \\
+\bottomrule
+\end{tabular}
+\caption{Individual contribution statement.}
+\end{table}
+
+All design decisions were made jointly, and each author reviewed and approved the
+other's contributions before submission.

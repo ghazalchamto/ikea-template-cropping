@@ -15,12 +15,21 @@ Entry point:
 """
 
 from .label_extractor import LabelExtractor
+from .label_dissector import LabelDissector
 from .ocr_engine import warmup_ocr_readers
 from .models import ExtractedLabel, ExtractedField, BarcodeResult, DataMatrixContent
 from .zone_segmenter import detect_label_shape, get_zone_cfg_for_shape
+from .dissection_store import (
+    save_dissection,
+    save_extraction,
+    load_dissection,
+    load_extraction,
+    get_output_dir,
+)
 
 __all__ = [
     "LabelExtractor",
+    "LabelDissector",
     "warmup_ocr_readers",
     "ExtractedLabel",
     "ExtractedField",
@@ -28,4 +37,9 @@ __all__ = [
     "DataMatrixContent",
     "detect_label_shape",
     "get_zone_cfg_for_shape",
+    "save_dissection",
+    "save_extraction",
+    "load_dissection",
+    "load_extraction",
+    "get_output_dir",
 ]

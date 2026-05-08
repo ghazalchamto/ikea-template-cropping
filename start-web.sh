@@ -25,6 +25,11 @@ echo "Installing Python dependencies (requirements.txt) …" >&2
 python -m pip install --upgrade pip -q
 pip install -r "$ROOT/requirements.txt" -q
 
+if [[ -f "$ROOT/visual-validation/requirements.txt" ]]; then
+  echo "Installing visual-validation dependencies …" >&2
+  pip install -r "$ROOT/visual-validation/requirements.txt" -q
+fi
+
 if ! command -v uvicorn >/dev/null 2>&1; then
   echo "Error: uvicorn not available after pip install." >&2
   exit 1
@@ -51,33 +56,57 @@ cleanup() {
 trap cleanup INT TERM
 
 API="http://127.0.0.1:8000"
+VAL_API="http://127.0.0.1:8001"
+
+# Both servers share an upload cache (config.UPLOAD_CACHE_DIR for the
+# extractor; EXTRACTOR_UPLOAD_CACHE_DIR for the validation microservice).
+# Setting it explicitly here keeps them aligned regardless of cwd.
+export EXTRACTOR_UPLOAD_CACHE_DIR="${EXTRACTOR_UPLOAD_CACHE_DIR:-$ROOT/output/uploads}"
+mkdir -p "$EXTRACTOR_UPLOAD_CACHE_DIR"
+
 uvicorn server.main:app --reload --host 127.0.0.1 --port 8000 &
 UVICORN_PID=$!
 PIDS+=("$UVICORN_PID")
 
+# Visual-validation microservice (separate process, separate working dir so its
+# `src` and `config/regions` paths resolve cleanly). Inherits the cache dir
+# via the exported environment variable above.
+( cd "$ROOT/visual-validation" \
+  && PYTHONPATH=. uvicorn server.main:app --reload --host 127.0.0.1 --port 8001 ) &
+VAL_PID=$!
+PIDS+=("$VAL_PID")
+
 # First request can be slow: importing the app warms EasyOCR/Paddle, etc. Vite must
 # not proxy until the API is actually accepting connections.
-echo "Starting API (first load can take 30–90s while OCR warms up)…" >&2
-READY=0
-if command -v curl >/dev/null 2>&1; then
+echo "Starting APIs (first load can take 30–90s while OCR warms up)…" >&2
+
+wait_for_health() {
+  local url="$1"
+  local pid="$2"
+  local label="$3"
+  if ! command -v curl >/dev/null 2>&1; then
+    echo "Warning: curl not found; sleeping 5s for $label." >&2
+    sleep 5
+    return 0
+  fi
   for _ in $(seq 1 240); do
-    if curl -sf --connect-timeout 2 --max-time 5 "$API/api/health" >/dev/null 2>&1; then
-      READY=1
-      break
+    if curl -sf --connect-timeout 2 --max-time 5 "$url/api/health" >/dev/null 2>&1; then
+      return 0
     fi
-    if ! kill -0 "$UVICORN_PID" 2>/dev/null; then
-      echo "Error: uvicorn exited before the API became ready." >&2
-      exit 1
+    if ! kill -0 "$pid" 2>/dev/null; then
+      echo "Error: $label exited before it became ready." >&2
+      return 1
     fi
     sleep 0.5
   done
-else
-  echo "Warning: curl not found; waiting 5s then starting the UI (may see proxy errors until the API is up)." >&2
-  sleep 5
-  READY=1
+  echo "Error: $label did not respond at $url/api/health in time." >&2
+  return 1
+}
+
+if ! wait_for_health "$API" "$UVICORN_PID" "extractor API (port 8000)"; then
+  exit 1
 fi
-if [[ "$READY" -ne 1 ]]; then
-  echo "Error: API did not respond at $API/api/health in time. Is something else using port 8000?" >&2
+if ! wait_for_health "$VAL_API" "$VAL_PID" "validation API (port 8001)"; then
   exit 1
 fi
 
@@ -85,10 +114,12 @@ fi
 PIDS+=($!)
 
 echo "" >&2
-echo "  API:    http://127.0.0.1:8000  (OpenAPI: /docs)" >&2
-echo "  UI:     http://127.0.0.1:5173  (proxies /api → API)" >&2
-echo "  venv:   $VENV" >&2
-echo "  Press Ctrl+C to stop both." >&2
+echo "  Extractor API:  http://127.0.0.1:8000  (OpenAPI: /docs)" >&2
+echo "  Validation API: http://127.0.0.1:8001  (OpenAPI: /docs)" >&2
+echo "  UI:             http://127.0.0.1:5173" >&2
+echo "                  proxies /api → 8000, /validation-api → 8001" >&2
+echo "  venv:           $VENV" >&2
+echo "  Press Ctrl+C to stop all." >&2
 echo "" >&2
 
 wait

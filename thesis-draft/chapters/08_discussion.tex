@@ -1,0 +1,130 @@
+\chapter{Discussion}
+\label{ch:discussion}
+
+\section{Interpretation of Results}
+
+\subsection{OCR Ensemble Effectiveness}
+
+The ensemble's character accuracy of~89.1\% is notably higher than either individual
+engine (78.1\% and 83.4\%), a relative improvement of~14.1\% over Tesseract and~6.8\%
+over EasyOCR. This is consistent with the ensemble literature: engines trained on different
+data distributions with different architectures tend to fail on complementary subsets of the
+input~\cite{ratzlaff2003method}. In the IKEA label domain, Tesseract's strengths lie in
+high-contrast numeric fields (article numbers, barcodes' human-readable supplements) while
+EasyOCR is stronger on smaller serif text and multi-line blocks.
+
+The 6-point improvement comes at a cost of~260~ms additional latency. For the intended
+use case—pre-press validation, not real-time inspection—this is an acceptable trade-off.
+
+\subsection{Label-Type Classifier Accuracy}
+
+An 86.1\% top-1 accuracy without any trained model is noteworthy. The scoring heuristic
+(\cref{ch:system}, Eq.~\ref{eq:type_score}) is simple by design—it counts field presences
+and adds barcode bonuses—yet it correctly identifies the label type for 31 of 36 test labels.
+The five misclassifications all fall within the same label family, suggesting the heuristic
+lacks the discriminating signal needed to distinguish intra-family variants.
+
+A natural extension would be to add physical-dimension inference: if the aspect ratio of
+the label image is consistent with a known label size (e.g.~70~mm~$\times$~35~mm for 1R70
+vs.~90~mm~$\times$~35~mm for 1R90), this can disambiguate many intra-family cases. This
+requires a known physical reference (e.g.\ a calibration target or a known barcode module
+size), which is available in production but not always in the test dataset.
+
+\subsection{Field Extraction Challenges}
+
+The three lowest-scoring fields—\texttt{plant\_identifier} (F1~=~0.794),
+\texttt{dimensions\_metric} (F1~=~0.804), and \texttt{gross\_weight} (F1~=~0.820)—share
+a common characteristic: their values are formatted inconsistently across label types. The
+plant identifier pattern \texttt{PI-XXX-YYY} is sometimes separated by en-dashes rather
+than hyphens; dimension strings use both ``cm'' and ``mm'' units with varying decimal separators
+depending on the target market. Future work should expand the regex patterns to cover a
+wider range of formatting variants observed in real production data.
+
+\subsection{Validation Precision vs.\ Recall Trade-off}
+
+A precision of~88.3\% and recall of~84.7\% at the default threshold means that:
+\begin{itemize}
+  \item 2 of 16 non-compliant labels in the test set were missed (false negatives). Both
+  involved violations not covered by any rule in the current schema.
+  \item 2 of 20 compliant labels were incorrectly flagged (false positives). Both involved
+  labels where an optional field was absent and the rule schema had incorrectly marked it
+  as required.
+\end{itemize}
+
+The false positive cases highlight an important limitation: the schema accuracy is bounded
+by the accuracy of the human expert who authored the JSON rule files. Two rules in the
+\texttt{1C70-IDADM} schema were found post-hoc to list fields as required that the IKEA
+specification actually marks as conditional on other fields being present. Fixing these two
+rules would raise accuracy from~88.9\% to~94.4\% on the current test set.
+
+\section{Limitations}
+
+\subsection{Rule Corpus Incompleteness}
+
+The 34 schemas cover~342 required-field declarations and~107 rules, but the design
+specification contains additional structural requirements that are difficult to encode as
+simple field-level rules:
+
+\begin{itemize}
+  \item \textbf{Zone ordering}: the canonical left-to-right zone order must be preserved.
+  The layout checker stub (\texttt{layout\_checker.py}) is designed to implement this but
+  was not completed within the project timeline.
+  \item \textbf{Visual hierarchy}: product name font must be larger than article number
+  font. This requires font-size inference from pixel heights, which is fragile without
+  a physical resolution calibration.
+  \item \textbf{Conditional presence}: some fields are required only if other fields are
+  present (e.g.\ the YYWW stamp is required only if the date zone is activated). The
+  current schema format does not support conditional rules.
+\end{itemize}
+
+\subsection{OCR Limitations on Rotated Text}
+
+Several IKEA label types (particularly the 1R35 and 1R10 families) contain text zones
+rotated~90° clockwise—typically the compliance block and copy-count strip. The current
+preprocessing applies a global image orientation but does not detect and deskew individual
+zones independently. EasyOCR handles moderate rotation through its CRAFT detector, but
+Tesseract with \texttt{psm 11} does not. A future improvement is to detect rotated zones
+and apply independent rotation correction before the OCR pass.
+
+\subsection{DataMatrix Decode Rate at Small Magnification}
+
+The 88.7\% overall DataMatrix decode rate masks a significant gap between label types:
+for labels with DataMatrix at~0.4~mm x-dim (the smallest in the IKEA catalogue), the
+decode rate at 300~DPI drops to~74\%. For labels with~0.75~mm x-dim, the decode rate
+is~97\%. Improving small-DataMatrix reliability requires either higher rendering DPI (400+)
+or a super-resolution preprocessing step.
+
+\subsection{Dataset Size}
+
+The 238-label dataset is small relative to the diversity of the label catalogue. Six label
+types have no representation, and the represented types average fewer than nine samples each.
+This makes it difficult to draw strong conclusions about performance on under-represented
+types. Expanding the dataset—particularly with real production failures collected by IKEA's
+\ac{QA} team—is the most impactful next step for improving reliability.
+
+\section{Ethical Considerations}
+
+The system is designed to support, not replace, human QA reviewers. All validation
+decisions are presented with a full rule-by-rule trace, ensuring that a human can audit
+any decision the system makes. The system does not store or transmit label content to
+external services; all processing is on-premise.
+
+One concern is automation bias: a QA reviewer who trusts the system too much may fail
+to catch violations that the system misses. This risk is mitigated by the explicit listing
+of uncovered rule types (layout and completeness) in the UI and by displaying the
+\texttt{compliance\_score} as a single number rather than a binary pass/fail verdict,
+encouraging reviewers to exercise judgement when the score is in the 0.55--0.85 range.
+
+\section{Industry Applicability}
+
+The approach taken in this project—encoding domain expertise as JSON schema rules and
+applying them to extracted structured data—is deliberately technology-conservative. The
+pipeline does not require a GPU, does not require training data to add new label types
+(only a new JSON schema), and does not depend on any cloud service. These properties make
+it practical for IKEA of Sweden's Älmhult facility, which requires on-premise processing
+for data security reasons.
+
+The estimated processing rate of~1~label per~1.4~seconds (ensemble mode) is sufficient
+for the target use case of pre-press batch validation. A typical batch of~200~labels before
+a product launch would complete in under~5 minutes, compared to an estimated~26 hours of
+manual review at the current rate of 50--70 labels per working day.

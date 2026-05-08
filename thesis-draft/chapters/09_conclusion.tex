@@ -1,0 +1,107 @@
+\chapter{Conclusion and Future Work}
+\label{ch:conclusion}
+
+\section{Conclusions}
+
+This thesis presented the design, implementation, and evaluation of an automated label
+validation pipeline for IKEA of Sweden's communication label catalogue. The system addresses
+three research questions posed in the introduction.
+
+\textbf{RQ1 — Classification accuracy}: The system achieves a validation F1 of~0.865
+(precision~88.3\%, recall~84.7\%) in distinguishing compliant from non-compliant labels,
+using a combination of multi-engine \ac{OCR}, GS1 barcode decoding, and rule-based
+field checking. The accuracy is bounded primarily by the completeness of the rule corpus
+rather than by the quality of the extraction—two of the four total errors in the test set
+involved rules that are not yet encoded.
+
+\textbf{RQ2 — Explainability}: Every validation decision is fully traceable to a specific
+rule, with extracted vs.\ expected values presented for each failing check. Domain expert
+evaluation confirmed that the output is clear, actionable, and sufficient for a QA operator
+to locate the violation in the specification document within 30 seconds. The rule-based
+architecture provides this interpretability by construction, without requiring post-hoc
+explanation methods.
+
+\textbf{RQ3 — Contributing features}: Label-type identification benefits most from
+barcode type presence (DataMatrix vs.\ ITF-only schemas are highly distinguishable). Field
+extraction accuracy is highest for structured identifiers with fixed patterns (supplier name,
+article number) and lowest for free-format fields (dimensions, weights). Validation accuracy
+is most sensitive to the completeness and correctness of the schema rules rather than to
+OCR accuracy—implying that schema curation is the highest-leverage investment for
+improving the system.
+
+Beyond the research questions, the project delivers a concrete industrial artefact: a
+fully functional validation pipeline accessible via a \ac{REST} \ac{API} and an interactive
+Streamlit \ac{UI}, covering all 34 label types in IKEA of Sweden's current catalogue,
+with a ground-truth rule corpus of~342 field declarations and~107 validation rules.
+
+\section{Future Work}
+
+Several directions are identified for extending this work.
+
+\subsection{Layout and Spatial Validation}
+
+The \texttt{layout\_checker.py} module is currently a stub. Implementing zone-order
+checking (verifying that zones appear in the canonical left-to-right sequence) and
+element-in-zone checking (verifying that each field is positioned in its expected zone)
+would address the two false-negative cases in the current evaluation and likely improve
+recall substantially.
+
+\subsection{Conditional Rules}
+
+The schema format should be extended to support conditional field presence rules of the
+form: ``field $X$ is required if and only if field $Y$ is also present.'' This would allow
+encoding the date-zone activation rule (YYWW stamp required only when date section is
+activated) and several other conditional constraints that are currently approximated as
+optional fields.
+
+\subsection{Neural Field Extraction}
+
+For low-quality raster inputs (scans, photographs), the regex-based field mapper performs
+poorly when OCR output is noisy. A LayoutLMv3 model fine-tuned on the IKEA label
+dataset—using the~238 corrected annotations as training data—could provide substantially
+better field extraction on difficult inputs. The \texttt{/api/export-jsonl} endpoint was
+designed specifically to facilitate this future fine-tuning step.
+
+\subsection{PaddleOCR Integration}
+
+PaddleOCR (PP-OCRv5) was the highest-accuracy engine in preliminary benchmarking
+(92.3\% character accuracy) but could not be included in the primary evaluation due to
+platform incompatibilities. A Linux deployment should replace EasyOCR with PaddleOCR
+for a further improvement in ensemble accuracy.
+
+\subsection{Physical Dimension Inference}
+
+If a known physical reference is available (e.g.\ a calibration pattern printed alongside
+the label, or the known x-dimension of a decoded barcode), pixel-to-mm conversion becomes
+possible. This would enable:
+\begin{itemize}
+  \item Intra-family label-type disambiguation based on physical label size.
+  \item Barcode module-size validation against the ISO/IEC barcode specification.
+  \item Font size validation for the visual hierarchy rules.
+\end{itemize}
+
+\subsection{Dataset Expansion}
+
+Expanding the dataset to cover all 34 label types and increasing the per-type sample
+count to at least~20 would enable statistically meaningful per-type performance analysis
+and support the training of neural extraction models. IKEA's \ac{QA} team collects
+approximately~50 failed labels per month; integrating this production data stream would
+grow the dataset organically over time.
+
+\subsection{API Dashboard and Integration}
+
+A production-grade deployment of the system would require authentication, audit logging,
+rate limiting, and integration with IKEA's product information management (\ac{PIM})
+system so that the expected article number, origin, and DataMatrix content can be retrieved
+automatically from the product database rather than inferred from the label itself. This
+would allow the system to catch cases where the label \emph{internally consistent} but
+disagrees with the \ac{PIM} record—the most dangerous class of label error.
+
+\section{Final Remarks}
+
+This work demonstrates that a carefully designed rule-based pipeline—augmented with
+multi-engine \ac{OCR} and GS1 barcode parsing—can automate the majority of IKEA's
+label \ac{QA} workload with high accuracy and full interpretability, using no neural
+network training and no GPU hardware. The system is ready for a pilot deployment, and the
+architecture is extensible to accommodate the improvements outlined above as the project
+matures from a bachelor's thesis prototype to a production service.

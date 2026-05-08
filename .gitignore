@@ -101,5 +101,8 @@ temp/
 *.tmp
 *.temp
 
+# --- Server-side upload cache (config.UPLOAD_CACHE_DIR) ---
+output/uploads/
+
 # --- Cursor / Claude (local settings, e.g. settings.local.json) ---
 .claude/

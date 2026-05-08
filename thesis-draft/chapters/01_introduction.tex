@@ -1,0 +1,151 @@
+\chapter{Introduction}
+\label{ch:introduction}
+
+\section{Background}
+\label{sec:background}
+
+Modern industrial production environments depend on standardised digital templates to
+generate consistent product labels and communication materials across global supply
+chains~\cite{zhong2019publaynet}. These templates define the spatial organisation of
+textual and graphical elements, including product identifiers, barcodes, regulatory symbols,
+material composition statements, and country-of-origin declarations. Maintaining structural
+and content consistency across templates is critical for product traceability, regulatory
+compliance, and operational efficiency.
+
+In template-driven workflows, structured metadata—commonly encoded as
+\acl{JSON}~(JSON)—is used to dynamically populate predefined label designs. While this
+approach improves scalability and automation, it introduces strict requirements for layout
+accuracy: each generated label must follow predefined positioning rules and visual constraints
+to ensure that all elements remain readable, correctly aligned, and compliant with design
+standards~\cite{li2020docbank}. Even a small positional shift—such as a text field
+overlapping a barcode quiet zone, or an element migrating outside its designated region—can
+cause a label to be rejected by the production system or by regulatory authorities.
+
+Recent advances in deep learning have transformed document image analysis and opened
+practical routes to automating such compliance tasks. Datasets such as
+PubLayNet~\cite{zhong2019publaynet} and DocLayNet~\cite{pfitzmann2022doclaynet} have
+enabled the training of neural networks capable of identifying structural regions within
+complex document layouts. Frameworks such as LayoutParser~\cite{shen2021layoutparser}
+make these models accessible to practitioners in industrial settings. Transformer-based
+models such as LayoutLM~\cite{xu2020layoutlm} and LayoutLMv3~\cite{huang2022layoutlmv3}
+further show that jointly encoding text, layout, and visual information yields strong
+document-understanding performance. Despite these advances, most existing solutions focus
+on general-purpose document understanding rather than deterministic template validation
+against approved reference designs.
+
+In this thesis, the problem is investigated within the context of IKEA of Sweden's label
+production workflow. Labels are engineered in NiceLabel and saved as proprietary
+\texttt{.nlbl} files. Before deployment, each label must be verified against an approved
+baseline template by human quality assurance (QA) testers. As the product range and the
+number of template variants grows, manual verification becomes a bottleneck that motivates
+the development of an automated alternative.
+
+\section{Problem Statement}
+\label{sec:problem}
+
+Despite increasing automation in industrial production workflows, ensuring the correctness
+of generated templates remains a significant technical challenge. In many modern systems,
+templates are dynamically generated using structured input data, where both visual layout
+and content integrity must remain consistent with predefined standards—approved baseline
+label templates, internal business rules, barcode and regulatory placement requirements,
+and production-specific design constraints. In the context of this thesis, label outputs are
+engineered in NiceLabel and reviewed against strict reference designs before deployment,
+meaning that even small deviations in spacing, alignment, font scaling, element positioning,
+or metadata placement may cause a label to be rejected.
+
+A central difficulty lies in the complex dependencies between layout structure, metadata,
+and visual elements. Changes to a single element—such as modifying text length or
+repositioning a field—may unintentionally affect surrounding elements, resulting in
+cascading layout inconsistencies. Existing document layout analysis systems have made
+significant progress in detecting layout components, yet many are optimised for document
+understanding rather than deterministic compliance checking against predefined reference
+templates~\cite{pfitzmann2022doclaynet,shen2021layoutparser}.
+
+Another challenge arises from the limited availability of labelled failure data. Incorrect
+templates are corrected immediately in production rather than archived, making supervised
+learning from historical negative examples impractical. Validation strategies that combine
+structured metadata verification with visual comparison against approved references are
+therefore more suitable than approaches that depend on large collections of labelled errors.
+
+\section{Motivation}
+\label{sec:motivation}
+
+The motivation for this research originates from the increasing demand for automation in
+industrial template validation workflows. In the current process, trained human testers
+review each generated label against approved standards—a process estimated to take an
+average of 8–12 minutes per label. At production scale, with multiple template revisions
+per product launch, this represents a significant allocation of skilled human time and
+introduces the risk of inconsistent judgements.
+
+Automated validation systems provide repeatable, deterministic verification, reducing
+variability introduced by human interpretation. By ensuring that templates are evaluated
+against consistent criteria, organisations can achieve higher levels of quality assurance,
+shorter validation cycles, and lower operational cost. The development of an automated
+system also supports long-term scalability as the template catalogue grows.
+
+\section{Research Questions}
+\label{sec:rqs}
+
+This thesis is guided by the following main research question and three sub-questions:
+
+\begin{tcolorbox}[title=Main Research Question]
+\textbf{RQ1:} How can an automated validation system be designed to verify layout
+structure, metadata correctness, and visual consistency in standardised product label
+templates?
+\end{tcolorbox}
+
+\begin{itemize}
+  \item \textbf{RQ1.1} How can reference-based comparison against approved baseline
+  templates be used to detect layout deviations in generated labels?
+
+  \item \textbf{RQ1.2} How can rule-based validation of structured metadata be used to
+  detect logical and content-related inconsistencies before or during label validation?
+
+  \item \textbf{RQ1.3} How can detected validation errors be localised and reported in a
+  way that supports manual correction of the label template?
+\end{itemize}
+
+\section{Scope and Limitations}
+\label{sec:scope}
+
+The scope of this thesis is focused on:
+\begin{itemize}
+  \item Approximately 20 standardised label types from IKEA of Sweden's current
+  catalogue, each with multiple design versions.
+  \item Rule-based validation of JSON metadata fields prior to rendering.
+  \item Reference-based visual comparison of rendered label images against approved
+  baseline PNGs, using SSIM, ORB feature matching, and CNN-based classifiers.
+  \item Bounding-box localisation of detected violations to support human correction.
+  \item A REST API exposing the pipeline for integration with existing production systems.
+\end{itemize}
+
+The following are explicitly out of scope:
+\begin{itemize}
+  \item Full physical dimension validation (pixel-to-millimetre calibration without a
+  known reference object).
+  \item Multi-language semantic validation of free-text label fields.
+  \item Production-grade deployment with enterprise authentication, load balancing, and
+  continuous operation.
+  \item Large-scale deep learning training from scratch; pre-trained backbone networks
+  are used with fine-tuning.
+\end{itemize}
+
+\section{Thesis Structure}
+\label{sec:structure}
+
+\textbf{Chapter 1 (Introduction)} presents the background, problem statement, and
+research questions. \textbf{Chapter 2 (Literature Study)} reviews related work in document
+layout analysis, visual comparison, and industrial quality inspection. \textbf{Chapter 3
+(Methodology)} describes the system architecture, dataset, validation strategy,
+ML algorithms, and evaluation method. \textbf{Chapter 4 (Results)} presents experimental
+findings. \textbf{Chapter 5 (Remaining Work and Future Development)} outlines next steps.
+
+\section{Thesis Authorship Statement}
+\label{sec:authorship}
+
+We confirm that this thesis represents our own original work. All concepts, system designs,
+and analyses have been developed by the authors as part of the bachelor thesis project
+conducted in collaboration with IKEA of Sweden. External sources are cited in accordance
+with academic standards. Writing assistance tools were used solely for language refinement;
+all technical and conceptual content is our own. Both authors participated equally in
+system design, implementation, analysis, and documentation.

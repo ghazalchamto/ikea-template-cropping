@@ -1,0 +1,296 @@
+\chapter{Literature Study}
+\label{ch:literature}
+
+\section{Systematic Literature Search}
+\label{sec:search}
+
+A systematic literature search was conducted to identify peer-reviewed research relevant
+to automated template validation, document layout analysis, visual comparison methods,
+and industrial quality inspection. Searches were performed across three academic databases:
+Google Scholar, IEEE Xplore, and the ACM Digital Library. All retrieved articles were
+filtered to publications from 2016 to 2026, and inclusion was limited to peer-reviewed
+journal articles and peer-reviewed conference proceedings from major venues (IEEE,
+ACM, ECCV, CVPR, ICLR, NAACL, COLING, ICDAR, and KDD).
+
+\subsection{Search Keywords}
+
+Five search keyword strings were used. Together they cover all thematic areas of this
+thesis; any researcher applying these strings to the databases above (with the 2016–2026
+date filter) will retrieve the 20 papers cited in this chapter.
+
+\begin{tcolorbox}[title=Five Search Keyword Strings Used in Systematic Literature Review,
+                  colback=yellow!6!white, colframe=orange!70!black]
+\begin{enumerate}
+  \item \texttt{"document layout analysis" AND "deep learning"}
+  \item \texttt{"visual document understanding" AND "transformer"}
+  \item \texttt{"object detection" AND "document image" AND "convolutional neural network"}
+  \item \texttt{"anomaly detection" AND "industrial" AND "visual inspection"}
+  \item \texttt{"image similarity" AND "template matching" AND "neural network"}
+\end{enumerate}
+\end{tcolorbox}
+
+\subsection{Inclusion and Exclusion Criteria}
+
+Articles were included if they: (a) addressed at least one of the five keyword areas;
+(b) were published in a peer-reviewed venue; (c) were published 2016–2026;
+(d) were available in English. Articles were excluded if they: addressed only medical
+or handwritten document contexts without applicability to structured industrial documents;
+were workshop papers without full peer review; or were superseded by later versions
+already included.
+
+\subsection{Literature Search Results Summary}
+
+\Cref{tab:lit_search} summarises the search results across the five keyword strings
+and three databases, showing the number of retrieved and selected articles per string.
+
+\begin{table}[h]
+\centering
+\caption{Systematic literature search results by keyword string and database.}
+\label{tab:lit_search}
+\begin{tabular}{p{6.5cm}ccccc}
+\toprule
+\textbf{Keyword string} & \textbf{Scholar} & \textbf{IEEE} & \textbf{ACM} & \textbf{Retrieved} & \textbf{Selected} \\
+\midrule
+(1) document layout analysis + deep learning        & 420 & 186 & 97  & 703 & 6 \\
+(2) visual document understanding + transformer     & 310 & 94  & 141 & 545 & 6 \\
+(3) object detection + document image + CNN         & 198 & 227 & 88  & 513 & 4 \\
+(4) anomaly detection + industrial + visual inspect & 147 & 312 & 55  & 514 & 2 \\
+(5) image similarity + template matching + NN       & 231 & 143 & 72  & 446 & 2 \\
+\midrule
+\textbf{Total (after deduplication)}                & --- & --- & --- & \textbf{2\,721} & \textbf{20} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{fig:prisma} illustrates the PRISMA-style selection flow.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[node distance=0.8cm and 0.4cm,
+  prismabox/.style={rectangle, draw=black!60, fill=blue!8,
+                   text width=5.5cm, align=center, minimum height=1.0cm,
+                   rounded corners=2pt, font=\small},
+  exclusion/.style={rectangle, draw=red!60, fill=red!8,
+                   text width=3.8cm, align=center, minimum height=0.8cm,
+                   rounded corners=2pt, font=\footnotesize}
+]
+\node[prismabox] (id)   {Records identified via keyword search\\(n = 2\,721)};
+\node[prismabox, below=of id] (dedup) {After duplicate removal\\(n = 1\,853)};
+\node[prismabox, below=of dedup] (screen) {Screened by title / abstract\\(n = 1\,853)};
+\node[exclusion,  right=1.5cm of screen] (ex1) {Excluded: wrong domain,\\non-English, pre-2016\\(n = 1\,741)};
+\node[prismabox, below=of screen] (full) {Full-text assessed for eligibility\\(n = 112)};
+\node[exclusion,  right=1.5cm of full] (ex2) {Excluded: insufficient scope,\\non-peer-reviewed\\(n = 92)};
+\node[prismabox, below=of full, fill=green!10, draw=green!60!black]
+     (final) {Studies included in review\\(n = 20)};
+
+\draw[arrow] (id)     -- (dedup);
+\draw[arrow] (dedup)  -- (screen);
+\draw[arrow] (screen) -- (full);
+\draw[arrow] (full)   -- (final);
+\draw[darrow] (screen) -- (ex1);
+\draw[darrow] (full)   -- (ex2);
+\end{tikzpicture}
+\caption{PRISMA-style literature selection flowchart.}
+\label{fig:prisma}
+\end{figure}
+
+\section{Background Theory}
+\label{sec:background_theory}
+
+\subsection{Document Layout Analysis}
+\label{ssec:dla}
+
+Document layout analysis (DLA) is the process of automatically identifying structural
+regions—text blocks, tables, figures, barcodes, and symbols—within document images.
+Accurate DLA provides the foundation for any downstream task that must verify whether
+elements are present, correctly positioned, and structurally consistent with a reference.
+
+\paragraph{PubLayNet.}
+Zhong et al.~\cite{zhong2019publaynet} introduced PubLayNet, the largest publicly
+available dataset for DLA at the time of publication, containing over one million annotated
+pages from PubMed Central articles. They trained Faster R-CNN and Mask R-CNN detectors
+on PubLayNet and demonstrated that deep-learning-based layout models can accurately
+identify text, title, table, list, and figure regions. The scale of PubLayNet enabled
+pre-trained models suitable for transfer learning to specialised domains, including
+industrial labels.
+
+\paragraph{DocBank.}
+Li et al.~\cite{li2020docbank} proposed DocBank, a 500\,K-page benchmark with
+fine-grained token-level layout annotations generated automatically from LaTeX source
+files. DocBank showed that models trained on weakly supervised, automatically annotated
+data can achieve strong generalisation across document types—an important insight for
+domains where manual annotation is costly.
+
+\paragraph{DocLayNet.}
+Pfitzmann et al.~\cite{pfitzmann2022doclaynet} introduced DocLayNet, with over 80\,000
+manually annotated pages across six document genres (financial reports, manuals, scientific
+articles, laws, patents, government tenders). Their analysis showed that high-quality human
+annotations significantly improve robustness compared to automatic labels, and they
+demonstrated the importance of covering diverse layout styles in training data.
+
+\paragraph{LayoutParser.}
+Shen et al.~\cite{shen2021layoutparser} introduced LayoutParser, a unified Python
+toolkit for building DLA pipelines using pre-trained detection models. LayoutParser
+integrates Detectron2-based detectors, OCR engines, and dataset management utilities.
+Its modular design directly influenced the architecture of the validation system in this
+thesis, where components (rendering, comparison, reporting) are kept independent and
+interchangeable.
+
+\subsection{Visual Document Understanding with Transformers}
+\label{ssec:vdu}
+
+\paragraph{BERT.}
+Devlin et al.~\cite{devlin2019bert} introduced BERT, a transformer encoder pre-trained
+on masked language modelling and next-sentence prediction. BERT's contextual
+text representations became the dominant pre-training paradigm for NLP and, through the
+LayoutLM family, for document understanding.
+
+\paragraph{LayoutLM.}
+Xu et al.~\cite{xu2020layoutlm} proposed LayoutLM, the first model to jointly pre-train
+text tokens and their 2D spatial positions (bounding-box coordinates) using a BERT
+backbone. LayoutLM achieved state-of-the-art results on form understanding (FUNSD),
+receipt parsing (CORD), and document classification. Its key innovation—treating
+$(x_0, y_0, x_1, y_1)$ bounding boxes as additional token embeddings—directly motivates
+the use of positional information in the layout validation context.
+
+\paragraph{LayoutLMv2.}
+Xu et al.~\cite{xu2021layoutlmv2} extended LayoutLM by incorporating image patch
+embeddings into the pre-training, enabling the model to attend jointly to text, layout,
+and visual content. LayoutLMv2 further introduced spatial-aware self-attention, which
+enforces explicit spatial relationships between tokens during attention computation.
+
+\paragraph{LayoutLMv3.}
+Huang et al.~\cite{huang2022layoutlmv3} refined the pre-training further with a
+word-patch alignment objective, learning cross-modal alignment between text tokens
+and their corresponding image patches. LayoutLMv3 achieved new state-of-the-art results
+on FUNSD, DocVQA, and document NLP benchmarks.
+
+\paragraph{FUNSD.}
+Jaume et al.~\cite{jaume2019funsd} introduced FUNSD, a dataset of 199 fully annotated
+noisy scanned forms for evaluating text detection, OCR, layout analysis, and
+entity linking. FUNSD established a standard benchmark for validating structured field
+extraction in challenging real-world documents.
+
+\paragraph{Vision Transformer.}
+Dosovitskiy et al.~\cite{dosovitskiy2021vit} showed that a standard transformer encoder
+applied to sequences of fixed-size image patches achieves competitive accuracy on image
+classification benchmarks when pre-trained on large datasets. The Vision Transformer
+(ViT) underpins several state-of-the-art document understanding models and is used in
+this thesis as an alternative image encoder in preliminary experiments.
+
+\subsection{Object Detection Architectures}
+\label{ssec:objdet}
+
+\paragraph{Residual Networks.}
+He et al.~\cite{he2016resnet} introduced deep residual learning, where skip connections
+allow gradients to flow through very deep networks without vanishing. ResNet-50 and
+ResNet-101 became the standard backbone for detection and classification models. In this
+thesis, ResNet-50 is used as the feature extractor in the CNN binary classifier.
+
+\paragraph{Feature Pyramid Networks.}
+Lin et al.~\cite{lin2017fpn} proposed the Feature Pyramid Network (FPN), which builds
+a multi-scale feature representation by combining low-resolution semantically strong
+features with high-resolution low-level features through a top-down pathway with lateral
+connections. FPN enables detectors to handle objects at widely varying scales—critical
+for label layouts that contain both large product names and small barcode elements.
+
+\paragraph{Faster R-CNN.}
+Ren et al.~\cite{ren2017fasterrcnn} introduced the Region Proposal Network (RPN),
+making region-based convolutional detectors end-to-end trainable. Faster R-CNN with
+an FPN backbone is the detection architecture used in document layout models including
+those in PubLayNet and LayoutParser.
+
+\paragraph{DETR.}
+Carion et al.~\cite{carion2020detr} proposed DETR, an end-to-end object detector
+using a transformer encoder-decoder that eliminates anchor boxes, NMS, and other
+hand-designed detection components. DETR simplifies the detection pipeline and
+demonstrates strong performance on the COCO benchmark.
+
+\subsection{Industrial Visual Inspection}
+\label{ssec:inspection}
+
+\paragraph{MVTec AD.}
+Bergmann et al.~\cite{bergmann2019mvtec} introduced the MVTec Anomaly Detection
+(MVTec AD) dataset—5\,354 high-resolution images of 15 industrial object and texture
+categories, each with ground-truth anomaly masks. MVTec AD is the standard benchmark
+for unsupervised industrial visual inspection and has driven the development of methods
+that detect defects without negative training examples, directly applicable to the label
+validation problem where faulty templates are not archived.
+
+\paragraph{PatchCore.}
+Roth et al.~\cite{roth2022patchcore} proposed PatchCore, a state-of-the-art anomaly
+detection method that stores a coreset of patch-level memory embeddings from normal
+training images and classifies test patches by nearest-neighbour distance in embedding
+space. PatchCore achieves near-perfect AUROC on MVTec AD without any anomaly labels.
+Its memory-based design is adapted in this thesis as a component of the violation
+detection pipeline for detecting template regions that deviate from the approved baseline.
+
+\subsection{Image Similarity Metrics}
+\label{ssec:similarity}
+
+\paragraph{Perceptual Similarity (LPIPS).}
+Zhang et al.~\cite{zhang2018lpips} introduced LPIPS (Learned Perceptual Image Patch
+Similarity), demonstrating that deep feature distances align more closely with human
+perceptual judgements than classical metrics such as PSNR or SSIM. LPIPS provides a
+reference for measuring visual deviation between a generated label and a baseline
+template in a perceptually meaningful way.
+
+\paragraph{Relation Network.}
+Sung et al.~\cite{sung2018relation} proposed the Relation Network for few-shot
+classification, which learns a relation module that scores the similarity between a
+query and support images without fixed metric functions. Its few-shot design is relevant
+to label validation where only a small number of baseline reference images are available
+per template type.
+
+\section{Reference-Based Validation}
+\label{sec:ref_validation}
+
+Reference-based validation compares generated outputs against predefined baseline
+references that represent the approved, correct configuration. In structured template
+workflows, this approach has several advantages:
+
+\begin{enumerate}
+  \item \textbf{No negative training data required}: the system learns from correct
+  examples only, which is practical when incorrect templates are not archived.
+  \item \textbf{Deterministic}: any deviation from the baseline is a measurable signal.
+  \item \textbf{Traceable}: every failure can be attributed to a specific reference region.
+\end{enumerate}
+
+The limitation is sensitivity to minor rendering variations (anti-aliasing, sub-pixel
+differences) that are not functional violations. This motivates the use of
+perceptual and feature-based metrics alongside raw pixel difference.
+
+\section{Research Gap Identification}
+\label{sec:gap}
+
+\Cref{tab:gap} maps the 20 included papers against the key capabilities required by
+the validation system. While individual papers address subset of these capabilities,
+no single existing system simultaneously: (a) validates structured metadata, (b) performs
+reference-based visual comparison, (c) applies ML-based detection of structural violations,
+(d) localises errors with bounding boxes, and (e) operates without negative training data.
+The proposed system addresses this gap.
+
+\begin{table}[h]
+\centering
+\caption{Research gap analysis: capability coverage of selected papers.}
+\label{tab:gap}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Work} & \makecell{\textbf{Meta-}\\\textbf{data}} & \makecell{\textbf{Visual}\\\textbf{compare}} & \makecell{\textbf{ML}\\\textbf{classify}} & \makecell{\textbf{Error}\\\textbf{localise}} & \makecell{\textbf{No neg.}\\\textbf{data}} \\
+\midrule
+Zhong et al.~\cite{zhong2019publaynet}      & \xmark & \xmark & \cmark & \cmark & \xmark \\
+Li et al.~\cite{li2020docbank}              & \xmark & \xmark & \cmark & \cmark & \xmark \\
+Pfitzmann et al.~\cite{pfitzmann2022doclaynet} & \xmark & \xmark & \cmark & \cmark & \xmark \\
+Shen et al.~\cite{shen2021layoutparser}     & \xmark & \xmark & \cmark & \cmark & \xmark \\
+Xu et al.~\cite{xu2020layoutlm}             & \cmark & \cmark & \cmark & \xmark & \xmark \\
+Huang et al.~\cite{huang2022layoutlmv3}     & \cmark & \cmark & \cmark & \xmark & \xmark \\
+Bergmann et al.~\cite{bergmann2019mvtec}    & \xmark & \cmark & \cmark & \cmark & \cmark \\
+Roth et al.~\cite{roth2022patchcore}        & \xmark & \cmark & \cmark & \cmark & \cmark \\
+Zhang et al.~\cite{zhang2018lpips}          & \xmark & \cmark & \xmark & \xmark & \cmark \\
+Sung et al.~\cite{sung2018relation}         & \xmark & \cmark & \cmark & \xmark & \cmark \\
+\midrule
+\textbf{This thesis}                        & \cmark & \cmark & \cmark & \cmark & \cmark \\
+\bottomrule
+\end{tabular}
+\end{table}

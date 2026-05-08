@@ -28,6 +28,69 @@ import numpy as np
 
 logger = logging.getLogger(__name__)
 
+_PT_TO_MM = 25.4 / 72.0   # 1 PDF point in millimetres
+
+# ── Color helpers ──────────────────────────────────────────────────────────────
+
+def _normalize_color(c) -> "tuple[float, float, float] | None":
+    """
+    Normalise a PyMuPDF path color to (r, g, b) floats in [0, 1].
+
+    Accepts:
+    - None             → None (transparent / absent)
+    - float or int     → grayscale (0 = black, 1 = white)
+    - (r, g, b) tuple  → used directly (values already 0-1)
+    - (c, m, y, k)     → converted to sRGB
+    """
+    if c is None:
+        return None
+    if isinstance(c, (float, int)):
+        g = max(0.0, min(1.0, float(c)))
+        return (g, g, g)
+    if isinstance(c, (list, tuple)):
+        if len(c) == 3:
+            return tuple(max(0.0, min(1.0, float(x))) for x in c)  # type: ignore[return-value]
+        if len(c) == 4:  # CMYK → sRGB
+            cy, m, y, k = (max(0.0, min(1.0, float(x))) for x in c)
+            return (
+                (1.0 - cy) * (1.0 - k),
+                (1.0 - m)  * (1.0 - k),
+                (1.0 - y)  * (1.0 - k),
+            )
+    return None
+
+
+def _rgb_to_hex(rgb: "tuple[float, float, float] | None") -> "str | None":
+    if rgb is None:
+        return None
+    r, g, b = (max(0, min(255, round(c * 255))) for c in rgb)
+    return f"#{r:02X}{g:02X}{b:02X}"
+
+
+def _decode_span_color(c) -> "tuple[float, float, float] | None":
+    """
+    Decode a rawdict text-span color integer to (r, g, b) 0-1 floats.
+
+    PyMuPDF encodes span colors as a 24-bit sRGB integer:
+        color = (r << 16) | (g << 8) | b   (r,g,b ∈ 0-255)
+    It can also be a float (grayscale) or a tuple (already normalised).
+    """
+    if c is None:
+        return None
+    if isinstance(c, (list, tuple)):
+        return _normalize_color(c)
+    if isinstance(c, float):
+        g = max(0.0, min(1.0, c))
+        return (g, g, g)
+    if isinstance(c, int):
+        return (
+            ((c >> 16) & 0xFF) / 255.0,
+            ((c >>  8) & 0xFF) / 255.0,
+            (c         & 0xFF) / 255.0,
+        )
+    return None
+
+
 # ── Optional dependencies ─────────────────────────────────────────────────────
 
 try:
@@ -158,20 +221,32 @@ def run_pass1_text(pdf_path: str, dpi: int = 600) -> list[RawElement]:
                     if not text:
                         continue
                     x0, y0, x1, y1 = span.get("bbox", (0, 0, 0, 0))
+                    w_pt = x1 - x0
+                    h_pt = y1 - y0
                     flags = span.get("flags", 0)
+                    size_pt = span.get("size", 0.0)
+                    raw_color = span.get("color", 0)
+                    color_rgb = _decode_span_color(raw_color)
                     elements.append(RawElement(
                         type="text_pdf",
                         content=text,
                         x=int(x0 * scale),
                         y=int(y0 * scale),
-                        w=max(1, int((x1 - x0) * scale)),
-                        h=max(1, int((y1 - y0) * scale)),
+                        w=max(1, int(w_pt * scale)),
+                        h=max(1, int(h_pt * scale)),
                         confidence=1.0,
                         font=span.get("font", ""),
-                        font_size=round(span.get("size", 0.0), 2),
+                        font_size=round(size_pt, 2),
                         bold=bool(flags & (1 << 4)),
                         italic=bool(flags & (1 << 1)),
-                        meta={"color": span.get("color", 0)},
+                        meta={
+                            "color_raw":    raw_color,
+                            "color_rgb":    color_rgb,
+                            "color_hex":    _rgb_to_hex(color_rgb),
+                            "font_size_mm": round(size_pt * _PT_TO_MM, 3),
+                            "width_mm":     round(w_pt * _PT_TO_MM, 2),
+                            "height_mm":    round(h_pt * _PT_TO_MM, 2),
+                        },
                     ))
         doc.close()
 
@@ -355,6 +430,155 @@ def run_pass4_visual_regions(img_array: np.ndarray) -> list[RawElement]:
     n_lines   = sum(1 for e in elements if e.type == "line")
     logger.info("Pass 4: %d regions, %d lines detected", n_regions, n_lines)
     return elements
+
+
+# ── Pass 3: Vector drawings ───────────────────────────────────────────────────
+
+def run_pass3_drawings(pdf_path: str, dpi: int = 600) -> list[RawElement]:
+    """
+    Pass 3: Extract every vector drawing from the first PDF page.
+
+    Calls ``page.get_drawings()`` which returns the complete set of paths
+    that make up the visual structure of the label — coloured bands, borders,
+    divider rules, and vector-drawn logos or icons.
+
+    Each path becomes a ``RawElement`` of type:
+    - ``path_rect``  — filled / stroked rectangle (background zones, panels)
+    - ``path_line``  — thin stroke (border, zone divider)
+    - ``path_other`` — complex curves or composite paths
+
+    ``meta`` contains:
+    - ``fill_hex`` / ``stroke_hex``   — "#RRGGBB" decoded colour strings
+    - ``fill_color`` / ``stroke_color`` — (r, g, b) float tuples in 0-1 range
+    - ``width_mm`` / ``height_mm``    — physical bounding-box dimensions
+    - ``stroke_width_mm``             — stroke weight in mm
+
+    Why this matters for layout validation
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    - IKEA yellow zone: fill ≈ ``#FFD100`` → confirms logo band presence & colour
+    - Divider lines:   stroke ≈ ``#000000``, height < 0.5mm → zone boundaries
+    - Background boxes: fill ≈ ``#FFFFFF`` or ``#000000`` → text zone backgrounds
+    - Vector logos:    complex paths with fill → detects non-raster brand marks
+
+    PDFs only — skipped silently for raster-image inputs.
+    """
+    if not HAS_FITZ:
+        logger.warning(
+            "PyMuPDF not installed — Pass 3 (vector drawings) skipped. "
+            "Run: pip install pymupdf"
+        )
+        return []
+
+    scale = dpi / 72.0
+    elements: list[RawElement] = []
+
+    try:
+        doc = _fitz.open(pdf_path)
+        page = doc[0]
+
+        for drawing in page.get_drawings():
+            rect = drawing.get("rect")
+            if rect is None:
+                continue
+
+            x0 = min(rect.x0, rect.x1)
+            y0 = min(rect.y0, rect.y1)
+            x1 = max(rect.x0, rect.x1)
+            y1 = max(rect.y0, rect.y1)
+            w_pt = x1 - x0
+            h_pt = y1 - y0
+
+            # Skip sub-pixel noise (< 0.5pt in both dims)
+            if w_pt < 0.5 and h_pt < 0.5:
+                continue
+
+            fill   = drawing.get("fill")
+            stroke = drawing.get("color")
+            width  = float(drawing.get("width") or 0.0)
+            items  = drawing.get("items", [])
+
+            # Classify geometry by path commands and aspect ratio
+            item_ops = {item[0] for item in items}
+            is_simple_rect = item_ops <= {"re", "m"}  # only rect/move commands
+            is_rect = is_simple_rect and w_pt > 1.0 and h_pt > 1.0
+            is_line = (
+                not is_rect
+                and (w_pt < 2.0 or h_pt < 2.0)   # very thin in one dimension
+                and (w_pt > 5.0 or h_pt > 5.0)   # but long in the other
+            )
+
+            if is_rect:
+                elem_type = "path_rect"
+            elif is_line:
+                elem_type = "path_line"
+            else:
+                elem_type = "path_other"
+
+            fill_rgb   = _normalize_color(fill)
+            stroke_rgb = _normalize_color(stroke)
+
+            elements.append(RawElement(
+                type=elem_type,
+                content=_rgb_to_hex(fill_rgb) or _rgb_to_hex(stroke_rgb),
+                x=int(x0 * scale),
+                y=int(y0 * scale),
+                w=max(1, int(w_pt * scale)),
+                h=max(1, int(h_pt * scale)),
+                confidence=1.0,
+                meta={
+                    "fill_color":      fill_rgb,
+                    "fill_hex":        _rgb_to_hex(fill_rgb),
+                    "stroke_color":    stroke_rgb,
+                    "stroke_hex":      _rgb_to_hex(stroke_rgb),
+                    "stroke_width":    round(width, 3),
+                    "stroke_width_mm": round(width * _PT_TO_MM, 3),
+                    "width_mm":        round(w_pt * _PT_TO_MM, 2),
+                    "height_mm":       round(h_pt * _PT_TO_MM, 2),
+                    "is_fill":         fill is not None,
+                    "is_stroke":       stroke is not None,
+                },
+            ))
+
+        doc.close()
+
+    except Exception as exc:
+        logger.error("Pass 3 (PyMuPDF drawings): %s", exc)
+
+    n_rects = sum(1 for e in elements if e.type == "path_rect")
+    n_lines = sum(1 for e in elements if e.type == "path_line")
+    n_other = sum(1 for e in elements if e.type == "path_other")
+    logger.info(
+        "Pass 3: %d paths (%d rects, %d lines, %d other)",
+        len(elements), n_rects, n_lines, n_other,
+    )
+    return elements
+
+
+# ── Page metadata ─────────────────────────────────────────────────────────────
+
+def get_pdf_page_meta(pdf_path: str) -> dict:
+    """
+    Return physical dimensions for the first page of a PDF.
+
+    Used to populate the ``page_width_mm`` / ``page_height_mm`` fields in the
+    dissection intermediate, which the layout validator uses to convert pixel
+    positions to millimetres for spec comparison.
+    """
+    if not HAS_FITZ:
+        return {}
+    try:
+        doc = _fitz.open(pdf_path)
+        page = doc[0]
+        rect = page.rect
+        doc.close()
+        return {
+            "page_width_pt":  round(rect.width,  2),
+            "page_height_pt": round(rect.height, 2),
+            "page_width_mm":  round(rect.width  * _PT_TO_MM, 2),
+            "page_height_mm": round(rect.height * _PT_TO_MM, 2),
+        }
+    except Exception:
+        return {}
 
 
 # ── Merge ─────────────────────────────────────────────────────────────────────

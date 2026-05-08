@@ -1,0 +1,262 @@
+\chapter{System Design and Architecture}
+\label{ch:system}
+
+\section{Overview}
+
+The system is designed as a multi-layered pipeline in which each layer takes the output of
+the previous layer as input, progressively transforming a raw label image into a structured
+validation report. \Cref{fig:pipeline_overview} illustrates the top-level architecture.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+  node distance=0.8cm,
+  box/.style={rectangle, rounded corners=3pt, draw=black!60, fill=blue!8,
+              text width=3.8cm, minimum height=1cm, align=center, font=\small},
+  arrow/.style={-Stealth, thick},
+  label/.style={font=\scriptsize, text=gray}
+]
+
+\node[box] (input)   {Input\\(PDF / Image)};
+\node[box, right=of input]  (extract) {Extraction Layer\\OCR + Barcodes};
+\node[box, right=of extract] (type)   {Type Classifier\\(schema scoring)};
+\node[box, right=of type]   (valid)   {Validator\\(rule engine)};
+\node[box, right=of valid]  (report)  {Report\\(JSON + UI)};
+
+\draw[arrow] (input)   -- (extract);
+\draw[arrow] (extract) -- (type);
+\draw[arrow] (type)    -- (valid);
+\draw[arrow] (valid)   -- (report);
+
+\node[label, below=0.3cm of input]   {raw bytes};
+\node[label, below=0.3cm of extract] {ExtractedLabel};
+\node[label, below=0.3cm of type]    {schema match};
+\node[label, below=0.3cm of valid]   {RuleResult list};
+
+\end{tikzpicture}
+\caption{Top-level pipeline architecture. Each stage produces a typed data structure
+consumed by the next stage.}
+\label{fig:pipeline_overview}
+\end{figure}
+
+The pipeline is exposed via a FastAPI \ac{REST} \ac{API} (\texttt{/api/extract},
+\texttt{/api/merge-validate}) and via a Streamlit \ac{UI} that allows QA operators to
+upload a label, inspect the extracted fields, apply manual corrections, and trigger
+validation interactively.
+
+\section{Extraction Layer}
+
+The extraction layer is responsible for converting a raw label—provided as a PDF or raster
+image (PNG/JPG)—into an \texttt{ExtractedLabel} data structure that holds all fields the
+validator requires.
+
+\subsection{Ingestion and Preprocessing}
+
+The ingestion module (\texttt{LabelExtractor}) accepts a file path and DPI parameter.
+PDF inputs are rendered to high-resolution raster images using pdf2image (poppler backend)
+at the specified DPI (default~300). Raster inputs are passed directly to the preprocessing
+stage.
+
+Preprocessing applies:
+\begin{enumerate}
+  \item Contrast enhancement via CLAHE (Contrast Limited Adaptive Histogram Equalization).
+  \item Adaptive Gaussian thresholding to binarise text regions without losing barcode gradient
+  information.
+  \item Image sharpening via an unsharp mask kernel.
+\end{enumerate}
+
+\subsection{Zone Segmentation}
+
+The label is divided into named zones by anchoring on detected barcode positions. A
+DataMatrix barcode, when detected, is used to calibrate the centre zone; the identity zone
+is estimated to occupy the left portion, and date/compliance zones occupy the right portion.
+Zone boundaries are stored as normalised fractions of image height and width, allowing the
+same zone definitions to apply regardless of image resolution.
+
+\subsection{PDF-Native Text Extraction (Pass 1)}
+
+For PDF inputs, PyMuPDF (fitz) is used to extract text spans with their exact page
+coordinates, font names, font sizes, and character-level detail. Each span is converted to
+an \texttt{OcrWord}-equivalent data structure with confidence~1.0. This pass produces
+near-perfect field extraction on programmatically-generated label PDFs, as the text is
+embedded as vector data.
+
+\subsection{OCR Pass (Pass 5)}
+
+For raster inputs—or for regions of a PDF where text is embedded as images—the \ac{OCR}
+ensemble is invoked. Tesseract~5.3 and EasyOCR~1.7 are run in sequence on the
+preprocessed image. The resulting word lists are merged by late fusion:
+
+\begin{enumerate}
+  \item Bounding boxes from both engines are compared pairwise.
+  \item If two boxes overlap with IoU $>$ 0.4, they are considered candidates for the same
+  word.
+  \item The candidate with higher confidence is retained; if confidence values are within
+  0.05 of each other, the Tesseract result is preferred (it tends to produce cleaner
+  article numbers and date strings on IKEA label imagery).
+  \item Non-overlapping boxes from both engines are included without modification.
+\end{enumerate}
+
+Words with confidence below~0.25 are filtered out before field mapping to avoid
+propagating garbage tokens to the rule engine.
+
+\subsection{Barcode Decoding}
+
+Three barcode decoding calls are made in sequence:
+
+\begin{enumerate}
+  \item \textbf{pyzbar} for ITF-14 and EAN-13: applied to a grayscale copy of the
+  preprocessed image. A morphological dilation pass is applied to thin-bar ITF codes
+  at 25\% magnification, which would otherwise fall below pyzbar's minimum module width.
+  \item \textbf{pylibdmtx} for DataMatrix: applied to a region crop around the centre
+  zone. If the first attempt fails, a rotation sweep (0°, 90°, 180°, 270°) is tried.
+  \item GS1 parsing of the decoded DataMatrix payload by the custom \texttt{gs1\_parser}
+  module, which populates the AI-indexed fields on the \texttt{ExtractedLabel}.
+\end{enumerate}
+
+\section{Field Mapper}
+
+The field mapper (\texttt{field\_mapper.py}) converts the merged word list and barcode
+results into a fully populated \texttt{ExtractedLabel}. It applies a cascade of named
+regular-expression patterns to the sorted word stream, assigning each matched token to the
+corresponding field. The key patterns are listed in \cref{tab:regex_fields}.
+
+\begin{table}[h]
+\centering
+\caption{Selected regex patterns used in field extraction.}
+\label{tab:regex_fields}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Field} & \textbf{Pattern} \\
+\midrule
+Article number & \texttt{\textbackslash b(\textbackslash d\{3\})[\textbackslash s.\textbackslash-](\textbackslash d\{3\})[\textbackslash s.\textbackslash-](\textbackslash d\{2\})\textbackslash b} \\
+Plant ID & \texttt{\textbackslash bPI[-–]\textbackslash d\{3,9\}[-–]\textbackslash d\{1,3\}\textbackslash b} \\
+Human date & \texttt{(\textbackslash d\{2\}[-./]\textbackslash d\{2\}[-./]\textbackslash d\{2\})...(YY-?MM-?DD)} \\
+Weight (kg) & \texttt{\textbackslash b(\textbackslash d+(?:\textbackslash.\textbackslash d+)?)\textbackslash s*k(?:g)?\textbackslash b} \\
+Supplier address & \texttt{SE\textbackslash s*[-–]\textbackslash s*\textbackslash d\{5\}\textbackslash s*\textbackslash S+} \\
+Copyright & \texttt{(?:©|\textbackslash(c\textbackslash)|...)?Inter\textbackslash s+IKEA[\textbackslash s\textbackslash S]\{0,180\}?B\textbackslash.?V\textbackslash.?} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Label-Type Classifier}
+
+\subsection{Motivation}
+
+The validation rules differ between label types—a rule that is mandatory for \texttt{1R35-IDADM\_IDBDM}
+may be irrelevant for \texttt{1CIR24-PRADM}. The classifier must therefore identify the
+correct schema before the validator can run. With 34 schemas in the corpus, a brute-force
+approach of validating against all schemas and choosing the best-scoring one would generate
+misleading multi-schema results.
+
+\subsection{Scoring Heuristic}
+
+The classifier computes a weighted field-presence score for each schema candidate:
+
+\begin{equation}
+S(l, s) = \frac{\displaystyle\sum_{f \in R_s} \mathbf{1}[\text{present}(l, f)]
+              + 0.4 \cdot \sum_{f \in O_s} \mathbf{1}[\text{present}(l, f)]
+              + B(l, s)}
+           {\max(|R_s| + 0.4|O_s| + 3,\; 1)}
+\label{eq:type_score}
+\end{equation}
+
+where $R_s$ and $O_s$ are the required and optional field lists of schema $s$,
+$\mathbf{1}[\text{present}(l, f)]$ is~1 if field $f$ is present in the extraction $l$,
+and $B(l, s)$ is a barcode bonus/penalty term:
+
+\begin{equation}
+B(l, s) = \sum_{b \in \{\text{ITF}, \text{DM}, \text{EAN}\}} \left(
+  \mathbf{1}[\text{schema has } b] \cdot \mathbf{1}[\text{label has } b]
+  - 0.5 \cdot \mathbf{1}[\text{schema has } b] \cdot \mathbf{1}[\text{label lacks } b]
+\right)
+\label{eq:barcode_bonus}
+\end{equation}
+
+The schema with the highest normalised score $S \in [0, 1]$ is selected as the best match.
+The top-5 shortlist is also returned to the \ac{UI} so a QA operator can override the
+automatic selection if needed.
+
+\section{Rule-Based Validator}
+
+\subsection{Rule Types}
+
+The validator supports four rule check types:
+
+\begin{description}
+  \item[\texttt{present}] The specified field must be extracted (non-None, non-empty
+  after stripping whitespace). Failure indicates a missing required element.
+
+  \item[\texttt{regex\_match}] The field value must fully match a provided regular
+  expression pattern. Used for structured fields such as article numbers (\texttt{\textbackslash d\{3\}.\textbackslash d\{3\}.\textbackslash d\{2\}}), origin texts, and date stamps.
+
+  \item[\texttt{exact\_match}] The field value must match an expected string exactly
+  (accent-normalised, case-folded). Used for supplier name and copyright notice fields
+  that are the same on every label.
+
+  \item[\texttt{ai\_field\_present}] A specific GS1 Application Identifier must be present
+  in the decoded DataMatrix payload. Failure can indicate either that the DataMatrix was not
+  decoded at all or that it was decoded but does not contain the required AI.
+\end{description}
+
+\subsection{Compliance Scoring}
+
+Each label receives a weighted compliance score:
+
+\begin{equation}
+\text{CompScore}(l, s) = \frac{\displaystyle\sum_{r \in \text{runnable}} w_r \cdot \mathbf{1}[\text{pass}(r)]}
+           {\displaystyle\sum_{r \in \text{runnable}} w_r}
+\label{eq:compliance_score}
+\end{equation}
+
+where $w_r = 2.0$ for error-severity rules and $w_r = 1.0$ for warning-severity rules,
+and ``runnable'' excludes skipped rules (e.g.\ physical-dimension checks). A
+CompScore of 1.0 means all runnable rules passed; a score below 0.5 is considered a
+definitive non-compliance recommendation.
+
+\subsection{Additional Checks}
+
+Beyond field-level rules, the validator architecture supports:
+\begin{itemize}
+  \item \textbf{Layout check} (\texttt{layout\_checker.py}): spatial zone compliance.
+  Currently returns an empty report (stub); intended as future work.
+  \item \textbf{Overlap detection} (\texttt{overlap\_detector.py}): identifies extracted
+  field bounding boxes that unexpectedly overlap.
+  \item \textbf{Completeness check} (\texttt{completeness.py}): cross-field consistency
+  validation (DataMatrix date vs.\ human-readable date). Currently a stub.
+\end{itemize}
+
+\section{REST API}
+
+The pipeline is exposed via a FastAPI application with three primary endpoints:
+
+\begin{description}
+  \item[\texttt{POST /api/extract}] Accepts a label file (PDF or image) and DPI parameter.
+  Returns the \texttt{ExtractedLabel} as a JSON object, a SHA-256 file hash for
+  deduplication, and a base-64-encoded preview PNG.
+
+  \item[\texttt{POST /api/merge-validate}] Accepts an \texttt{ExtractedLabel} JSON and
+  an optional corrections dictionary (from the UI's human-correction step). Applies the
+  corrections, runs the full validator, and returns a \texttt{ValidationReport}.
+
+  \item[\texttt{POST /api/export-jsonl}] Exports the extracted+corrected label as an
+  NDJSON training record for future fine-tuning of field extraction models.
+\end{description}
+
+All endpoints accept CORS from any origin, allowing the React/TypeScript frontend to
+communicate with the local API during development.
+
+\section{Interactive UI}
+
+The Streamlit \ac{UI} (\texttt{app.py}) provides:
+\begin{itemize}
+  \item A drag-and-drop file uploader for PDF and image inputs.
+  \item A field-by-field display of extracted values with editable correction inputs.
+  \item A colour-coded validation report showing passed rules (green), warnings (amber),
+  and errors (red).
+  \item A type-confidence bar chart showing the top-5 schema candidates and their scores.
+  \item A canvas-based bounding-box overlay highlighting where each field was detected.
+\end{itemize}
+
+The React/TypeScript frontend (\texttt{frontend/}) provides an alternative \ac{UI}
+for tighter integration with IKEA's existing tooling, served via the FastAPI backend.

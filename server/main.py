@@ -27,7 +27,7 @@ _ROOT = Path(__file__).resolve().parent.parent
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-from config import DEFAULT_DPI, FINETUNE_DATA_DIR
+from config import DEFAULT_DPI, FINETUNE_DATA_DIR, UPLOAD_CACHE_DIR
 from extractor import LabelExtractor, warmup_ocr_readers
 from finetune_store import (
     all_field_choices,
@@ -41,6 +41,61 @@ from label_upload import load_image_matching_extractor, materialise, sniff_suffi
 from pdf_label_edit import apply_text_edits_to_pdf_bytes, HAS_FITZ
 from validator import auto_validate, check_completeness, check_layout, detect_overlaps
 from validator.models import TypeMatch
+
+# Upload cache helpers — see config.UPLOAD_CACHE_DIR for the rationale.
+_HASH_RE = __import__("re").compile(r"^[A-Za-z0-9]{8,64}$")
+
+
+def _cache_paths(file_hash: str) -> tuple[Path, Path, Path]:
+    if not _HASH_RE.match(file_hash or ""):
+        raise HTTPException(400, "Invalid file_hash")
+    base = UPLOAD_CACHE_DIR / file_hash
+    return (
+        base.with_suffix(".bin"),
+        base.with_suffix(".json"),
+        base.with_suffix(".preview.png"),
+    )
+
+
+def _save_to_cache(
+    file_hash: str,
+    raw_bytes: bytes,
+    suffix: str,
+    meta: dict,
+    preview_png: Optional[bytes],
+) -> None:
+    UPLOAD_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    bin_path, json_path, png_path = _cache_paths(file_hash)
+    bin_path.write_bytes(raw_bytes)
+    bin_path.with_suffix(bin_path.suffix + ".meta").write_text(
+        json.dumps({"suffix": suffix}), encoding="utf-8"
+    )
+    json_path.write_text(
+        json.dumps(meta, ensure_ascii=False), encoding="utf-8"
+    )
+    if preview_png is not None:
+        png_path.write_bytes(preview_png)
+
+
+def _load_from_cache(file_hash: str) -> Optional[dict]:
+    _bin_path, json_path, png_path = _cache_paths(file_hash)
+    if not json_path.is_file():
+        return None
+    try:
+        meta = json.loads(json_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if png_path.is_file():
+        meta["preview_png_base64"] = base64.b64encode(
+            png_path.read_bytes()
+        ).decode("ascii")
+    return meta
+
+
+def cached_bytes_path(file_hash: str) -> Optional[Path]:
+    """Return the on-disk path for cached upload bytes, or None if missing."""
+    bin_path, _, _ = _cache_paths(file_hash)
+    return bin_path if bin_path.is_file() else None
 
 # Warm OCR once at import (same pattern as app.py)
 try:
@@ -115,19 +170,31 @@ async def extract(
             prev = load_image_matching_extractor(data, dpi)
         except Exception:
             pass
+        preview_bytes: Optional[bytes] = None
         b64: Optional[str] = None
         if prev is not None:
-            b64 = _image_to_b64(prev)
-        return {
+            buf = io.BytesIO()
+            prev.save(buf, format="PNG", optimize=True)
+            preview_bytes = buf.getvalue()
+            b64 = base64.b64encode(preview_bytes).decode("ascii")
+        suffix = sniff_suffix(data) or ""
+        meta = {
             "file_name": file.filename,
             "file_hash": file_hash,
             "dpi": dpi,
-            "is_pdf": sniff_suffix(data) == ".pdf",
+            "is_pdf": suffix == ".pdf",
             "label": result.to_dict(),
-            "preview_png_base64": b64,
             "image_width": int(result.metadata.image_width_px),
             "image_height": int(result.metadata.image_height_px),
         }
+        try:
+            _save_to_cache(file_hash, data, suffix, meta, preview_bytes)
+        except OSError as cache_err:
+            # Cache failures must not block extraction.
+            logging.getLogger(__name__).warning(
+                "upload cache write failed for %s: %s", file_hash, cache_err
+            )
+        return {**meta, "preview_png_base64": b64}
     except Exception as e:
         raise HTTPException(500, str(e)) from e
     finally:
@@ -136,6 +203,34 @@ async def extract(
                 os.unlink(path)
             except OSError:
                 pass
+
+
+@app.get("/api/cached/{file_hash}")
+def cached(file_hash: str) -> dict:
+    """Hydrate the extractor UI after a page refresh without re-uploading.
+
+    Returns the same payload shape as ``/api/extract`` so the frontend can
+    drop it straight into state.
+    """
+    payload = _load_from_cache(file_hash)
+    if payload is None:
+        raise HTTPException(404, f"No cached upload for {file_hash}")
+    return payload
+
+
+@app.delete("/api/cached/{file_hash}")
+def cached_delete(file_hash: str) -> dict:
+    bin_path, json_path, png_path = _cache_paths(file_hash)
+    removed = 0
+    for p in (bin_path, json_path, png_path,
+              bin_path.with_suffix(bin_path.suffix + ".meta")):
+        if p.is_file():
+            try:
+                p.unlink()
+                removed += 1
+            except OSError:
+                pass
+    return {"removed": removed, "file_hash": file_hash}
 
 
 @app.post("/api/merge-validate")

@@ -47,7 +47,9 @@ from .pdf_passes import (
     RawElement,
     run_pass1_text,
     run_pass2_images,
+    run_pass3_drawings,
     run_pass4_visual_regions,
+    get_pdf_page_meta,
     merge_raw_elements,
     HAS_FITZ,
 )
@@ -178,9 +180,15 @@ class LabelExtractor:
     print(result.to_json(indent=2))
     """
 
-    def __init__(self, source_path: str | Path, dpi: int = DEFAULT_DPI):
+    def __init__(
+        self,
+        source_path: str | Path,
+        dpi: int = DEFAULT_DPI,
+        save_intermediates: bool = True,
+    ):
         self.source_path = Path(source_path)
         self.dpi = dpi
+        self._save_intermediates = save_intermediates
         self._image: Optional[Image.Image] = None
         self._label_shape: str = "landscape"
         self._zone_cfg: list = list(LANDSCAPE_ZONE_CFG)
@@ -188,6 +196,8 @@ class LabelExtractor:
         self._errors: list[str] = []
         self._pdf_path: Optional[str] = None
         self._raw_elements: list[RawElement] = []
+        self._page_meta: dict = {}
+        self._barcodes: dict = {}
 
     # ── Step 1: Load ──────────────────────────────────────────────────────────
 
@@ -435,30 +445,39 @@ class LabelExtractor:
         """
         Run all applicable dissection passes and return a merged element list.
 
-        Pass 1  — PyMuPDF text spans (PDFs only).
-        Pass 2  — PyMuPDF embedded images (PDFs only).
-        Pass 4  — OpenCV visual regions (all input types).
+        Pass 1  — PyMuPDF text spans: exact positions, font, size, decoded colour (PDFs only).
+        Pass 2  — PyMuPDF embedded images: raster logos / icons (PDFs only).
+        Pass 3  — PyMuPDF vector drawings: coloured bands, borders, dividers (PDFs only).
+        Pass 4  — OpenCV visual regions: contour + Hough detection (all input types).
         """
         img_w, img_h = self._image.size
         pass1: list[RawElement] = []
         pass2: list[RawElement] = []
+        pass3: list[RawElement] = []
 
         if self._pdf_path and HAS_FITZ:
             pass1 = run_pass1_text(self._pdf_path, dpi=self.dpi)
             pass2 = run_pass2_images(self._pdf_path, dpi=self.dpi)
+            pass3 = run_pass3_drawings(self._pdf_path, dpi=self.dpi)
+            self._page_meta = get_pdf_page_meta(self._pdf_path)
 
-            for el in pass1:
+            # Assign zone labels to text spans and vector paths
+            for el in pass1 + pass3:
                 cx_frac = (el.x + el.w / 2) / img_w
                 cy_frac = (el.y + el.h / 2) / img_h
                 el.zone = self._zone_for_position(cx_frac, cy_frac)
 
-            for el in pass1 + pass2:
+            # Clamp all PDF-derived coordinates to image bounds
+            for el in pass1 + pass2 + pass3:
                 el.x = max(0, min(el.x, img_w - 1))
                 el.y = max(0, min(el.y, img_h - 1))
                 el.w = max(1, min(el.w, img_w - el.x))
                 el.h = max(1, min(el.h, img_h - el.y))
 
-            logger.info("PDF passes: %d text spans, %d embedded images", len(pass1), len(pass2))
+            logger.info(
+                "PDF passes: %d text spans, %d images, %d vector paths",
+                len(pass1), len(pass2), len(pass3),
+            )
         else:
             if self._pdf_path and not HAS_FITZ:
                 self._warnings.append(
@@ -473,10 +492,10 @@ class LabelExtractor:
             cy_frac = (el.y + el.h / 2) / img_h
             el.zone = self._zone_for_position(cx_frac, cy_frac)
 
-        self._raw_elements = merge_raw_elements(pass1, pass2, pass4)
+        self._raw_elements = merge_raw_elements(pass1, pass2, pass3, pass4)
         logger.info(
-            "run_pdf_passes: %d total raw elements (%d text, %d images, %d regions)",
-            len(self._raw_elements), len(pass1), len(pass2), len(pass4),
+            "run_pdf_passes: %d total raw elements (%d text, %d images, %d paths, %d regions)",
+            len(self._raw_elements), len(pass1), len(pass2), len(pass3), len(pass4),
         )
         return self._raw_elements
 
@@ -579,6 +598,7 @@ class LabelExtractor:
         """
         self.load()
         barcodes = self.decode_barcodes()
+        self._barcodes = barcodes
         self.calibrate_zones(barcodes)
         self.run_pdf_passes()
 
@@ -619,6 +639,27 @@ class LabelExtractor:
             label.compliance_marks = _f(
                 ", ".join(detected_marks), "", 0.60, "right_compliance"
             )
+
+        # ── Save intermediate results ──────────────────────────────────────────
+        # dissection.json — two-layer structured dissection (data + layout)
+        # extraction.json — fully populated ExtractedLabel (named fields)
+        if self._save_intermediates:
+            from .label_dissector import LabelDissector
+            from .dissection_store import save_dissection, save_extraction
+            img_w, img_h = self._image.size
+            page_meta = {
+                "image_width_px":  img_w,
+                "image_height_px": img_h,
+                **self._page_meta,
+            }
+            dissector = LabelDissector(
+                dpi=self.dpi,
+                zone_cfg=self._zone_cfg,
+                page_meta=page_meta,
+            )
+            dissection = dissector.run(self._raw_elements, label, self._barcodes)
+            save_dissection(self.source_path, dissection)
+            save_extraction(self.source_path, label.to_dict())
 
         return label
 

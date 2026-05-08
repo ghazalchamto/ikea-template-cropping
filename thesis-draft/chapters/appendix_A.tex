@@ -1,0 +1,32 @@
+\chapter{Appendix A: JSON Metadata Schema Example}
+\label{app:schema}
+
+The following is a representative excerpt of a JSON metadata payload for label type
+\texttt{1C50-IDBDM}, illustrating the structure validated by the pre-render rule engine.
+
+\begin{lstlisting}[language={},
+  caption={Excerpt from a JSON metadata payload (anonymised).},
+  label={lst:json_example}]
+{
+  "label_type_id": "1C50-IDBDM",
+  "article_number": "123.456.78",
+  "product_name": "EXAMPLE PRODUCT NAME",
+  "origin_text": "Made in Sweden",
+  "supplier_name": "IKEA of Sweden AB",
+  "supplier_address": "SE-34381 Almhult",
+  "gross_weight_kg": 2.4,
+  "dimensions_metric": "80x60x40cm",
+  "datamatrix": {
+    "ai_240": "12345678901234",
+    "ai_13": "260101",
+    "ai_10": "BATCH001"
+  }
+}
+\end{lstlisting}
+
+\noindent The rule engine checks:
+\begin{itemize}
+  \item \texttt{article\_number} matches \texttt{\textbackslash d\{3\}.\textbackslash d\{3\}.\textbackslash d\{2\}} ✓
+  \item \texttt{supplier\_name} exactly equals \texttt{"IKEA of Sweden AB"} ✓
+  \item \texttt{datamatrix.ai\_13} matches YYMMDD format \texttt{260101} ✓
+\end{itemize}

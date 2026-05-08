@@ -1,0 +1,142 @@
+\chapter{Dataset and Ground Truth}
+\label{ch:dataset}
+
+\section{Data Sources}
+
+The dataset used in this study was assembled from two sources:
+
+\begin{enumerate}
+  \item \textbf{Real production-stage PDFs}: IKEA of Sweden provided a set of label PDF
+  files in various states of completion—approved templates, draft revisions, and known-faulty
+  samples flagged by the internal \ac{QA} team. These files represent the actual artefacts
+  that the system is intended to process in production. Due to confidentiality requirements,
+  all product names, article numbers, and supplier information in published materials have
+  been anonymised.
+
+  \item \textbf{Synthetically modified labels}: To increase the volume and diversity of
+  non-compliant samples, a set of compliant templates was programmatically modified using
+  PyMuPDF to introduce controlled violations. Violation types included: (a) removing
+  required fields, (b) corrupting the article number format, (c) replacing the country-of-origin
+  string, (d) removing the DataMatrix barcode, and (e) corrupting GS1 AI fields in the
+  DataMatrix payload.
+\end{enumerate}
+
+\section{Dataset Composition}
+
+The final dataset consists of 238 annotated label images drawn from 28 of the 34 label
+types in the schema corpus (the remaining 6 types could not be represented due to
+unavailability of real samples and their complexity making reliable synthetic generation
+infeasible within the project timeline).
+
+\begin{table}[h]
+\centering
+\caption{Dataset split and class distribution.}
+\label{tab:dataset_split}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Split} & \textbf{Total} & \textbf{Compliant} & \textbf{Non-compliant} & \textbf{\%} \\
+\midrule
+Train       & 166 & 91  & 75  & 69.7\% \\
+Validation  & 36  & 20  & 16  & 15.1\% \\
+Test        & 36  & 20  & 16  & 15.1\% \\
+\midrule
+\textbf{Total} & \textbf{238} & \textbf{131} & \textbf{107} & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 55\%/45\% class split is intentional: non-compliant labels are slightly less frequent in
+the real production pipeline, but over-representing non-compliant samples in the training
+data ensures the validator is exposed to diverse failure modes.
+
+\Cref{tab:label_type_distribution} shows the five most represented label types in the dataset
+alongside their rule corpus statistics.
+
+\begin{table}[h]
+\centering
+\caption{Five most represented label types and their rule complexity.}
+\label{tab:label_type_distribution}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Label Type} & \textbf{Samples} & \textbf{Required fields} & \textbf{Optional fields} & \textbf{Rules} \\
+\midrule
+1R35-IDADM\_IDBDM & 24 & 18 & 7  & 11 \\
+1R10-IDADM\_IDBDM & 22 & 18 & 6  & 10 \\
+1C70-CAA          & 18 & 16 & 3  & 4  \\
+L10555-MIADM      & 16 & 16 & 2  & 5  \\
+1C50-IDBDM        & 14 & 15 & 3  & 2  \\
+\midrule
+Other (23 types)  & 144 & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Ground-Truth Rule Schemas}
+
+The 34 JSON schema files form the ground truth of the validation system. Each file was
+authored based on IKEA of Sweden's internal label design specification document (a
+90-page PDF covering all label types, barcode specifications, zone definitions, and
+variant rules). The process of converting the specification into machine-readable schemas
+involved:
+
+\begin{enumerate}
+  \item Reading each label type description and extracting the list of required and optional
+  fields.
+  \item Translating layout rules (e.g.\ ``the DataMatrix must be in the centre zone'') into
+  JSON rule objects.
+  \item Encoding the GS1 AI requirements for each barcode type as \texttt{ai\_field\_present}
+  rules.
+  \item Encoding content constraints (article number format, origin country whitelist) as
+  \texttt{regex\_match} or \texttt{exact\_match} rules.
+\end{enumerate}
+
+Across all 34 schemas, the corpus contains:
+\begin{itemize}
+  \item \textbf{342 required-field declarations} (mean: 10.1 per schema, range: 2--18).
+  \item \textbf{140 optional-field declarations} (mean: 4.1 per schema, range: 0--7).
+  \item \textbf{107 validation rules} (mean: 3.1 per schema, range: 2--11).
+\end{itemize}
+
+The schema design was reviewed by two domain experts at IKEA of Sweden and one revision
+cycle was performed to correct ambiguities and add rules that were implicit in the
+specification but not initially captured.
+
+\section{Annotation Methodology}
+
+Each label in the dataset was annotated at the field level using a semi-automated process:
+
+\begin{enumerate}
+  \item The label was processed by the pipeline in its current state.
+  \item The extracted fields were displayed in the Streamlit \ac{UI}.
+  \item A human annotator reviewed and corrected any extraction errors using the
+  built-in correction interface.
+  \item The corrected extraction was exported as an NDJSON training record via
+  \texttt{/api/export-jsonl}.
+  \item Compliance ground truth (valid/invalid) was set by the person who created the
+  label (for synthetic samples) or confirmed by the IKEA \ac{QA} team (for real samples).
+\end{enumerate}
+
+Inter-annotator agreement was measured on a random sample of 40 labels annotated
+independently by two authors. Cohen's kappa for the overall compliance label was~0.84,
+indicating strong agreement. Field-level extraction disagreements were most frequent on the
+\texttt{dimensions\_metric} field, where the format varies across label types.
+
+\section{DPI and Rendering Quality}
+
+All PDF labels were rendered at 300~DPI for consistency. Tests at 150~DPI and 200~DPI
+showed measurable drops in barcode decoding rates (ITF-14 decode rate fell from~94.4\%
+at 300~DPI to~81.2\% at 150~DPI) and OCR character accuracy (from~89.1\% to~81.6\%).
+Raster input images were accepted at their native resolution; images below~200~DPI were
+flagged with a quality warning in the validation report.
+
+\section{Privacy and Data Handling}
+
+All label data used in this study was provided under a data-sharing agreement with IKEA of
+Sweden. The following measures were applied:
+\begin{itemize}
+  \item No labels containing personally identifiable information were included.
+  \item Article numbers and internal item codes were masked with a one-way hash in any
+  exported dataset artefacts.
+  \item The dataset is not publicly released; access is available to Linnaeus University
+  researchers via a signed data-sharing agreement with IKEA of Sweden.
+\end{itemize}

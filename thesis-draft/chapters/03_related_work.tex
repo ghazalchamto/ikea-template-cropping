@@ -1,0 +1,113 @@
+\chapter{Related Work}
+\label{ch:related}
+
+\section{Automated Document Verification}
+
+The problem of verifying whether a document conforms to a specification is closely related
+to form understanding, a well-studied area in document image analysis. Early work by
+Doermann and Rosenfeld~\cite{doermann1995document} proposed a structural description
+language for forms, where named fields were associated with spatial anchors. Their system
+could identify missing or misaligned fields in scanned government forms. The key limitation
+of early approaches was the assumption of fixed-position fields, which fails for label types
+whose layout varies with the presence or absence of optional zones.
+
+More recent work has moved toward deep learning. Xu et al.~\cite{xu2020layoutlm} proposed
+LayoutLM, which jointly encodes text tokens and their 2D spatial positions using a BERT-style
+transformer. LayoutLMv3~\cite{huang2022layoutlmv3} further incorporates image patch
+embeddings, achieving state-of-the-art results on form understanding benchmarks such as
+FUNSD and CORD. While these models are powerful, they require fine-tuning on
+domain-specific labelled data and produce probabilistic outputs that are harder to explain
+to a compliance officer than a simple ``field X expected value Y, found Z.''
+
+\section{Industrial Label and Packaging Verification}
+
+Commercial machine vision systems from providers such as Cognex, Keyence, and Zebra
+Technologies are widely used in manufacturing lines for label inspection tasks such as:
+verifying that a barcode decodes correctly, checking that required symbols (CE mark, WEEE
+symbol) are present, and confirming that text fields are not blank. These systems typically
+operate in milliseconds using hardware cameras and FPGA-accelerated processing.
+
+However, they are designed for end-of-line inspection of printed labels under controlled
+lighting, not for pre-press template validation of digital PDF files or scanned images. They
+also lack the ability to check content correctness (e.g.\ does the article number on the label
+match the GTIN encoded in the DataMatrix barcode?) because they treat the label as an
+image to inspect, not a document to parse.
+
+A closer analogue to our work is the pharmaceutical packaging verification literature.
+Mack et al.~\cite{mack2017pharmaceutical} described an automated system for verifying
+that drug packaging inserts contain all required text fields and regulatory symbols, using
+\ac{OCR} and rule-based matching. Their system achieved~95\% precision on a curated
+dataset of 400 drug inserts. The key difference from our setting is that pharmaceutical
+packaging tends to have higher-contrast text on lighter backgrounds, and the regulatory
+requirements are more standardised than IKEA's proprietary label specifications.
+
+\section{OCR Engine Comparison Studies}
+
+Multiple studies have compared \ac{OCR} engine performance on specialised document
+types. Hegghammer~\cite{hegghammer2022ocr} benchmarked Tesseract, ABBYY FineReader,
+and Amazon Textract on historical printed texts, finding Tesseract competitive in clean-image
+conditions but inferior on degraded or handwritten content. Bukhari et al.~\cite{bukhari2012improved}
+studied the effect of image preprocessing on Tesseract's performance on document images,
+finding that adaptive thresholding and deskewing can improve character accuracy by up to~12
+percentage points.
+
+For industrial labels specifically, the rotated text zones (90° rotations are common in IKEA
+labels) and small font sizes (as low as~2mm, corresponding to roughly~7pt at 96~DPI)
+present particular challenges for general-purpose \ac{OCR} engines trained on natural
+documents. Our evaluation in \cref{ch:evaluation} provides evidence that an ensemble
+strategy mitigates these shortcomings more effectively than single-engine tuning.
+
+\section{Barcode Quality and Decoding}
+
+ISO/IEC~15416 and ISO/IEC~15415 define print quality standards for linear and 2D barcodes
+respectively, specifying metrics such as modulation, symbol contrast, decodability, and
+defects. Automated barcode quality grading is a well-established industrial practice.
+Russ and Schuchardt~\cite{russ2020barcode} surveyed software graders for DataMatrix
+symbols, finding that many commercial graders achieve~99\%+ agreement with certified
+verifiers on clean symbols but diverge on marginal-quality symbols.
+
+Our system does not implement full ISO grading (which would require a physical verifier),
+but does check that a DataMatrix can be decoded and that its content satisfies the required
+AI structure—a coarser but practical check suitable for pre-press validation.
+
+\section{Explainable Validation Systems}
+
+The tension between accuracy and interpretability is well documented in the \ac{ML}
+literature~\cite{lipton2018mythos}. For compliance use cases, interpretability is often
+non-negotiable: regulatory frameworks such as the EU AI Act require that high-risk AI
+systems produce human-understandable explanations for their decisions.
+
+Ribeiro et al.~\cite{ribeiro2016should} introduced LIME, which generates local surrogate
+explanations for any black-box model. Lundberg and Lee~\cite{lundberg2017unified} proposed
+SHAP, which provides theoretically grounded feature attribution. Both methods are commonly
+applied post-hoc to neural classifiers. In contrast, rule-based validators are \emph{inherently}
+interpretable: every decision traces to a specific rule evaluation, making post-hoc explanation
+methods unnecessary. Our work therefore deliberately chooses rule-based validation over a
+neural classifier, accepting a modest accuracy trade-off in exchange for full traceability.
+
+\section{Positioning of This Work}
+
+Table~\ref{tab:related_comparison} positions this thesis relative to the closest related
+systems along four dimensions: whether the system handles PDF-native extraction, whether
+it validates content (not just presence), whether it identifies the label type automatically,
+and whether its decisions are traceable to specific rules.
+
+\begin{table}[h]
+\centering
+\caption{Comparison of this work with related systems.}
+\label{tab:related_comparison}
+\begin{tabularx}{\textwidth}{Xccccc}
+\toprule
+\textbf{System} & \textbf{PDF-native} & \textbf{Content} & \textbf{Auto type} & \textbf{Traceable} & \textbf{Barcode} \\
+\midrule
+Cognex ViDi~\cite{cognex2023} & \xmark & \xmark & \xmark & \xmark & \checkmark \\
+LayoutLMv3~\cite{huang2022layoutlmv3} & \xmark & \checkmark & \checkmark & \xmark & \xmark \\
+Mack et al.~\cite{mack2017pharmaceutical} & \xmark & \checkmark & \xmark & \checkmark & \xmark \\
+\textbf{This work} & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The combination of PDF-native text extraction, automatic label-type detection, content-level
+field validation, barcode parsing, and rule-traceable decisions is, to the best of our
+knowledge, novel in the context of industrial label \ac{QA}.

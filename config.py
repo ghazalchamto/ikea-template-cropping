@@ -60,3 +60,13 @@ ALLOWED_UPLOAD_TYPES = ["pdf", "png", "jpg", "jpeg", "tiff", "tif", "bmp"]
 
 # Human corrections & JSONL fine-tune export
 FINETUNE_DATA_DIR = ROOT_DIR / "finetune_data"
+
+# Intermediate pipeline results (dissection.json, extraction.json per label)
+OUTPUT_DIR = ROOT_DIR / "output"
+
+# Upload cache: stores raw bytes of uploaded labels keyed by ``file_hash`` so
+# the React UI can survive a page refresh and the validation microservice can
+# re-run validation without making the browser re-upload the file. Both
+# servers point at the same path; visual-validation reads it via the
+# ``EXTRACTOR_UPLOAD_CACHE_DIR`` environment variable (defaults to this).
+UPLOAD_CACHE_DIR = OUTPUT_DIR / "uploads"

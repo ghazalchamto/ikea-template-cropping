@@ -1,0 +1,41 @@
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+Large-scale manufacturing organisations such as IKEA of Sweden rely on standardised
+product label templates to communicate product identity, regulatory compliance, and
+logistical information across global supply chains. Ensuring that every generated label
+exactly conforms to its approved baseline design is currently performed by human quality
+assurance testers—a process that is slow, costly, and error-prone at production volume.
+
+This thesis presents the design, implementation, and evaluation of an automated hybrid
+validation system for standardised label templates. The system accepts a structured
+JSON metadata payload and a NiceLabel (\texttt{.nlbl}) label file as inputs, renders the
+generated label into a pixel-accurate image, and applies a three-tier validation pipeline:
+(1) rule-based validation of structured metadata fields, (2) reference-based visual
+comparison against approved baseline templates using image similarity metrics, and (3) a
+machine-learning-based binary classifier that captures structural deviation patterns
+beyond simple pixel differences.
+
+Three visual comparison methods were implemented and evaluated on a dataset of 150
+labelled template images spanning 20 template types, with controlled synthetic violations:
+a Structural Similarity Index Measure (SSIM) baseline, an ORB feature-matching approach,
+and a Residual Network (ResNet-50) binary classifier. A Siamese neural network was also
+trained to learn pairwise similarity directly from template image pairs. The final hybrid
+system, combining SSIM thresholding, ORB spatial matching, and the ResNet-50 classifier
+in a majority-vote ensemble, achieved a validation accuracy of 93.3\%, a precision of
+92.8\%, a recall of 91.2\%, and an F1-score of 92.0\% on the held-out test set, with a
+median processing time of 347\,ms per label. Violation localisation using bounding-box
+overlay achieved an Intersection over Union (IoU) above 0.5 in 78.1\% of detected errors.
+
+The results demonstrate that a hybrid approach substantially outperforms any single
+comparison method and that the Siamese and ResNet classifiers capture structural
+violations that pixel-level metrics miss. The system produces an actionable, explainable
+report that identifies \emph{which} layout elements violate the reference and \emph{where}
+on the label the violation occurs, directly supporting manual correction workflows.
+
+\vspace{0.8em}
+\noindent\textbf{Keywords:}
+document layout analysis, automated template validation, structural similarity,
+convolutional neural network, industrial quality control, visual document understanding,
+Siamese network, object detection, reference-based comparison, NiceLabel.
+\clearpage

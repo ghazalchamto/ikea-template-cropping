@@ -1,0 +1,217 @@
+\chapter{Implementation}
+\label{ch:implementation}
+
+\section{Technology Stack}
+
+The system is implemented entirely in Python~3.12 with the following core dependencies:
+
+\begin{itemize}
+  \item \textbf{PyMuPDF (fitz)~1.23} — PDF rendering and native text extraction.
+  \item \textbf{pdf2image~1.16 + poppler} — alternative PDF-to-raster path.
+  \item \textbf{Pillow~10.0, OpenCV~4.8, NumPy~1.24} — image preprocessing.
+  \item \textbf{pytesseract~0.3.10 + Tesseract~5.3} — OCR engine~1.
+  \item \textbf{EasyOCR~1.7} — OCR engine~2.
+  \item \textbf{pyzbar~0.1.9 + ZBar} — ITF-14 and EAN-13 barcode decoding.
+  \item \textbf{pylibdmtx~0.1.10 + libdmtx} — DataMatrix barcode decoding.
+  \item \textbf{FastAPI~0.115 + uvicorn} — REST API server.
+  \item \textbf{Streamlit~1.28} — interactive web \ac{UI}.
+  \item \textbf{Pydantic~2.x} — data validation for API request/response models.
+\end{itemize}
+
+\section{LabelExtractor Class}
+
+The central orchestrating class is \texttt{LabelExtractor} in
+\texttt{extractor/label\_extractor.py}. It is instantiated with a file path and DPI, and
+exposes a single public method \texttt{run()} that returns an \texttt{ExtractedLabel}.
+
+\begin{lstlisting}[language=Python, caption={LabelExtractor public interface.}]
+class LabelExtractor:
+    def __init__(self, path: str, dpi: int = 300):
+        self.path = path
+        self.dpi  = dpi
+
+    def run(self) -> ExtractedLabel:
+        img = self.load()                     # PDF/image -> PIL Image
+        self.decode_barcodes(img)             # pyzbar + pylibdmtx
+        self.calibrate_zones(img)             # anchor zones to barcodes
+        elements = self.run_pdf_passes(img)   # Pass1 (PDF text) + Pass4 (OpenCV)
+        words    = self.run_ocr(img)          # Tesseract + EasyOCR ensemble
+        return self.extract_fields(           # regex-based field mapping
+            elements, words
+        )
+\end{lstlisting}
+
+The \texttt{ExtractedLabel} dataclass holds all extracted information:
+product name, article number, barcodes (ITF-14, DataMatrix, EAN-13), zone summary,
+weight and dimension fields, date fields, compliance marks, and extraction metadata
+(DPI, image dimensions, processing time).
+
+\section{OCR Ensemble Implementation}
+
+The OCR ensemble is implemented in \texttt{extractor/ocr\_engine.py}.
+
+\subsection{Tesseract Configuration}
+
+Tesseract is called with the following configuration:
+\begin{verbatim}
+--oem 3 --psm 11 -c preserve_interword_spaces=1
+\end{verbatim}
+
+\texttt{psm 11} (sparse text without \ac{OCR} orientation detection) is preferred over
+\texttt{psm 3} (fully automatic page segmentation) because IKEA labels have a non-standard
+layout where the Tesseract page segmenter tends to over-merge columns. The output is
+obtained in hOCR format for bounding-box recovery.
+
+\subsection{EasyOCR Configuration}
+
+EasyOCR is called with \texttt{detail=1} (returns bounding boxes and confidence values)
+and \texttt{paragraph=False} (returns individual word boxes, not merged paragraphs). The
+language list is \texttt{['en']} for the primary evaluation, with multilingual evaluation
+(\texttt{['en', 'de', 'fr', 'sv']}) available via a configuration flag.
+
+\subsection{Late-Fusion Merging}
+
+\Cref{alg:fusion} describes the late-fusion merge algorithm.
+
+\begin{figure}[h]
+\centering
+\begin{minipage}{0.85\textwidth}
+\begin{lstlisting}[language=Python, caption={Late-fusion word merge (simplified).},
+                   label=alg:fusion]
+def _merge_word_lists(tess_words, easy_words):
+    used = set()
+    merged = []
+    for tw in tess_words:
+        best_match, best_iou = None, 0.0
+        for i, ew in enumerate(easy_words):
+            if i in used:
+                continue
+            iou = _compute_iou(tw.bbox, ew.bbox)
+            if iou > best_iou:
+                best_iou, best_match = iou, i
+        if best_iou > 0.4:
+            ew = easy_words[best_match]
+            winner = tw if tw.conf >= ew.conf - 0.05 else ew
+            merged.append(winner)
+            used.add(best_match)
+        else:
+            merged.append(tw)
+    for i, ew in enumerate(easy_words):
+        if i not in used:
+            merged.append(ew)
+    return merged
+\end{lstlisting}
+\end{minipage}
+\end{figure}
+
+\section{GS1 Barcode Parser}
+
+The GS1 parser (\texttt{extractor/gs1\_parser.py}) handles two encoding forms:
+\begin{itemize}
+  \item \textbf{Parentheses form}: \texttt{(240)12345678...} — common in human-readable
+  supplements printed below DataMatrix symbols.
+  \item \textbf{Compact form}: \texttt{24012345678...} — the form encoded inside the
+  symbol itself, where FNC1 characters delimit variable-length AIs.
+\end{itemize}
+
+The parser extracts a dictionary of AI code $\to$ value pairs and validates date-format AIs
+(AI~11, AI~13) against the pattern \texttt{YYMMDD}. Unknown AIs are stored as raw values
+and do not trigger validation errors, allowing forward compatibility with new IKEA AIs.
+
+\section{Field Mapper Patterns}
+
+The field mapper applies 24 named patterns to the word stream in a defined priority order.
+Structured identifiers (article number, plant identifier) are extracted first because their
+patterns are highly specific and serve as spatial anchors for less structured fields. Free-text
+fields (product name, address block) are extracted last, after all structured tokens have been
+consumed from the search space.
+
+Confidence gating is applied globally: any word from the \ac{OCR} pass with confidence
+below~0.25 is excluded before pattern matching. Words from the PDF-native pass carry
+confidence~1.0 and are never excluded.
+
+\section{Validator Implementation}
+
+\subsection{Schema Loading}
+
+All schemas are loaded once at module import time from the \texttt{label-rules/} directory.
+The directory contains 34 JSON files (plus an index file); each is parsed and stored in a
+module-level dictionary keyed by \texttt{label\_type\_id}.
+
+\subsection{Rule Evaluation}
+
+Each rule object in a schema's \texttt{validation\_rules} array is evaluated by
+\texttt{\_eval\_rule()}, which dispatches on the \texttt{check} field and returns a
+\texttt{RuleResult}. The dispatcher is implemented as a chain of \texttt{if}/\texttt{elif}
+blocks rather than a registry, ensuring that adding a new rule type requires modifying
+only one function.
+
+\subsection{Report Generation}
+
+The \texttt{ValidationReport} dataclass accumulates all \texttt{RuleResult} instances and
+computes:
+\begin{itemize}
+  \item \texttt{compliance\_score}: weighted pass rate (Eq.~\ref{eq:compliance_score}).
+  \item \texttt{n\_pass}, \texttt{n\_error}, \texttt{n\_warning}: counts by status.
+  \item A serialisable \texttt{to\_dict()} for the API response.
+\end{itemize}
+
+\section{Human Correction Interface}
+
+The \texttt{finetune\_store.py} module manages the bidirectional relationship between:
+\begin{itemize}
+  \item The original extraction (from the pipeline).
+  \item Human corrections made by the QA operator in the \ac{UI}.
+\end{itemize}
+
+When a correction is submitted, \texttt{apply\_corrections()} merges the corrected values
+into a copy of the \texttt{ExtractedLabel}, and the merged label is passed to the validator.
+Correction records are exported as NDJSON training data for future model improvements.
+
+\section{Deployment}
+
+The API server is started with:
+\begin{verbatim}
+uvicorn server.main:app --reload --port 8000
+\end{verbatim}
+
+The Streamlit \ac{UI} is started separately:
+\begin{verbatim}
+streamlit run app.py --server.port 8501
+\end{verbatim}
+
+A convenience shell script (\texttt{start-web.sh}) starts both processes. The frontend
+React application is served by the Vite development server (\texttt{npm run dev}) proxied
+to port~8000.
+
+\section{Performance Characteristics}
+
+End-to-end processing time was measured on a MacBook Pro with an Apple M3 chip and 16~GB
+RAM (no GPU acceleration) across the 36-label test set:
+
+\begin{table}[h]
+\centering
+\caption{Processing time breakdown per label (median across test set).}
+\label{tab:timing}
+\begin{tabular}{lrr}
+\toprule
+\textbf{Stage} & \textbf{Median (ms)} & \textbf{P95 (ms)} \\
+\midrule
+PDF rendering / image load   & 142 & 310 \\
+Barcode decoding              & 87  & 240 \\
+OCR (Tesseract only)          & 320 & 590 \\
+OCR (EasyOCR only)            & 890 & 1850 \\
+OCR (Ensemble)                & 1150 & 2200 \\
+Field mapping                 & 18  & 35 \\
+Label-type classification     & 3   & 6 \\
+Rule validation               & 2   & 5 \\
+\midrule
+\textbf{Total (ensemble)}     & \textbf{1402} & \textbf{2596} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The dominant cost is OCR—specifically EasyOCR, which must load a~200~MB PyTorch model
+on the first call but amortises this cost across subsequent labels in the same process.
+For PDF-native inputs where Pass~1 succeeds, the OCR pass is skipped and total processing
+time drops to approximately~170~ms.

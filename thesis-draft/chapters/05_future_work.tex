@@ -1,0 +1,91 @@
+\chapter{Remaining Work and Future Development}
+\label{ch:future}
+
+\section{Tasks Remaining Before Final Submission}
+
+Although the core validation pipeline is functional and the experimental results presented
+in \cref{ch:results} demonstrate its feasibility, several components require further
+development before the system can be considered production-ready.
+
+\subsection{Expanded Dataset and Generalisation Testing}
+
+The current dataset covers 20 template types with 150 samples. Before final submission,
+the dataset will be expanded to include all available template variants (estimated
+25–30 types) and real failure samples from IKEA's QA team where available. Per-template
+type performance will be reported separately to identify template types where the system
+underperforms.
+
+\subsection{Colour-Histogram Validation Module}
+
+As identified in the error mode analysis (\cref{sec:experiments}), colour-mismatch
+violations are not reliably detected by any of the four current methods. A
+colour-histogram comparison module will be added as a fifth validation method in the
+ensemble. The module will compute per-zone HSV histogram distances between the generated
+label and the reference and flag zones where the histogram divergence (Jensen-Shannon
+distance) exceeds a calibrated threshold.
+
+\subsection{Layout Checker for Zone Ordering}
+
+A dedicated zone-ordering validation component will verify that named spatial zones
+(product identity, barcode, compliance, date) appear in the expected left-to-right
+sequence. This requires zone segmentation, for which the LayoutParser toolkit~\cite{shen2021layoutparser}
+with a fine-tuned Detectron2 model will be evaluated.
+
+\subsection{Dashboard Visualisation}
+
+A browser-based dashboard is planned that renders the validation report as a visual
+overlay—highlighting violated regions in red on the label image and listing rule
+failures in a structured table. Initial prototyping using React/TypeScript is
+underway; the final dashboard will be integrated with the FastAPI REST endpoint.
+
+\subsection{Completeness and Cross-Field Consistency Checks}
+
+The metadata validation currently checks field presence and format independently.
+Two additional cross-field checks will be implemented:
+\begin{itemize}
+  \item \textbf{Barcode content vs.\ printed text}: the article number encoded in the
+  GS1 DataMatrix must match the human-readable article number printed on the label face.
+  \item \textbf{Conditional field presence}: certain fields are required only when
+  other fields are present (e.g.\ the YYWW date stamp is required when the date zone
+  is activated). These conditional rules will be added to the JSON schema files.
+\end{itemize}
+
+\subsection{Full Evaluation on Held-Out Production Labels}
+
+After all components are complete, a final evaluation on a fresh set of production labels
+(not used during any development phase) will be conducted. The primary metric is
+precision on the non-compliant class, as false positives (flagging a correct label as
+invalid) are the most disruptive error mode in an industrial workflow.
+
+\section{Long-Term Future Development}
+
+Beyond the scope of this thesis, several directions are identified for future research
+and production development.
+
+\subsection{Fine-Tuned LayoutLM Classifier}
+
+The exported training records (generated label $+$ field annotations $+$ compliance
+label) form a dataset suitable for fine-tuning a LayoutLMv3~\cite{huang2022layoutlmv3}
+model to perform joint text-layout-image validation. Such a model could capture
+semantic content violations (e.g.\ a product name that is present but refers to the
+wrong product) that the current visual comparison pipeline cannot detect.
+
+\subsection{PatchCore-Based Anomaly Detection}
+
+The PatchCore method~\cite{roth2022patchcore} stores a coreset of normal patch
+embeddings and detects anomalies by nearest-neighbour distance. Adapting PatchCore
+to the label validation domain would allow anomaly detection without any negative
+training examples—an important property given that faulty labels are not archived.
+
+\subsection{Integration with Product Information Management System}
+
+A production-grade deployment would retrieve the expected field values (article number,
+origin, DataMatrix content) directly from IKEA's Product Information Management (PIM)
+system via API, enabling content-correctness validation (not just format correctness).
+
+\subsection{Continuous Learning Loop}
+
+As QA operators correct false positives and false negatives in the dashboard, their
+corrections could be fed back as additional training examples for the ML classifiers
+through the export-JSONL mechanism. This would allow the system to improve over time
+without requiring manual dataset curation.

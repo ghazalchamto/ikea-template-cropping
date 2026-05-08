@@ -1,0 +1,129 @@
+\documentclass[12pt, a4paper, oneside]{report}
+
+% ── Encoding & language ───────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% ── Typography ────────────────────────────────────────────────────────────────
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{setspace}
+\onehalfspacing
+
+% ── Page geometry ─────────────────────────────────────────────────────────────
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm,
+            headheight=15pt]{geometry}
+
+% ── Headers/footers ───────────────────────────────────────────────────────────
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ── Graphics & colour ─────────────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage[table,xcdraw,dvipsnames]{xcolor}
+\usepackage{float}
+
+% ── Tables ────────────────────────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{makecell}
+
+% ── Math ─────────────────────────────────────────────────────────────────────
+\usepackage{amsmath, amssymb}
+
+% ── Symbols ──────────────────────────────────────────────────────────────────
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+% ── Code listings ─────────────────────────────────────────────────────────────
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true, frame=single, captionpos=b,
+  numbers=left, numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue!80!black},
+  commentstyle=\color{green!50!black},
+  stringstyle=\color{red!70!black},
+  showstringspaces=false,
+}
+
+% ── TikZ for diagrams ────────────────────────────────────────────────────────
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit,
+                backgrounds, shadows, decorations.pathreplacing,
+                calc, matrix}
+\tikzstyle{block}=[rectangle, rounded corners=4pt, draw=black!60,
+                   fill=blue!10, text width=3.2cm, minimum height=1cm,
+                   align=center, font=\small]
+\tikzstyle{bigblock}=[rectangle, rounded corners=4pt, draw=black!60,
+                      fill=blue!10, text width=5cm, minimum height=1.2cm,
+                      align=center, font=\small]
+\tikzstyle{arrow}=[-Stealth, thick, color=black!70]
+\tikzstyle{darrow}=[-Stealth, thick, dashed, color=black!50]
+
+% ── Caption style ─────────────────────────────────────────────────────────────
+\usepackage[font=small, labelfont=bf, margin=10pt]{caption}
+\usepackage{subcaption}
+
+% ── Bibliography (IEEE numbered style) ───────────────────────────────────────
+\usepackage[backend=bibtex, style=ieee, sorting=none,
+            citestyle=numeric-comp]{biblatex}
+\addbibresource{references.bib}
+
+% ── Hyperlinks ────────────────────────────────────────────────────────────────
+\usepackage[hidelinks, colorlinks=false]{hyperref}
+\usepackage{cleveref}
+
+% ── Boxes / callouts ─────────────────────────────────────────────────────────
+\usepackage[most]{tcolorbox}
+\tcbset{colback=blue!5!white, colframe=blue!60!black,
+        fonttitle=\bfseries, boxrule=0.4pt}
+
+% ── Page colour for title page ────────────────────────────────────────────────
+\usepackage{eso-pic}
+
+% ── Glossary / acronyms ──────────────────────────────────────────────────────
+\usepackage{acronym}
+
+%=============================================================================
+\begin{document}
+%=============================================================================
+
+\input{chapters/00_titlepage}
+
+\pagenumbering{roman}
+
+\input{chapters/00_abstract}
+\input{chapters/00_acknowledgements}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\input{chapters/00_acronyms}
+
+\cleardoublepage
+\pagenumbering{arabic}
+
+\input{chapters/01_introduction}
+\input{chapters/02_literature}
+\input{chapters/03_methodology}
+\input{chapters/04_results}
+\input{chapters/05_future_work}
+
+\printbibliography[heading=bibintoc, title={References}]
+
+\appendix
+\input{chapters/appendix_A}
+\input{chapters/appendix_B}
+
+\end{document}

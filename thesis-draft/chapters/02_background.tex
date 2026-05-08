@@ -1,0 +1,170 @@
+\chapter{Background}
+\label{ch:background}
+
+\section{Document Image Analysis}
+
+Document image analysis (\ac{DIA}) is the field concerned with automatically extracting
+structured information from images of documents~\cite{nagy2000twenty}. Unlike natural
+scene analysis, document images have a strong spatial grammar: elements are arranged
+according to a layout that carries semantic meaning. The position of a field, its font weight,
+its proximity to a barcode—all of these encode information that a purely text-based approach
+would lose.
+
+For IKEA labels specifically, the document is constrained and controlled: the label designer
+works from a template that dictates exactly which zone each element occupies. This makes
+labels a particularly tractable sub-problem within \ac{DIA}: the vocabulary of layouts is
+finite and enumerable, unlike free-form documents such as contracts or letters.
+
+\subsection{Zone-Based Layout Analysis}
+
+A canonical approach in \ac{DIA} is to segment the document into zones—rectangular or
+polygonal regions—before performing per-zone recognition~\cite{breuel2003pages}. IKEA
+labels are divided into named zones such as \texttt{left\_identity}, \texttt{center\_barcode},
+\texttt{right\_compliance}, and \texttt{right\_date}, each with a defined stacking direction
+and set of elements. Zone segmentation greatly reduces the search space for field extraction
+and can be anchored to detected barcodes, whose position is both reliably detectable and
+semantically significant.
+
+\subsection{PDF-Native vs.\ Raster Extraction}
+
+When a label is available as a PDF generated programmatically (e.g.\ from a design tool
+such as Adobe Illustrator or a label template system), the text spans, font metadata, and
+element positions are embedded directly in the PDF vector stream. PyMuPDF (fitz) can
+extract these spans with sub-millimetre precision and confidence~1.0, entirely bypassing the
+need for \ac{OCR}. This is denoted \emph{Pass~1} in the pipeline.
+
+When only a raster image is available—a photograph, scan, or JPG export—\ac{OCR} becomes
+necessary. The pipeline then runs \emph{Pass~5} (OCR ensemble), which is substantially
+less reliable than PDF-native extraction, motivating the effort devoted to OCR engine
+selection and ensemble design in \cref{ch:implementation}.
+
+\section{Optical Character Recognition}
+
+\ac{OCR} is the task of converting a raster image of text into a machine-readable character
+sequence. The field has evolved from template-matching approaches through Hidden Markov
+Models to the current generation of deep learning engines that jointly model image features
+and language context~\cite{shi2016end}.
+
+\subsection{Tesseract}
+
+Tesseract is an open-source \ac{OCR} engine originally developed by HP and now maintained
+by Google~\cite{smith2007tesseract}. Version~5 replaced the earlier LSTM architecture with
+a fully convolutional LSTM network trained on a large multilingual corpus. Tesseract performs
+particularly well on clean, high-resolution images with consistent typography. It is invoked
+in the pipeline with the \texttt{pytesseract} Python binding.
+
+\subsection{EasyOCR}
+
+EasyOCR~\cite{easyocr2020} is a Python library implementing a CRAFT-based text detector
+followed by a CRNN sequence recogniser. It handles curved and rotated text better than
+Tesseract and is especially strong on non-Latin scripts. EasyOCR produces per-word
+bounding boxes and confidence scores, which the pipeline uses for confidence gating
+(words below~0.25 confidence are excluded from field mapping).
+
+\subsection{PaddleOCR}
+
+PaddleOCR (PP-OCRv5) from Baidu~\cite{du2020pp} is the state-of-the-art open-source
+\ac{OCR} system as of 2024--2025 and was evaluated during the project. Platform
+incompatibilities between PaddlePaddle and macOS arm64 / Python~3.13 prevented its
+inclusion in the primary evaluation; however, benchmarking results on a Linux auxiliary
+machine showed PaddleOCR achieving character-level accuracy of~92.3\% on the label
+dataset, suggesting it would be the preferred engine for a Linux production deployment.
+
+\subsection{OCR Ensemble Strategies}
+
+Combining multiple \ac{OCR} engines is a well-established technique for improving
+robustness~\cite{ratzlaff2003method}. The most common strategies are voting (majority
+decision on character level), confidence weighting (weighted average of engine-assigned
+confidences), and late fusion (merge detected bounding boxes by IoU, then pick the
+higher-confidence word). This project implements late-fusion merging, where overlapping
+word boxes from Tesseract and EasyOCR are merged using intersection-over-union (\ac{SSIM})
+thresholding and the higher-confidence word is retained.
+
+\section{Barcode Symbologies}
+
+IKEA labels employ three barcode types, each encoding different layers of product information.
+
+\subsection{ITF-14}
+
+Interleaved Two-of-Five (ITF-14) is a linear barcode that encodes a 14-digit number—typically
+a GTIN-14 logistics identifier—by interleaving two characters per symbol pair. IKEA uses
+ITF-14 at various magnification levels (25\%--100\%) and with a mandatory 10-module quiet
+zone on each side. The pyzbar library decodes ITF-14 by calling the underlying ZBar C library,
+which operates on a grayscale pixel projection of the barcode area.
+
+\subsection{DataMatrix}
+
+DataMatrix is a 2D matrix barcode capable of encoding up to 3116 numeric or 2335 alphanumeric
+characters in a compact footprint. IKEA uses DataMatrix exclusively in GS1 format,
+encoding application identifiers (AIs) such as AI(240) for the item product code, AI(13)
+for the packaging date, and AI(10) for the batch/lot number~\cite{gs12023general}.
+DataMatrix is decoded using the pylibdmtx library, a Python binding of libdmtx.
+
+\subsection{EAN-13}
+
+EAN-13 (European Article Number) is the standard consumer product barcode, encoding a
+13-digit GTIN-13. IKEA uses EAN-13 at 80\% and 100\% magnification. EAN-13 is decoded
+via pyzbar alongside ITF-14.
+
+\section{Rule-Based Validation}
+
+Rule-based systems encode domain knowledge as explicit logical conditions that can be
+evaluated deterministically. For document validation, rules typically cover:
+
+\begin{itemize}
+  \item \textbf{Field presence}: is a required element present in the extraction?
+  \item \textbf{Format rules}: does the value conform to a regular expression or enumerated
+  set?
+  \item \textbf{Cross-field consistency}: do two fields that encode related information agree?
+  \item \textbf{Structural rules}: are elements in the expected spatial zones?
+\end{itemize}
+
+Rule-based systems are inherently interpretable: every failure can be attributed to a specific
+rule, with the extracted value and the expected value presented side-by-side. This is a key
+advantage over neural classification approaches in a compliance context, where human
+reviewers must be able to understand and act on the system's output.
+
+\subsection{JSON Schema-Driven Rules}
+
+In this project, validation rules are encoded as JSON objects within schema files—one file
+per label type. Each rule specifies a \texttt{field}, a \texttt{check} type (\texttt{present},
+\texttt{regex\_match}, \texttt{exact\_match}, \texttt{ai\_field\_present}), a
+\texttt{severity} (\texttt{error} or \texttt{warning}), and the expected value or pattern.
+This schema-driven design makes it straightforward to add new label types by writing a JSON
+file, without modifying any Python code.
+
+\section{Explainability in Automated Validation}
+
+\ac{XAI} is the study of methods that make the outputs of \ac{ML} systems understandable
+to humans~\cite{adadi2018peeking}. In the context of label validation, explainability is
+not merely a desirable property—it is a functional requirement. A QA operator receiving a
+``non-compliant'' decision must know:
+
+\begin{enumerate}
+  \item \textit{Which} field triggered the failure.
+  \item \textit{What} value was found versus what was expected.
+  \item \textit{Where} on the label the problematic element is located.
+\end{enumerate}
+
+The rule-based nature of the validator in this work provides points~1 and~2 by construction:
+each \texttt{RuleResult} object carries the rule ID, the extracted value, the expected value,
+and a human-readable message. Point~3 is addressed by attaching bounding-box coordinates
+from the \ac{OCR} engine to each extracted field, enabling the \ac{UI} to highlight the
+relevant region on the label image.
+
+\section{GS1 Application Identifier Parsing}
+
+GS1 Application Identifiers are two-to-four-digit numeric prefixes that identify the semantics
+of the data that follows them in a GS1-encoded barcode~\cite{gs12023general}. For example:
+\begin{itemize}
+  \item \textbf{AI(240)}: Item product code (up to 30 characters).
+  \item \textbf{AI(11)}: Production date, in YYMMDD format.
+  \item \textbf{AI(13)}: Packaging date, in YYMMDD format.
+  \item \textbf{AI(10)}: Batch or lot number.
+\end{itemize}
+
+Parsing GS1 content requires handling both the legacy bracket-encoded form
+(\texttt{(240)12345678\ldots}) and the compact concatenated form
+(\texttt{24012345678\ldots}) used in printed DataMatrix symbols. The pipeline implements
+a GS1 parser that recognises both forms, handles variable-length AIs terminated by
+function code~1 (FNC1) delimiters, and validates date fields against format constraints.

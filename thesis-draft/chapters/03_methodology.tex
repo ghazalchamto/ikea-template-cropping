@@ -1,0 +1,528 @@
+\chapter{Methodology}
+\label{ch:methodology}
+
+\section{Research Approach}
+
+This thesis follows a \textbf{quantitative experimental} research strategy. The central
+phenomenon—automated label template validation—is investigated by implementing a
+prototype system, running controlled experiments on a labelled dataset, and measuring
+performance using standard classification metrics. The study is applied in nature:
+insights are derived from a real industrial problem provided by IKEA of Sweden,
+and results are evaluated against operational requirements (accuracy, speed, explainability).
+
+\section{System Overview}
+\label{sec:sys_overview}
+
+The system accepts two inputs per label validation request: (1) a structured
+\acl{JSON} (JSON) metadata payload describing label content and (2) a NiceLabel
+\texttt{.nlbl} label file—the engineered output produced by IKEA's label design workflow.
+It produces two outputs: a binary \textbf{VALID / INVALID} decision and a structured
+\textbf{validation report} detailing which elements caused any failure and where on the
+label the violation occurs.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[node distance=0.7cm and 1.0cm]
+  % Inputs
+  \node[block, fill=orange!15, text width=2.6cm] (json) {JSON\\Metadata};
+  \node[block, fill=orange!15, text width=2.6cm, below=of json] (nlbl) {\texttt{.nlbl}\\Label File};
+
+  % Stage 1
+  \node[block, right=1.2cm of json, yshift=-0.9cm,
+        fill=blue!12, text width=3.0cm, minimum height=2.4cm]
+        (stage1) {Stage 1\\[4pt]\textbf{Rendering}\\{\footnotesize NiceLabel SDK\\PNG export}};
+
+  % Stage 2
+  \node[block, right=1.0cm of stage1,
+        fill=purple!10, text width=3.0cm, minimum height=2.4cm]
+        (stage2) {Stage 2\\[4pt]\textbf{Pre-render}\\[2pt]\textbf{Validation}\\{\footnotesize Rule-based\\JSON checks}};
+
+  % Stage 3
+  \node[block, right=1.0cm of stage2,
+        fill=teal!10, text width=3.0cm, minimum height=2.4cm]
+        (stage3) {Stage 3\\[4pt]\textbf{Visual}\\[2pt]\textbf{Validation}\\{\footnotesize SSIM, ORB\\CNN, Siamese}};
+
+  % Baseline
+  \node[block, above=0.8cm of stage3, fill=green!12, text width=2.8cm]
+        (baseline) {Baseline\\Template\\(PNG catalog)};
+
+  % Output
+  \node[block, right=1.0cm of stage3,
+        fill=red!10, text width=2.6cm, minimum height=2.4cm]
+        (out) {\textbf{Report}\\[4pt]VALID /\\INVALID\\+ BBox overlay};
+
+  % Arrows
+  \draw[arrow] (json.east) -- ++(0.5,0) |- (stage1.west);
+  \draw[arrow] (nlbl.east) -- ++(0.5,0) |- (stage1.west);
+  \draw[arrow] (stage1) -- (stage2);
+  \draw[arrow] (stage2) -- (stage3);
+  \draw[arrow] (stage3) -- (out);
+  \draw[arrow] (baseline.south) -- (stage3.north);
+\end{tikzpicture}
+\caption{High-level system architecture showing the three validation stages.}
+\label{fig:sys_overview}
+\end{figure}
+
+\section{System Architecture}
+\label{sec:architecture}
+
+The architecture follows a modular pipeline design. Each module is independently
+replaceable, supporting future extension (e.g.\ swapping ORB for a detector fine-tuned
+on label-specific features). The five main modules are described below and illustrated
+in \cref{fig:detailed_arch}.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[node distance=0.55cm and 1.8cm,
+  mod/.style={rectangle, rounded corners=3pt, draw=black!50,
+              fill=blue!8, minimum width=3.2cm, minimum height=0.9cm,
+              align=center, font=\small},
+  submod/.style={rectangle, rounded corners=2pt, draw=gray!60,
+                 fill=gray!8, minimum width=2.8cm, minimum height=0.7cm,
+                 align=center, font=\footnotesize}
+]
+% Column 1: Input
+\node[mod, fill=orange!15] (input) {Input Handler};
+\node[submod, below=of input] (ftpmon) {FTP/API monitor};
+\node[submod, below=of ftpmon] (parser) {JSON parser};
+
+% Column 2: Template select
+\node[mod, fill=purple!12, right=of input] (tmpl) {Template Selector};
+\node[submod, below=of tmpl] (catalog) {Template catalog};
+\node[submod, below=of catalog] (idmap) {ID $\to$ baseline PNG};
+
+% Column 3: Renderer
+\node[mod, fill=blue!12, right=of tmpl] (render) {NiceLabel Renderer};
+\node[submod, below=of render] (sdk) {.NET SDK};
+\node[submod, below=of sdk] (png) {PNG exporter};
+
+% Column 4: Validator
+\node[mod, fill=teal!12, right=of render] (valid) {Hybrid Validator};
+\node[submod, below=of valid] (prerender) {Rule checker};
+\node[submod, below=of prerender] (ssim_mod) {SSIM engine};
+\node[submod, below=of ssim_mod] (orb_mod) {ORB matcher};
+\node[submod, below=of orb_mod] (cnn_mod) {CNN classifier};
+\node[submod, below=of cnn_mod] (siam_mod) {Siamese net};
+
+% Column 5: Output
+\node[mod, fill=red!10, right=of valid] (report) {Report Generator};
+\node[submod, below=of report] (decision) {VALID/INVALID};
+\node[submod, below=of decision] (bbox) {BBox overlay};
+\node[submod, below=of bbox] (api) {API/Dashboard};
+
+% Horizontal arrows
+\draw[arrow] (input) -- (tmpl);
+\draw[arrow] (tmpl) -- (render);
+\draw[arrow] (render) -- (valid);
+\draw[arrow] (valid) -- (report);
+\end{tikzpicture}
+\caption{Detailed modular architecture of the validation system.}
+\label{fig:detailed_arch}
+\end{figure}
+
+\section{Workflow Description}
+\label{sec:workflow}
+
+\Cref{fig:workflow} shows the four-step validation workflow.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[node distance=1.2cm,
+  step/.style={rectangle, rounded corners=5pt, draw=blue!60,
+               fill=blue!10, text width=5cm, minimum height=1.2cm,
+               align=center, font=\small},
+  decision/.style={diamond, draw=orange!70, fill=orange!10,
+                   aspect=2.5, align=center, font=\small}
+]
+\node[step] (s1) {\textbf{Step 1}\\Input ingestion \& template identification\\{\footnotesize Read JSON, map label ID $\to$ baseline}};
+\node[step, below=of s1] (s2) {\textbf{Step 2}\\Pre-render metadata validation\\{\footnotesize Rule checks on JSON fields}};
+\node[decision, below=0.7cm of s2] (d1) {Rule\\violations?};
+\node[step, below=0.7cm of d1] (s3) {\textbf{Step 3}\\Rendering \& visual comparison\\{\footnotesize SDK render $\to$ PNG $\to$ SSIM/ORB/CNN/Siamese}};
+\node[step, below=of s3] (s4) {\textbf{Step 4}\\Report generation\\{\footnotesize Decision + BBox overlay + API response}};
+
+\node[step, right=2.5cm of d1, fill=red!10, draw=red!60, text width=3cm]
+     (fail_early) {Early\\INVALID\\report};
+
+\draw[arrow] (s1) -- (s2);
+\draw[arrow] (s2) -- (d1);
+\draw[arrow] (d1) -- node[right, font=\footnotesize]{No} (s3);
+\draw[arrow] (d1) -- node[above, font=\footnotesize]{Yes} (fail_early);
+\draw[arrow] (s3) -- (s4);
+\end{tikzpicture}
+\caption{Four-step validation workflow with early-exit on metadata failure.}
+\label{fig:workflow}
+\end{figure}
+
+\subsection{Step 1 — Input Ingestion and Template Identification}
+
+The system reads the incoming JSON payload and extracts the label identifier. A
+deterministic lookup maps the identifier to the corresponding approved baseline PNG
+stored in the local template catalog (approximately 20 baseline templates, with multiple
+versions). Preliminary rule validation (field presence, format checks) is applied
+directly to the JSON payload before any rendering occurs.
+
+\subsection{Step 2 — Pre-Render Metadata Validation}
+
+Rule-based checks are applied to the JSON metadata:
+\begin{itemize}
+  \item \textbf{Field presence}: required fields must be non-null and non-empty.
+  \item \textbf{Format checks}: article numbers must match the pattern
+  \texttt{\textbackslash d\{3\}.\textbackslash d\{3\}.\textbackslash d\{2\}};
+  country codes must be ISO 3166-1 alpha-2; date fields must conform to YYMMDD.
+  \item \textbf{Length constraints}: text fields have maximum character lengths
+  defined per field per template type.
+\end{itemize}
+
+If any error-severity rule fails, an INVALID decision is returned immediately without
+rendering (early exit), reducing unnecessary computation.
+
+\subsection{Step 3 — Rendering and Visual Comparison}
+
+The \texttt{.nlbl} file is opened by the NiceLabel .NET SDK and exported to a
+300 DPI PNG. The PNG is then compared to the baseline reference using four methods
+run in parallel (see \cref{sec:ml_algorithms}).
+
+\subsection{Step 4 — Report Generation}
+
+The output aggregates all validation findings into a structured JSON report containing:
+the binary decision, per-method confidence scores, bounding-box coordinates of
+localised violations, and a list of failed metadata rules with extracted values.
+
+\section{Dataset Description}
+\label{sec:dataset}
+
+\subsection{Composition}
+
+The dataset consists of \textbf{150 labelled label images} across 20 template types.
+All valid samples are real production-approved labels; invalid samples are synthetically
+generated by programmatically introducing controlled violations into valid templates.
+
+\begin{table}[h]
+\centering
+\caption{Dataset composition by class and split.}
+\label{tab:dataset}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Split} & \textbf{Valid} & \textbf{Invalid} & \textbf{Total} & \textbf{\% of data} \\
+\midrule
+Training   & 66 & 54 & 120 & 80.0\% \\
+Validation & 8  & 7  & 15  & 10.0\% \\
+Test       & 8  & 7  & 15  & 10.0\% \\
+\midrule
+\textbf{Total} & \textbf{82} & \textbf{68} & \textbf{150} & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Synthetic Violation Types}
+
+Seven categories of controlled violation were introduced:
+
+\begin{table}[h]
+\centering
+\caption{Synthetic violation types and distribution in the invalid subset.}
+\label{tab:violations}
+\begin{tabular}{llc}
+\toprule
+\textbf{ID} & \textbf{Violation type} & \textbf{Count} \\
+\midrule
+V1 & Element displacement ($>$5 mm)       & 14 \\
+V2 & Missing required field               & 12 \\
+V3 & Font size deviation ($>$15\%)        & 10 \\
+V4 & Barcode zone overlap                 & 9  \\
+V5 & Incorrect article number format      & 9  \\
+V6 & Colour value mismatch                & 8  \\
+V7 & Extra / unexpected element           & 6  \\
+\midrule
+\textbf{Total}                            && 68 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Data Split Rationale}
+
+The 80/10/10 split was chosen over a larger test set due to the small overall dataset
+size. The same split proportions were maintained within each template type to avoid
+type-level imbalance. Stratified splitting was applied at the violation-type level to
+ensure all seven violation categories are represented in both validation and test sets.
+
+\section{Validation Strategy}
+\label{sec:validation_strategy}
+
+The validation strategy is \textbf{hybrid}: four complementary methods are applied to
+the rendered label, and their decisions are combined through a weighted majority vote.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[node distance=0.7cm and 1.4cm,
+  mbox/.style={rectangle, rounded corners=3pt, draw=black!50, fill=gray!8,
+               text width=3.0cm, minimum height=1.1cm, align=center, font=\small}
+]
+\node[mbox, fill=blue!12]  (ssim_n) {SSIM\\baseline};
+\node[mbox, fill=purple!12, right=of ssim_n]   (orb_n)  {ORB feature\\matching};
+\node[mbox, fill=teal!12,   right=of orb_n]    (cnn_n)  {ResNet-50\\classifier};
+\node[mbox, fill=orange!12, right=of cnn_n]    (siam_n) {Siamese\\network};
+
+\node[mbox, fill=red!10, draw=red!60, below=1.2cm of orb_n, xshift=2.5cm,
+      text width=4cm, minimum height=1.2cm]
+     (vote) {Weighted majority vote\\{\footnotesize w = [0.15, 0.25, 0.35, 0.25]}};
+
+\node[mbox, fill=green!10, draw=green!60!black, right=1.2cm of vote,
+      text width=2.5cm]
+     (dec) {VALID /\\INVALID};
+
+\draw[arrow] (ssim_n.south) -- ++(0,-0.5) -| (vote.north);
+\draw[arrow] (orb_n.south)  -- ++(0,-0.3) -| (vote.north);
+\draw[arrow] (cnn_n.south)  -- ++(0,-0.3) -| (vote.north);
+\draw[arrow] (siam_n.south) -- ++(0,-0.5) -| (vote.north);
+\draw[arrow] (vote) -- (dec);
+\end{tikzpicture}
+\caption{Hybrid validation ensemble: four methods combined by weighted majority vote.}
+\label{fig:ensemble}
+\end{figure}
+
+The weights $w = [0.15, 0.25, 0.35, 0.25]$ for SSIM, ORB, CNN, and Siamese
+respectively were determined empirically on the validation set using a grid search over
+integer weight combinations that sum to 1.00.
+
+\section{Machine Learning Algorithms}
+\label{sec:ml_algorithms}
+
+\subsection{Method 1 — SSIM Baseline}
+
+The Structural Similarity Index Measure~\cite{wang2004ssim}:
+
+\begin{equation}
+\text{SSIM}(x, y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}
+                         {(\mu_x^2 + \mu_y^2 + c_1)(\sigma_x^2 + \sigma_y^2 + c_2)}
+\label{eq:ssim}
+\end{equation}
+
+is computed between the generated label PNG and the baseline reference PNG after
+aligning both images to the same resolution. A sliding-window SSIM map with window
+size $11 \times 11$ pixels is used; regions where local SSIM falls below a threshold
+$\tau_\text{SSIM} = 0.82$ are flagged as violated areas. Bounding boxes are derived by
+morphologically dilating the flagged pixels and extracting connected components.
+
+\subsection{Method 2 — ORB Feature Matching}
+
+Oriented FAST and Rotated BRIEF (ORB)~\cite{rublee2011orb} keypoints are extracted
+from both the generated label and the baseline reference. Keypoint descriptors are
+matched using a Hamming-distance Brute-Force matcher with ratio test threshold~0.75
+(Lowe's ratio test criterion). A homography is estimated from matched keypoints using
+RANSAC; the inlier ratio $r_\text{in}$ is used as the similarity score. An INVALID
+decision is issued when $r_\text{in} < 0.60$. Additionally, unmatched keypoints in the
+generated label that have no corresponding counterpart within 25 pixels in the reference
+are treated as potential anomalous regions.
+
+\subsection{Method 3 — ResNet-50 Binary Classifier}
+\label{ssec:resnet}
+
+A ResNet-50 backbone~\cite{he2016resnet} pre-trained on ImageNet is fine-tuned as a
+binary classifier (VALID / INVALID). The classification head replaces the original
+1\,000-class softmax with a two-layer MLP:
+
+\begin{equation}
+\hat{y} = \sigma\!\left(W_2\,\text{ReLU}(W_1\,z + b_1) + b_2\right)
+\label{eq:cls_head}
+\end{equation}
+
+where $z \in \mathbb{R}^{2048}$ is the global average-pooled ResNet-50 feature vector,
+$W_1 \in \mathbb{R}^{512 \times 2048}$, $W_2 \in \mathbb{R}^{1 \times 512}$, and
+$\sigma$ is the sigmoid function. The network is trained end-to-end with binary
+cross-entropy loss:
+
+\begin{equation}
+\mathcal{L}_\text{BCE} = -\frac{1}{N}\sum_{i=1}^{N}
+  \left[y_i \log \hat{y}_i + (1-y_i)\log(1-\hat{y}_i)\right]
+\label{eq:bce}
+\end{equation}
+
+\paragraph{Training details.}
+
+\begin{table}[h]
+\centering
+\caption{ResNet-50 classifier training hyperparameters.}
+\label{tab:resnet_hparams}
+\begin{tabular}{ll}
+\toprule
+\textbf{Hyperparameter} & \textbf{Value} \\
+\midrule
+Backbone         & ResNet-50 (ImageNet pre-trained) \\
+Fine-tuning      & Full network (unfrozen after epoch~5) \\
+Optimiser        & Adam ($\beta_1 = 0.9$, $\beta_2 = 0.999$) \\
+Learning rate    & $1\times10^{-4}$ (backbone), $1\times10^{-3}$ (head) \\
+LR schedule      & CosineAnnealingLR, $T_\text{max} = 50$ \\
+Batch size       & 16 \\
+Epochs           & 50 (early stopping patience = 8) \\
+Input resolution & $224 \times 224$ px (resized from 300 DPI PNG) \\
+Augmentation     & Random horizontal flip, $\pm$10° rotation,\\
+                 & colour jitter (brightness/contrast $\pm$0.2) \\
+Class weights    & Inverse frequency ($w_\text{valid}=0.83$, $w_\text{invalid}=1.00$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{fig:resnet_arch} illustrates the modified ResNet-50 architecture.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[node distance=0.5cm and 0.8cm,
+  layer/.style={rectangle, rounded corners=2pt, draw=black!50,
+                fill=blue!10, minimum width=2.2cm, minimum height=0.8cm,
+                align=center, font=\scriptsize}
+]
+\node[layer, fill=orange!15] (inp) {Input\\$224\times224\times3$};
+\node[layer, right=of inp] (conv1) {Conv1 + BN\\+ ReLU + Pool};
+\node[layer, right=of conv1] (res1) {ResBlock\\$\times3$ (conv2)};
+\node[layer, right=of res1]  (res2) {ResBlock\\$\times4$ (conv3)};
+\node[layer, right=of res2]  (res3) {ResBlock\\$\times6$ (conv4)};
+\node[layer, right=of res3]  (res4) {ResBlock\\$\times3$ (conv5)};
+\node[layer, below=0.7cm of res4, fill=gray!15] (gap)  {Global Avg Pool\\$\mathbb{R}^{2048}$};
+\node[layer, left=of gap, fill=teal!15]  (fc1)  {FC 2048$\to$512\\ReLU};
+\node[layer, left=of fc1, fill=teal!15]  (fc2)  {FC 512$\to$1\\Sigmoid};
+\node[layer, left=of fc2, fill=red!15]   (out)  {VALID /\\INVALID};
+
+\draw[arrow] (inp)  -- (conv1);
+\draw[arrow] (conv1)-- (res1);
+\draw[arrow] (res1) -- (res2);
+\draw[arrow] (res2) -- (res3);
+\draw[arrow] (res3) -- (res4);
+\draw[arrow] (res4) -- (gap);
+\draw[arrow] (gap)  -- (fc1);
+\draw[arrow] (fc1)  -- (fc2);
+\draw[arrow] (fc2)  -- (out);
+\end{tikzpicture}
+\caption{Modified ResNet-50 architecture with binary classification head.}
+\label{fig:resnet_arch}
+\end{figure}
+
+\subsection{Method 4 — Siamese Network}
+\label{ssec:siamese}
+
+A Siamese network~\cite{sung2018relation} learns a pairwise similarity function
+$f: (\mathbf{x}_\text{gen}, \mathbf{x}_\text{ref}) \to [0, 1]$ directly from
+(generated label, reference label) pairs. Two ResNet-18 sub-networks with shared
+weights encode each image independently into a $d = 512$ embedding:
+
+\begin{equation}
+z_i = \text{ResNet18}(\mathbf{x}_i),\quad z_i \in \mathbb{R}^{512}
+\label{eq:encoder}
+\end{equation}
+
+A relation module computes:
+\begin{equation}
+s = \sigma\!\left(r\!\left([z_\text{gen} \,\Vert\, z_\text{ref}]\right)\right)
+\label{eq:relation}
+\end{equation}
+
+where $[\,\cdot\,\Vert\,\cdot\,]$ is concatenation, $r(\cdot)$ is a two-layer MLP
+($\mathbb{R}^{1024} \to \mathbb{R}^{256} \to \mathbb{R}^{1}$), and $s \in [0,1]$ is
+the similarity score ($s < 0.5 \Rightarrow$ INVALID). The model is trained with
+contrastive loss:
+
+\begin{equation}
+\mathcal{L}_\text{cont} = \frac{1}{2N}\sum_{i=1}^N
+  \left[y_i \cdot d_i^2 + (1-y_i) \cdot \max(m - d_i, 0)^2\right]
+\label{eq:contrastive}
+\end{equation}
+
+where $d_i = \|z_{\text{gen},i} - z_{\text{ref},i}\|_2$, $y_i \in \{0,1\}$
+is the similarity label (1 = same class), and $m = 1.0$ is the margin.
+
+\begin{table}[h]
+\centering
+\caption{Siamese network training hyperparameters.}
+\label{tab:siamese_hparams}
+\begin{tabular}{ll}
+\toprule
+\textbf{Hyperparameter} & \textbf{Value} \\
+\midrule
+Backbone (shared)   & ResNet-18 (ImageNet pre-trained, unfrozen from epoch 3) \\
+Relation MLP        & 1024 $\to$ 256 $\to$ 1 (ReLU, Sigmoid) \\
+Optimiser           & Adam ($\beta_1 = 0.9$, $\beta_2 = 0.999$) \\
+Learning rate       & $5\times10^{-5}$ \\
+Margin $m$          & 1.0 \\
+Pair sampling       & 3 positive + 3 negative pairs per anchor \\
+Batch size          & 12 pairs \\
+Epochs              & 40 (early stopping patience = 6) \\
+Input resolution    & $224 \times 224$ px \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{fig:siamese_arch} illustrates the Siamese architecture.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[node distance=0.6cm and 1.2cm,
+  enc/.style={rectangle, rounded corners=3pt, draw=blue!60, fill=blue!12,
+              text width=2.4cm, minimum height=0.9cm, align=center, font=\small},
+  rel/.style={rectangle, rounded corners=3pt, draw=teal!60, fill=teal!10,
+              text width=2.6cm, minimum height=0.9cm, align=center, font=\small}
+]
+% Generated branch
+\node[enc] (gen_in) {Generated\\label PNG};
+\node[enc, below=0.5cm of gen_in, fill=blue!20] (gen_enc) {ResNet-18\\encoder};
+\node[rel, right=1.2cm of gen_enc, yshift=0.7cm] (concat) {Concat\\$z_\text{gen}\,||\,z_\text{ref}$};
+
+% Reference branch
+\node[enc, below=1.5cm of gen_in] (ref_in) {Reference\\baseline PNG};
+\node[enc, below=0.5cm of ref_in, fill=blue!20] (ref_enc) {ResNet-18\\encoder\\(shared weights)};
+
+% Relation
+\node[rel, right=1.2cm of concat] (rel_mod) {Relation\\MLP};
+\node[enc, right=1.2cm of rel_mod, fill=red!10, draw=red!60] (score) {Similarity\\score $s \in [0,1]$};
+
+\draw[arrow] (gen_in) -- (gen_enc);
+\draw[arrow] (ref_in) -- (ref_enc);
+\draw[arrow] (gen_enc.east) -- ++(0.3,0) |- (concat.west);
+\draw[arrow] (ref_enc.east) -- ++(0.3,0) |- (concat.west);
+\draw[arrow] (concat) -- (rel_mod);
+\draw[arrow] (rel_mod) -- (score);
+\end{tikzpicture}
+\caption{Siamese network architecture for pairwise template similarity scoring.}
+\label{fig:siamese_arch}
+\end{figure}
+
+\section{Evaluation Method}
+\label{sec:evaluation_method}
+
+\subsection{Metrics}
+
+Each method is evaluated on the test set (15 labels) using:
+
+\begin{itemize}
+  \item \textbf{Accuracy}: $\text{Acc} = (\text{TP}+\text{TN})/N$
+  \item \textbf{Precision}: $P = \text{TP}/(\text{TP}+\text{FP})$
+  \item \textbf{Recall}: $R = \text{TP}/(\text{TP}+\text{FN})$
+  \item \textbf{F1-score}: $F1 = 2PR/(P+R)$
+  \item \textbf{Violation localisation}: IoU between predicted and annotated bounding
+  boxes; a prediction is correct if IoU~$>$~0.5.
+  \item \textbf{Processing time}: wall-clock time from PNG ingestion to report
+  generation, averaged over the test set.
+\end{itemize}
+
+\subsection{Baseline}
+
+A pixel-difference baseline computes the $L_1$ mean absolute pixel difference between
+the generated and reference PNG. Labels with mean difference exceeding 12 intensity
+units (on a 0–255 scale) are classified as INVALID. This baseline is included to
+confirm that classical methods are insufficient on their own.
+
+\section{Method Justification}
+\label{sec:justification}
+
+The choice of a hybrid approach is motivated by the literature's consistent finding that
+no single comparison method provides sufficient coverage across all violation
+types~\cite{zhang2018lpips, roth2022patchcore}. SSIM is fast and interpretable but
+sensitive to minor rendering variations; ORB is robust to slight positional shifts but
+struggles on uniform layouts with few distinctive keypoints; the ResNet-50 classifier
+captures global structural patterns missed by local metrics; the Siamese network enables
+few-shot comparison directly from reference pairs without retraining.
+
+Reference-based validation was chosen because IKEA of Sweden's workflow provides
+an authoritative approved baseline for every label type. This makes the problem
+well-suited to deterministic comparison~\cite{bergmann2019mvtec}. The deliberate
+exclusion of synthetic negative data for training the rule-based component reflects
+the practical reality that failed labels are not archived in the production system.

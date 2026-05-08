@@ -1,0 +1,46 @@
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+Large-scale manufacturers such as IKEA of Sweden rely on hundreds of standardized communication
+labels—product identity cards, packaging inserts, logistics tags, and regulatory compliance
+markers—that must comply with strict layout and content specifications before every print run.
+Manual quality assurance of these templates is slow, inconsistent, and expensive at production
+volume. This thesis presents the design and evaluation of an automated label validation
+pipeline that combines multi-engine Optical Character Recognition (\ac{OCR}), rule-based
+field validation, GS1 barcode decoding, and a scoring-based label-type classifier to determine
+whether a given label image conforms to its target specification.
+
+The system was built in close collaboration with IKEA of Sweden, whose internal template
+catalogue of 34 distinct label types formed the basis of the ground-truth rule schemas.
+A dataset of 238 labelled images—131 compliant, 107 non-compliant—was assembled by
+collecting real production-stage label PDFs and programmatically introducing controlled
+violations. Each image was annotated at the field level, recording which required elements
+were present, their extracted text values, barcode payloads, and the compliance outcome.
+
+Three \ac{OCR} engines were benchmarked: Tesseract~5.3, EasyOCR~1.7, and a late-fusion
+ensemble of the two. The ensemble achieved a character-level accuracy of~89.1\% and a
+word-level accuracy of~83.2\%, outperforming either engine alone. Barcode decoding
+reached 94.4\% for ITF-14 symbols and 88.7\% for Data\-Matrix symbols using the
+pyzbar and pylibdmtx libraries respectively. Label-type identification—mapping an
+unknown image to one of 34 schema candidates—attained a top-1 accuracy of~86.1\%
+and a top-3 accuracy of~94.4\% on the held-out test set. Field extraction achieved
+a macro-averaged F1 score of~0.866 across ten key fields, with the highest scores
+on structured identifiers such as the IKEA supplier name (F1~=~0.957) and article
+number (F1~=~0.934), and lower scores on free-text fields such as physical dimensions
+(F1~=~0.804). The rule-based validator that applies schema-specific checks to the
+extracted fields reached a precision of~88.3\% and a recall of~84.7\% in flagging
+non-compliant labels, yielding an F1 of~0.865.
+
+The results demonstrate that a hybrid pipeline combining deterministic OCR, GS1
+barcode parsing, and rule-based validation can automate the majority of IKEA's label
+quality-assurance workload with high reliability, reducing average manual review time
+from an estimated~8 minutes per label to under~2 seconds of automated processing.
+Remaining error modes are concentrated in low-resolution scans, rotated text zones,
+and partially occluded barcodes, pointing to clear directions for future work.
+
+\vspace{1em}
+\noindent\textbf{Keywords:}
+optical character recognition, rule-based validation, document image analysis,
+label compliance, GS1 barcodes, template classification, field extraction,
+IKEA, computer vision, explainability.
+\clearpage

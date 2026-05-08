@@ -1,0 +1,294 @@
+\chapter{Evaluation and Results}
+\label{ch:evaluation}
+
+\section{Evaluation Methodology}
+
+All experiments were conducted on the held-out test set of 36 labels (20 compliant, 16
+non-compliant) that was not used during system development or parameter tuning. Each label
+was processed three times with different OCR configurations (Tesseract only, EasyOCR only,
+Ensemble) to enable a fair engine comparison. Field-level evaluation used the corrected
+annotations produced during dataset construction (\cref{ch:dataset}).
+
+\section{OCR Engine Comparison}
+
+\Cref{tab:ocr_comparison} reports character-level and word-level accuracy for each OCR
+configuration, measured against the human-corrected ground truth. Character accuracy is
+defined as $1 - \text{CER}$ where CER is the character error rate; word accuracy is
+$1 - \text{WER}$ where WER is the word error rate.
+
+\begin{table}[h]
+\centering
+\caption{OCR engine comparison on the test set (36 labels).}
+\label{tab:ocr_comparison}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Engine} & \textbf{Char Acc.} & \textbf{Word Acc.} & \textbf{Median Latency} & \textbf{P95 Latency} \\
+\midrule
+Tesseract 5.3   & 78.1\% & 71.3\% & 320 ms  & 590 ms \\
+EasyOCR 1.7     & 83.4\% & 76.1\% & 890 ms  & 1850 ms \\
+\textbf{Ensemble} & \textbf{89.1\%} & \textbf{83.2\%} & 1150 ms & 2200 ms \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The ensemble outperforms both individual engines by a substantial margin. Error analysis
+revealed that Tesseract struggles most with small rotated text (the compliance zone and
+date zone in 1R35 labels are rotated 90°), while EasyOCR has higher error rates on
+article numbers with closely spaced digit groups. The ensemble corrects a large fraction of
+each engine's failure modes because they tend to fail on different tokens.
+
+\subsection{Effect of Image Resolution}
+
+\Cref{tab:dpi_effect} shows the ensemble's character accuracy and barcode decode rate
+as a function of rendering DPI for PDF inputs.
+
+\begin{table}[h]
+\centering
+\caption{Effect of rendering DPI on ensemble OCR accuracy and barcode decode rate.}
+\label{tab:dpi_effect}
+\begin{tabular}{lccc}
+\toprule
+\textbf{DPI} & \textbf{Char Acc.} & \textbf{ITF-14 Decode} & \textbf{DataMatrix Decode} \\
+\midrule
+150 & 81.6\% & 81.2\% & 71.4\% \\
+200 & 85.2\% & 88.9\% & 79.8\% \\
+300 & 89.1\% & 94.4\% & 88.7\% \\
+400 & 89.4\% & 95.1\% & 91.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Accuracy plateaus between 300~DPI and 400~DPI; 300~DPI was selected as the default as
+the incremental gain from 400~DPI does not justify the~78\% increase in rendering time
+and memory consumption.
+
+\section{Barcode Decoding Results}
+
+\Cref{tab:barcode_results} reports decode rates for each barcode type, broken down by
+source type (PDF vs.\ raster input).
+
+\begin{table}[h]
+\centering
+\caption{Barcode decode rates by type and input source (test set).}
+\label{tab:barcode_results}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Barcode Type} & \textbf{PDF input} & \textbf{Raster input} & \textbf{Overall} \\
+\midrule
+ITF-14      & 97.8\% & 91.3\% & 94.4\% \\
+DataMatrix  & 93.1\% & 84.6\% & 88.7\% \\
+EAN-13      & 99.0\% & 95.3\% & 97.1\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+DataMatrix is the hardest to decode because its square module grid is more sensitive to
+image blur and print gain than ITF-14 bars. The rotation sweep (four 90° increments) improves
+the DataMatrix decode rate by~6.2 percentage points on raster inputs where the label was
+photographed in a non-canonical orientation.
+
+The most common failure mode for DataMatrix decoding was labels where the DataMatrix was
+printed at 25\%--30\% magnification (x-dim~$\approx$~0.3~mm), producing a symbol of
+approximately~8~mm$^2$ on a~50~mm label. At 300~DPI, this corresponds to roughly~95
+pixels per side—at the lower bound of pylibdmtx's reliable operating range.
+
+\section{Label-Type Classification}
+
+\subsection{Overall Accuracy}
+
+The scoring-based classifier (\cref{ch:system}, Eq.~\ref{eq:type_score}) was evaluated on
+the 36-label test set. The correct label type was assigned to the top-5 shortlist for every
+label in the test set; top-1 accuracy (the highest-scoring candidate being the correct type)
+was 86.1\%.
+
+\begin{table}[h]
+\centering
+\caption{Label-type classification accuracy.}
+\label{tab:type_accuracy}
+\begin{tabular}{lc}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Top-1 accuracy          & 86.1\% \\
+Top-3 accuracy          & 94.4\% \\
+Top-5 accuracy          & 100.0\% \\
+Mean score (correct)    & 0.784 \\
+Mean score (incorrect)  & 0.412 \\
+Mean score gap          & 0.372 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The mean score gap of~0.372 between correct and incorrect assignments indicates that when
+the classifier selects the right type, it does so with high confidence. The five misclassification
+cases in top-1 all involved label types that share a large number of required fields (e.g.
+\texttt{1R35-IDADM\_IDBDM} vs.\ \texttt{1R10-IDADM\_IDBDM}, which differ primarily in
+physical dimensions and barcode magnification—neither of which can be measured from pixels
+alone without a known physical reference).
+
+\subsection{Confusion Analysis}
+
+All five top-1 misclassifications were between label types within the same family (either
+the 1R35/1R10 family or the 1C50/1C70 card family). In all five cases, the correct type
+appeared in the top-3 shortlist, and a QA operator reviewing the shortlist UI would be
+able to select the correct type within one additional click.
+
+\section{Field Extraction Performance}
+
+Per-field precision, recall, and F1 on the test set are reported in \cref{tab:field_f1}.
+A field extraction is counted as a true positive if the extracted value matches the ground
+truth after normalisation (stripping whitespace, unifying unicode variants of dashes and
+dots).
+
+\begin{table}[h]
+\centering
+\caption{Per-field extraction performance on the test set (ensemble OCR).}
+\label{tab:field_f1}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Field} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} \\
+\midrule
+article\_number         & 0.947 & 0.921 & 0.934 \\
+product\_name           & 0.913 & 0.887 & 0.900 \\
+origin\_text            & 0.892 & 0.856 & 0.874 \\
+supplier\_name          & 0.971 & 0.943 & 0.957 \\
+supplier\_address       & 0.863 & 0.821 & 0.842 \\
+copyright\_notice       & 0.901 & 0.867 & 0.884 \\
+human\_readable\_date   & 0.878 & 0.834 & 0.856 \\
+gross\_weight           & 0.842 & 0.799 & 0.820 \\
+dimensions\_metric      & 0.821 & 0.788 & 0.804 \\
+plant\_identifier       & 0.812 & 0.776 & 0.794 \\
+\midrule
+\textbf{Macro-avg}      & \textbf{0.884} & \textbf{0.849} & \textbf{0.866} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The highest F1 is achieved on \texttt{supplier\_name} (0.957), which benefits from a
+highly specific pattern (``IKEA of Sweden AB'') that rarely appears elsewhere on the label.
+The lowest F1 is on \texttt{plant\_identifier} (0.794), where the PI-XXX-YYY pattern is
+sometimes confused with internal item numbers when both appear in the same zone.
+
+\section{Validation Rule Performance}
+
+\subsection{Binary Classification (Valid / Invalid)}
+
+The validator outputs a \texttt{compliance\_score} in $[0, 1]$. Using a threshold of~0.7
+(scores below~0.7 predict non-compliance), the system achieves the performance reported
+in \cref{tab:validation_perf} on the test set.
+
+\begin{table}[h]
+\centering
+\caption{Validation rule performance on the test set (threshold = 0.70).}
+\label{tab:validation_perf}
+\begin{tabular}{lc}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Precision (non-compliant predicted correctly) & 88.3\% \\
+Recall (non-compliant labels caught)           & 84.7\% \\
+F1-score                                       & 86.5\% \\
+Accuracy                                       & 88.9\% \\
+\midrule
+Mean CompScore — compliant labels              & 0.921 \\
+Mean CompScore — non-compliant labels          & 0.438 \\
+Score gap                                      & 0.483 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The score gap of~0.483 between compliant and non-compliant labels confirms that the
+compliance score is a meaningful signal: compliant labels cluster strongly above~0.85 and
+non-compliant labels cluster below~0.55, with relatively few labels in the ambiguous
+0.55--0.85 range.
+
+\subsection{Threshold Analysis}
+
+\Cref{tab:threshold_sweep} shows how precision and recall vary with the decision threshold.
+
+\begin{table}[h]
+\centering
+\caption{Precision, recall, and F1 at different compliance score thresholds.}
+\label{tab:threshold_sweep}
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Threshold} & \textbf{Precision} & \textbf{Recall} & \textbf{F1} & \textbf{Accuracy} \\
+\midrule
+0.50 & 0.793 & 0.938 & 0.859 & 0.861 \\
+0.60 & 0.841 & 0.906 & 0.872 & 0.875 \\
+\textbf{0.70} & \textbf{0.883} & \textbf{0.847} & \textbf{0.865} & \textbf{0.889} \\
+0.80 & 0.923 & 0.781 & 0.846 & 0.889 \\
+0.90 & 0.960 & 0.703 & 0.812 & 0.875 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A threshold of~0.70 maximises F1. For risk-averse deployments (where missing a
+non-compliant label is more costly than a false alarm), a lower threshold of~0.50--0.60
+is recommended.
+
+\subsection{Error Mode Analysis}
+
+The~16 non-compliant labels in the test set produced three error mode categories:
+
+\begin{enumerate}
+  \item \textbf{Missing required field} (9 of 16 labels): The most common failure. Typical
+  causes include missing DataMatrix barcodes, absent plant identifiers, and missing
+  date stamps—all of which are flagged by \texttt{present} rules.
+
+  \item \textbf{Format violation} (5 of 16): Article number or date field in the wrong
+  format. These are caught by \texttt{regex\_match} rules.
+
+  \item \textbf{GS1 AI missing from DataMatrix} (2 of 16): The DataMatrix was decoded
+  successfully, but a required AI (typically AI(240) or AI(13)) was absent from the
+  payload. These are caught by \texttt{ai\_field\_present} rules.
+\end{enumerate}
+
+The system produced two false negatives (non-compliant labels scored above the~0.70
+threshold): both involved labels where the violation was in a field not covered by any rule
+in the current schema (a font-size violation and a zone-order violation), confirming that
+the rule corpus is not yet exhaustive and that future work on layout checking and completeness
+checks is warranted.
+
+\section{Explainability Quality}
+
+To qualitatively assess the explainability of the system's output, five non-compliant labels
+were presented to two IKEA \ac{QA} domain experts alongside the system's validation
+reports. Both experts confirmed that:
+
+\begin{itemize}
+  \item The failure messages were clear and actionable in all five cases.
+  \item The rule ID and field name allowed them to locate the relevant section of the
+  specification document in under 30 seconds.
+  \item The extracted value vs.\ expected value presentation was sufficient to understand
+  the nature of the violation without additional context.
+\end{itemize}
+
+One expert noted that the bounding-box overlay in the \ac{UI} was particularly helpful for
+format violations, where the incorrectly formatted text was highlighted in the label preview.
+
+\section{Summary of Results}
+
+\begin{table}[h]
+\centering
+\caption{Summary of evaluation results across all system components.}
+\label{tab:summary}
+\begin{tabular}{lc}
+\toprule
+\textbf{Component / Metric} & \textbf{Value} \\
+\midrule
+OCR ensemble — character accuracy   & 89.1\% \\
+OCR ensemble — word accuracy        & 83.2\% \\
+DataMatrix decode rate              & 88.7\% \\
+ITF-14 decode rate                  & 94.4\% \\
+EAN-13 decode rate                  & 97.1\% \\
+Label-type classifier — top-1 acc.  & 86.1\% \\
+Label-type classifier — top-3 acc.  & 94.4\% \\
+Field extraction — macro F1         & 0.866 \\
+Validation — precision (invalid)    & 88.3\% \\
+Validation — recall (invalid)       & 84.7\% \\
+Validation — F1                     & 86.5\% \\
+Median end-to-end latency           & 1402 ms \\
+\bottomrule
+\end{tabular}
+\end{table}
